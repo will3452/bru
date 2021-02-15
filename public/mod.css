@@ -1,0 +1,33 @@
+body {
+    background:#D5D9E7 !important;
+}
+
+#SIGNUP, #SIGNIN, #CONTACTUS, #ABOUTUS, #BerkeleyReaganUniver {
+    cursor: pointer;
+}
+
+main {
+    width: 1024px;
+    margin: auto;
+}
+
+#artwork {
+    width: 100%;
+    height: 35vh;
+    background: url('/artwork.png');
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+
+.bg-custom {
+    color: #350646;
+    /* color: white; */
+}
+#footer{
+    color: #222;
+}
+#brumultiverseapplogo {
+    border-radius: 50%;
+    box-shadow: 0px 0px 40px 5px #af5bce;
+}
