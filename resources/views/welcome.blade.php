@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 		<link href="styles.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="mod.css">
+		<link href="{{ asset('img/logo.png') }}" rel="icon" type="image/png">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 	</head> 

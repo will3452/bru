@@ -73,6 +73,7 @@
                     <form action="{{ route('admin.bin.restore', $book->id) }}" method="POST">
                         @csrf
                         @method('PUT')
+                        <input type="hidden" name="type" value="book">
                         <button class="btn btn-success btn-sm"><i class="fa fa-restore"></i> Restore</button>
                     </form>
                 </td>
@@ -125,9 +126,10 @@
                 <td>{{ $book->cost }}</td>
                 <td>{{ $book->created_at->format('M d, Y') }}</td>
                 <td>
-                    <form action="#" method="#">
+                    <form action="{{ route('admin.bin.restore', $book->id) }}" method="POST">
                         @csrf
                         @method('PUT')
+                        <input type="hidden" name="type" value="art">
                         <button class="btn btn-success btn-sm"><i class="fa fa-restore"></i> Restore</button>
                     </form>
                 </td>
@@ -188,9 +190,10 @@
                 <td>{{ $book->cost }}</td>
                 <td>{{ $book->created_at->format('M d, Y') }}</td>
                 <td>
-                    <form action="#" method="#">
+                    <form action="{{ route('admin.bin.restore', $book->id) }}" method="POST">
                         @csrf
                         @method('PUT')
+                        <input type="hidden" name="type" value="trailer">
                         <button class="btn btn-success btn-sm"><i class="fa fa-restore"></i> Restore</button>
                     </form>
                 </td>

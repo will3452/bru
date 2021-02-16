@@ -105,6 +105,9 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     //admin role 
     Route::post('/admin-roles/{admin}', 'Admin\\AdminRoleController@update')->name('toggle-role');
+
+    //arts
+    Route::resource('/arts','Admin\\ArtController');
 });
 
 //checkers

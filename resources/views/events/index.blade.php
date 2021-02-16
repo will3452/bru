@@ -32,7 +32,8 @@
             @foreach($events as $event)
             <tr>
                 <td>
-                    <a href="{{ route('events.show', $event) }}">{{ $event->name }}</a>
+                    {{-- <a href="{{ route('events.show', $event) }}">{{ $event->name }}</a> --}}
+                    {{ $event->name }}
                 </td>
                 <td>
                     {{ $event->date_format($event->date) }}

@@ -29,8 +29,15 @@ class BinController extends Controller
     }
 
     public function restore($id){
-        Book::withTrashed()->where('id', $id)->restore();
+        $type = request()->type ?? 'book';
+        if($type == 'art'){
+            Art::withTrashed()->where('id', $id)->restore();
+        }else if($type == 'trailer'){
+            Thrailer::withTrashed()->where('id', $id)->restore();
+        }else {
+            Book::withTrashed()->where('id', $id)->restore();
+        }
 
-        return back()->withSuccess('Book restored!');
+        return back()->withSuccess($type.' restored!');
     }
 }

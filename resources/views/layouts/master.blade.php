@@ -4,8 +4,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Berkeley-Reagan University or BRU was founded on October 13 by a British teacher, named Henry Berkeley, and an American businessman, named William Reagan, who came to Taguig City, Philippines in 1951.">
+    <meta name="author" content="BRUMULTIVERSE">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -20,7 +20,7 @@
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
     @yield('top')
     <!-- Favicon -->
-    <link href="{{ asset('img/favicon.png') }}" rel="icon" type="image/png">
+    <link href="{{ asset('img/logo.png') }}" rel="icon" type="image/png">
     <style>
         :root {
             --blue:#322F46;
@@ -108,6 +108,7 @@
                 </a>
             </li>
         @endif
+
         @if (auth()->user()->allowed('aan'))
         
             <li class="nav-item {{ Nav::isRoute('admin.admins.index') }}">
@@ -138,6 +139,15 @@
                 <a class="nav-link" href="{{ route('admin.thrailers.index') }}">
                     <img src="{{ asset('img/icons/trailer.png') }}" alt="" class="icon">
                     <span>Trailers</span>
+                </a>
+            </li>
+        @endif
+
+        @if (auth()->user()->allowed('art'))
+            <li class="nav-item {{ Nav::isRoute('admin.arts.index') }}">
+                <a class="nav-link" href="{{ route('admin.arts.index') }}">
+                    <img src="{{ asset('img/icons/art.png') }}" alt="" class="icon">
+                    <span>Art Scene</span>
                 </a>
             </li>
         @endif
