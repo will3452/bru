@@ -1,162 +1,230 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>{{ config('app.name') }}</title>
-		<link rel="stylesheet" href="{{ asset('/css/app.css') }}">
-		<link href="styles.css" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="mod.css">
-		<link href="{{ asset('img/logo.png') }}" rel="icon" type="image/png">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-	</head> 
-	<body>
-		<div id="background">
-			<div id="Background"><img src="images/Background.png"></div>
-			<div id="background2"><img src="images/background2.png"></div>
-			<div id="Rectangle3"><img src="images/Rectangle3.png"></div>
-			<div id="brulogo"><img src="images/brulogo.png"></div>
-			<div id="brulogocopy"><img src="images/brulogocopy.png"></div>
-			<div id="backgroundfortext"><img src="images/backgroundfortext.png"></div>
-			<div id="arrowbodyline"><img src="images/arrowbodyline.png"></div>
-			<div id="arrowbodylinecopy2"><img src="images/arrowbodylinecopy2.png"></div>
-			<div id="arrowbodylinecopy3"><img src="images/arrowbodylinecopy3.png"></div>
-			<div id="arrowtailcopy"><img src="images/arrowtailcopy.png"></div>
-			<div id="arrowhead"><img src="images/arrowhead.png"></div>
-			<div id="signinlowerdesigncop"><img src="images/signinlowerdesigncop.png"></div>
-			<div id="ABOUTUS"><img src="images/ABOUTUS.png"></div>
-			<div id="CONTACTUS"><img src="images/CONTACTUS.png"></div>
-			<div id="BerkeleyReaganUniver"><img src="images/BerkeleyReaganUniver.png"></div>
-			<div id="SIGNUP"><img src="images/SIGNUP.png"></div>
-			<div id="SIGNIN"><img src="images/SIGNIN.png"></div>
-			<div id="backgroundforlogo"><img src="images/backgroundforlogo.png"></div>
-			<div id="brumultiverseapplogo"><img src="images/brumultiverseapplogo.png"></div>
-		</div>
-		<main>
-			<div id="artwork">
-			</div>
-			<div class="lead">
-				<p>
-					Berkeley-Reagan University or BRU was founded on October 13 by a British teacher, named Henry Berkeley, and an American businessman, named William Reagan, who came to Taguig City, Philippines in 1951.
-				</p>
-				<p>
-					From offering only four courses in natural sciences and performing arts as Berkeley-Reagan Colleges, it has expanded, not only its land area, but also the curriculum it offered over the years. It earned its University status in 1986, as more than eight thousand students from around Southeast Asia flocked its grounds, making it one of the most prestigious international universities in the world. In 1989, BRU began accepting students from Pre-K to Senior High, which now comprises its Integrated School population.
-				</p>
-				<p>
-					At present, BRU specializes in Business, Sports, Arts and Social Sciences. Its British-American-inspired buildings withstood the test of time, boasting their original architectural designs and structures to date, along with state-of-the art facilities.
-				</p>
-			</div>
-			<hr>
-			<div>
-				<h2 class="bg-custom p-2">
-					VISION - MISSON
-				</h2>
-				<p class="lead">
-					Berkeley-Reagan University is a premier university in business, arts and sciences that bridges knowledge and culture and develops globally-competitive and responsible professionals attuned to a sustainable world.
-				</p>
-			</div>
-			<hr>
-			<div class="mt-2">
-				<div class="row">
-					<div class="col-6">
-						<h2 class="bg-custom p-2">
-							GOALS
-						</h2>
-						<ol>
-							<li>
-								Provide quality education through highly trained and competent educators and state-of-the-arts facilities.
-							</li>
-							<li>
-								Challenge the abilities of young individuals to promote resourcefulness and creativity through various activities inside and/or outside the campus.
-							</li>
-							<li>
-								Develop critical minds of students in addressing important issues and guide them into making sound judgment.
-							</li>
-							<li>
-								Promote openness, mutual respect and collaboration in a multi-cultural and multi-racial environment.
-							</li>
-							<li>
-								Maintain and preserve ecological balance through initiatives directed towards caring for Mother Earth.
-							</li>
-						</ol>
-					</div>
-					<div class="col-6">
-						<h2 class="bg-custom p-2">
-							CORE VALUES
-						</h2>
-						<ul>
-							<li>
-								Excellence and Competence.
-							</li>
-							<li>
-								Imagination and Creativity.
-							</li>
-							<li>
-								Respect and Compassion.
-							</li>
-							<li>
-								Community and Culture.
-							</li>
-							<li>
-								Honor and Integrity.
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<hr>
-			<div id="footer">
-				<p class="lead text-center pt-2">
-					We’d love for you to join our growing BRU family!
-				</p>
-				<div class="row justify-content-center">
-					<div class="col-md-4">
-						<img src="images/brulogo.png" alt="" class="img-fluid">
-					</div>
-				</div>
-				<p class="lead w-50 text-center mx-auto">
-					Immerse yourself, experience and be part of each university story on e-books, audio books, short videos and songs from authors and artists around the globe!
-				</p>
-				<div class="row justify-content-center">
-					<div class="col-2">
-						<img src="googleplay.png" alt="" class="img-fluid">
-					</div>
-					<div class="col-2">
-						<img src="appstore.png" alt="" class="img-fluid">
-					</div>
-				</div>
-				<small class="d-block text-center mt-2">
-					Copyright BRUMULTIVERSE 2020. Tarlac City, Philippines.
-				</small>
-			</div>
-		</main>
-		
-		@include('partials.loader')	
- <script>
-	$(function(){
-		$('#SIGNUP').click(function(){
-			document.location.href = "{{ route('input.aan') }}"
-		})
-		$('#SIGNIN').click(function(){
-			document.location.href = "{{ route('login') }}"
-		})
-		$('#CONTACTUS').click(function(){
-			alert('contact us is in progress');
-		})
-		$('#ABOUTUS').click(function(){
-			alert('about us is in progress');
-		})
-		$('#BerkeleyReaganUniver').click(function(){
-			alert('berkely page is in progress');
-		})
-	})
-</script>
-<script>
-	window.onload = function(){
-		$('.loader-container').fadeOut(1000);
-	}
-</script>
- </body>
- </html>
- 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        #header{
+            width: 1024px;
+            height: 199px;
+            background: url('images/background_2.webp');
+            background-size: cover;
+        }
+        #header-footer{
+            background: url('images/background_for_text.png');
+            width: 1024px;
+            height: 69px;
+            position: absolute;
+            top: 130px;
+        }
+        #app-logo{
+            background: url('images/2-layers\ \(1\).png');
+            width: 166px;
+            height: 167px;
+            background-size: contain;
+            position: absolute;
+            z-index: 99;
+        }
+        #app-logo-text{
+            width: 477px;
+        }
+        #ber {
+            background-image: url('images/berk.png');
+            width: 256px;
+            height: 29px;
+            cursor: pointer;
+        }
+        #about{
+            background-image: url('images/about.png');
+            width: 97px;
+            height: 17px;
+            cursor: pointer;
+
+        }
+        #contact{
+            background-image: url('images/contact.png');
+            width: 98px;
+            height: 18px;
+            cursor: pointer;
+
+        }
+        #signup{
+            background-image: url('images/sign up.png');
+            width: 130px;
+            height: 26px;
+            cursor: pointer;
+
+        }
+        #signin {
+            background: url('images/sign\ in.png');
+            width:143px;
+            height: 40px;
+            cursor: pointer;
+
+        }
+        .color-me {
+            color: #AB983F !important;
+        }
+        #art {
+            background:url('images/content-pixie-woMD-vhzOHI-unsplash.jpg');
+            background-size: cover;
+            height: 50vh;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="text-gray-900 font-serif bg-gray-100" style="max-width:1024px;margin: auto;">
+    <div id="header" class="h-4 m-auto hidden md:block">
+        <div id="app-logo"></div>
+        <div class="flex justify-center pt-2">
+            <img id="app-logo-text"  src="images/2-layers (2).png" alt="">
+        </div>
+        <div id="header-footer" class="flex items-center justify-end">
+            <div id="ber" class="mx-2"></div>
+            <div id="about" class="mx-2"></div>
+            <div id="contact" class="mx-2"></div>
+            <div id="signup" class="mt-2 mx-2"></div>
+            <div id="signin"></div>
+        </div>
+    </div>
+    <div class="bg-black w-screen md:hidden">
+        <div class="flex justify-between px-2 items-center">
+            <img src="/images/2-layers (1).png" alt="" class="w-16 h-16">
+            <button class="pr-2" id="menu-toggler">
+                <i class="fa fa-bars fa-2x text-purple-100"></i>
+            </button>
+        </div>
+        <div class="bg-black text-white hidden" id="menu-list">
+            <ul class="text-center">
+                <li class="py-1 hover:bg-purple-900 color-me"><a href="#">Berkeley Reagan Univerisity</a></li>
+                <li class="py-1 hover:bg-purple-900 color-me"><a href="#">About Us</a></li>
+                <li class="py-1 hover:bg-purple-900 color-me"><a href="#">Contact Us</a></li>
+                <li class="py-1 hover:bg-purple-900 color-me"><a href="/please-input-aan">Sign Up</a></li>
+                <li class="py-1 text-2xl hover:bg-purple-900 color-me"><a href="/login">Sign In</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="w-full mx-auto">
+        <div id="art" class="w-full">
+        </div>
+        <div>
+            <p class="text-2xl mt-2">
+                Berkeley-Reagan University or BRU was founded on October 13 by a British teacher, named Henry Berkeley, and an American businessman, named William Reagan, who came to Taguig City, Philippines in 1951.
+            </p>
+            <p class="text-2xl mt-4">
+                From offering only four courses in natural sciences and performing arts as Berkeley-Reagan Colleges, it has expanded, not only its land area, but also the curriculum it offered over the years. It earned its University status in 1986, as more than eight thousand students from around Southeast Asia flocked its grounds, making it one of the most prestigious international universities in the world. In 1989, BRU began accepting students from Pre-K to Senior High, which now comprises its Integrated School population.
+            </p>
+            <p class="text-2xl mt-4">
+                At present, BRU specializes in Business, Sports, Arts and Social Sciences. Its British-American-inspired buildings withstood the test of time, boasting their original architectural designs and structures to date, along with state-of-the art facilities.
+            </p>
+        </div>
+        <div class="mt-5">
+            <h2 class="text-4xl font-bold">VISION / MISSION</h2>
+            <p class="text-2lg">
+                Berkeley-Reagan University is a premier university in business, arts and sciences that bridges knowledge and culture and develops globally-competitive and responsible professionals attuned to a sustainable world.
+            </p>
+        </div>
+        <div class="flex mt-5 flex-col md:flex-row">
+            <div class="w-full md:w-1/2">
+                <h2 class="text-4xl font-bold">GOALS</h2>
+                <ol class="text-2lg">
+                    <li class="mt-2">
+                       1.  Provide quality education through highly trained and competent educators and state-of-the-arts facilities.
+                    </li>
+                    <li class="mt-2">
+                       2.  Challenge the abilities of young individuals to promote resourcefulness and creativity through various activities inside and/or outside the campus.
+                    </li>
+                    <li class="mt-2">
+                       3.  Develop critical minds of students in addressing important issues and guide them into making sound judgment.
+                    </li>
+                    <li class="mt-2">
+                       4. Promote openness, mutual respect and collaboration in a multi-cultural and multi-racial environment.
+                    </li>
+                    <li class="mt-2">
+                        5. Maintain and preserve ecological balance through initiatives directed towards caring for Mother Earth.
+                    </li>
+                </ol>
+            </div>
+            <div class="pl-4 w-full md:w-1/2">
+                <h2 class="text-4xl font-bold">CORE VALUES</h2>
+                <ol class="text-2lg">
+                    <li class="mt-2">
+                        <i class="fa fa-check"></i>   Excellence and Competence.
+                    </li>
+                    <li class="mt-2">
+                        <i class="fa fa-check"></i> Imagination and Creativity.
+                    </li>
+                    <li class="mt-2">
+                        <i class="fa fa-check"></i> Respect and Compassion.
+                    </li>
+                    <li class="mt-2">
+                        <i class="fa fa-check"></i> Community and Culture.
+                    </li>
+                    <li class="mt-2">
+                        <i class="fa fa-check"></i> Honor and Integrity.
+                    </li>
+                </ol>
+            </div>
+        </div>
+        <hr>
+        <footer class="flex flex-col items-center mt-5 justify-center">
+            <p>We’d love for you to join our growing BRU family!</p>
+            <img src="/images/2-layers (2).png" alt="" class="w-4/12">
+            <p class="text-center w-8/12">
+                Immerse yourself, experience and be part of each university story on e-books, audio books, short videos and songs from authors and artists around the globe!
+            </p>
+            <div class="flex justify-center mt-2">
+                <img src="/images/googleplay.png" alt="" class="w-3/12 mx-2">
+                <img src="/images/appstore.png" alt="" class="w-3/12 mx-2">
+            </div>
+            <div class="text-center text-sm mt-3">
+                Copyright BRUMULTIVERSE 2020. Tarlac City, Philippines.
+            </div>
+        </footer>
+    </div>
+    <script>
+        window.onload = function(){
+            let show = false;
+            let menuList = document.getElementById('menu-list');
+            document.getElementById('menu-toggler').onclick = function(){
+                if(!show){
+                    menuList.classList.remove('hidden');
+                }else {
+                    menuList.classList.add('hidden');
+                }
+                show = !show;
+            }
+
+
+
+            // 
+             document.getElementById('ber').onclick = function(){
+                 alert('soon');
+             }
+
+             document.getElementById('about').onclick = function(){
+                 alert('about page soon');
+             }
+
+             document.getElementById('contact').onclick = function(){
+                 alert('soon');
+             }
+
+             document.getElementById('signup').onclick = function(){
+                 window.location.href="/please-input-aan";
+             }
+
+             document.getElementById('signin').onclick = function(){
+                window.location.href="/login";
+             }
+            
+        }
+
+        
+    </script>
+</body>
+</html>
