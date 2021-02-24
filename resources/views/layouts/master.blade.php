@@ -224,12 +224,19 @@
             </div>
 
             <!-- Nav Item - Profile -->
+            <li class="nav-item {{ Nav::isRoute('admin.about.*') }}">
+                <a class="nav-link" href="{{ route('admin.about.index') }}">
+                    <i class="fa fa-info-circle text-white" style="font-size:20px;"></i>
+                    <span>{{ __('About') }}</span>
+                </a>
+            </li>
             <li class="nav-item {{ Nav::isRoute('admin.profile') }}">
                 <a class="nav-link" href="{{ route('admin.profile') }}">
                     <img src="{{ asset('img/icons/profile.png') }}" alt="" class="icon">
                     <span>{{ __('Profile') }}</span>
                 </a>
             </li>
+
         @endif
         
 

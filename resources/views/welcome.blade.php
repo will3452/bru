@@ -201,17 +201,17 @@
 
 
 
-            // 
+             // 
              document.getElementById('ber').onclick = function(){
-                 alert('soon');
+                window.location.href="/bru";
              }
 
              document.getElementById('about').onclick = function(){
-                 alert('about page soon');
+                window.location.href="/about";
              }
 
              document.getElementById('contact').onclick = function(){
-                 alert('soon');
+                window.location.href="/contact";
              }
 
              document.getElementById('signup').onclick = function(){

@@ -17,9 +17,12 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::view('/', 'welcome');
+
+//static website
+Route::view('/about', 'about');
+Route::view('/contact', 'contact');
+Route::view('/bru', 'bru');
 
 Auth::routes();
 
@@ -108,6 +111,9 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     //arts
     Route::resource('/arts','Admin\\ArtController');
+
+    //static
+    Route::resource('/about', 'Admin\\AboutPageController');
 });
 
 //checkers

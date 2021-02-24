@@ -1,73 +1,194 @@
-@extends('layouts.admin')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        #header{
+            width: 1024px;
+            height: 199px;
+            background: url('images/background_2.webp');
+            background-size: cover;
+        }
+        #header-footer{
+            background: url('images/background_for_text.png');
+            width: 1024px;
+            height: 69px;
+            position: absolute;
+            top: 130px;
+        }
+        #app-logo{
+            background: url('images/2-layers\ \(1\).png');
+            width: 166px;
+            height: 167px;
+            background-size: contain;
+            position: absolute;
+            z-index: 99;
+        }
+        #app-logo-text{
+            width: 477px;
+        }
+        #ber {
+            background-image: url('images/berk.png');
+            width: 256px;
+            height: 29px;
+            cursor: pointer;
+        }
+        #about{
+            background-image: url('images/about.png');
+            width: 97px;
+            height: 17px;
+            cursor: pointer;
 
-@section('main-content')
-    <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">{{ __('About') }}</h1>
+        }
+        #contact{
+            background-image: url('images/contact.png');
+            width: 98px;
+            height: 18px;
+            cursor: pointer;
 
-    <div class="row justify-content-center">
+        }
+        #signup{
+            background-image: url('images/sign up.png');
+            width: 130px;
+            height: 26px;
+            cursor: pointer;
 
-        <div class="col-lg-8">
+        }
+        #signin {
+            background: url('images/sign\ in.png');
+            width:143px;
+            height: 40px;
+            cursor: pointer;
 
-            <div class="card shadow mb-4">
-
-                <div class="card-profile-image mt-4">
-                    <img src="{{ asset('img/favicon.png') }}" class="rounded-circle" alt="user-image">
+        }
+        .color-me {
+            color: #AB983F !important;
+        }
+        #art {
+            background:url('images/content-pixie-woMD-vhzOHI-unsplash.jpg');
+            background-size: cover;
+            height: 50vh;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="text-gray-900 font-serif bg-gray-100" style="max-width:1024px;margin: auto;">
+    <div id="header" class="h-4 m-auto hidden md:block">
+        <div id="app-logo"></div>
+        <div class="flex justify-center pt-2">
+            <img id="app-logo-text"  src="images/2-layers (2).png" alt="">
+        </div>
+        <div id="header-footer" class="flex items-center justify-end">
+            <div id="ber" class="mx-2"></div>
+            <div id="about" class="mx-2"></div>
+            <div id="contact" class="mx-2"></div>
+            <div id="signup" class="mt-2 mx-2"></div>
+            <div id="signin"></div>
+        </div>
+    </div>
+    <div class="bg-black w-screen md:hidden">
+        <div class="flex justify-between px-2 items-center">
+            <img src="/images/2-layers (1).png" alt="" class="w-16 h-16">
+            <button class="pr-2" id="menu-toggler">
+                <i class="fa fa-bars fa-2x text-purple-100"></i>
+            </button>
+        </div>
+        <div class="bg-black text-white hidden" id="menu-list">
+            <ul class="text-center">
+                <li class="py-1 hover:bg-purple-900 color-me"><a href="#">Berkeley Reagan Univerisity</a></li>
+                <li class="py-1 hover:bg-purple-900 color-me"><a href="#">About Us</a></li>
+                <li class="py-1 hover:bg-purple-900 color-me"><a href="#">Contact Us</a></li>
+                <li class="py-1 hover:bg-purple-900 color-me"><a href="/please-input-aan">Sign Up</a></li>
+                <li class="py-1 text-2xl hover:bg-purple-900 color-me"><a href="/login">Sign In</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="w-full mx-auto">
+        <div>
+            <h1 class="text-2xl my-2">
+                {!! \App\About::find(1)->title !!}
+            </h1>
+            {!! \App\About::find(1)->content !!}
+        </div>
+        <div class="flex flex-wrap w-full my-12">
+            <div class="w-full md:w-1/4">
+                <div class="w-full bg-white-100 rounded-lg text-yellow-900">
+                    <div class="flex justify-center">
+                        <img src="/img/emptyuserimage.png" alt="" class="block w-32 h-32 rounded-full mt-8 object-cover">
+                    </div>
+                    <div class="text-center">
+                        <h2 class="text-2xl font-bold">Khiara Laurea</h2>
+                        <div class="text-sm text-gray-600">
+                            Founder And Creator
+                        </div>
+                    </div>
                 </div>
-
-                <div class="card-body">
-
-                    <div class="row">
-                        <div class="col-lg-12 mb-1">
-                            <div class="text-center">
-                                <h5 class="font-weight-bold">Alejandro RH</h5>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4 mb-1 text-center">
-                            <a href="https://facebook.com/aleckrh" target="_blank" class="btn btn-facebook btn-circle btn-lg"><i class="fab fa-facebook-f fa-fw"></i></a>
-                        </div>
-                        <div class="col-md-4 mb-1 text-center">
-                            <a href="https://github.com/aleckrh" target="_blank" class="btn btn-github btn-circle btn-lg"><i class="fab fa-github fa-fw"></i></a>
-                        </div>
-                        <div class="col-md-4 mb-1 text-center">
-                            <a href="https://twitter.com/aleckrh" target="_blank" class="btn btn-twitter btn-circle btn-lg"><i class="fab fa-twitter fa-fw"></i></a>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h5 class="font-weight-bold">Laravel SB Admin 2</h5>
-                            <p>SB Admin 2 for Laravel.</p>
-                            <p>Recommend to install this preset on a project that you are starting from scratch, otherwise your project's design might break.</p>
-                            <a href="https://github.com/aleckrh/laravel-sb-admin-2" target="_blank" class="btn btn-github">
-                                <i class="fab fa-github fa-fw"></i> Go to repository
-                            </a>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h5 class="font-weight-bold">Credits</h5>
-                            <p>Laravel SB Admin 2 uses some open-source third-party libraries/packages, many thanks to the web community.</p>
-                            <ul>
-                                <li><a href="https://laravel.com" target="_blank">Laravel</a> - Open source framework.</li>
-                                <li><a href="https://github.com/DevMarketer/LaravelEasyNav" target="_blank">LaravelEasyNav</a> - Making managing navigation in Laravel easy.</li>
-                                <li><a href="https://startbootstrap.com/themes/sb-admin-2" target="_blank">SB Admin 2</a> - Thanks to Start Bootstrap.</li>
-                            </ul>
-                        </div>
-                    </div>
-
+                <div class="flex justify-center text-yellow-900 ">
+                    <a href="#" class="hover:text-gray-600 text-2xl"><i class="fa fa-facebook-square mx-1"></i></a>
+                    <a href="#" class="hover:text-gray-600 text-2xl"><i class="fa fa-instagram mx-1"></i></a>
                 </div>
             </div>
-
         </div>
-
+        <hr>
+        <footer class="flex flex-col items-center mt-5 justify-center">
+            <p>We’d love for you to join our growing BRU family!</p>
+            <img src="/images/2-layers (2).png" alt="" class="w-4/12">
+            <p class="text-center w-8/12">
+                Immerse yourself, experience and be part of each university story on e-books, audio books, short videos and songs from authors and artists around the globe!
+            </p>
+            <div class="flex justify-center mt-2">
+                <img src="/images/googleplay.png" alt="" class="w-3/12 mx-2">
+                <img src="/images/appstore.png" alt="" class="w-3/12 mx-2">
+            </div>
+            <div class="text-center text-sm mt-3">
+                Copyright BRUMULTIVERSE 2020. Tarlac City, Philippines.
+            </div>
+        </footer>
     </div>
+    <script>
+        window.onload = function(){
+            let show = false;
+            let menuList = document.getElementById('menu-list');
+            document.getElementById('menu-toggler').onclick = function(){
+                if(!show){
+                    menuList.classList.remove('hidden');
+                }else {
+                    menuList.classList.add('hidden');
+                }
+                show = !show;
+            }
 
-@endsection
+
+
+            // 
+             document.getElementById('ber').onclick = function(){
+                window.location.href="/bru";
+             }
+
+             document.getElementById('about').onclick = function(){
+                window.location.href="/about";
+             }
+
+             document.getElementById('contact').onclick = function(){
+                window.location.href="/contact";
+             }
+
+             document.getElementById('signup').onclick = function(){
+                 window.location.href="/please-input-aan";
+             }
+
+             document.getElementById('signin').onclick = function(){
+                window.location.href="/login";
+             }
+            
+        }
+
+        
+    </script>
+</body>
+</html>
