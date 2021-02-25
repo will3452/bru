@@ -112,6 +112,6 @@ class BookController extends Controller
         $front = '/storage/fronts/'.$end_path;
         $book->front = $front;
         $book->save();
-        return redirect()->route('books.show', $id)->withSuccess('Done!');
+        return redirect()->route('books.show', $book)->withSuccess('Done!');
     }
 }
