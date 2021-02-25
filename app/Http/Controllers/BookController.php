@@ -111,6 +111,7 @@ class BookController extends Controller
         $end_path = end($arr_path);
         $front = '/storage/fronts/'.$end_path;
         $book->front = $front;
+        $book->save();
         return back()->withSuccess('Done!');
     }
 }
