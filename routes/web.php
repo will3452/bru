@@ -155,7 +155,9 @@ Route::prefix('books')->name('books.')->group(function(){
         Route::post('/', 'TagController@store')->name('store');
     });
 
-    route::view('/update-front/{id}', 'books.update-front')->name('update-front');
+    route::get('/update-front/{id}',function($id){
+        return view('books.update-front', compact('id'));
+    })->name('update-front');
     
 });
 
