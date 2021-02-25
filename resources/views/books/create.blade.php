@@ -12,7 +12,7 @@
             <div class="form-group">
                 <select name="class" id="class_" class="select2 custom-select" required>
                     <option value="" selected disabled>----</option>
-                    <option value="regular">Regular</option>
+                    <option value="regular" {{ request()->type == 'regular' ? 'selected':'' }}>Regular</option>
                     <option value="premium" {{ request()->type == 'premium' ? 'selected':'' }}>Premium</option>
                     <option value="spin-off" {{ request()->type == 'spin-off' ? 'selected':'' }}>Spin-off</option>
                     <option value="event" {{ request()->has('is_event') ? 'selected':'' }}>Event</option>
