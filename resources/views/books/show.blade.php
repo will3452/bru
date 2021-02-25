@@ -20,7 +20,7 @@
         <div class="alert alert-warning d-flex">
             <i class="fa fa-exclamation-triangle mr-2"></i>
             <div>
-                Please click <a href="{{ route('books.update-front', $book->id) }}"><strong>HERE</strong></a> to upload one .PDF file that contain your BOOK TITLE PAGE, COPYRIGHT PAGE, ACKNOWLEDGMENT PAGE AND DEDICATION PAGE. Thank you!
+                Please click <a href="{{ route('books.update-front', $book) }}"><strong>HERE</strong></a> to upload one .PDF file that contain your BOOK TITLE PAGE, COPYRIGHT PAGE, ACKNOWLEDGMENT PAGE AND DEDICATION PAGE. Thank you!
             </div>
         </div>
     @endif
