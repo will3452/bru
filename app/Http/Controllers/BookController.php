@@ -110,7 +110,7 @@ class BookController extends Controller
         $arr_path = explode('/', $path);
         $end_path = end($arr_path);
         $front = '/storage/fronts/'.$end_path;
-        $book->front->update(['front'=>$front]);
+        $book->front = $front;
         return back()->withSuccess('Done!');
     }
 }
