@@ -4,7 +4,7 @@
         Upload 
     </h1>
     <div class="car card-body">
-       <form action="{{ route('books.update-front', $id) }}" method="POST" enctype="multipart/form-data">
+       <form action="{{ route('books.update.front', $id) }}" method="POST" enctype="multipart/form-data">
             @method('PUT')
            @csrf
         <div class="form-group">
