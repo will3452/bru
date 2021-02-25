@@ -39,7 +39,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-md-4">
                             <div class="card-profile-stats">
                                 <span class="heading"><i class="fa fa-heart"></i></span>
@@ -58,7 +58,7 @@
                                 <span class="description">200</span>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class=" card shadow mb-2">
