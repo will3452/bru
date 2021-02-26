@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{{ config('app.name') ?? 'BRUMULTIVERSE' }}</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
@@ -70,7 +70,7 @@
             color: #AB983F !important;
         }
         #art {
-            background:url('images/content-pixie-woMD-vhzOHI-unsplash.jpg');
+            background:url('images/dan-cristian-padure-NNqTuz826lg-unsplash.jpg');
             background-size: cover;
             height: 50vh;
             background-attachment: fixed;

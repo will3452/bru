@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME_X', 'BRUMULTIVERSE'),
+    'name' => env('APP_NAME', 'BRUMULTIVERSE'),
 
     /*
     |--------------------------------------------------------------------------
