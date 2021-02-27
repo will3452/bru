@@ -124,8 +124,8 @@
     <div class="form-group">
         <label for="">Language</label>
         <select name="language" id="" class="custom-select" required>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
+            <option value="english">English</option>
+            <option value="filipino">Filipino</option>
         </select>
     </div>
     <div class="form-group">
