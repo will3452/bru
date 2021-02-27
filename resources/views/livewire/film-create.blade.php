@@ -108,7 +108,7 @@
                 <label for="">
                     Preview Cost
                 </label>
-                <input type="text" placeholder="White Gems" name="preview_cost" class="form-control form-control-sm">
+                <input type="text" placeholder="White Gems" required name="preview_cost" class="form-control form-control-sm">
             </div>
         @endif
     @endif
@@ -119,6 +119,13 @@
             <option value="none">none</option>
             <option value="16 and up">16 and Up</option>
             <option value="18 and up">18 and Up</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="">Language</label>
+        <select name="language" id="" class="custom-select" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
         </select>
     </div>
     <div class="form-group">
