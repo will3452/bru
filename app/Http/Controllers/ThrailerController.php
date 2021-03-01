@@ -43,25 +43,88 @@ class ThrailerController extends Controller
      */
     public function store(Request $request)
     {
+        $preview = null;
+        $preview_cost = null;
+        $cover = null;
+        $book_id = null;
+        $event_id = null;
+        $thrailer_id = null;
+        $genre = null;
+        $code = Str::random(8);
+        // dd(request()->all());
+        // dd($request->all());
         $validated = $this->validate($request, [
             "title" => "required",
             "cost" => "required",
             "cpy" => "required",
             "gem" => "required",
+            "category" => "required",
+            "description" => "required",
+            "credit" => "required",
             "author" => "required",
-            "video" => "required"
+            "video" => "required",
+            "age_restriction" => "required",
+            'language'=>'required',
+            'cover'=>'',
         ]);
+        //just set to null
+        
 
         $path = request()->video->store('/public/thrailers');
         $arr_path = explode('/', $path);
         $end_path = end($arr_path);
-        $validated['video'] = '/storage/thrailers/'.$end_path;
+        $video = '/storage/thrailers/'.$end_path;
 
-        $video = auth()->user()->thrailers()->create($validated);
-        $video->code = Str::random(8);
-        $video->save();
+        $path_cover = request()->cover->store('public/thrailers_cover');
+        $arr_path_cover = explode('/', $path_cover);
+        $end_path_cover = end($arr_path_cover);
+        $cover = '/storage/thrailers_cover/'.$end_path_cover;
+
+        if($request->category == 'trailer'){
+            $connect = $request->connect_id;
+            $connect_array = explode('-', $connect);
+            $connect_type = $connect_array[0];
+            $connect_id = end($connect_array);
+
+            if($connect_type == 'book'){
+                $book_id = $connect_id;
+            }else{
+                $thrailer_id = $connect_id;
+            }
+        }else {
+            $genre = $request->genre;
+            $event_id = request()->event_id;
+            if(!empty(request()->preview)){
+                $preview_path = request()->preview->store('/public/previews');
+                $arr_preview_path = explode('/', $preview_path);
+                $end_preview = end($arr_preview_path);
+                $preview = '/storage/previews/'.$end_preview;
+                $preview_cost = request()->preview_cost ?? 0;
+            }
+        }
+        
+        $video = auth()->user()->thrailers()->create([
+            'title' => request()->title,
+            'author' => request()->author,
+            'video' => $video,
+            'code' => $code,
+            'event_id' => $event_id,
+            'preview'=> $preview,
+            'preview_cost'=> $preview_cost,
+            'cover'=> $cover,
+            'genre'=>$genre,
+            'book_id' => $book_id,
+            'thrailer_id'=>$thrailer_id,
+            'description'=>request()->description,
+            'category'=>request()->category,
+            'credit'=>request()->credit,
+            'age_restriction'=>request()->age_restriction,
+            'language'=>request()->language,
+            'gem'=>request()->gem,
+            'cost'=>request()->cost
+        ]);
         $video->cpy()->create();
-        Notification::send(Admin::get(), new VideoApproval($video));
+        // Notification::send(Admin::get(), new VideoApproval($video));
         return back()->with('success', 'item stored successfully');
     }
 

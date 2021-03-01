@@ -1,5 +1,5 @@
-{{-- <form action="{{ route('thrailers.store') }}" method="POST" enctype="multipart/form-data"> --}}
-    <form action="#">
+<form action="{{ route('thrailers.store') }}" method="POST" enctype="multipart/form-data">
+    {{-- <form action="#"> --}}
     @csrf
     <div class="form-group">
         <label for="">Title</label>
@@ -42,11 +42,11 @@
                         {{ $book->title }} (book)
                     </option>
                 @endforeach
-                {{-- @foreach (\App\Thrailer::get() as $trailer)
-                    <option value="book-{{$trailer->id}}">
-                        {{ $trailer->title }} (file)
+                @foreach (\App\Thrailer::get() as $trailer)
+                    <option value="film-{{$trailer->id}}">
+                        {{ $trailer->title }} (trailer/film)
                     </option>
-                @endforeach --}}
+                @endforeach
             </select>
         </div>
 
@@ -131,12 +131,12 @@
     <div class="form-group">
         <label for="">Cover</label>
         <div>
-            <input type="file" name="cover" required>
+            <input type="file" name="cover" accept="image/*" required>
         </div>
     </div>
     <div class="form-group">
         <label for="">Please submit the video for approval to the Admin. </label>
-        <input type="file" accept="video/*" class="d-block" name="video">
+        <input type="file" accept="video/*" class="d-block" name="video" required>
 
         <div class="alert alert-warning mt-2">
             <input type="checkbox" required name="cpy">
@@ -155,11 +155,11 @@
         <input type="number" name="cost" class="form-control" min="0" value="0">
     </div>
     <div class="form-group">
-        <button class="btn btn-block btn-primary" disabled>
+        <button class="btn btn-block btn-primary">
             Submit
         </button>
     </div>
 </form>
-<script>
+{{-- <script>
     alert('under development...');
-</script>
+</script> --}}

@@ -46,21 +46,21 @@ class AdminSeeder extends Seeder
         DB::table('settings')->insert([
             'event_day_away'=>'60'
         ]);
-        //test users
-        DB::table('users')->insert([
-            'first_name'=>'William',
-            'last_name'=>'Galas',
-            'role'=>'author',
-            'email'=>'william@mail.com',
-            'email_verified_at'=>now(),
-            'password'=>Hash::make('password') // password,
-        ]);
+        // //test users
+        // DB::table('users')->insert([
+        //     'first_name'=>'William',
+        //     'last_name'=>'Galas',
+        //     'role'=>'author',
+        //     'email'=>'william@mail.com',
+        //     'email_verified_at'=>now(),
+        //     'password'=>Hash::make('password') // password,
+        // ]);
 
-        User::find(1)->interests()->create([
-            'type'=>'college',
-            'name'=>'Integrated School',
-            'description'=>'Integrated School'
-        ]);
+        // User::find(1)->interests()->create([
+        //     'type'=>'college',
+        //     'name'=>'Integrated School',
+        //     'description'=>'Integrated School'
+        // ]);
         Character::create([
             'name'=>'Khiara Laurea'
         ]);

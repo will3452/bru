@@ -22,10 +22,11 @@ class CreateThrailersTable extends Migration
             $table->string('code')->nullable();
             $table->string('approved')->nullable();
             $table->string('preview')->nullable();
-            $table->string('proview_cost')->nullable();
+            $table->string('preview_cost')->nullable();
             $table->string('cover')->nullable();
             $table->string('genre')->nullable();
             $table->string('book_id')->nullable();
+            $table->string('event_id')->nullable();
             $table->string('thrailer_id')->nullable();
             $table->string('description')->nullable();
             $table->string('category')->nullable();

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Thrailer extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $fillable = [ 'title', 'author', 'video', 'cost', 'gem'];
+    protected $guarded = [];
     
     public function user(){
         return $this->belongsToMany(User::class);

@@ -10,6 +10,7 @@
     </div>
     <div class="row">
         @foreach($thrailers as $thrailer)
+
             <div class="col-md-4 all {{ empty($thrailer->approved) ? 'need_approved':'approved' }}">
                 <div class="card mb-2" style="height:45vh">
                     <div class="card-header d-flex justify-content-between">
@@ -20,7 +21,7 @@
                             <a href="{{ route('thrailers.edit', $thrailer) }}"><i class="fa fa-edit"></i></a>
                         </div>
                     </div>
-                    <video class="video-js w-100" data-setup='{"controls": true, "responsive":true, "autoplay": false, "preload": "auto"}'>
+                    <video class="video-js w-100" data-setup='{"poster":"{{ $thrailer->cover }}", "controls": true, "responsive":true, "autoplay": false, "preload": "auto"}'>
                         <source src="{{ $thrailer->video }}" type="video/mp4">
                         <source src="{{ $thrailer->video }}" type="video/webm">
                     </video>
