@@ -26,9 +26,10 @@
             New Message for @{{ selected|usertype }}
         </div>
         <div class="card-body">
+            <form action="{{ route('admin.messages.store') }}" method="POST">
+            @csrf
             <div v-if="selected == 1">
-                <form action="{{ route('admin.messages.store') }}" method="POST">
-                    @csrf
+               
                     <input type="hidden" :value="selected" name="type">
                     <div class="form-group">
                         <label for="">to user: </label>
@@ -53,19 +54,11 @@
                         <input type="text" class="form-control" name="subject" required>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="">Message:</label>
-                        <textarea name="message" required id="fes" cols="30" rows="7" class="form-control" placeholder="Aa"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary btn-block">Send Now</button>
-                    </div>
-                </form>
+                    
             </div>
 
             <div v-else>
-                <form action="{{ route('admin.messages.store') }}" method="POST">
-                    @csrf
+                
                     <input type="hidden" :value="selected" name="type">
                     <div class="form-group">
                         <label for="">Send As: </label>
@@ -80,15 +73,15 @@
                         <label for="">Subject : </label>
                         <input type="text" name="subject" class="form-control" required>
                     </div>
-                    <div class="form-group">
-                        <label for="">Message:</label>
-                        <textarea name="message" required id="" cols="30" rows="7" class="form-control" placeholder="Aa"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary btn-block">Send Now</button>
-                    </div>
-                </form>
             </div>
+            <div class="form-group">
+                <label for="">Message:</label>
+                <textarea name="message" required id="fes" cols="30" rows="7" class="form-control" placeholder="Aa"></textarea>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block">Send Now</button>
+            </div>
+        </form>
         </div>
     </div>
     

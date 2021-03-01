@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="card-body">
-            <p>- {{ $msg->message }}</p>
+            <p>- {!! $msg->message !!}</p>
         </div>
     </div>
 @endsection

@@ -69,7 +69,7 @@
                                 @{{ selected.subject }}
                             </strong>
                         </p>
-                        <div class="alert alert-info">
+                        <div class="alert alert-info" id="message_ctx">
                             <div v-html="selected.message"></div>
                         </div>
                     </div>
@@ -175,6 +175,9 @@
 
 @section('top')
     <style>
+        #message_ctx *{
+            width: 100% !important;
+        }
         .fade-enter-active{
             transition:all 250ms ease-in;
         }
