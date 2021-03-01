@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('main-content')
-    <h1 class="h3 mb-4 text-gray-800">{{ __('List of Trailers') }}</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ __('List of Films') }}</h1>
     <a href="{{ url()->previous() }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
     
     <table id="artstable" class="table table-stripped table-bordered">

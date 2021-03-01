@@ -32,6 +32,9 @@
                     Event Name
                 </th>
                 <th>
+                    Event Host
+                </th>
+                <th>
                     Event Date
                 </th>
                 <th>
@@ -53,6 +56,9 @@
             <tr>
                 <td>
                     {{ $event->name }}
+                </td>
+                <td>
+                    {{ $event->eventable->full_name }}
                 </td>
                 <td>
                     {{ $event->date_format($event->date) }}

@@ -138,7 +138,7 @@
             <li class="nav-item {{ Nav::isRoute('admin.thrailers.index') }}">
                 <a class="nav-link" href="{{ route('admin.thrailers.index') }}">
                     <img src="{{ asset('img/icons/trailer.png') }}" alt="" class="icon">
-                    <span>Trailers</span>
+                    <span>Films</span>
                 </a>
             </li>
         @endif

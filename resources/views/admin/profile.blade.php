@@ -33,7 +33,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-md-4">
                             <div class="card-profile-stats">
                                 <span class="heading">22</span>
@@ -52,7 +52,7 @@
                                 <span class="description">text here</span>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 
