@@ -79,7 +79,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" id="sidenav">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
             <div class="sidebar-brand-icon">
                 <img src="{{ asset('img/logo.png') }}" alt="" style="max-width: 40px;border-radius:50%;box-shadow:0px 0px 5px 5px #5C07A2">
             </div>

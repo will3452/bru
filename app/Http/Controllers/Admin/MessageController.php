@@ -175,6 +175,25 @@ class MessageController extends Controller
                         'character_sender'=>$request->character_sender
                     ]);
                 }
+            }else if($request->type == 7){
+                $vip = User::whereNotNull('vip')->get();
+
+                auth()->guard('admin')->user()->outboxes()->create([
+                    'message'=>$request->message,
+                    'subject'=>$request->subject,
+                    'desc'=>'all VIP users',
+                    'character_sender'=>$request->character_sender
+                ]);
+
+                foreach($vip as $user){
+                    auth()->guard('admin')->user()->messages()->create([
+                        'message'=>$request->message, 
+                        'subject'=>$request->subject,
+                        'to_id'=>$user->id,
+                        'desc'=>'all VIP users',
+                        'character_sender'=>$request->character_sender
+                    ]);
+                }
             }
 
         }

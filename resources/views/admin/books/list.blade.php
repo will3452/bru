@@ -19,9 +19,6 @@
                     Class
                 </th>
                 <th>
-                    Type
-                </th>
-                <th>
                     Category
                 </th>
                 <th>
@@ -41,12 +38,11 @@
         <tbody>
             @foreach($books as $key=>$book)
             <tr>
-                <td class="d-flex justify-content-center"><img src="{{ $book->cover}}"  class="avatar font-weight-bold d-block" alt=""></td>
+                <td class="d-flex justify-content-center"><img src="{{ $book->cover}}"  style="object-fit:cover;" class="avatar font-weight-bold d-block" alt=""></td>
                 <td>
                     <a href="{{ route('admin.books.show', $book) }}">{{ $book->title }} <i class="fa fa-link fa-xs"></i></a>
                 </td>
                 <td>{{  $book->class }}</td>
-                <td>{{ $book->type }}</td>
                 <td>{{ $book->category }}</td>
                 <td>{{ $book->language }}</td>
                 <td>{{ $book->cost }}</td>

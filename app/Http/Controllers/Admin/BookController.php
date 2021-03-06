@@ -24,6 +24,7 @@ class BookController extends Controller
 
     public function update(Book $book){
         $validated = request()->validate([
+            'changed'=>'required',
             'category'=>'',
             'title'=>'',
             'genre'=>'',
@@ -38,9 +39,9 @@ class BookController extends Controller
             'credit_page'=>'',
             'publish_date'=>''
         ]);
-
+        unset($validated['changed']);
         $d = $book->update($validated);
-        Notification::send($book->user, new BookUpdates($book));
+        // Notification::send($book->user, new BookUpdates($book));
         return back()->withSuccess('Save Changed!');
     }
 }

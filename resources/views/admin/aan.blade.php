@@ -15,9 +15,6 @@
                             <button class="btn btn-primary"><i class="fa fa-bolt"></i> Generate</button>
                         </div>
                     </div>
-                    <div class="text-left mt-1">
-                        <a href="{{ route('admin.aan.index') }}" class="btn btn-sm btn-outline-primary"><i class="fa fa-list"></i> List of Generated AAN</a>
-                    </div>
                 </form>
             </div>
         </div>

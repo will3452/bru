@@ -18,6 +18,7 @@
                     <a href="#" class="btn btn-outline-primary" :class="{'btn-secondary':selected == 4}" v-on:click="selected = 4">All Integrated School Students</a>
                     <a href="#" class="btn btn-outline-primary" :class="{'btn-secondary':selected == 5}" v-on:click="selected = 5">All Reagan Students</a>
                     <a href="#" class="btn btn-outline-primary" :class="{'btn-secondary':selected == 6}" v-on:click="selected = 6">All Berkeley Students</a>
+                    <a href="#" class="btn btn-outline-primary" :class="{'btn-secondary':selected == 6}" v-on:click="selected = 7">All VIP users</a>
             </div>
         </div>
     </div>
@@ -107,6 +108,7 @@
                         case 4: return 'all I.S students';
                         case 5: return 'all Reagan students';
                         case 6: return 'all Berkeley students';
+                        case 7: return 'all VIP users';
                     }
                 }
             },
