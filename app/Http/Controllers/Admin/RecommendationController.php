@@ -36,6 +36,9 @@ class RecommendationController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'id'=>'required'
+        ]);
         if($request->type == 'Book'){
             Book::find($request->id)->recommendation()->create(['remark'=>$request->remark]);
         }else if($request->type == 'Art'){

@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" id="createForm">
     <h5 class="card-header">
         Add New Item
     </h5>
@@ -11,7 +11,8 @@
                         Item Title
                     </label>
                     @if (count($options))
-                    <select name="id" id="" class="d-block w-100 p-2">
+                    <select name="id" id="" required class="d-block w-100 p-2">
+                        <option value="" disabled selected>Select Item</option>
                         @foreach ($options as $option)
                             <option value="{{$option->id}}">{{$option->title}}</option>
                         @endforeach
@@ -24,7 +25,7 @@
                     <label for="">
                         Item Type
                     </label>
-                    <select name="type" wire:model="type" id="" class="d-block w-100 p-2">
+                    <select name="type" required wire:model="type" id="" class="d-block w-100 p-2">
                         <option value="" disabled selected>Select Type</option>
                         <option value="Book">Book</option>
                         <option value="Art">Art Scene</option>
@@ -44,10 +45,11 @@
                 </div>
             </div>
             <div class="text-right form-group">
-                <button class="btn btn-primary">
+                <button class="btn btn-primary" :disabled="!lock">
                     Add
                 </button>
             </div>
         </form>
     </div>
+    
 </div>
