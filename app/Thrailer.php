@@ -19,6 +19,9 @@ class Thrailer extends Model
         return $this->morphOne(Cpy::class, 'cpiable');
     }
 
+    public function  recommendation(){
+        return $this->morphOne(Recommendation::class, 'recommendationable');
+    }
     
     
 }

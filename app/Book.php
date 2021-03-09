@@ -55,4 +55,8 @@ class Book extends Model
     public function event(){
         return $this->belongsTo(Event::class);
     }
+
+    public function  recommendation(){
+        return $this->morphOne(Recommendation::class, 'recommendationable');
+    }
 }

@@ -25,4 +25,8 @@ class Art extends Model
         return $this->morphToMany(Tag::class, 'taggable');
     }
 
+    public function  recommendation(){
+        return $this->morphOne(Recommendation::class, 'recommendationable');
+    }
+
 }

@@ -114,6 +114,12 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     //static
     Route::resource('/about', 'Admin\\AboutPageController');
+
+    //recommendation list page
+    Route::resource('/recommendation', 'Admin\\RecommendationController');
+
+    //recommendation remarks 
+    Route::get('/recommendation-remarks', 'Admin\\RecomRemarksController@index')->name('recom.remarks');
 });
 
 //checkers

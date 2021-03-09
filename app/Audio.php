@@ -19,4 +19,8 @@ class Audio extends Model
     public function cpy(){
         return $this->morphOne(Cpy::class, 'cpiable');
     }
+    
+    public function  recommendation(){
+        return $this->morphOne(Recommendation::class, 'recommendationable');
+    }
 }

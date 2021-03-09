@@ -190,6 +190,15 @@
             </li>
         @endif
 
+        @if (auth()->user()->allowed('recommendation'))
+            <li class="nav-item {{ Nav::isRoute('admin.recommendation.*') }}">
+                <a class="nav-link" href="{{ route('admin.recommendation.index') }}">
+                    <i class="fa fa-star text-white" style="font-size:20px;"></i>
+                    <span>Rec. List</span>
+                </a>
+            </li>
+        @endif
+
         
 
         {{-- <li class="nav-item {{ Nav::isRoute('admin.genres.list') }}">

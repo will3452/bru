@@ -14,7 +14,7 @@
                 <a href="{{ url()->current() }}?type=arts">arts</a> @if($type == 'art')* @endif
             </li>
             <li>
-                <a href="{{ url()->current() }}?type=trailers">trailers</a> @if($type == 'trailer')* @endif
+                <a href="{{ url()->current() }}?type=trailers">Films</a> @if($type == 'trailer')* @endif
             </li>
         </ul>
     </div>
