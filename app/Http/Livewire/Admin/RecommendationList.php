@@ -12,7 +12,7 @@ class RecommendationList extends Component
 
     public $option;
     public function mount(){
-        $this->option = \App\Remark::first()->value;
+        $this->option = \App\Remark::first() ? \App\Remark::first()->value : '' ;
     }
 
     public function updatedOption(){
