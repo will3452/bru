@@ -1,4 +1,5 @@
 <div class="col-md-3 mt-2" x-data="{showPane:false}">
+    <div x-text="showPane"></div>
     <div class="card border-{{$color}} border-top-0 border-right-0 border-bottom-0" style="border-left-width:2px;">
         <div class="card-body d-flex align-items-center justify-content-between">
             <div class="d-flex align-items-baseline text-uppercase">
