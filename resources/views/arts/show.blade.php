@@ -36,19 +36,19 @@
                         <div class="col-md-4">
                             <div class="card-profile-stats">
                                 <span class="heading"><i class="fa fa-heart"></i></span>
-                                <span class="description">123</span>
+                                <span class="description">0</span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="card-profile-stats">
                                 <span class="heading"><i class="fa fa-comments"></i></span>
-                                <span class="description">40</span>
+                                <span class="description">0</span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="card-profile-stats">
                                 <span class="heading"><i class="fa fa-book-reader"></i></span>
-                                <span class="description">200</span>
+                                <span class="description">0</span>
                             </div>
                         </div>
                     </div>

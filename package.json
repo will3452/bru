@@ -19,5 +19,10 @@
         "sass-loader": "^8.0.0",
         "vue": "^2.6.12",
         "vue-template-compiler": "^2.6.12"
+    },
+    "dependencies": {
+        "alpinejs": "^2.8.1",
+        "chart.js": "^2.9.4",
+        "cross-env": "^7.0.3"
     }
 }
