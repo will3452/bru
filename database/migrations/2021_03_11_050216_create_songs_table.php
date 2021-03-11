@@ -29,7 +29,7 @@ class CreateSongsTable extends Migration
             $table->string('cost');
             $table->text('cover')->nullable();
             $table->string('cover_cpy')->default('false');
-            $table->nullable('file');
+            $table->text('file');
             $table->timestamps();
         });
     }
