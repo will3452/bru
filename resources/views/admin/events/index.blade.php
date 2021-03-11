@@ -110,7 +110,8 @@
             $('#bookstable').DataTable( {
         dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'excel', 'pdf','colvis'
+            // 'copy', 'csv', 'excel', 'pdf','colvis'
+             'pdf','colvis'
         ],
     });
         $('button').addClass('.btn')
