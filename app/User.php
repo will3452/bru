@@ -107,6 +107,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Audio::class);
     }
 
+    public function songs(){
+        return $this->hasMany(Song::class);
+    }
+
     public function messages(){
         return $this->morphMany(Message::class, 'messagable');
     }
@@ -118,4 +122,5 @@ class User extends Authenticatable implements MustVerifyEmail
     public function inboxes(){
         return $this->hasMany(Message::class, 'to_id');
     }
+
 }

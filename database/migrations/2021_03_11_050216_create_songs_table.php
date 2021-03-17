@@ -16,6 +16,7 @@ class CreateSongsTable extends Migration
         Schema::create('songs', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->foreignId('user_id');
             $table->string('genre')->nullable();
             $table->string('artist')->nullable();
             $table->string('composer')->nullable();
@@ -39,6 +40,7 @@ class CreateSongsTable extends Migration
             $table->string('composer_others')->nullable();
             $table->string('lyricist_others')->nullable();
             $table->string('is_copyright')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
