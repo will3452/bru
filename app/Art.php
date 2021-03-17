@@ -29,4 +29,8 @@ class Art extends Model
         return $this->morphOne(Recommendation::class, 'recommendationable');
     }
 
+    public static function GETPUBLISHED(){
+        return self::get();
+    }
+
 }

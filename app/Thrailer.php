@@ -23,5 +23,9 @@ class Thrailer extends Model
         return $this->morphOne(Recommendation::class, 'recommendationable');
     }
     
+     //static 
+     public static function GETPUBLISHED(){
+        return self::whereNotNull('approved')->get();
+    }
     
 }

@@ -59,4 +59,8 @@ class Book extends Model
     public function  recommendation(){
         return $this->morphOne(Recommendation::class, 'recommendationable');
     }
+    //static 
+    public static function GETPUBLISHED(){
+        return self::whereNotNull('publish_date')->get();
+    }
 }

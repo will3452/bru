@@ -122,7 +122,8 @@
             <a href="{{ route('audio.create') }}" class="btn mb-2 btn-outline-primary d-block text-left d-flex align-items-center"><img src="{{ asset('img/icons/audiobook.png') }}" alt="" class="icon-xl"> <span style="font-size:200%">
                     Audio Book</span></a>
             <a href="{{ route('arts.create') }}" class="btn mb-2 btn-outline-primary d-block text-left d-flex align-items-center"><img src="{{ asset('img/icons/art.png') }}" alt="" class="icon-xl"> <span style="font-size:200%">Art Scene</span></a>
-            <a href="{{ route('thrailers.create') }}" class="btn mb-2 btn-outline-primary d-block text-left d-flex align-items-center"><img src="{{ asset('img/icons/trailer.png') }}" alt="" class="icon-xl"> <span style="font-size:200%">Films</span></a>
+            <a href="{{ route('thrailers.create') }}" class="btn mb-2 btn-outline-primary d-block text-left d-flex align-items-center"><img src="{{ asset('img/icons/trailer.png') }}" alt="" class="icon-xl"> <span style="font-size:200%">Film</span></a>
+            <a href="{{ route('songs.create') }}" class="btn mb-2 btn-outline-primary d-block text-left d-flex align-items-center"><img src="{{ asset('img/icons/audiobook.png') }}" alt="" class="icon-xl"> <span style="font-size:200%">Song</span></a>
         </div>
         </div>
     </div>
