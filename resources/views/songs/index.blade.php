@@ -33,7 +33,7 @@
             <tr>
                 <td class="d-flex justify-content-center"><img src="{{ $song->cover}}" style="object-fit:cover;"  class="avatar font-weight-bold d-block" alt=""></td>
                 <td>
-                    <a href="#">{{ $song->title }} <i class="fa fa-link fa-xs"></i></a>
+                    <a href="{{ route('songs.show', $song) }}">{{ $song->title }} <i class="fa fa-link fa-xs"></i></a>
                 </td>
                 <td>{{  $song->genre }}</td>
                 <td>{{  $song->artist }} @if($song->artist_others) - {{ $song->artist_others }} @endif</td>

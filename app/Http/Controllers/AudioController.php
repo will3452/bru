@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Audio;
 use Illuminate\Http\Request;
 use App\Http\Requests\AudioForm;
 
@@ -65,7 +66,8 @@ class AudioController extends Controller
      */
     public function show($id)
     {
-        //
+        $audio = Audio::findOrFail($id);
+        return view('audio.show', compact('audio'));
     }
 
     /**
@@ -88,7 +90,20 @@ class AudioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $this->validate($request, [
+            'title'=>'required',
+            'language'=>'required',
+            'cost'=>'',
+            'lead_character'=>'required',
+            'lead_college'=>'required',
+            'review_question_1'=>'required',
+            'review_question_2'=>'required',
+            'credit_page'=>'required',
+            'blurb'=>'required',
+        ]);
+
+        Audio::findOrFail($id)->update($validated);
+        return  back()->withSuccess('Done!');
     }
 
     /**
@@ -99,6 +114,7 @@ class AudioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Audio::findOrFail($id)->delete();
+        return redirect()->route('audio.index')->withSuccess('Done!');
     }
 }

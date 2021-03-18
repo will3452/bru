@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('main-content')
-    <h1 class="h3 mb-4 text-gray-800">{{ __('List of Books') }}</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ __('List of Audio Books') }}</h1>
     <a href="{{ route('books.index') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
     <table id="bookstable" class="table table-stripped table-bordered">
         <thead>

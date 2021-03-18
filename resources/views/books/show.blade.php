@@ -226,12 +226,6 @@
                             </div>
                             <div class="form-group">
                                 <label for="#">Cost</label>
-                                <div class="alert alert-primary d-flex align-items-center">
-                                    <i class="fa fa-question-circle mx-2"></i>
-                                    <div>
-                                        Lorem ipsum dolor sit amet consectetur.
-                                    </div>
-                                </div>
                                 <input type="number" name="cost" class="form-control" min="0" value="{{ $book->cost }}">
                             </div>
                             <div class="form-group">

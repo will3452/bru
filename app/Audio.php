@@ -9,9 +9,6 @@ class Audio extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public function getRouteKey(){
-        return $this->slug;
-    }
     public function user(){
         return $this->belongsToMany(User::class);
     }

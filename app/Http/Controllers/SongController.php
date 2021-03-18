@@ -87,19 +87,10 @@ class SongController extends Controller
      */
     public function show($id)
     {
-        //
+        $song = Song::find($id);
+        return view('songs.show', compact('song'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -110,7 +101,29 @@ class SongController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validated = $this->validate($request, [
+            'title'=>'required',
+            'genre'=>'required',
+            'artist'=>'required',
+            'artist_others'=>'',
+            'composer'=>'required',
+            'composer_others'=>'',
+            'lyricist'=>'required',
+            'lyricist_others'=>'',
+            'description'=>'',
+            'credits'=>'',
+            'associated_type'=>'',
+            'book_id'=>'',
+            'audio_id'=>'',
+            'art_id'=>'',
+            'thrailer_id'=>'',
+            'cost_type'=>'required',
+            'cost'=>'',
+            'copyright'=>'',
+        ]);
+        Song::find($id)->update($validated);
+
+        return back()->withSuccess('Done!');
     }
 
     /**
@@ -121,6 +134,7 @@ class SongController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Song::find($id)->delete();
+        return redirect()->route('songs.index')->withSuccess('Done!');
     }
 }
