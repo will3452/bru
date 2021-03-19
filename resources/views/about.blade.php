@@ -9,14 +9,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         #header{
-            width: 1024px;
+            width: 100vw;
+            box-sizing: border-box;
             height: 199px;
             background: url('images/background_2.webp');
             background-size: cover;
         }
         #header-footer{
             background: url('images/background_for_text.png');
-            width: 1024px;
+            width: 99vw;
+            box-sizing: border-box;
             height: 69px;
             position: absolute;
             top: 130px;
@@ -108,7 +110,7 @@
             </ul>
         </div>
     </div>
-    <div class="w-full mx-auto">
+    <div class="w-10/12 mx-auto">
         <div>
             <h1 class="text-2xl my-2">
                 {!! \App\About::find(1)->title !!}

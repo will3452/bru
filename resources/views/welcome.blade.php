@@ -9,17 +9,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         #header{
-            width: 1024px;
+            width: 100vw;
             height: 199px;
             background: url('images/background_2.webp');
             background-size: cover;
+            box-sizing: border-box;
         }
         #header-footer{
             background: url('images/background_for_text.png');
-            width: 1024px;
+            width: 99vw;
             height: 69px;
             position: absolute;
             top: 130px;
+            box-sizing: border-box;
         }
         #app-logo{
             background: url('images/2-layers\ \(1\).png');
@@ -77,7 +79,7 @@
         }
     </style>
 </head>
-<body class="text-gray-900 font-serif bg-gray-100" style="max-width:1024px;margin: auto;">
+<body class="text-gray-900 font-serif bg-gray-100" style="">
     <div id="header" class="h-4 m-auto hidden md:block">
         <div id="app-logo"></div>
         <div class="flex justify-center pt-2">
@@ -108,9 +110,10 @@
             </ul>
         </div>
     </div>
-    <div class="w-full mx-auto">
-        <div id="art" class="w-full">
-        </div>
+    <div id="art" class="w-full">
+    </div>
+    <div class=" mx-auto w-10/12">
+        
         <div>
             <p class="text-2xl mt-2">
                 Berkeley-Reagan University or BRU was founded on October 13 by a British teacher, named Henry Berkeley, and an American businessman, named William Reagan, who came to Taguig City, Philippines in 1951.
