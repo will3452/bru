@@ -78,12 +78,21 @@
             background-attachment: fixed;
         }
     </style>
+    <script>
+        let adminLinkCounter = 1;
+        function gotoAdmin(){
+            if(adminLinkCounter == 3){
+                window.location.href = '/admin/login';
+            }
+            adminLinkCounter++;
+        }
+    </script>
 </head>
 <body class="text-gray-900 font-serif bg-gray-100" style="">
     <div id="header" class="h-4 m-auto hidden md:block">
-        <div id="app-logo"></div>
+        <div id="app-logo" onclick="gotoAdmin()"></div>
         <div class="flex justify-center pt-2">
-            <img id="app-logo-text"  src="images/2-layers (2).png" alt="">
+            <img id="app-logo-text"  onclick="gotoAdmin()" src="images/2-layers (2).png" alt="">
         </div>
         <div id="header-footer" class="flex items-center justify-end">
             <div id="ber" class="mx-2"></div>
@@ -191,6 +200,8 @@
     </div>
     <script>
         window.onload = function(){
+            
+
             let show = false;
             let menuList = document.getElementById('menu-list');
             document.getElementById('menu-toggler').onclick = function(){
@@ -224,6 +235,7 @@
              document.getElementById('signin').onclick = function(){
                 window.location.href="/login";
              }
+             
             
         }
 
