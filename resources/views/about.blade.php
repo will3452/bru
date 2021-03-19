@@ -79,7 +79,7 @@
         }
     </style>
 </head>
-<body class="text-gray-900 font-serif bg-gray-100" style="max-width:1024px;margin: auto;">
+<body class="text-gray-900 font-serif bg-gray-100" style="">
     <div id="header" class="h-4 m-auto hidden md:block">
         <div id="app-logo"></div>
         <div class="flex justify-center pt-2">
