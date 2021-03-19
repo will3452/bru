@@ -9,14 +9,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         #header{
-            width: 1024px;
+            width: 100vw;
+            box-sizing: border-box;
             height: 199px;
             background: url('images/background_2.webp');
             background-size: cover;
         }
         #header-footer{
             background: url('images/background_for_text.png');
-            width: 1024px;
+            width: 99vw;
+            box-sizing: border-box;
             height: 69px;
             position: absolute;
             top: 130px;
@@ -77,7 +79,7 @@
         }
     </style>
 </head>
-<body class="text-gray-900 font-serif bg-gray-100" style="max-width:1024px;margin: auto;">
+<body class="text-gray-900 font-serif bg-gray-100">
     <div id="header" class="h-4 m-auto hidden md:block">
         <div id="app-logo"></div>
         <div class="flex justify-center pt-2">
@@ -100,7 +102,7 @@
         </div>
         <div class="bg-black text-white hidden" id="menu-list">
             <ul class="text-center">
-                <li class="py-1 hover:bg-purple-900 color-me"><a href="#">Berkeley Reagan Univerisity</a></li>
+                <li class="py-1 hover:bg-purple-900 color-me"><a href="/">Berkeley Reagan Univerisity</a></li>
                 <li class="py-1 hover:bg-purple-900 color-me"><a href="#">About Us</a></li>
                 <li class="py-1 hover:bg-purple-900 color-me"><a href="#">Contact Us</a></li>
                 <li class="py-1 hover:bg-purple-900 color-me"><a href="/please-input-aan">Sign Up</a></li>
@@ -108,7 +110,7 @@
             </ul>
         </div>
     </div>
-    <div class="w-full mx-auto">
+    <div class="w-10/12 mx-auto">
         
         <hr>
         <footer class="flex flex-col items-center mt-5 justify-center">
@@ -143,7 +145,7 @@
 
             // 
              document.getElementById('ber').onclick = function(){
-                window.location.href="/bru";
+                window.location.href="/";
              }
 
              document.getElementById('about').onclick = function(){
