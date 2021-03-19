@@ -203,7 +203,7 @@
 
              // 
              document.getElementById('ber').onclick = function(){
-                window.location.href="/bru";
+                window.location.href="/";
              }
 
              document.getElementById('about').onclick = function(){
