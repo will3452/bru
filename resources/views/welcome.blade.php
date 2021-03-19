@@ -100,7 +100,7 @@
         </div>
         <div class="bg-black text-white hidden" id="menu-list">
             <ul class="text-center">
-                <li class="py-1 hover:bg-purple-900 color-me"><a href="#">Berkeley Reagan Univerisity</a></li>
+                <li class="py-1 hover:bg-purple-900 color-me"><a href="/">Berkeley Reagan Univerisity</a></li>
                 <li class="py-1 hover:bg-purple-900 color-me"><a href="#">About Us</a></li>
                 <li class="py-1 hover:bg-purple-900 color-me"><a href="#">Contact Us</a></li>
                 <li class="py-1 hover:bg-purple-900 color-me"><a href="/please-input-aan">Sign Up</a></li>

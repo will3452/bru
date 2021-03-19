@@ -112,7 +112,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <img src="{{ asset('img/emptyuserimage.png') }}" alt="" id="profile_view" style="object-fit:cover" width="100" height="100">
+                                        <img src="{{ asset('img/emptyuserimage.png') }}" alt="" id="profile_view" style="object-fit:cover" width="100" height="100" >
                                     </div>
                                     <div class="custom-file">
                                         <label class="custom-file-label" for="picture">Choose Account Picture</label>
@@ -122,7 +122,7 @@
                                         <div>
                                             <strong>Required*</strong>
                                         </div>
-                                        <input type="checkbox" id="ck_box3" name="cpy">
+                                        <input type="checkbox" id="ck_box3" name="cpy" required>
                                         @copyright_disclaimer
                                     </div>
                                     <h5 class="mt-4"><i class="fa fa-signature"></i> Pen names</h5>
@@ -135,7 +135,7 @@
                                             <div class="card card-body bg-transparent">
                                                 <div class="form-group">
                                                     <label for="#" class="d-block">Pen name 1</label>
-                                                    <input type="text" name="penname[]" class="form-control w-100" id="pen1">
+                                                    <input type="text" name="penname[]" class="form-control w-100" id="pen1" required>
                                                     <div id="pen1-alert"></div>
                                                 </div>
                                                 <div class="form-group">
