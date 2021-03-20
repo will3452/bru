@@ -13,9 +13,11 @@
         <div class="form-group">
             <label for="#">Genre</label>
             <select name="genre" id="genre" class="form-control">
-                <option value="sample">sample 1</option>
-                <option value="sample">sample 2</option>
-                <option value="sample">sample 3</option>
+                @foreach (\App\SongGenre::get() as $genre)
+                    <option value="{{ $genre->name }}">
+                        {{ $genre->name }}
+                    </option>
+                @endforeach
             </select>
         </div>
         <div class="form-group" x-data="{hasOther:false}">

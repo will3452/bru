@@ -99,13 +99,13 @@
             {{ __('Menu') }}
         </div>
 
-        <!-- Nav Item - Profile -->
+        {{-- <!-- Nav Item - Profile -->
         <li class="nav-item {{ Nav::isRoute('books.*') }}">
             <a class="nav-link" href="{{ route('books.index') }}">
                 <img src="{{ asset('img/icons/books.png') }}" alt="" class="icon">
                 <span>{{ __('My Works') }}</span>
             </a>
-        </li>
+        </li> --}}
 
         <li class="nav-item {{ Nav::isRoute('events.*') }}">
             <a class="nav-link" href="{{ route('events.index') }}">
@@ -178,23 +178,11 @@
                     <i class="fa fa-bars"></i>
                 </button>
 
-                <!-- Topbar Search -->
-                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search fa-sm"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
 
                     <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                    <li class="nav-item dropdown no-arrow d-sm-none">
+                    {{-- <li class="nav-item dropdown no-arrow d-sm-none">
                         <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
@@ -211,7 +199,7 @@
                                 </div>
                             </form>
                         </div>
-                    </li>
+                    </li> --}}
                     <!-- Nav Item - Alerts -->
                     <li class="nav-item dropdown no-arrow mx-1">
                         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

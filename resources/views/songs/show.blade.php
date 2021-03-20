@@ -123,9 +123,11 @@
                             <div class="form-group">
                                 <label for="">Genre</label>
                                 <select name="genre" id="">
-                                    <option value="sample 1">sample </option>
-                                    <option value="sample 1">sample </option>
-                                    <option value="sample 1">sample </option>
+                                    @foreach (\App\SongGenre::get() as $genre)
+                                        <option value="{{ $genre->name }}" {{ $song->genre == $genre->name ? 'selected':'' }}>
+                                            {{ $genre->name }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
 

@@ -10,8 +10,8 @@ class CreateAboutsTable extends Migration
     {
         Schema::create('abouts', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->default('About us');
             $table->longText('content');
+            $table->longText('art')->nullable();
             $table->timestamps();
         });
     }

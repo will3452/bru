@@ -41,19 +41,19 @@
                         <div class="col-md-4">
                             <div class="card-profile-stats">
                                 <span class="heading">22</span>
-                                <span class="description">text here</span>
+                                <span class="description">Followers</span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="card-profile-stats">
                                 <span class="heading">10</span>
-                                <span class="description">text here</span>
+                                <span class="description">Works</span>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="card-profile-stats">
                                 <span class="heading">89</span>
-                                <span class="description">text here</span>
+                                <span class="description">Likes</span>
                             </div>
                         </div>
                     </div>
@@ -109,7 +109,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="form-group focused">
@@ -241,18 +241,18 @@
                             <br>
                             <form class=" pl-lg-4">
                                 <div class="row form-group">
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <label for="country">Country</label>
                                         <input type="text" class="form-control" disabled value="{{ auth()->user()->bio->country }}">
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <label for="city">City</label>
                                         <input type="text" class="form-control" value="{{ auth()->user()->bio->city }}">
                                     </div>
-                                    <div class="col-md-4">
+                                    {{-- <div class="col-md-4">
                                         <label for="mobile">Mobile No.</label>
                                         <input type="text" class="form-control" value="{{ auth()->user()->bio->mobile }}">
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 {{-- <div class="row justify-content-center">
                                     <button class="btn btn-primary">Save Changes</button>

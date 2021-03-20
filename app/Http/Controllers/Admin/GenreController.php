@@ -18,6 +18,13 @@ class GenreController extends Controller
         return view('admin.genres.list', compact('genres'));
     }
 
+    public function store(Request $request){
+        $validated = $this->validate($request, [
+            'name'=>'required'
+        ]);
+        Genre::create($validated);
+        return back()->withSuccess('Done!');
+    }
     public function show(Genre $genre){
         return view('admin.genres.show', compact('genre'));
     }
@@ -44,6 +51,11 @@ class GenreController extends Controller
         }
         $genre->update($validated);
         return back()->withSuccess('Updated!');
+    }
+
+    public function destroy($id){
+        Genre::find($id)->delete();
+        return back()->withSuccess('Done!');
     }
 
     public function guard(){

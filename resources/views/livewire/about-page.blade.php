@@ -7,13 +7,13 @@
         </button>
       </div>
     @endif
-    <form action="{{ route('admin.about.store') }}" method="POST">
+    <form action="{{ route('admin.about.store') }}" method="POST" enctype="multipart/form-data">
       @csrf
-      <div class="form-group">
-        <label for="">About header</label>
-        <input type="text" name="title" value="{{ $title }}" class="form-control">
-      </div>
+        <div class="form-group">
+          <label for="">Art</label>
+          <input type="file" class="d-block" name="art">
+        </div>
         <textarea name="content" id="text" cols="30" rows="10" class="form-control" >{{ $text }}</textarea>
-      <button class="btn btn-primary mt-2 px-4" >Save</button>
+      <button class="btn btn-primary mt-2 px-4 btn-block" >Save</button>
     </form>
 </div>

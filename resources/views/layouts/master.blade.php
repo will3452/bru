@@ -169,16 +169,34 @@
                 </a>
             </li>
         @endif
-
         
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            {{ __('Genres') }}
+        </div>
+        
+        @if (auth()->user()->allowed('genre'))
+            <li class="nav-item {{ Nav::isRoute('admin.songsgenre.*') }}">
+                <a class="nav-link" href="{{ route('admin.songsgenre.index') }}">
+                    <img src="{{ asset('img/icons/genre.png') }}" alt="" class="icon">
+                    <span>Music</span>
+                </a>
+            </li>
+        @endif
+
         @if (auth()->user()->allowed('genre'))
             <li class="nav-item {{ Nav::isRoute('admin.genres.list') }}">
                 <a class="nav-link" href="{{ route('admin.genres.list') }}">
                     <img src="{{ asset('img/icons/genre.png') }}" alt="" class="icon">
-                    <span>Genres</span>
+                    <span>Others</span>
                 </a>
             </li>
         @endif
+
+        <hr class="sidebar-divider">
+        <div class="sidebar-heading">
+            {{ __('MISC') }}
+        </div>
         
         
         @if (auth()->user()->allowed('character'))
@@ -283,7 +301,7 @@
                 </button>
 
                 <!-- Topbar Search -->
-                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                {{-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                     <div class="input-group">
                         <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
@@ -292,13 +310,13 @@
                             </button>
                         </div>
                     </div>
-                </form>
+                </form> --}}
 
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
 
                     <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                    <li class="nav-item dropdown no-arrow d-sm-none">
+                    {{-- <li class="nav-item dropdown no-arrow d-sm-none">
                         <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-search fa-fw"></i>
                         </a>
@@ -315,7 +333,7 @@
                                 </div>
                             </form>
                         </div>
-                    </li>
+                    </li> --}}
                     <!-- Nav Item - Alerts -->
                     <li class="nav-item dropdown no-arrow mx-1">
                         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

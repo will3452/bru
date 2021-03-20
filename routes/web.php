@@ -81,8 +81,10 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     //genres
     Route::get('/genres/list', 'Admin\GenreController@list')->name('genres.list');
+    Route::post('/genres', 'Admin\GenreController@store')->name('genres.store');
     Route::get('/genres/{genre}', 'Admin\GenreController@show')->name('genres.show');
     Route::put('/genres/{genre}', 'Admin\GenreController@update')->name('genres.update');
+    Route::delete('/genres/{genre}', 'Admin\GenreController@destroy')->name('genres.delete');
     Route::get('/tags', 'TagController@index')->name('tags.index');
 
     //thrailers
@@ -120,6 +122,12 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     //recommendation remarks 
     Route::get('/recommendation-remarks', 'Admin\\RecomRemarksController@index')->name('recom.remarks');
+
+    //music 
+    Route::resource('/songsgenre', 'Admin\\MusicGenreController');
+
+    //about link account
+    Route::resource('/aboutaccount', 'Admin\\AboutAccountController');
 });
 
 //checkers
