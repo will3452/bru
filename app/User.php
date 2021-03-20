@@ -123,4 +123,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Message::class, 'to_id');
     }
 
+    public function createGroups(){
+        return $this->hasMany(Group::class,'creator_id');
+    }
+
+    public function groups(){
+        return $this->belongsToMany(Group::class);
+    }
+
+    public function getApprovedGroupsAttribute(){
+        return $this->groups()->whereNotNull('approved');
+    }
+
 }

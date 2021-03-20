@@ -128,6 +128,9 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     //about link account
     Route::resource('/aboutaccount', 'Admin\\AboutAccountController');
+
+    //group approval,
+    Route::resource('/group', 'Admin\\GroupController');
 });
 
 //checkers
@@ -204,7 +207,7 @@ Route::prefix('events')->name('events.')->group(function(){
 Route::resource('audio', 'AudioController');
 Route::resource('songs', 'SongController');
 Route::resource('inbox', 'InboxController');
-
+Route::resource('group', 'GroupController');
 
 //please contact route
 Route::get('please-contact','PleaseContactController')->name('please-contact');

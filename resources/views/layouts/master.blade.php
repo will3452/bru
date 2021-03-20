@@ -202,8 +202,16 @@
         @if (auth()->user()->allowed('character'))
             <li class="nav-item {{ Nav::isRoute('admin.characters.*') }}">
                 <a class="nav-link" href="{{ route('admin.characters.index') }}">
-                    <i class="fa fa-users text-white" style="font-size:20px;"></i>
+                    <i class="fa fa-user text-white" style="font-size:20px;"></i>
                     <span>Characters</span>
+                </a>
+            </li>
+        @endif
+        @if (auth()->user()->allowed('character'))
+            <li class="nav-item {{ Nav::isRoute('admin.group.*') }}">
+                <a class="nav-link" href="{{ route('admin.group.index') }}">
+                    <i class="fa fa-users text-white" style="font-size:20px;"></i>
+                    <span>Groups</span>
                 </a>
             </li>
         @endif

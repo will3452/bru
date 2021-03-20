@@ -57,6 +57,52 @@
                             </div>
                         </div>
                     </div>
+                    <div class=" mt-3" x-data="{showCreate:false}">
+                        @if (auth()->user()->groups()->count())
+                            <h5><i class="fa fa-users"></i> Groups</h5>
+                            <ul class="list-group">
+                                @foreach (auth()->user()->groups as $group)
+                                    <li class="list-group-item d-flex justify-content-between">
+                                        <div>
+                                            <a href="{{ route('group.show', $group->id) }}">{{ $group->name }}</a>
+                                        </div>
+                                        <div>
+                                            {{ $group->approved ? 'Approved':'Not Approved' }}
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @endif
+                        <button class="btn btn-primary mt-2" x-on:click="showCreate = !showCreate">
+                            <div x-show="!showCreate">
+                                <i class="fa fa-plus"></i> Create Group
+                            </div>
+                            <div  x-show="showCreate">
+                                <i class="fa fa-times"></i> Cancel
+                            </div>
+                        </button>
+                        <div x-show.transition="showCreate" class="mt-2">
+                            <hr>
+                            <form action="{{ route('group.store') }}" method="POST">
+                                @csrf
+                                <div class="form-group">
+                                    <label for="">Group Name</label>
+                                    <input type="text" name="name" required class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Group Type</label>
+                                    <select name="type" id="" class="form-control">
+                                        @foreach (\App\GroupType::get() as $type)
+                                            <option value="{{ $type->name }}">{{ $type->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <button class="btn btn-primary">
+                                    <i class="fa fa-upload"></i> Submit
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -210,9 +256,6 @@
                                     <select id="pen1country" type="text" name="country" class="form-control">
                                     </select>
                                 </div>
-                                <div class="alert alert-warning">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, nemo?
-                                </div>
                                 <div class="form-group">
                                     <button class="btn btn-primary btn-block">
                                         Add pen
@@ -272,6 +315,7 @@
 
 @endsection
 @section('top')
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2.min.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('vendor\datepicker\DateTimePicker.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2-bootstrap.min.css') }}">
