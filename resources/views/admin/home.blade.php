@@ -30,7 +30,7 @@
             </div>
             <div>
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: {{ (disk_free_space('/') / disk_total_space('/')) / 100 }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar" role="progressbar" style="width: {{ (disk_free_space('/') / disk_total_space('/'))  }}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
             </div>
         </div>
