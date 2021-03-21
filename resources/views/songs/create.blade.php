@@ -131,6 +131,13 @@
         <div class="form-group">
             <label for="">Cover</label>
             <input type="file" name="cover" accept="image/*" class="d-block" required>
+            <div class="alert alert-warning mt-2">
+                <div>
+                    <strong>Required*</strong>
+                </div>
+                <input type="checkbox" required id="ck_box" name="cpy">
+                @copyright_disclaimer
+            </div>
         </div>
         <div>
             <label for="">Choose Type Of Crystal</label>
@@ -146,6 +153,13 @@
         <div class="form-group">
             <label for="">Song</label>
             <input type="file" name="file" accept=".mp3,audio/*" class="d-block" required>
+            <div class="alert alert-warning mt-2">
+                <div>
+                    <strong>Required*</strong>
+                </div>
+                <input type="checkbox" required id="ck_box" name="cpy">
+                @copyright_disclaimer
+            </div>
         </div>
         <div class="form-group">
             <label for="">Copyright</label>
