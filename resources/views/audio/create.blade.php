@@ -235,6 +235,10 @@
             <div class="form-group">
                 <label for="">Audio file (.mp3, .wav)</label>
                 <input type="file" accept="audio/*" name="audio" required class="d-block">
+                <div class="alert alert-warning mt-2">
+                    <input type="checkbox" required name="">
+                    @copyright_disclaimer
+                </div>
             </div>
         </div>
         <div class="form-group">

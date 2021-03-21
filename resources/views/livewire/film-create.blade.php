@@ -70,7 +70,7 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="">Is this part of an events ?</label>
+        <label for="">Is this part of an event ?</label>
         <div>
             <label for="">
                 <input type="checkbox" wire:model="partOfEvent" value="1" checked="{{$partOfEvent == 1}}"> Yes
@@ -133,6 +133,13 @@
         <div>
             <input type="file" name="cover" accept="image/*" required>
         </div>
+        <div class="alert alert-warning mt-2">
+            <div>
+                <strong>Required*</strong>
+            </div>
+            <input type="checkbox" required id="ck_box" name="cpy">
+            @copyright_disclaimer
+        </div>
     </div>
     <div class="form-group">
         <label for="">Please submit the video for approval to the Admin. </label>
@@ -144,10 +151,10 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="">Type of Gem</label>
+        <label for="">Type of Crystal</label>
         <select name="gem" id="" class="select2 form-control">
-            <option value="White">White Gems</option>
-            <option value="Purple">Purple Gems</option>
+            <option value="White">White Crystal</option>
+            <option value="Purple">Purple Crystal</option>
         </select>
     </div>
     <div class="form-group">

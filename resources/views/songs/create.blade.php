@@ -78,7 +78,11 @@
         </div>
         <div class="form-group" x-data="{isAssoc:false}">
             <div class="form-group mt-2">
-                <input type="checkbox" x-on:change = "isAssoc = !isAssoc"> Is this associated with any other works within the multiverse?
+                 Is this associated with any other works within the multiverse?
+                <select name="" id="" x-ref="select" class="form-control" x-on:change = "$refs.select.value == 'yes' ? isAssoc = true:isAssoc = false" >
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                </select>
             </div>
             <template x-if="isAssoc">
                 <div class="card card-body">
