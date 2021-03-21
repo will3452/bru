@@ -46,7 +46,7 @@ class GroupController extends Controller
         
         $group = auth()->user()->createGroups()->create($validated);
         auth()->user()->groups()->attach($group->id);
-        return $group;
+        return redirect()->route('group.show', $group);
     }
 
     /**
@@ -81,7 +81,7 @@ class GroupController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**

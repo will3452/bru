@@ -131,6 +131,9 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     //group approval,
     Route::resource('/group', 'Admin\\GroupController');
+
+    //create type of group
+    Route::resource('/grouptypes', 'Admin\\GroupTypeController');
 });
 
 //checkers
@@ -208,6 +211,7 @@ Route::resource('audio', 'AudioController');
 Route::resource('songs', 'SongController');
 Route::resource('inbox', 'InboxController');
 Route::resource('group', 'GroupController');
+Route::resource('group-member', 'GroupMemberController');
 
 //please contact route
 Route::get('please-contact','PleaseContactController')->name('please-contact');

@@ -17,6 +17,7 @@ class CreateGroupUsersTable extends Migration
             $table->id();
             $table->foreignId('group_id');
             $table->foreignId('user_id');
+            $table->string('title')->nullable();
             $table->timestamps();
         });
     }

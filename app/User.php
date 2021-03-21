@@ -128,7 +128,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function groups(){
-        return $this->belongsToMany(Group::class);
+        return $this->belongsToMany(Group::class)->withPivot('title');
     }
 
     public function getApprovedGroupsAttribute(){
