@@ -2,50 +2,46 @@
 @section('main-content')
     <h1 class="h3 mb-4 text-gray-800">{{ __('List of arts') }}</h1>
     <a href="{{ route('books.index') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
-    <table id="artstable" class="table table-stripped table-bordered">
-        <thead>
-            <tr>
-                <th>
-                    Title
-                </th>
-                <th>
-                    Cost
-                </th>
-                <th>
-                    Date Uploaded
-                </th>
-                <th>
-                    
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($arts as $key=>$art)
-            <tr>
-                <td>
-                    <a href="{{ route('arts.show', $art) }}">{{ $art->title }} <i class="fa fa-link fa-xs"></i></a>
-                </td>
-                <td>{{ $art->cost }}</td>
-                <td>{{ $art->created_at->format('M d, Y') }}</td>
-                <td>
-                    <a href="{{ $art->file }}" class="btn btn-primary" target="_blank">View art scene</a>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div class="d-flex mt-4 flex-wrap">
+        @foreach ($arts as $book)
+            <div  class="m-4 text-center " style="position:relative;" x-data="{showInfo:false}" x-on:mouseover="showInfo = true" x-on:mouseout="showInfo = false">
+                <div  style="cursor:pointer;box-shadow:10px 5px 2px #555 ;height: 200px; width: 150px; background:url('{{ $book->file }}'), #fff;background-size:contain;background-position:center;background-repeat:no-repeat; ">
+
+                </div>
+                <div class="mt-2">
+                    <a href="{{ route('arts.show', $book) }}">{{ Str::limit($book->title, 10) }}</a>
+                </div>
+                <div  x-show.transition="showInfo" style="position:absolute;top:-10px;left:100px; height:250px; width:200px;background:rgba(17,0,31, 0.9);z-index:999" >
+                    <div style="position:absolute;top:6px;left:-14px;height:32px; width:32px;border:4px #014E7F solid;background:url('{{ asset('img/card-bg-custom.png') }}');background-position:center;border-top:none;border-right:none;transform:rotate(45deg);z-index:998;"></div>
+                    <p class="text-white p-2" style="height:45px;box-shadow:0px 5px #000;border:4px #014E7F solid;border-left:none; background:url('{{ asset('img/card-bg-custom.png') }}');background-position:center;z-index:999;">
+                        {{ Str::limit($book->title, 10) }}
+                    </p>
+                    <div class="px-2 text-left text-white">
+                        <div class="mt-1">
+                            Cost: {{ $book->cost == 0 ? 'FREE':$book->cost }}
+                        </div>
+                        <div class="mt-1" style="border-top:1px solid white;"></div>
+                        <div class="mt-1">
+                            Date Uploaded: {{ $book->created_at->format('m/d/y') }}
+                        </div>
+                        <div class="mt-1" style="border-top:1px solid white;"></div>
+                        <div class="mt-1">
+                            Ratings: ---
+                        </div>
+                        <div class="mt-1">
+                            Comments: ---
+                        </div>
+                        <div class="mt-1">
+                            Likes: ---
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+    
 @endsection
 
 @section('top')
-    <link rel="stylesheet" href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}">
-@endsection
-@section('bottom')
-    <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-
-    <script>
-        $(function(){
-            $('#artstable').DataTable();
-        })
-    </script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 @endsection
