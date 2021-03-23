@@ -111,13 +111,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <img src="{{ asset('img/emptyuserimage.png') }}" alt="" id="profile_view" style="object-fit:cover" width="100" height="100" >
-                                    </div>
-                                    <div class="custom-file">
-                                        <label class="custom-file-label" for="picture">Choose Account Picture</label>
-                                        <input type="file" name="picture" id="picture" accept="image/*" required class="custom-file-input">
-                                    </div>
+                                    
+                                    @livewire('register.choose-picture')
                                     <div class="alert alert-warning mt-2">
                                         <div>
                                             <strong>Required*</strong>
@@ -288,7 +283,7 @@
                                                     <i class="fa fa-thumbs-up"></i> TERMS AND CONDITIONS
                                                 </h5>
                                                 <p>
-                                                    <input type="checkbox" id="ck_box1"> I have read and agree to the <a href="#">Terms and Conditions</a>
+                                                    <input type="checkbox" id="ck_box1">I have read and I agree with the <a href="#">Terms and Conditions</a>
                                                 </p>
                                             </div>
                                             <div>
@@ -315,7 +310,7 @@
                                                 <i class="fa fa-lock"></i> DATA PRIVACY
                                             </h5>
                                             <p>
-                                                 <input type="checkbox" id="ck_box2"> I have read and agree to the <a href="#">Privacy Policy</a>
+                                                 <input type="checkbox" id="ck_box2">I have read and I agree with the <a href="#">Privacy Policy</a>
                                              </p>
                                            </div>
                                         </div>
@@ -344,6 +339,7 @@
 @endsection
 
 @section('top')
+    @livewireStyles
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor\datepicker\DateTimePicker.css') }}">
@@ -356,6 +352,7 @@
     </style>
 @endsection
 @section('bottom')
+@livewireScripts
     <script src="{{ asset('vendor\datepicker\DateTimePicker.min.js') }}"></script>
     <script src="{{ asset('js/countries.js') }}"></script>
     <script>
@@ -388,14 +385,14 @@
             }
         });
     </script>
-    <script>
+    {{-- <script>
         $(function(){
             $('#picture').change(function(e){
                 let blob = URL.createObjectURL(e.target.files[0]);
                 $('#profile_view').attr('src', blob);
             })
         })
-    </script>
+    </script> --}}
     <script>
         $(function(){
             // $('.form-control, .custom-select, input').prop('disabled', true);

@@ -87,7 +87,8 @@ class RegisterController extends Controller
             'pengender.0'=>'required',
             'penname.0'=>'unique:pens,name',
             'interest.*'=>'required',
-            'picture'=>'required|image'
+            'file_url'=>'required'
+            
         ]);
     }
 
@@ -102,19 +103,14 @@ class RegisterController extends Controller
         // dd($data['aan']);
         $aan =  AAN::where('complete', $data['aan'])->get();
         // dd($aan[0]->id);
-        $path = '';
-        if($path = $data['picture']->store('public/userpictures')){
-            $arr_path = explode('/', $path);
-            $end_path = end($arr_path);
-            $path = '/storage/userpictures/'.$end_path;
-        }
+        
         $user =  User::create([
             'aan_id'=>$aan[0]->id,
             'first_name' => $data['first_name'],
             'role'=>$data['role'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
-            'picture'=>$path,
+            'picture'=>$data['file_url'],
             'password' => Hash::make($data['password']),
         ]);
         $user->aan_string = request()->aan;
