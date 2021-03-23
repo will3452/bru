@@ -38,27 +38,28 @@
             width: 477px;
         }
         #ber {
-            background-image: url('images/berk.png');
-            width: 256px;
-            height: 29px;
+            background-image: url('images/berk (1).png');
+            width: 257px;
+            height: 26px;
             cursor: pointer;
+            
         }
         #about{
-            background-image: url('images/about.png');
+            background-image: url('images/about (1).png');
             width: 97px;
             height: 17px;
             cursor: pointer;
 
         }
         #contact{
-            background-image: url('images/contact.png');
+            background-image: url('images/contact (1).png');
             width: 98px;
             height: 18px;
             cursor: pointer;
 
         }
         #signup{
-            background-image: url('images/sign up.png');
+            background-image: url('images/sign up (1).png');
             width: 130px;
             height: 26px;
             cursor: pointer;
