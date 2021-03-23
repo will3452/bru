@@ -17,7 +17,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 |
 */
 
-Route::view('/', 'welcome');
+Route::view('/', 'welcome')->middleware('guest');
 
 //static website
 Route::view('/about', 'about');
@@ -134,6 +134,9 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     //create type of group
     Route::resource('/grouptypes', 'Admin\\GroupTypeController');
+
+    //users
+    Route::resource('/users', 'Admin\\UserController');
 });
 
 //checkers

@@ -94,7 +94,7 @@
                                     <div class="row">
                                         <div class="form-group col-md-4">
                                             <label for="#">Birthdate</label>
-                                            <input id="bdate" type="text" value="{{ old('birthdate') }}" readonly name="birthdate" data-field='date' class="   w-100 form-control rounded" style="border:1px solid #ccc">
+                                            <input id="bdate" type="text" required value="{{ old('birthdate') }}" readonly name="birthdate" data-field='date' class="   w-100 form-control rounded" style="border:1px solid #ccc">
                                             <div id="dbox"></div>
                                         </div>
                                         <div class="col-md-8">

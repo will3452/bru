@@ -24,12 +24,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::count();
 
         $widget = [
-            'users' => $users,
+            'users' => [],
             //...
         ];
+
+        if(auth()->user()->disabled != null){
+            auth()->logout();
+            return back();
+        }
 
         return view('home', compact('widget'));
     }
