@@ -23,7 +23,7 @@
                             Type
                         </th>
                         <th>
-                            Dated Joined
+                            Date Joined
                         </th>
                         <th>
                             Disabled
