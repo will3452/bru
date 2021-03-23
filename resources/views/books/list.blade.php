@@ -9,14 +9,14 @@
 
             </div>
             <div class="mt-2">
-                <a href="{{ route('books.show', $book) }}">{{ Str::limit($book->title, 10) }}</a>
+                <a href="{{ route('books.show', $book) }}" style="text-transform:capitalize;">{{ Str::limit($book->title, 10) }}</a>
             </div>
             <div  x-show.transition="showInfo" style="position:absolute;top:-10px;left:100px; height:300px; width:200px;background:rgba(17,0,31, 0.9);z-index:999" >
                 <div style="position:absolute;top:6px;left:-14px;height:32px; width:32px;border:4px #014E7F solid;background:url('{{ asset('img/card-bg-custom.png') }}');background-position:center;border-top:none;border-right:none;transform:rotate(45deg);z-index:998;"></div>
-                <p class="text-white p-2" style="height:45px;box-shadow:0px 5px #000;border:4px #014E7F solid;border-left:none; background:url('{{ asset('img/card-bg-custom.png') }}');background-position:center;z-index:999;">
+                <p class="text-white p-2" style="text-transform:capitalize;height:45px;box-shadow:0px 5px #000;border:4px #014E7F solid;border-left:none; background:url('{{ asset('img/card-bg-custom.png') }}');background-position:center;z-index:999;">
                     {{ Str::limit($book->title, 10) }}
                 </p>
-                <div class="px-2 text-left text-white">
+                <div class="px-2 text-left text-white" style="text-transform:capitalize;">
                     <div class="mt-1">
                         Type: {{ $book->class }}
                     </div>

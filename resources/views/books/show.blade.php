@@ -76,7 +76,7 @@
                             <label for="">Add new Tag</label>
                             <select name="tag[]" id="tag" multiple class="form-control" required>
                             </select>
-                            <div class="text-warning">only the first ten will be submitted</div>
+                            <div class="text-warning">Only the first ten will be submitted.</div>
                             <button class="btn btn-primary"><i class="fa fa-plus"></i> Add tag</button>
                         </form>
                     @endif
@@ -286,7 +286,7 @@
             <div class="alert alert-danger d-flex align-items-center">
                 <i class="fa fa-exclamation-circle mr-2"></i>
                 <div>
-                You cannot delete this book if it already contains chapters / books. 
+                You cannot delete this book if it already contains chapters.
                 </div>
             </div>
             <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deletemodal"><i class="fa fa-trash"></i> Delete</button>

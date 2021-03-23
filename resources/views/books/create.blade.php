@@ -7,7 +7,7 @@
     <form action="{{ route('books.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label for=""><strong>Please select what type of book you want to create.  : </strong></label>
+            <label for=""><strong>Please select what type of book you want to create.  </strong></label>
             
             <div class="form-group">
                 <select name="class" id="class_" class="select2 custom-select" required>
@@ -162,7 +162,7 @@
             <select name="tag[]" id="tag" name="tag" class="form-control" multiple required></select>
             <div class="alert alert-warning d-flex align-items-center mt-2">
                 <i class="fa fa-info-circle mr-2"></i>
-                <div>Please list down TEN tags for your book. These tags will ensure better SEO and reading recommendations based on user search and account information. </div>
+                <div>Please list down TEN tags for your book. These tags will ensure better Search Engine Optimization (SEO) and reading recommendations based on user search and account information.</div>
             </div>
         </div>
         <div class="form-grpup">
