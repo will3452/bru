@@ -12,7 +12,7 @@
         <label class="custom-file-label" for="picture">Choose Account Picture</label>
         <input wire:model="picture" type="file"  name="picture" id="picture" accept="image/*" required class="custom-file-input">
         <input type="hidden" name="file_url" required wire:model="path">
-        @error('picture') <span class="error">{{ $message }}</span> @enderror
+        @error('picture') <span class="text-danger" style="font-size:12px !important;">{{ $message }}</span> @enderror
     </div>
     <div wire:loading wire:target="picture" >Please wait, Uploading <img src="{{ asset('/images/loading.gif') }}" alt="" style="width: 20px; height:20px;"></div>
 </div>

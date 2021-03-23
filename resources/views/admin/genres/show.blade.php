@@ -15,7 +15,7 @@
     @endif
 
     
-    <div class="card card-body shadow">
+    <div class="card card-body shadow" style="text-transform: capitalize">
         <form action="{{ route('admin.genres.update', $genre) }}" method="POST">
             @csrf
             @method('PUT')
@@ -37,7 +37,7 @@
                     <label for=""><i class="fa fa-fire"></i> Heat Level</label>
                     <div>
                         <label for="" class="d-block">
-                            <input type="checkbox" name="heat[]" {{ in_array('level - 1 Sweet@0', $genre->heats) ? 'checked':'' }} value="level - 1 Sweet@0" class="resetme heat_check"> Level 1 - Sweet /none
+                            <input type="checkbox" name="heat[]" {{ in_array('level - 1 Sweet@0', $genre->heats) ? 'checked':'' }} value="level - 1 Sweet@0" class="resetme heat_check"> Level 1 - Sweet / none
                         </label>
                         <label for="" class="d-block">
                             <input type="checkbox" name="heat[]" {{ in_array('level - 2 Romantic@0', $genre->heats) ? 'checked':'' }} value="level - 2 Romantic@0" class="resetme heat_check"> Level 2 - Romantic / none
@@ -72,14 +72,14 @@
                             <input type="checkbox" name="violence[]" {{ in_array('level - 4 Gruesome@18', $genre->violences) ? 'checked':'' }} value="level - 4 Gruesome@18" class="resetme vio_check"> Level 4 - Gruesome / 18+
                         </label>
                         <label for="">
-                            <input type="checkbox" onchange="$('.vio_check').prop('checked', !$('.vio_check').prop('checked'))"> Select/Unselect All
+                            <input type="checkbox" onchange="$('.vio_check').prop('checked', !$('.vio_check').prop('checked'))"> Select/ Unselect All
                         </label>
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <label for="">
-                    <input type="checkbox" name="age_restriction" {{ $genre->age_restriction != null ? 'checked':''}} id="age"> Just set Age restriction
+                <label for="" style="text-transform:none;">
+                    <input type="checkbox" name="age_restriction" {{ $genre->age_restriction != null ? 'checked':''}} id="age" > Just set Age Restriction
                 </label>
             </div>
             <div class="form-group text-center">

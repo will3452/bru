@@ -156,7 +156,7 @@
                                 </div>
                             </div>
                             
-                            @livewire('profile.change-password');
+                            @livewire('profile.change-password')
                         </div>
 
                         <!-- Button -->
@@ -259,7 +259,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="gender">Gender</label>
-                                    <input type="text" class="form-control" disabled value="{{ auth()->user()->bio->gender }}">
+                                    <input type="text" class="form-control" style="text-transform: capitalize;" disabled value="{{ auth()->user()->bio->gender }}">
                                 </div>
                             </div>
                             <br>

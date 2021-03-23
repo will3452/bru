@@ -6,7 +6,7 @@
         <div class="col">
             @if (!$got_current_password && !$first)
                 <div class="alert alert-warning">
-                    Please Enter your correct current password.
+                    Please enter your correct current password.
                 </div>
             @endif
             <div class="form-group focused">

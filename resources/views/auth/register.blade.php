@@ -106,7 +106,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <label for="">City</label>
-                                                    <input style="border:1px solid #ccc" type="text" name="city"  required class="   w-100 form-control rounded" placeholder="city">
+                                                    <input style="border:1px solid #ccc" type="text" name="City"  required class="   w-100 form-control rounded" placeholder="city">
                                                 </div>
                                             </div>
                                         </div>
