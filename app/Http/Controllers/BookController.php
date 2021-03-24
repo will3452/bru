@@ -95,6 +95,10 @@ class BookController extends Controller
         if(!Hash::check(request()->password, auth()->user()->password)){
             return abort(401);
         } else {
+            if(request()->has('reason_delete')) {
+                $book->reason_delete = request()->reason_delete;
+                $book->save();
+            }
             $book->delete();
             return redirect()->route('books.list');
         }

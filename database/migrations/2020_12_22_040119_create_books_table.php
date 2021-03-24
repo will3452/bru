@@ -40,6 +40,7 @@ class CreateBooksTable extends Migration
             $table->text('violence_level')->nullable();
             $table->text('age_restriction')->nullable();
             $table->text('free_art')->nullable();
+            $table->text('reason_delete')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -283,13 +283,38 @@
             </div>
             @endif
             @if($book->books()->count() == 0 && $book->chapters()->count() == 0)
-            <div class="alert alert-danger d-flex align-items-center">
+            {{-- <div class="alert alert-danger d-flex align-items-center">
                 <i class="fa fa-exclamation-circle mr-2"></i>
                 <div>
                 You cannot delete this book if it already contains chapters.
                 </div>
-            </div>
+            </div> --}}
             <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deletemodal"><i class="fa fa-trash"></i> Delete</button>
+            @else
+            <div x-data="{showDeleteForm:false, makeConfirmation(){
+                this.showDeleteForm = confirm('This request shall be for the approval of the BRU Admin. Would you like to proceed? ');
+            }}">
+            <div class="card card-body" x-show.trasition="showDeleteForm">
+                <form action="{{ route('books.destroy', $book) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <div class="form-group">
+                        <label for="">Enter your password:</label>
+                        <input required type="password" name="password" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Reason for the request:</label>
+                        <textarea required name="reason_delete" class="form-control" id="" cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-danger">Submit</button>
+                        <button type="button" x-on:click="showDeleteForm = false" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </form>
+            </div>
+                <button class="btn btn-danger" x-show="!showDeleteForm" type="button" x-on:click="makeConfirmation()"><i class="fa fa-trash" click="showDeleteForm"></i> Delete</button>
+                
+            </div>
             @endif
         </div>
 
@@ -328,6 +353,7 @@
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor\datepicker\DateTimePicker.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2-bootstrap.min.css') }}">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
 @endsection
 @section('bottom')
     <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}" defer></script>
