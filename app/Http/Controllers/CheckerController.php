@@ -36,7 +36,7 @@ class CheckerController extends Controller
 
         if(count($pen)){
             return [
-                'msg'=>'pen is already in used',
+                'msg'=>'pen is already in use.',
                 'inputclass'=>'is-invalid',
                 'alertclass'=>'alert-danger'
             ];
@@ -62,7 +62,7 @@ class CheckerController extends Controller
 
         if(count($user)){
             return [
-                'msg'=>'Email is already in used.',
+                'msg'=>'Email is already in use.',
                 'inputclass'=>'is-invalid',
                 'alertclass'=>'alert-danger'
             ];

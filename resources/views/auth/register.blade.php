@@ -129,7 +129,7 @@
                                         <div class="col-md-4">
                                             <div class="card card-body bg-transparent">
                                                 <div class="form-group">
-                                                    <label for="#" class="d-block">Pen name 1</label>
+                                                    <label for="#" class="d-block">Pen Name 1</label>
                                                     <input type="text" name="penname[]" class="form-control w-100" id="pen1" required>
                                                     <div id="pen1-alert"></div>
                                                 </div>
@@ -152,7 +152,7 @@
                                         <div class="col-md-4">
                                             <div class="card card-body bg-transparent">
                                                 <div class="form-group">
-                                                    <label for="#" class="d-block">Pen name 2</label>
+                                                    <label for="#" class="d-block">Pen Name 2</label>
                                                     <input type="text" name="penname[]" class="form-control w-100" id="pen2">
                                                     <div id="pen2-alert"></div>
                                                 </div>
@@ -175,7 +175,7 @@
                                         <div class="col-md-4">
                                             <div class=" card card-body bg-transparent">
                                                 <div class="form-group">
-                                                    <label for="#" class="d-block">Pen name 3</label>
+                                                    <label for="#" class="d-block">Pen Name 3</label>
                                                     <input type="text" name="penname[]" class="form-control w-100" id="pen3">
                                                     <div id="pen3-alert"></div>
                                                 </div>
