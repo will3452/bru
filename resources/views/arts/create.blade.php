@@ -1,17 +1,17 @@
 @extends('layouts.admin')
 @section('main-content')
-    <h1 class="h3 mb-4 text-gray-800">{{ __('Create ArtScene') }}</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ __('Create Art Scene') }}</h1>
     <a href="{{ url()->previous() }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
     @include('partials.alert')
     <form action="{{ route('arts.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <h5>Art Details</h5>
         <div class="form-group">
-            <label for="">Artwork Title</label>
+            <label for="">Art Scene Title</label>
             <input type="text" name="title" class="form-control" value="{{ old('title') }}">
         </div>
         <div class="form-group">
-            <label for="">Artwork Description</label>
+            <label for="">Art Scene Description</label>
             <textarea name="description" id="" cols="30" rows="10" class="form-control">{{ old('description') }}</textarea>
         </div>
         <div class="form-group">
@@ -32,13 +32,27 @@
                 @endforeach
             </select>
         </div>
+        <div >
+            <label for="">Set Age Restriction</label>
+            <select name="age_restriction" id="age_level" class="form-control">
+                <option value="0">
+                    None
+                </option>
+                <option value="16">
+                    16 and up
+                </option>
+                <option value="18" id="_18">
+                    18 and up
+                </option>
+            </select>
+        </div>
         <div class="form-group">
             <label for="">Tags</label>
             <select name="tag[]" id="tag" multiple class="form-control">
             </select>
             <div class="alert alert-warning d-flex align-items-center mt-2">
                 <i class="fa fa-info-circle mr-2"></i>
-                <div>Please list down TEN tags for your book. These tags will ensure better SEO and reading recommendations based on user search and account information. </div>
+                <div>Please list down TEN tags for your Art Scene. These tags will ensure better SEO and reading recommendations based on user search and account information. </div>
             </div>
         </div>
         <div class="form-group">
@@ -47,10 +61,11 @@
                 <option value="Integrated School">Integrated School</option>
                 <option value="Berkeley">Berkeley</option>
                 <option value="Reagan">Reagan</option>
+                <option value="Non-BRU">Non-BRU</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="#">Artwork cost</label>
+            <label for="#">Art Scene cost</label>
             <input type="number" name="cost" class="form-control">
         </div>
         <h5>Upload Art</h5>

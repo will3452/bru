@@ -22,6 +22,7 @@ class ArtForm extends FormRequest
             'title'=>'required',
             'description'=>'required',
             'genre'=>'required',
+            'age_restriction'=>'required',
             'cost'=>'required',
             'file'=>'required',
             'artist'=>'required',

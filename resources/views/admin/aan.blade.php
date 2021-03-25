@@ -4,7 +4,7 @@
     <!-- Page Heading -->
     <div class="d-flex justify-content-between align-items-center">
         <h1 class="h3 mb-4 text-gray-800"><i class="fa fa-list"></i> AAN</h1>
-        <a href="{{ route('admin.users.index') }}" class="btn btn-primary btn-sm"><i class="fa fa-list"></i> List of users</a>
+        <a href="{{ route('admin.users.index') }}" class="btn btn-primary btn-sm"><i class="fa fa-list"></i> List of Users</a>
     </div>
     <div class="row mb-2">
         <div class="col-md-12">

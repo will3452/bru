@@ -89,11 +89,11 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="">Artwork Title</label>
+                            <label for="">Art Scene Title</label>
                             <input type="text" name="title" class="form-control" value="{{ old('title') ?? $art->title }}">
                         </div>
                         <div class="form-group">
-                            <label for="">Artwork Description</label>
+                            <label for="">Art Scene Description</label>
                             <textarea name="description" id="" cols="30" rows="10" class="form-control">{{ old('description') ?? $art->description }}</textarea>
                         </div>
                         <div class="form-group">
@@ -121,9 +121,22 @@
                                 <option value="Reagan" {{ $art->lead_college == 'Reagan' ? 'selected':''}}>Reagan</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="#">Artwork cost</label>
-                            <input type="number" name="cost" class="form-control" value="{{ $art->cost }}">
+                        <div class="form-group" x-data="
+                            {
+                                isConfirmed:false,
+                                isChange(){
+                                    if(!this.isConfirmed) {
+                                        let con = confirm('Request to change the cost of Art Scene is subject to Admin\'s approval.Would you like to proceed?')
+                                        if(con){
+                                            this.isConfirmed = true;
+                                        }else{
+                                            this.$refs.cost.value = {{ $art->cost }}
+                                        }
+                                    }
+                                }
+                            }">
+                            <label for="#">Art Scene cost</label>
+                            <input type="number" x-on:input="isChange()" x-ref="cost" name="cost" class="form-control" value="{{ $art->cost }}">
                         </div>
                         {{-- <h5>Upload Art</h5>
                         <div class="form-group">
@@ -144,7 +157,22 @@
                 </div>
 
             </div>
-            <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deletemodal"><i class="fa fa-trash"></i> Delete</button>
+            <div x-data="
+            {
+                isDelete:false,
+                confirmDelete(){
+                    if(!this.isDelete){
+                        let con = confirm('Your request to delete your Art Scene is subject to Admin\'s approval.Would you like to proceed?');
+                        if(con){
+                            this.isDelete = true;
+                            this.$refs.delete.click()
+                        }
+                    }
+                }
+            }">
+                <button x-show="!isDelete" x-on:click="confirmDelete()" class="btn btn-danger" type="button" ><i class="fa fa-trash"></i> Delete</button>
+                <button x-show="isDelete" class="btn btn-danger" type="button" data-toggle="modal" data-target="#deletemodal" x-ref="delete"><i class="fa fa-trash"></i> Delete</button>
+            </div>
         </div>
 
     </div>
@@ -182,6 +210,7 @@
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor\datepicker\DateTimePicker.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2-bootstrap.min.css') }}">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
 @endsection
 @section('bottom')
     <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}" defer></script>

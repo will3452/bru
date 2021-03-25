@@ -14,10 +14,10 @@
                 <thead>
                     <tr>
                         <th>
-                            Legal Name
+                            Account Name
                         </th>
                         <th>
-                            Email
+                            Email Address
                         </th>
                         <th>
                             Type
@@ -26,7 +26,7 @@
                             Date Joined
                         </th>
                         <th>
-                            Disabled
+                            Disable
                         </th>
                         <th>
                             Delete Permanently
@@ -46,7 +46,9 @@
                                 }
                             },
                             delete(){
-                                this.$xrefs.formdelete.submit();
+                                if(confirm('Please type in your password to permanently delete this account.')){
+                                    this.$xrefs.formdelete.submit();
+                                }
                             }
                             
                         }
@@ -58,7 +60,7 @@
                                 {{ $user->email }}
                             </td>
                             <td>
-                                {{ $user->vip ? 'VIP ':'' }}{{ $user->role ?? 'reader' }}
+                                {{ $user->vip ? 'VIP ':'' }} <span style="text-transform: capitalize">{{ $user->role ?? 'reader' }}</span>
                             </td>
                             <td>
                                 {{ $user->created_at->format('m/d/y') }}

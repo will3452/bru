@@ -116,7 +116,7 @@
     <div class="form-group">
         <label for="">Age Restriction</label>
         <select name="age_restriction" id="" class="custom-select">
-            <option value="none">none</option>
+            <option value="none">None</option>
             <option value="16 and up">16 and Up</option>
             <option value="18 and up">18 and Up</option>
         </select>

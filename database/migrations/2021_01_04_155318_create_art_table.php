@@ -21,6 +21,7 @@ class CreateArtTable extends Migration
             $table->string('artist')->nullable();
             $table->string('genre')->nullable();
             $table->string('lead_college')->nullable();
+            $table->string('age_restriction')->nullable();
             $table->string('cost')->nullable();
             $table->longText('file')->nullable();
             $table->softDeletes();

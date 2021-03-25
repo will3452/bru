@@ -20,7 +20,7 @@
         <div class="alert alert-warning d-flex">
             <i class="fa fa-exclamation-triangle mr-2"></i>
             <div>
-                Please click <a href="{{ route('books.update-front', $book) }}"><strong>HERE</strong></a> to upload one .PDF file that contain your BOOK TITLE PAGE, COPYRIGHT PAGE, ACKNOWLEDGMENT PAGE AND DEDICATION PAGE. Thank you!
+                Please click <a href="{{ route('books.update-front', $book) }}"><strong>HERE</strong></a> to upload one .PDF file that contains your BOOK TITLE PAGE, COPYRIGHT PAGE, ACKNOWLEDGMENT PAGE AND DEDICATION PAGE. Thank you!
             </div>
         </div>
     @endif
@@ -292,7 +292,8 @@
             <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deletemodal"><i class="fa fa-trash"></i> Delete</button>
             @else
             <div x-data="{showDeleteForm:false, makeConfirmation(){
-                this.showDeleteForm = confirm('This request shall be for the approval of the BRU Admin. Would you like to proceed? ');
+                this.showDeleteForm = confirm('Your request to delete your Book is subject to Admin's approval.
+                Would you like to proceed? ');
             }}">
             <div class="card card-body" x-show.trasition="showDeleteForm">
                 <form action="{{ route('books.destroy', $book) }}" method="POST">

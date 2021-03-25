@@ -21,11 +21,15 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
-        $request->validate([
+        $this->validate($request, [
             'email' => 'required|string|email|max:255|unique:users,email,' . Auth::user()->id,
             'current_password' => 'nullable|required_with:new_password',
             'new_password' => 'nullable|min:8|max:12|required_with:current_password',
             'password_confirmation' => 'nullable|min:8|max:12|required_with:new_password|same:new_password'
+        ],[
+            'current_password.required_with'=>'The CHANGE PASSWORD fields will appear when CURRENT PASSWORD is entered correctly.',
+            'new_password.required_with'=>'The CHANGE PASSWORD fields will appear when CURRENT PASSWORD is entered correctly.',
+            'password_confirmation.required_with'=>'The CHANGE PASSWORD fields will appear when CURRENT PASSWORD is entered correctly.',
         ]);
 
 

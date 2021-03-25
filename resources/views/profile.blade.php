@@ -128,7 +128,7 @@
                         <div class="pl-lg-4">
                             <div class="row form-group">
                                 <div class="col-12 focused">
-                                    <label for="aan" class="form-control-label" >Account Awarded Number</label>
+                                    <label for="aan" class="form-control-label" >ID Number (Awarded Account Number)</label>
                                     <input type="text" class="form-control" disabled value="{{ auth()->user()->aan_string ?? ''}}">
                                 </div>
                             </div>
