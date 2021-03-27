@@ -47,6 +47,7 @@ Route::post('/email/verification-notification', function (Request $request) {
 
 //pennames store
 Route::post('/profile/penname', 'PenController@store')->name('penname.store');
+Route::delete('/profile/pename/{id}', 'PenController@destroy')->name('penname.destroy');
 
 //admin
 

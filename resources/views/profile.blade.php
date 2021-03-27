@@ -185,15 +185,27 @@
                                 @foreach(auth()->user()->pens as $pen)
                                 <li class="px-0">
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <div>
+                                        <div class="d-flex">
                                             <i class="fa fa-signature"></i>
                                             <a  href="#" >
                                                 {{ $pen->name }}
                                             </a>
+                                            @if ($pen->canDelete())
+                                            <form action="{{ route('penname.destroy', $pen->id) }}" class="ml-2" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-danger btn-sm">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                            @endif
                                         </div>
-                                        <button class="btn btn-sm btn-circle p-1" onclick="$('#details{{ $pen->id }}').slideToggle(100)">
-                                            <i class="fa fa-angle-down"></i>
-                                        </button>
+                                        <div class="d-flex">
+                                            
+                                            <button class="btn btn-sm btn-circle p-1" onclick="$('#details{{ $pen->id }}').slideToggle(100)">
+                                                <i class="fa fa-angle-down"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                     <div class="card shadow details mt-2" id="details{{ $pen->id }}">
                                         <div class="card-header py-1 ">

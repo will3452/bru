@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Pen;
 use Illuminate\Http\Request;
 
 class PenController extends Controller
@@ -14,6 +15,12 @@ class PenController extends Controller
         ]);
 
         auth()->user()->pens()->create($validated);
+        return back()->withSuccess('Done!');
+    }
+
+    public function destroy($id){
+        $pen = Pen::find($id);
+        $pen->delete();
         return back()->withSuccess('Done!');
     }
 }
