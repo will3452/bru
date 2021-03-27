@@ -75,7 +75,7 @@
                                 <form x-ref="formdelete" action="{{ route('admin.users.destroy', $user) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger" x-on:click="delete()">
+                                    <button class="btn btn-danger" x-on:click.prevent="delete()">
                                         Delete
                                     </button>
                                 </form>

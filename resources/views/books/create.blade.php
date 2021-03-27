@@ -252,6 +252,13 @@
                 Ok, you may proceed.
             </div>
         </div>
+        <div class="alert alert-warning mt-2">
+            <div>
+                <strong>Required*</strong>
+            </div>
+            <input type="checkbox" required id="ck_box" name="cpy">
+            @copyright_disclaimer
+        </div>
         @endif
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block">Submit</button>

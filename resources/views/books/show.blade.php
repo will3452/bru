@@ -309,7 +309,7 @@
                     </div>
                     <div class="form-group">
                         <button class="btn btn-danger">Submit</button>
-                        <button type="button" x-on:click="showDeleteForm = false" class="btn btn-secondary">Cancel</button>
+                        <button type="button" x-on:click.prevent="showDeleteForm = false" class="btn btn-secondary">Cancel</button>
                     </div>
                 </form>
             </div>
