@@ -128,7 +128,7 @@
             </ul>
         </div>
     </div>
-    <div id="art" class="w-full">
+    <div id="art" class="w-full hidden md:block">
     </div>
     <div class=" mx-auto w-10/12">
         
