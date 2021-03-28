@@ -76,10 +76,12 @@
             color: #AB983F !important;
         }
         #art {
-            background:url(@yield('art', 'images/dan-cristian-padure-NNqTuz826lg-unsplash.jpg'));
-            background-size: cover;
-            height: 50vh;
-            background-attachment: fixed;
+            background:url(@yield('art', '/images/front.jpg'));
+            background-size:contain;
+            height: 90vh;
+            /* background-attachment: fixed; */
+            background-repeat:no-repeat;
+            background-position:center top;
         }
     </style>
     <script>

@@ -66,6 +66,7 @@
             max-width: 60px !important;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.7/dist/sweetalert2.all.min.js" integrity="sha256-tFXKkrzNScHtIKgp71cCOiVCPAokgE5k7m/i2VfU+4w=" crossorigin="anonymous"></script>
 </head>
 <body id="page-top" class="sidebar-toggled">
 

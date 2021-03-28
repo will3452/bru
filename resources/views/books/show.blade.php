@@ -224,9 +224,32 @@
                                 <label for="#">Blurb</label>
                                 <textarea name="blurb" id="tetxArea" cols="30" rows="10" id="blurb">{{ old('blurb') ?? $book->blurb }}</textarea>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" x-data="
+                            {
+                                confirmed:false,
+                                makeConfirmation(){
+                                    if(!this.confirmed){
+                                        Swal.fire({
+                                        text: `Request to change the cost of Book is subject to Admin's approval.Would you like to proceed? `,
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#3085d6',
+                                        cancelButtonColor: '#d33',
+                                        confirmButtonText: 'Yes',
+                                        cancelButtonText: 'No'
+                                        }).then((result) => {
+                                        if (!result.isConfirmed) {
+                                            this.$refs.cost.value = {{ $book->cost }}
+                                            return;
+                                        }else {
+                                            this.confirmed = true;
+                                        }
+                                        })
+                                    }
+                                }
+                            }">
                                 <label for="#">Cost</label>
-                                <input type="number" name="cost" class="form-control" min="0" value="{{ $book->cost }}">
+                                <input type="number" x-on:input="makeConfirmation()" x-ref="cost" name="cost" class="form-control" min="0" value="{{ $book->cost }}">
                             </div>
                             <div class="form-group">
                                 <label for="#">Review Question <sup class="d-inline-block" style="width:20px;height:20px;">1</sup></label>
@@ -289,11 +312,53 @@
                 You cannot delete this book if it already contains chapters.
                 </div>
             </div> --}}
-            <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deletemodal"><i class="fa fa-trash"></i> Delete</button>
+            {{-- <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deletemodal"><i class="fa fa-trash"></i> Delete</button> --}}
+            <div x-data="{showDeleteForm:false, makeConfirmation(){
+                Swal.fire({
+                text: `Your request to delete your Book is subject to Admin's approval. Would you like to proceed?`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No',
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    this.showDeleteForm = true;
+                }
+                })
+            }}">
+                <div class="card card-body" x-show.trasition="showDeleteForm">
+                    <form action="{{ route('books.destroy', $book) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <div class="form-group">
+                            <label for="">Enter your password:</label>
+                            <input required type="password" name="password" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-danger">Submit</button>
+                            <button type="button" x-on:click.prevent="showDeleteForm = false" class="btn btn-secondary">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+                <button class="btn btn-danger" x-show="!showDeleteForm" type="button" x-on:click="makeConfirmation()"><i class="fa fa-trash" click="showDeleteForm"></i> Delete</button>
+            </div>
             @else
             <div x-data="{showDeleteForm:false, makeConfirmation(){
-                this.showDeleteForm = confirm('Your request to delete your Book is subject to Admin's approval.
-                Would you like to proceed? ');
+                Swal.fire({
+                text: `Your request to delete your Book is subject to Admin's approval. Would you like to proceed?`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No',
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    this.showDeleteForm = true;
+                }
+                })
             }}">
             <div class="card card-body" x-show.trasition="showDeleteForm">
                 <form action="{{ route('books.destroy', $book) }}" method="POST">

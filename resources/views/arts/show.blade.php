@@ -123,15 +123,25 @@
                         </div>
                         <div class="form-group" x-data="
                             {
-                                isConfirmed:false,
+                                confirmed:false,
                                 isChange(){
-                                    if(!this.isConfirmed) {
-                                        let con = confirm('Request to change the cost of Art Scene is subject to Admin\'s approval.Would you like to proceed?')
-                                        if(con){
-                                            this.isConfirmed = true;
-                                        }else{
+                                    if(!this.confirmed){
+                                        Swal.fire({
+                                        text: `Request to change the cost of Art Scene is subject to Admin's approval.Would you like to proceed? `,
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#3085d6',
+                                        cancelButtonColor: '#d33',
+                                        confirmButtonText: 'Yes',
+                                        cancelButtonText: 'No'
+                                        }).then((result) => {
+                                        if (!result.isConfirmed) {
                                             this.$refs.cost.value = {{ $art->cost }}
+                                            return;
+                                        }else {
+                                            this.confirmed = true;
                                         }
+                                        })
                                     }
                                 }
                             }">
