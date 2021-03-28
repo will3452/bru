@@ -1,4 +1,10 @@
-<form action="{{ route('thrailers.store') }}" method="POST" enctype="multipart/form-data">
+
+<div>
+
+    <h1 class="h3 mb-4 text-gray-800">{{ __('Create Films') }}</h1>
+    <a href="{{ route('books.index') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
+    @include('partials.alert')
+    <form action="{{ route('thrailers.store') }}" method="POST" enctype="multipart/form-data">
     {{-- <form action="#"> --}}
     @csrf
     <div class="form-group">
@@ -37,6 +43,7 @@
         <div class="form-group">
             <label for="">To which work is this trailer connected to ?</label>
             <select name="connect_id" id="" class="custom-select select2">
+                <option value="">None</option>
                 @foreach (\App\Book::get() as $book)
                     <option value="book-{{$book->id}}">
                         {{ $book->title }} (book)
@@ -58,11 +65,11 @@
                 $first = '';
             @endphp
             @foreach(\App\Genre::get() as $genre)
-            @if($loop->first)
-                @php
-                    $first = $genre;
-                @endphp
-            @endif
+                @if($loop->first)
+                    @php
+                        $first = $genre;
+                    @endphp
+                @endif
             <option value="{{ $genre->name }}">
                 {{ $genre->name }}
             </option>
@@ -112,64 +119,4 @@
             </div>
         @endif
     @endif
-    <hr>
-    <div class="form-group">
-        <label for="">Age Restriction</label>
-        <select name="age_restriction" id="" class="custom-select">
-            <option value="none">None</option>
-            <option value="16 and up">16 and Up</option>
-            <option value="18 and up">18 and Up</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="">Language</label>
-        <select name="language" id="" class="custom-select" required>
-            <option value="english">English</option>
-            <option value="filipino">Filipino</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="">Cover</label>
-        <div>
-            <input type="file" name="cover" accept="image/*" required>
-        </div>
-        <div class="alert alert-warning mt-2">
-            <div>
-                <strong>Required*</strong>
-            </div>
-            <input type="checkbox" required id="ck_box" name="cpy">
-            @copyright_disclaimer
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="">Please submit the video for approval to the Admin. </label>
-        {{-- <input type="file" id="" accept="video/*" class="d-block" name="video" required> --}}
-        <ul id="filelist" class="list-group mb-2"></ul>
-        <div id="container">
-            <a id="browse" href="javascript:;" class="btn btn-sm btn-secondary"><i class="fa fa-folder fa-sm"></i> Browse</a>
-            <a id="start-upload" href="javascript:;" class="btn btn-sm btn-success"><i class="fa fa-play fa-sm"> </i> Start Upload</a>
-        </div>
-        <input type="hidden" name="video" id="video_file">
-        <pre id="console" class="text-danger"></pre>
-        <div class="alert alert-warning mt-2">
-            <input type="checkbox" required name="cpy">
-            @copyright_disclaimer
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="">Type of Crystal</label>
-        <select name="gem" id="" class="select2 form-control">
-            <option value="White">White Crystal</option>
-            <option value="Purple">Purple Crystal</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="">Cost</label>
-        <input type="number" name="cost" class="form-control" min="0" value="0">
-    </div>
-    <div class="form-group">
-        <button class="btn btn-block btn-primary" id="submit" disabled="true">
-            Submit
-        </button>
-    </div>
-</form>
+</div>
