@@ -39,19 +39,25 @@
                         {
                             off:@if(isset($user->disabled))  false @else true @endif,
                             async update(){
-                                console.log(window.axios);
                                 let result = await axios.put('{{ route('admin.users.update', $user->id) }}')
                                 if(result.status == 200) {
                                     this.off = !this.off
                                 }
                             },
-                            delete(){
-                                if(confirm('Please type in your password to permanently delete this account.')){
-                                    this.$xrefs.formdelete.submit();
+                            async deleteme(){
+                                let con =  prompt('Please type in your password to permanently delete this account.')
+                                if(con.length){
+                                    let res = await axios.post('{{route('password-confirm')}}', {password:con})
+                                    if(res.data){
+                                        this.$refs.formdelete.submit()
+                                    }else {
+                                        alert('unauthorized action!')
+                                    }
                                 }
                             }
                             
                         }
+
                         ">
                             <td>
                                 {{ $user->full_name }}
@@ -72,10 +78,10 @@
                                 </div>
                             </td>
                             <td>
-                                <form x-ref="formdelete" action="{{ route('admin.users.destroy', $user) }}" method="POST">
+                                <form  x-ref="formdelete" action="{{ route('admin.users.destroy', $user) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-danger" x-on:click.prevent="delete()">
+                                    <button class="btn btn-danger" type="button" x-on:click.prevent='deleteme()'>
                                         Delete
                                     </button>
                                 </form>

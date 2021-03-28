@@ -1,6 +1,7 @@
 <?php
 
 use App\Book;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\Admin\Auth\LoginController;
@@ -138,6 +139,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     //users
     Route::resource('/users', 'Admin\\UserController');
+
 });
 
 //checkers
@@ -221,3 +223,10 @@ Route::resource('group-member', 'GroupMemberController');
 Route::get('please-contact','PleaseContactController')->name('please-contact');
 //please download route
 Route::get('reader-please-download', 'PleaseDownloadController')->name('please-download');
+
+
+// ajax
+Route::post('password-confirm', function(){ //to check the password
+    $ipassword = request()->password;
+    return Hash::check($ipassword, auth()->guard('admin')->user()->password);
+})->name('password-confirm');
