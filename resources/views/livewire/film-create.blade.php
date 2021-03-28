@@ -143,8 +143,14 @@
     </div>
     <div class="form-group">
         <label for="">Please submit the video for approval to the Admin. </label>
-        <input type="file" accept="video/*" class="d-block" name="video" required>
-
+        {{-- <input type="file" id="" accept="video/*" class="d-block" name="video" required> --}}
+        <ul id="filelist" class="list-group mb-2"></ul>
+        <div id="container">
+            <a id="browse" href="javascript:;" class="btn btn-sm btn-secondary"><i class="fa fa-folder fa-sm"></i> Browse</a>
+            <a id="start-upload" href="javascript:;" class="btn btn-sm btn-success"><i class="fa fa-play fa-sm"> </i> Start Upload</a>
+        </div>
+        <input type="hidden" name="video" id="video_file">
+        <pre id="console" class="text-danger"></pre>
         <div class="alert alert-warning mt-2">
             <input type="checkbox" required name="cpy">
             @copyright_disclaimer
@@ -162,11 +168,8 @@
         <input type="number" name="cost" class="form-control" min="0" value="0">
     </div>
     <div class="form-group">
-        <button class="btn btn-block btn-primary">
+        <button class="btn btn-block btn-primary" id="submit" disabled="true">
             Submit
         </button>
     </div>
 </form>
-{{-- <script>
-    alert('under development...');
-</script> --}}

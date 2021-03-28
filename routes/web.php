@@ -90,7 +90,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::get('/tags', 'TagController@index')->name('tags.index');
 
     //thrailers
-    Route::get('/thrailers', 'Admin\ThrailerController@index')->name('thrailers.index');
+    Route::get('/film', 'Admin\ThrailerController@index')->name('thrailers.index');
+
 
     //events
     Route::resource('/events', 'Admin\EventController');
@@ -204,6 +205,10 @@ Route::prefix('trailers')->name('thrailers.')->group(function(){
     Route::put('/{thrailer}', 'ThrailerController@update')->name('update');
     Route::delete('/{thrailer}', 'ThrailerController@destroy')->name('destroy');
 });
+
+
+//large video files handler 
+Route::post('/large-video-uploader','VideoUploader')->name('video.uploader');
 
 
 Route::prefix('events')->name('events.')->group(function(){

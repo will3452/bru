@@ -68,12 +68,6 @@ class ThrailerController extends Controller
             'cover'=>'',
         ]);
         //just set to null
-        
-
-        $path = request()->video->store('/public/thrailers');
-        $arr_path = explode('/', $path);
-        $end_path = end($arr_path);
-        $video = '/storage/thrailers/'.$end_path;
 
         $path_cover = request()->cover->store('public/thrailers_cover');
         $arr_path_cover = explode('/', $path_cover);
@@ -106,7 +100,7 @@ class ThrailerController extends Controller
         $video = auth()->user()->thrailers()->create([
             'title' => request()->title,
             'author' => request()->author,
-            'video' => $video,
+            'video' => request()->video,
             'code' => $code,
             'event_id' => $event_id,
             'preview'=> $preview,
