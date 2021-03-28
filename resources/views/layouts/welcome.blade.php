@@ -78,7 +78,7 @@
         #art {
             background:url(@yield('art', '/images/front.jpg'));
             background-size:contain;
-            height: 90vh;
+            height: 550px;
             /* background-attachment: fixed; */
             background-repeat:no-repeat;
             background-position:center top;
