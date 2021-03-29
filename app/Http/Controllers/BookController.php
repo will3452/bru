@@ -22,9 +22,9 @@ class BookController extends Controller
         $rtag = $request->tag;
         
         $validated = $request->validated();
+        $validated['cpy'] = now();
         unset($validated['tag']);
         $book = auth()->user()->books()->create($validated);
-        $book->cpy()->create();
         
 
         //attaching tags

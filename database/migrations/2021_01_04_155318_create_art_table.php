@@ -24,6 +24,7 @@ class CreateArtTable extends Migration
             $table->string('age_restriction')->nullable();
             $table->string('cost')->nullable();
             $table->longText('file')->nullable();
+            $table->timestamp('cpy')->nullable(); // copyright
             $table->softDeletes();
             $table->timestamps();
         });

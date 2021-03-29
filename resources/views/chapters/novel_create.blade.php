@@ -24,7 +24,7 @@
                             <strong>Required*</strong>
                         </div>
                         <input type="checkbox" required id="ck_box" name="cpy" required>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione rerum esse nostrum nemo, culpa eaque facilis provident ipsam saepe repellat.
+                        @copyright_disclaimer
                     </div>
                 @endif
             </div>
@@ -49,7 +49,7 @@
                             <strong>Required*</strong>
                         </div>
                         <input type="checkbox" id="ck_box" name="cpy" required>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione rerum esse nostrum nemo, culpa eaque facilis provident ipsam saepe repellat.
+                        @copyright_disclaimer
                     </div>
                     <div class="custom-file">
                         <label class="custom-file-label" for="picture">Upload Art Scene</label>
@@ -74,6 +74,24 @@
 @endsection
 
 @section('bottom')
+    @if (isset(request()->first))
+            <script>
+            Swal.fire({
+            title: 'Do want to use Rich Text Editor?',
+            text: `You can control the appearance of your text using the rich-text editor.`,
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '{{ url()->current() }}?richtext=true';
+            }
+            })
+        </script>
+    @endif
     <script src="{{ asset('vendor/select2/select2.min.js') }}" defer></script>
     <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
     <script>

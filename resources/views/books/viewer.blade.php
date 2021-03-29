@@ -71,9 +71,9 @@
             overflow: scroll;
             font-size: 75%;
         }
-        #page-content::first-line{
+        /* #page-content::first-line{
             text-indent: 10% !important;
-        }
+        } */
     </style>
 @endsection
 @section('bottom')

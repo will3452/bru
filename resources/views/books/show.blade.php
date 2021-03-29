@@ -107,7 +107,7 @@
                    </div>
                     @endif
                     <div class="text-center">
-                        <a href="{{ route('books.chapters.create', $book) }}" class="btn btn-outline-primary shadow" >
+                        <a href="{{ route('books.chapters.create', $book) }}?first=true" class="btn btn-outline-primary shadow" >
                             <i class="fa fa-plus"></i>
                         </a>
                     </div>

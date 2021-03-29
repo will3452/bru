@@ -52,7 +52,8 @@ class StoreChapterRequest extends FormRequest
             'art_cost'=>'',
             'sq'=>'required',
             'type'=>'required',
-            'content'=>'required'
+            'content'=>'required',
+            'cpy'=>''
         ];
     }
 }

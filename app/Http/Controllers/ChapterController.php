@@ -33,11 +33,14 @@ class ChapterController extends Controller
 
     public function storeNovel(StoreNovelFormRequest $request,Book $book){
         // dd($request->validated());
-        $chapter = $book->chapters()->create($request->validated());
 
-        if($request->has('art') || $request->has('cpy')){
-            $chapter->cpy()->create();
+        $validated = $request->validated();
+        if($validated['cpy'] == 'on') {
+            $validated['cpy'] = now();
         }
+        // dd($validated);
+        $chapter = $book->chapters()->create($validated);
+
         return redirect()->route('books.show', $book)->withSuccess('Chapter Added');
     }
     
@@ -52,7 +55,6 @@ class ChapterController extends Controller
 
     public function store (StoreChapterRequest $request, Book $book){
         $chapter = $book->chapters()->create($request->validated());
-        $chapter->cpy()->create();
         return redirect()->route('books.show', $book)->withSuccess('Done');
     }
 

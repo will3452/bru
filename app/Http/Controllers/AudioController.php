@@ -38,6 +38,7 @@ class AudioController extends Controller
     public function store(AudioForm $request)
     {
         $validated = $request->validated();
+        $validated['cpy'] = now();
 
         $path = $validated['audio']->store('public/audios');
         $arr_path = explode('/', $path);
@@ -52,7 +53,6 @@ class AudioController extends Controller
         }
         $audio = auth()->user()->audio()->create($validated);
 
-        $audio->cpy()->create();
         
         return back()->withSuccess('Done! Audio book added!');
 

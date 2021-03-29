@@ -66,6 +66,7 @@ class ThrailerController extends Controller
             "age_restriction" => "required",
             'language'=>'required',
             'cover'=>'',
+            'cpy'=>'',
         ]);
         //just set to null
 
@@ -115,9 +116,9 @@ class ThrailerController extends Controller
             'age_restriction'=>request()->age_restriction,
             'language'=>request()->language,
             'gem'=>request()->gem,
-            'cost'=>request()->cost
+            'cost'=>request()->cost,
+            'cpy'=>now()
         ]);
-        $video->cpy()->create();
         // Notification::send(Admin::get(), new VideoApproval($video));
         return back()->with('success', 'item stored successfully');
     }

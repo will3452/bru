@@ -49,7 +49,8 @@ class StoreNovelFormRequest extends FormRequest
             'art_cost'=>'',
             'art'=>'',
             'sq'=>'required',
-            'slug'=>'required'
+            'slug'=>'required',
+            'cpy'=>''
         ];
     }
 }

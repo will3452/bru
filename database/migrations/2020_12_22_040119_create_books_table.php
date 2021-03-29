@@ -30,7 +30,7 @@ class CreateBooksTable extends Migration
             $table->longText('blurb')->nullable();
             $table->string('cost')->nullable();
             $table->string('content_warning')->nullable();
-        $table->string('publish_date')->nullable();
+             $table->string('publish_date')->nullable();
             $table->text('review_question_1')->nullable();
             $table->text('review_question_2')->nullable();
             $table->text('front')->nullable();
@@ -41,6 +41,7 @@ class CreateBooksTable extends Migration
             $table->text('age_restriction')->nullable();
             $table->text('free_art')->nullable();
             $table->text('reason_delete')->nullable();
+            $table->timestamp('cpy')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -30,6 +30,7 @@ class ArtSceneController extends Controller
 
     public function store(ArtForm $request){
         $validated = $request->validated();
+        $validated['cpy'] = now();
         $rtag =request()->tag;
         unset($validated['tag']);
         $file = $validated['file']->store('public/arts');
@@ -40,8 +41,6 @@ class ArtSceneController extends Controller
         $validated['file'] = $file;
 
         $art = auth()->user()->arts()->create($validated);
-
-        $art->cpy()->create();
 
         //attaching tags
         if(request()->has('tag')){
@@ -68,8 +67,10 @@ class ArtSceneController extends Controller
             'artist'=>'',
             'genre'=>'',
             'lead_college'=>'',
-            'cost'=>''
+            'cost'=>'',
         ]);
+
+        
 
         $art->update($validated);
         return back()->withSuccess('Done!');

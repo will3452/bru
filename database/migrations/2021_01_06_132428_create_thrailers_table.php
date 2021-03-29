@@ -34,6 +34,7 @@ class CreateThrailersTable extends Migration
             $table->string('age_restriction')->nullable();
             $table->string('language')->nullable();
             $table->string('gem')->nullable();
+            $table->timestamp('cpy')->nullable();
             $table->softDeletes();
             $table->string('cost')->nullable();
             $table->timestamps();

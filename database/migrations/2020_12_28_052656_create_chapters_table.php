@@ -23,6 +23,7 @@ class CreateChaptersTable extends Migration
             $table->string('type')->nullable();
             $table->text('art')->nullable();
             $table->string('art_cost')->nullable();
+            $table->timestamp('cpy')->nullable();
             $table->timestamps();
         });
     }

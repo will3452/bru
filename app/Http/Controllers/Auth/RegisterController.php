@@ -159,9 +159,6 @@ class RegisterController extends Controller
             'city'=>$data['city']
         ]);
 
-        //cpy
-        $user->cpy()->create();
-
         //interest
         $i1 = explode('@', $data['interest'][0]);
         

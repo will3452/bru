@@ -40,6 +40,7 @@ class CreateSongsTable extends Migration
             $table->string('composer_others')->nullable();
             $table->string('lyricist_others')->nullable();
             $table->string('is_copyright')->nullable();
+            $table->timestamp('cpy')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

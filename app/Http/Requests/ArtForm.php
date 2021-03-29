@@ -27,8 +27,8 @@ class ArtForm extends FormRequest
             'file'=>'required',
             'artist'=>'required',
             'lead_college'=>'required',
-            'tag.*'=>'required'
-
+            'tag.*'=>'required',
+            'cpy'=>''
         ];
     }
 }

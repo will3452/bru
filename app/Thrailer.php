@@ -15,9 +15,6 @@ class Thrailer extends Model
         return $this->belongsToMany(User::class);
     }
 
-    public function cpy(){
-        return $this->morphOne(Cpy::class, 'cpiable');
-    }
 
     public function  recommendation(){
         return $this->morphOne(Recommendation::class, 'recommendationable');

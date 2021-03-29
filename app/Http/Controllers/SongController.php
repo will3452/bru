@@ -62,6 +62,7 @@ class SongController extends Controller
             'copyright'=>'',
             'cover'=>'',
             'file'=>'',
+            'cpy'=>'',
         ]);
 
         $pathCover = $request->cover->store('/public/book_cover');

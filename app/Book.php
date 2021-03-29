@@ -32,10 +32,6 @@ class Book extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function cpy(){
-        return $this->morphOne(Cpy::class, 'cpiable');
-    }
-
     public function tags(){
         return $this->morphToMany(Tag::class, 'taggable');
     }

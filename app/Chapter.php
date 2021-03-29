@@ -24,16 +24,13 @@ class Chapter extends Model
     }
 
     public function getRouteKeyName(){
-        return 'slug';
+        return 'id';
     }
 
     public function book(){
         return $this->belongsTo(Book::class);
     }
     
-    public function cpy(){
-        return $this->morphOne(Cpy::class, 'cpiable');
-    }
 
     
 }

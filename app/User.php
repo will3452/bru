@@ -82,10 +82,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Interest::class, 'user_id');
     }
 
-    public function cpy(){
-        return $this->morphOne(Cpy::class, 'cpiable');
-    }
-
+    
     public function books(){
         return $this->hasMany(Book::class);
     }

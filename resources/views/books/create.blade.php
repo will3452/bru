@@ -196,7 +196,7 @@
         <div class="form-group">
             <div class="alert alert-warning d-flex align-items-center">
                 <i class="fa fa-info-circle mr-2"></i>
-                <span>Please note that leaving the cost of your book in 0 will allow free access to readers, so long as they have hall passes or silver tickets. Please indicate price in GEMS. </span>
+                <span>Please note that leaving the cost of your book in 0 will allow free access to readers, so long as they have hall passes or silver tickets. Please indicate price in CRYSTALS. </span>
             </div>
         </div>
         <div class="form-group">

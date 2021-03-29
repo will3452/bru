@@ -39,6 +39,7 @@ class CreateAudioTable extends Migration
             $table->text('age_restriction')->nullable();
             $table->string('free_art')->nullable();
             $table->text('audio')->nullable();
+            $table->timestamp('cpy')->nullable();
             $table->timestamps();
         });
     }
