@@ -274,6 +274,37 @@
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2-bootstrap.min.css') }}">
 @endsection
 @section('bottom')
+    @if (empty(request()->type) && empty(request()->is_event))
+        <script>
+
+            async function getType(){
+                const {value : stype}  = await Swal.fire({
+                title: 'Please select what type of book you want to create.',
+                input: 'select',
+                inputOptions: {
+                    regular:'Regular',
+                    premium:'Premium',
+                    'spin-off':'Spin-off',
+                    'event':'Event'
+                },
+                confirmButtonText:'Create',
+                inputPlaceholder: 'Select Type',
+                inputValidator: (value) => {
+                    return new Promise((resolve) => {
+                    resolve();
+                    })
+                }
+                })
+
+                window.location.href="{{ url()->current() }}?type="+stype;
+            }
+
+            getType();
+
+
+        </script>
+    @endif
+    
     <script>
         $.ajaxSetup({
             headers: {
@@ -303,7 +334,7 @@
     <script>
         $(function(){
             $.fn.select2.defaults.set( "theme", "bootstrap" );
-            $('select').select2();
+            // $('select').select2();
             $('#tag').select2({
                 tags:true,
                 tokenSeparators: [',', ' ']
