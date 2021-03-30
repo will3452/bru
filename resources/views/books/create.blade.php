@@ -296,7 +296,11 @@
                 }
                 })
 
-                window.location.href="{{ url()->current() }}?type="+stype;
+                if(stype){
+                    window.location.href="{{ url()->current() }}?type="+stype;
+                }else {
+                    window.location.href="{{ url()->current() }}";
+                }
             }
 
             getType();
