@@ -295,8 +295,10 @@
                     })
                 }
                 })
-
-                if(stype){
+                if(stype == 'event'){
+                    window.location.href="{{ url()->current() }}?is_event=true";
+                }
+                else if(stype){
                     window.location.href="{{ url()->current() }}?type="+stype;
                 }else {
                     window.location.href="{{ url()->current() }}";
