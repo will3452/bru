@@ -62,12 +62,10 @@ class ArtSceneController extends Controller
 
     public function update(Art $art){
         $validated = request()->validate([
-            'title'=>'',
             'description'=>'',
             'artist'=>'',
             'genre'=>'',
             'lead_college'=>'',
-            'cost'=>'',
         ]);
 
         

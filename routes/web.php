@@ -224,6 +224,18 @@ Route::resource('inbox', 'InboxController');
 Route::resource('group', 'GroupController');
 Route::resource('group-member', 'GroupMemberController');
 
+//tickets 
+Route::prefix('tickets')->name('tickets.')->group(function(){
+    //delete ticket
+    Route::post('delete/book/{book}', 'TicketController@bookDestroy')->name('book.delete');
+    Route::post('delete/art/{art}', 'TicketController@artDestroy')->name('art.delete');
+
+    //edit ticket
+    Route::post('edit/book/{book}', 'TicketController@bookUpdate')->name('book.update');
+    Route::post('edit/art/{art}', 'TicketController@artUpdate')->name('art.update');
+
+});
+
 //please contact route
 Route::get('please-contact','PleaseContactController')->name('please-contact');
 //please download route

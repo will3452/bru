@@ -72,14 +72,12 @@ class BookController extends Controller
     public function update(Book $book){
         $validated = request()->validate([
             'category'=>'',
-            'title'=>'',
             'genre'=>'',
             'type'=>'',
             'language'=>'',
             'lead_character'=>'',
             'lead_college'=>'',
             'blurb'=>'',
-            'cost'=>'',
             'review_question_1'=>'',
             'review_question_2'=>'',
             'credit_page'=>'',

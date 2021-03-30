@@ -26,6 +26,11 @@ class Art extends Model
         return $this->morphOne(Recommendation::class, 'recommendationable');
     }
 
+    public function tickets()
+    {
+        return $this->morphMany(Ticket::class, 'ticketable');
+    }
+
     public static function GETPUBLISHED(){
         return self::get();
     }

@@ -66,15 +66,22 @@
             max-width: 60px !important;
         }
     </style>
-    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4/bootstrap-4.css" rel="stylesheet">
+    <link href="/css/dark.css" rel="stylesheet">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
     <style>
-        .swal2-popup,.swal2-content, .swal2-footer {
+        /* .swal2-popup,.swal2-content, .swal2-footer,.swal2-actions, .swal2-actions>div {
             padding: 0px !important;
-        }
+            margin:0px !important;
+        } */
+        /* .swal2-header{
+            padding-top: 10px !important;
+        } */
         .swal2-icon{
             width: 50px;
             height: 50px;
+        },
+        .swal2-styled, .swal2-confirm, .swal2-cancel{
+            padding:0px 0px !important;
         }
     </style>
 </head>
@@ -425,6 +432,13 @@
     window.onload = function(){
         $('.loader-container').fadeOut(1000);
     }
+</script>
+<script>
+    const swal = Swal.mixin({
+        position: 'top',
+        padding:'0.5em',
+        background:"url('/img/modal-bg-custom.png')"
+    })
 </script>
 @yield('bottom')
 </body>
