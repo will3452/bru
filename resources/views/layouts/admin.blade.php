@@ -66,7 +66,17 @@
             max-width: 60px !important;
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.7/dist/sweetalert2.all.min.js" integrity="sha256-tFXKkrzNScHtIKgp71cCOiVCPAokgE5k7m/i2VfU+4w=" crossorigin="anonymous"></script>
+    <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4/bootstrap-4.css" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
+    <style>
+        .swal2-popup,.swal2-content, .swal2-footer {
+            padding: 0px !important;
+        }
+        .swal2-icon{
+            width: 50px;
+            height: 50px;
+        }
+    </style>
 </head>
 <body id="page-top" class="sidebar-toggled">
 
