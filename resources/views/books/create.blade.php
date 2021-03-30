@@ -11,8 +11,7 @@
             
             <div class="form-group">
                 <select name="class" id="class_" class="select2 custom-select" required>
-                    <option value="" selected disabled>----</option>
-                    <option value="regular" {{ request()->type == 'regular' ? 'selected':'' }}>Regular</option>
+                    <option value="regular" {{ request()->type == 'regular' ? 'selected':'' }} selected>Regular</option>
                     <option value="premium" {{ request()->type == 'premium' ? 'selected':'' }}>Premium</option>
                     <option value="spin-off" {{ request()->type == 'spin-off' ? 'selected':'' }}>Spin-off</option>
                     <option value="event" {{ request()->has('is_event') ? 'selected':'' }}>Event</option>
@@ -274,42 +273,7 @@
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2-bootstrap.min.css') }}">
 @endsection
 @section('bottom')
-    @if (empty(request()->type) && empty(request()->is_event))
-        <script>
-
-            async function getType(){
-                const {value : stype}  = await Swal.fire({
-                title: 'Please select what type of book you want to create.',
-                input: 'select',
-                inputOptions: {
-                    regular:'Regular',
-                    premium:'Premium',
-                    'spin-off':'Spin-off',
-                    'event':'Event'
-                },
-                confirmButtonText:'Create',
-                inputPlaceholder: 'Select Type',
-                inputValidator: (value) => {
-                    return new Promise((resolve) => {
-                    resolve();
-                    })
-                }
-                })
-                if(stype == 'event'){
-                    window.location.href="{{ url()->current() }}?is_event=true";
-                }
-                else if(stype){
-                    window.location.href="{{ url()->current() }}?type="+stype;
-                }else {
-                    window.location.href="{{ url()->current() }}";
-                }
-            }
-
-            getType();
-
-
-        </script>
-    @endif
+    
     
     <script>
         $.ajaxSetup({
