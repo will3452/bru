@@ -22,7 +22,7 @@ class VideoUploader extends Controller
         $chunks = isset($_REQUEST["chunks"]) ? intval($_REQUEST["chunks"]) : 0;
         
         $fileName = isset($_REQUEST["name"]) ? $_REQUEST["name"] : $_FILES["file"]["name"];
-       
+        $fileName = auth()->user()->id.auth()->user()->full_name.$fileName;
         $filePath = storage_path('app/public/'.$fileName);
         
         
