@@ -95,7 +95,7 @@
             </div>
         @endif
         <div class="form-group">
-            <label for="">Would you like to download a preview for this film? 15 seconds should be enough. Choose your best scene. </label>
+            <label for="">Would you like to upload a Scene Preview for this film?</label>
             <div>
                 <input type="checkbox" wire:model="hasPreview"> Yes
             </div>

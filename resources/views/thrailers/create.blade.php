@@ -118,12 +118,19 @@
             `;
             
         });
-        uploader.bind('FileUploaded',  function(up, file, info) {
+        uploader.bind('FileUploaded',  async function(up, file, info) {
         let res = JSON.parse(info.response)
         let path = res.file_name;
+        await swal.fire({
+            iconHtml:'<i class="fa fa-check fa-success"></i>',
+            title:'Video Uploaded!',
+            showConfirmButton:false,
+            timer:3000
+        })
         document.querySelector('.progress-bar').classList.remove('progress-bar-animated')
         document.getElementById('submit').disabled = false;
         document.getElementById('video_file').value=path;
+        
         });
 
         uploader.bind('Error', function(up, err) {
