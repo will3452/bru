@@ -76,7 +76,7 @@
 @section('bottom')
     @if (isset(request()->first))
             <script>
-            Swal.fire({
+            swal.fire({
             title: 'Do want to use Rich Text Editor?',
             text: `You can control the appearance of your text using the rich-text editor.`,
             icon: 'info',
