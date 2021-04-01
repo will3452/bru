@@ -37,7 +37,7 @@
                     <strong>Required*</strong>
                 </div>
                 <input type="checkbox" id="ck_box" name="cpy" required>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione rerum esse nostrum nemo, culpa eaque facilis provident ipsam saepe repellat.
+                @copyright_disclaimer
             </div>
             <div class="custom-file">
                 <label class="custom-file-label" for="picture">Upload Art Scene</label>

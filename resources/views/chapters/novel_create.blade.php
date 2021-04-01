@@ -16,7 +16,7 @@
             </div>
             <div class="form-group">
                 @if(request()->richtext != true)
-                    <a href="?richtext=true}"><i class="fa fa-align-center"></i> Use Text Rich editor instead ? </a>
+                    <a href="?richtext=true}"><i class="fa fa-align-center"></i> Use Text Rich Editor instead ? </a>
                 @else
                     <a href="?"><i class="fa fa-align-center"></i> Use pure text editor ?</a>
                     <div class="alert alert-warning mt-2">
@@ -39,7 +39,7 @@
                     <option value="regular">Regular</option>
                     <option value="special">Special</option>
                     <option value="premium">Premium</option>
-                    <option value="premium_with">Premium w/ Free Artscene</option>
+                    <option value="premium_with">Premium w/ Free Art Scene</option>
                 </select>
             </div>
             <div class="form-group" id="freeart">

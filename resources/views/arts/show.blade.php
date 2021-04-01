@@ -185,9 +185,18 @@
             const { value: formValues } = await swal.fire({
                 title: 'Send Ticket',
                 html:
-                  `<input id='password' type='password' placeholder='Enter your password here.' class='swal2-input'>
+                  `
+                  <div class='alert alert-warning ' style='font-size:11px;text-align:left;'>
+                    You are now requesting to delete your Art Scene. Please fill out the necessary fields and provide a brief explanation for the request. 
+                    <br><br>
+                    However, please be reminded that your Art Scene is under contract. Please confirm with BRUMULTIVERSE personally after submitting the request. 
+                  </div>
+                  <input id='password' type='password' placeholder='Enter your password here.' class='swal2-input'>
                   <textarea id='reason' placeholder='Enter your reason' class='swal2-textarea' row='5' required></textarea>`,
                 focusConfirm: false,
+                showCloseButton: true,
+                showCancelButton: true,
+                confirmButtonText:'submit',
                 preConfirm: () => {
                   return [
                     document.getElementById('password').value,
@@ -240,7 +249,7 @@
                   <div class='alert alert-warning ' style='font-size:11px;text-align:left;'>
                     You are now requesting a change of either the Title or the Cost of your Art Scene. Please fill out the necessary field/s that you wish to update in the boxes below and provide a brief explanation for the change.
                     <br><br>
-                    However, please be reminded that changing your Art Scene Title will require an amendment to your contract and thus, will entail additional cost on your end.
+                    However, please be reminded that changing your Art Scene Title will require an amendment to your contract, and thus, will entail additional cost on your end.
                   </div>
                   <input id='password' type='password' placeholder='Enter your password here.' class='swal2-input'>
                   <input id='title' type='text' placeholder='Enter new title here.' class='swal2-input'>
@@ -248,6 +257,9 @@
                   <textarea id='reason' placeholder='Enter your reason' class='swal2-textarea' row='5' required></textarea>
                   `,
                 focusConfirm: false,
+                showCloseButton: true,
+                showCancelButton: true,
+                confirmButtonText:'submit',
                 preConfirm: () => {
                   return {
                     'password':document.getElementById('password').value,
