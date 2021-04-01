@@ -23,7 +23,7 @@ class Book extends Model
     }
 
     public function getLastchapterAttribute(){
-        $chapter =  $this->chapters()->latest()->take(1)->get();
+        $chapter =  $this->chapters()->where('mode', 'chapter')->latest()->take(1)->get();
         return $chapter[0]->sq ?? 0;
     }
 

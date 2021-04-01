@@ -15,7 +15,11 @@
             @foreach($pages as $chapter)
             <div class="d-flex justify-content-center ">
                <div class="bg-white p-5  shadow w-100" id="page">
+                   @if ($chapter->mode == 'chapter')
                     <strong class="d-block text-lg">Chapter {{ $chapter->sq }}</strong>
+                    @else
+                    <strong class="d-block text-lg"><span style="text-transform:capitalize;">{{ $chapter->mode }}</span></strong>
+                   @endif
                     <strong class="d-block text-lg">{{ $chapter->title }}</strong>
                     <div id="page-content">
                         {!! $chapter->content !!}
@@ -43,7 +47,11 @@
         {{-- iteration for illustrated books  --}}
             @foreach($pages as $chapter)
             <h3 class="text-center">
-                Chapter {{ $chapter->sq }}
+                @if ($chapter->mode == 'chapter')
+                <strong class="d-block text-lg">Chapter {{ $chapter->sq }}</strong>
+                @else
+                <strong class="d-block text-lg"><span style="text-transform:capitalize;">{{ $chapter->mode }}</span></strong>
+               @endif
             </h3>
             <div class="text-center">
                 <strong>

@@ -23,9 +23,6 @@
                 <th>
                     Updated at
                 </th>
-                <th>
-                    Delete
-                </th>
             </tr>
         </thead>
         <tbody>
@@ -35,7 +32,7 @@
                     {{ $chapter->sq }}
                 </td>
                 <td>
-                    <a href="#">
+                    <a href="{{ route('books.chapters.show', ['book'=>$chapter->book, 'chapter'=>$chapter]) }}">
                         {{ $chapter->title }} <i class="fa fa-link fa-xs"></i>
                     </a>
                 </td>
@@ -50,13 +47,6 @@
                 </td>
                 <td>
                     {{ $chapter->updated_at }}
-                </td>
-                <td>
-                    <form action="{{ $book->category == 'Novel' ?  route('books.chapters.remove.novel',[$book, $chapter]) : route('books.chapters.remove',[$book, $chapter]) }}" method="POST">
-                        @csrf
-                    @method('delete')
-                        <button class="btn btn-danger btn-sm"><i class="fa fa-times fa-xs"></i></button>
-                    </form>
                 </td>
             </tr>
             @endforeach

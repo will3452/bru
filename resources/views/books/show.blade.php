@@ -85,12 +85,13 @@
             @if($book->category != 'Series')
             <div class=" card shadow mb-2">
                 <div class="card-body">
-                    <h6 class="heading-small text-muted mb-4">Chapters</h6>
+                    <h6 class="heading-small text-muted mb-4">Content</h6>
                     <ul class="list-group mb-2">
                         @foreach($book->chapters()->limit(5)->get() as $key=>$chapter)
                         <li class="list-group-item d-flex align-items-center justify-content-between">
+                            <img src="{{  $chapter->art == null ? asset('img/noimage.png'):$chapter->art}}" alt="" class="avatar mr-2">
                             <div class="d-flex align-items-center">
-                                <img src="{{  $chapter->art == null ? asset('img/noimage.png'):$chapter->art}}" alt="" class="avatar mr-2">
+                                
                                 <span><strong> {{ $chapter->sq }}</strong> {{ $chapter->title }}</span>
                             </div>
                             <form action="{{ $book->category == 'Novel' ?  route('books.chapters.remove.novel',[$book, $chapter]) : route('books.chapters.remove',[$book, $chapter]) }}" method="POST">
@@ -103,7 +104,7 @@
                     </ul>
                     @if($book->chapters()->count())
                    <div class="text-center my-4">
-                    <a href="{{ route('books.chapters.index', $book) }}">Browse All Chapters</a>
+                    <a href="{{ route('books.chapters.index', $book) }}">Browse All Content.</a>
                    </div>
                     @endif
                     <div class="text-center">

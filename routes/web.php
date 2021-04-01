@@ -176,6 +176,8 @@ Route::prefix('books')->name('books.')->group(function(){
         Route::post('/novel', 'ChapterController@storeNovel')->name('store.novel');
         Route::delete('/series/{b1}', 'ChapterController@removeSeries')->name('remove.series');
         Route::delete('/novel/{chapter}','ChapterController@removeNovel')->name('remove.novel');
+        Route::get('/{chapter}','ChapterController@show')->name('show');
+        Route::put('/{chapter}','ChapterController@update')->name('update');
     });
     
     Route::prefix('tags/{book}')->name('tags.')->group(function(){

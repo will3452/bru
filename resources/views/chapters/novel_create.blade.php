@@ -10,6 +10,11 @@
                 <label for="#">Title</label>
                 <input type="text" class="form-control" name="title"  value="{{ old('title') }}">
             </div>
+            <select name="mode" id="mode" class="form-control">
+                <option value="prolouge">Prologue</option>
+                <option value="chapter">Chapter</option>
+                <option value="epilogue ">Epilogue</option>
+            </select>
             <div class="form-group">
                 <label for="#">Chapter <small><i>Last Chapter {{ $book->lastchapter }}</i></small></label>
                 <input type="text" class="form-control" name="sq"  required value="{{ old('sq') ?? $book->lastchapter+1 }}">
@@ -33,7 +38,7 @@
             </div>
             <div class="form-group">
                 <label for="">
-                    Chapter Type
+                    Type
                 </label>
                 <select name="chapter_type" id="chapter_type" class="form-control">
                     <option value="regular">Regular</option>
@@ -41,10 +46,11 @@
                     <option value="premium">Premium</option>
                     <option value="premium_with">Premium w/ Free Art Scene</option>
                 </select>
-                <div class="form-group">
-                    <label for="">Cost</label>
-                    <input type="number" name="art_cost" value="{{ old('cost') ?? 0 }}" class="form-control">
-                </div>
+                
+            </div>
+            <div class="form-group">
+                <label for="">Cost</label>
+                <input type="number" name="cost" value="{{ old('cost') ?? 0 }}" class="form-control">
             </div>
             <div class="form-group" id="freeart">
                 <div id="freeart-child">
@@ -59,7 +65,10 @@
                         <label for="picture">Upload Art Scene</label>
                         <input type="file" class="d-block" name="art_photo" id="picture" accept="image/*" >
                     </div>
-                    
+                    <div class="form-group">
+                        <label for="">Art Scene Cost</label>
+                        <input type="number" name="art_cost" value="{{ old('cost') ?? 0 }}" class="form-control">
+                    </div>
                 </div>
             </div>
             <div class="form-group">

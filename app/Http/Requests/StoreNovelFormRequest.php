@@ -50,7 +50,9 @@ class StoreNovelFormRequest extends FormRequest
             'art'=>'',
             'sq'=>'required',
             'slug'=>'required',
-            'cpy'=>''
+            'cpy'=>'',
+            'cost'=>'',
+            'mode'=>''
         ];
     }
 }

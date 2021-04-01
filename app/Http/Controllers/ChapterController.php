@@ -35,7 +35,7 @@ class ChapterController extends Controller
         // dd($request->validated());
 
         $validated = $request->validated();
-        if($validated['cpy'] == 'on') {
+        if(isset($validated['cpy']) && $validated['cpy'] == 'on') {
             $validated['cpy'] = now();
         }
         // dd($validated);
@@ -70,11 +70,30 @@ class ChapterController extends Controller
         return back()->withSuccess('Done');
     }
 
+    public function show(Book $book, Chapter $chapter){
+        return view('chapters.show', compact('book','chapter'));
+    }
+
     public function destroy(Book $book, Chapter $chapter){
         Storage::delete($chapter->opath);
         Storage::delete($chapter->ocontent);
         $chapter->delete();
         return back()->withSuccess('Done');
+    }
+
+    public function update(Book $book, Chapter $chapter){
+        if($book->category == 'Novel' || $book->category == 'Anthology'){
+            $chapter->content = request()->content;
+            $chapter->save();
+        }else {
+            Storage::delete($chapter->ocontent);
+            $chapter_path = request()->chapter_content->store('public/chapter_content');
+            $chapter_arrpath = explode('/', $chapter_path);
+            $chapter_endpath = end($chapter_arrpath);
+            $chapterx = '/storage/chapter_content/'.$chapter_endpath;
+            $chapter->content = $chapterx;
+        }
+        return back()->withSuccess('Done!');
     }
 
 
