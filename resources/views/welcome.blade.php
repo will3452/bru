@@ -1,8 +1,10 @@
 @extends('layouts.welcome')
 
 @section('content')
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
     <div class="text-center">
-        <div>
+        <div style="font-family: 'Quicksand', sans-serif;">
             <p class="text-2xl mt-2">
                 Berkeley-Reagan University or BRU was founded on October 13 by a British teacher, named Henry Berkeley, and an American businessman, named William Reagan, who came to Taguig City, Philippines in 1951.
             </p>
@@ -19,8 +21,8 @@
                 Berkeley-Reagan University is a premier university in business, arts and sciences that bridges knowledge and culture and develops globally-competitive and responsible professionals attuned to a sustainable world.
             </p>
         </div>
-        <div class="flex mt-5 flex-col md:flex-row">
-            <div class="w-full md:w-1/2">
+        <div class="flex mt-5 flex-col">
+            <div class="w-full">
                 <h2 class="text-4xl font-bold">GOALS</h2>
                 <ol class="text-2lg">
                     <li class="mt-2">
@@ -40,7 +42,7 @@
                     </li>
                 </ol>
             </div>
-            <div class="pl-4 w-full md:w-1/2">
+            <div class=" w-full mt-5">
                 <h2 class="text-4xl font-bold">CORE VALUES</h2>
                 <ol class="text-2lg">
                     <li class="mt-2">

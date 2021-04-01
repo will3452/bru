@@ -94,7 +94,7 @@
         }
     </script>
 </head>
-<body class="text-gray-900 font-serif bg-gray-100" style="">
+<body class="text-gray-900 font-serif bg-gray-100" style="font-family: 'Quicksand', sans-serif;">
     @if (isset(request()->back) && request()->back == true)
     <a href="{{ url()->previous() }}" style="z-index:999" class="block fixed h-16 bg-purple-900 text-6xl text-center hover:text-white w-full">BACK</a>
     @endif
