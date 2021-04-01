@@ -43,7 +43,6 @@ class ThrailerController extends Controller
      */
     public function store(Request $request)
     {
-        $preview = null;
         $preview_cost = null;
         $cover = null;
         $book_id = null;
@@ -89,13 +88,13 @@ class ThrailerController extends Controller
         }else {
             $genre = $request->genre;
             $event_id = request()->event_id;
-            if(!empty(request()->preview)){
-                $preview_path = request()->preview->store('/public/previews');
-                $arr_preview_path = explode('/', $preview_path);
-                $end_preview = end($arr_preview_path);
-                $preview = '/storage/previews/'.$end_preview;
-                $preview_cost = request()->preview_cost ?? 0;
-            }
+            // if(!empty(request()->preview)){
+            //     $preview_path = request()->preview->store('/public/previews');
+            //     $arr_preview_path = explode('/', $preview_path);
+            //     $end_preview = end($arr_preview_path);
+            //     $preview = '/storage/previews/'.$end_preview;
+            //     $preview_cost = request()->preview_cost ?? 0;
+            // }
         }
         
         $video = auth()->user()->thrailers()->create([
@@ -104,7 +103,7 @@ class ThrailerController extends Controller
             'video' => request()->video,
             'code' => $code,
             'event_id' => $event_id,
-            'preview'=> $preview,
+            'preview'=> $request->preview,
             'preview_cost'=> $preview_cost,
             'cover'=> $cover,
             'genre'=>$genre,
@@ -120,7 +119,7 @@ class ThrailerController extends Controller
             'cpy'=>now()
         ]);
         // Notification::send(Admin::get(), new VideoApproval($video));
-        return back()->with('success', 'item stored successfully');
+        return back()->with('success', 'Item stored successfully');
     }
 
     /**
@@ -175,7 +174,7 @@ class ThrailerController extends Controller
             return back()->withErrors('Invalid Code, please contact the Adminstrator');
         }
 
-        return back()->with('success', 'item updated successfully');
+        return back()->with('success', 'Item updated successfully');
     }
 
     /**
@@ -197,6 +196,6 @@ class ThrailerController extends Controller
             return abort(401);
         }
 
-        return redirect()->route('thrailers.index')->with('success', 'item deleted successfully');
+        return redirect()->route('thrailers.index')->with('success', 'Item deleted successfully');
     }
 }

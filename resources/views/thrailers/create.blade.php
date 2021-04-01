@@ -127,7 +127,7 @@
             showConfirmButton:false,
             timer:3000
         })
-        document.querySelector('.progress-bar').classList.remove('progress-bar-animated')
+        document.querySelectorAll('.progress-bar')[1].classList.remove('progress-bar-animated')
         document.getElementById('submit').disabled = false;
         document.getElementById('video_file').value=path;
         
@@ -142,6 +142,9 @@
             uploader.start();
         };
         uploader.init();
+
+
+        
 
     </script>
 @endsection
