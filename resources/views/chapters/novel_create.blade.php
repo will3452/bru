@@ -55,9 +55,9 @@
                         <input type="checkbox" id="ck_box" name="cpy" required>
                         @copyright_disclaimer
                     </div>
-                    <div class="custom-file">
-                        <label class="custom-file-label" for="picture">Upload Art Scene</label>
-                        <input type="file" name="art_photo" id="picture" accept="image/*" class="custom-file-input">
+                    <div>
+                        <label for="picture">Upload Art Scene</label>
+                        <input type="file" class="d-block" name="art_photo" id="picture" accept="image/*" >
                     </div>
                     
                 </div>

@@ -108,7 +108,7 @@
                     @endif
                     <div class="text-center">
                         <a href="{{ route('books.chapters.create', $book) }}?first=true" class="btn btn-outline-primary shadow" >
-                            <i class="fa fa-plus"></i>
+                            Add new chapter 
                         </a>
                     </div>
                 </div>
@@ -134,7 +134,7 @@
                     </ul>
                     <div class="text-center">
                         <a href="{{ route('books.chapters.create', $book) }}" class="btn btn-outline-primary shadow" >
-                            <i class="fa fa-plus"></i>
+                            Add new book
                         </a>
                     </div>
                 </div>
