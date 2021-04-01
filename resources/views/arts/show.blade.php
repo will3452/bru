@@ -183,7 +183,7 @@
         },
         async deleteForm(){
             const { value: formValues } = await swal.fire({
-                title: 'Send ticket',
+                title: 'Send Ticket',
                 html:
                   `<input id='password' type='password' placeholder='Enter your password here.' class='swal2-input'>
                   <textarea id='reason' placeholder='Enter your reason' class='swal2-textarea' row='5' required></textarea>`,
@@ -202,7 +202,7 @@
                     if(res.data == 1){
                         swal.fire({
                             iconHtml:`<i class='fa fa-check text-success'></i>`,
-                            title: 'Your ticket has been sent!',
+                            title: 'Your Ticket has been sent!',
                             showConfirmButton: false,
                             timer: 1500
                           })
@@ -234,9 +234,14 @@
         },
         async updateForm(){
             const { value: formValues } = await swal.fire({
-                title: 'Send ticket',
+                title: 'Send Ticket',
                 html:
                   `
+                  <div class='alert alert-warning ' style='font-size:11px;text-align:left;'>
+                    You are now requesting a change of either the Title or the Cost of your Art Scene. Please fill out the necessary field/s that you wish to update in the boxes below and provide a brief explanation for the change.
+                    <br><br>
+                    However, please be reminded that changing your Art Scene Title will require an amendment to your contract and thus, will entail additional cost on your end.
+                  </div>
                   <input id='password' type='password' placeholder='Enter your password here.' class='swal2-input'>
                   <input id='title' type='text' placeholder='Enter new title here.' class='swal2-input'>
                   <input id='cost' type='number' placeholder='Enter new cost here' class='swal2-input'>
