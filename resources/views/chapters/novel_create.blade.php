@@ -41,6 +41,10 @@
                     <option value="premium">Premium</option>
                     <option value="premium_with">Premium w/ Free Art Scene</option>
                 </select>
+                <div class="form-group">
+                    <label for="">Cost</label>
+                    <input type="number" name="art_cost" value="{{ old('cost') ?? 0 }}" class="form-control">
+                </div>
             </div>
             <div class="form-group" id="freeart">
                 <div id="freeart-child">
@@ -55,10 +59,7 @@
                         <label class="custom-file-label" for="picture">Upload Art Scene</label>
                         <input type="file" name="art_photo" id="picture" accept="image/*" class="custom-file-input">
                     </div>
-                    <div class="form-group">
-                        <label for="">Cost</label>
-                        <input type="number" name="art_cost" value="{{ old('cost') ?? 0 }}" class="form-control">
-                    </div>
+                    
                 </div>
             </div>
             <div class="form-group">
