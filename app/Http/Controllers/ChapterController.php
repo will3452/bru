@@ -21,7 +21,7 @@ class ChapterController extends Controller
 
     public function create(Book $book){
         if($book->category == 'Series'){
-            $selection_books = Book::where('series_id',null)->where('id','!=',$book->id)->get();
+            $selection_books = Book::where('series_id',null)->where('id','!=',$book->id)->whereNotNull('publish_date')->get();
             return view('chapters.series_create', compact(['book', 'selection_books']));
         }
         if($book->category == 'Novel' || $book->category == 'Anthology'){
