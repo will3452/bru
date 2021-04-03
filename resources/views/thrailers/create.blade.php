@@ -113,7 +113,7 @@
             document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = `
             <span>${file.percent}%</span>
             <div class="progress">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: ${file.percent}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                <div id="p-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: ${file.percent}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             `;
             
@@ -127,7 +127,7 @@
             showConfirmButton:false,
             timer:3000
         })
-        document.querySelectorAll('.progress-bar')[1].classList.remove('progress-bar-animated')
+        document.querySelector('#p-bar').classList.remove('progress-bar-animated')
         document.getElementById('submit').disabled = false;
         document.getElementById('video_file').value=path;
         
