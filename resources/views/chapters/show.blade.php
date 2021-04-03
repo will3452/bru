@@ -26,7 +26,7 @@
                         @if ($chapter->art)
                             <div class="form-group">
                                 <label for="">Art Scene</label>
-                                <img src="{{  $chapter->art }}" alt="art scene of {{ $chapter->title }}">
+                                <img src="{{  $chapter->art }}" alt="art scene of {{ $chapter->title }}" class="img-fluid">
                             </div>
                             <div class="form-group">
                                 <label for="">Art Cost</label>
