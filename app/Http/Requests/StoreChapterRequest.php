@@ -56,7 +56,6 @@ class StoreChapterRequest extends FormRequest
             'cpy'=>'',
             'cost'=>'',
             'mode'=>'',
-
         ];
     }
 }

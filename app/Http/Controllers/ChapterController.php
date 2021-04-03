@@ -54,7 +54,9 @@ class ChapterController extends Controller
     }
 
     public function store (StoreChapterRequest $request, Book $book){
-        $chapter = $book->chapters()->create($request->validated());
+        $validated = $request->validated();
+        $validated['cpy'] = now();
+        $chapter = $book->chapters()->create($validated);
         return redirect()->route('books.show', $book)->withSuccess('Done');
     }
 
@@ -82,17 +84,25 @@ class ChapterController extends Controller
     }
 
     public function update(Book $book, Chapter $chapter){
-        if($book->category == 'Novel' || $book->category == 'Anthology'){
-            $chapter->content = request()->content;
-            $chapter->save();
-        }else {
-            Storage::delete($chapter->ocontent);
-            $chapter_path = request()->chapter_content->store('public/chapter_content');
-            $chapter_arrpath = explode('/', $chapter_path);
-            $chapter_endpath = end($chapter_arrpath);
-            $chapterx = '/storage/chapter_content/'.$chapter_endpath;
-            $chapter->content = $chapterx;
+        if(request()->has('art_cost')){
+            $chapter->art_cost = request()->art_cost;
         }
+        if($book->category == 'Novel' || $book->category == 'Anthology'){
+            if(request()->has('art_cost')){
+                $chapter->art_cost = request()->art_cost;
+            }
+            $chapter->content = request()->content;
+        }else {
+            if(request()->has('chapter_content')){
+                Storage::delete($chapter->ocontent);
+                $chapter_path = request()->chapter_content->store('public/chapter_content');
+                $chapter_arrpath = explode('/', $chapter_path);
+                $chapter_endpath = end($chapter_arrpath);
+                $chapterx = '/storage/chapter_content/'.$chapter_endpath;
+                $chapter->content = $chapterx;
+            }
+        }
+        $chapter->save();
         return back()->withSuccess('Done!');
     }
 

@@ -30,6 +30,12 @@ class Chapter extends Model
     public function book(){
         return $this->belongsTo(Book::class);
     }
+
+    //tickets that will send to the administrator to edit the book.
+    public function tickets()
+    {
+        return $this->morphMany(Ticket::class, 'ticketable');
+    }
     
 
     

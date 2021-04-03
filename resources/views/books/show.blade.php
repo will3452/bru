@@ -94,11 +94,11 @@
                                 
                                 <span><strong> {{ $chapter->sq }}</strong> {{ $chapter->title }}</span>
                             </div>
-                            <form action="{{ $book->category == 'Novel' ?  route('books.chapters.remove.novel',[$book, $chapter]) : route('books.chapters.remove',[$book, $chapter]) }}" method="POST">
+                            {{-- <form action="{{ $book->category == 'Novel' ?  route('books.chapters.remove.novel',[$book, $chapter]) : route('books.chapters.remove',[$book, $chapter]) }}" method="POST">
                                 @csrf
                             @method('delete')
                                 <button class="btn btn-danger btn-sm"><i class="fa fa-times fa-xs"></i></button>
-                            </form>
+                            </form> --}}
                         </li>
                         @endforeach
                     </ul>

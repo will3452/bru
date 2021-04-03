@@ -231,10 +231,12 @@ Route::prefix('tickets')->name('tickets.')->group(function(){
     //delete ticket
     Route::post('delete/book/{book}', 'TicketController@bookDestroy')->name('book.delete');
     Route::post('delete/art/{art}', 'TicketController@artDestroy')->name('art.delete');
+    Route::post('delete/chapter/{chapter}', 'TicketController@chapterDestroy')->name('chapter.delete');
 
     //edit ticket
     Route::post('edit/book/{book}', 'TicketController@bookUpdate')->name('book.update');
     Route::post('edit/art/{art}', 'TicketController@artUpdate')->name('art.update');
+    Route::post('edit/chapter/{chapter}', 'TicketController@chapterUpdate')->name('chapter.update');
 
 });
 
