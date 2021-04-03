@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('main-content')
-    <h1 class="h3 mb-4 text-gray-800">{{ __('List of Songs') }}</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ __('List of Films') }}</h1>
     <a href="{{ route('books.index') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
     <div class="d-flex mt-4 flex-wrap">
         @foreach ($thrailers as $thrailer)
