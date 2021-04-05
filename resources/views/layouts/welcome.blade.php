@@ -38,10 +38,11 @@
             width: 477px;
         }
         #ber {
-            background-image: url('images/berk (1).png');
+            /* background-image: url('images/bb.png'); */
             width: 257px;
             height: 26px;
             cursor: pointer;
+            background-size: contain;
             
         }
         #about{
