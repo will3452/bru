@@ -37,4 +37,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 
 	config.extraPlugins = 'font';
+	config.fontSize_sizes = 'XS/9px;S/11px;M/14px;L/18px;XL/21px';
+	// config.contentsCss = 'http://www.wilsea.com/ckeditor2/fonts/fonts.css';
+	// config.font_names =  'Hoefler Text/Hoefler Text;'+config.font_names;
 };

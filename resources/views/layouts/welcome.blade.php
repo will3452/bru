@@ -141,6 +141,7 @@
             <p class="text-center w-8/12">
                 Immerse yourself, experience and be part of each university story on e-books, audio books, short videos and songs from authors and artists around the globe!
             </p>
+            
             <div class="flex justify-center mt-2">
                 <img src="/images/googleplay.png" alt="" class="w-3/12 mx-2">
                 <img src="/images/appstore.png" alt="" class="w-3/12 mx-2">

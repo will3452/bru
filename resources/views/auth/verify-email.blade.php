@@ -22,9 +22,11 @@
                                 {{ __('If you did not receive the email') }}
                                 <form action="{{ route('verification.send') }}" method="POST" class="mt-2">
                                     @csrf
-                                    <button class="btn btn-outline-primary">{{ __('click here to request another') }}</button>
+                                    <button class="btn btn-primary">{{ __('click here to request another') }}</button>
                                 </form>
-                                .
+                                <div class=" mt-2">
+                                    NOTE: Please check your SPAM or JUNK folder. 
+                                </div>
                             </div>
                         </div>
                     </div>

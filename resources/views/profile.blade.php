@@ -280,7 +280,7 @@
                                         Photo
                                     </label>
                                     <div class="alert alert-info">
-                                        <i class="fa fa-info-circle"></i> The good size for a profile picture is 180 x 180 pixels.
+                                        <i class="fa fa-info-circle"></i> This is the profile photo of your pen name or your scholar persona. This will be shown to the public. 
                                     </div>
                                     <img src="/img/emptyuserimage.png" x-ref="image" alt="" style="width:100px;height:100px;object-fit:cover;">
                                     <input type="file" x-ref="file" name="picture" class="d-block mt-2" accept=".png, .jpg" x-on:change="fetchImage()" x-on:click="" required>

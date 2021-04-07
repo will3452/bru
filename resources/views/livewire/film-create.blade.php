@@ -1,43 +1,12 @@
 
 <div>
 
-    <h1 class="h3 mb-4 text-gray-800">{{ __('Create Films') }}</h1>
-    <a href="{{ route('books.index') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
-    @include('partials.alert')
-    <form action="{{ route('thrailers.store') }}" method="POST" enctype="multipart/form-data">
-    {{-- <form action="#"> --}}
-    @csrf
-    <div class="form-group">
-        <label for="">Title</label>
-        <input type="text" class="form-control" name="title" required>
-    </div>
-    <div class="form-group">
-        <label for="">Author / Artist</label>
-        <select name="author" id="" class="custom-select select2">
-            @foreach(auth()->user()->pens as $pen)
-            <option value="{{ $pen->name }}">
-                {{ $pen->name }}
-            </option>
-            @endforeach
-        </select>
-    </div>
     <div class="form-group">
         <label for="">Category</label>
         <select wire:model="category" name="category" id="" class="custom-select">
             <option value="trailer">Trailer</option>
             <option value="film">Film</option>
         </select>
-    </div>
-    <div class="form-group">
-        <label for="">Description</label>
-        <textarea name="description" id="" required class="form-control"></textarea>
-    </div>
-    <div class="form-group">
-        <label for="">Credits</label>
-        <div class="alert alert-info">
-            <i class="fa fa-info-circle"></i> This will appear as a page after the video.
-        </div>
-        <textarea name="credit" id="" required class="form-control"></textarea>
     </div>
     @if($category == 'trailer')
         <div class="form-group">

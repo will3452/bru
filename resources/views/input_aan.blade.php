@@ -32,7 +32,7 @@
                             Are you signing up for an AUTHOR/ARTIST account or a READER account? 
                         </p>
                         <div class="text-center">
-                            <a href="{{ route('please-contact', ['msg'=>'Please contact BRUMULTIVERSE ADMIN for your AAN.']) }}" class="btn btn-success btn-sm mx-2"> AUTHOR/ARTIST</a>
+                            <a href="{{ route('please-contact', ['msg'=>'Please contact BRUMULTIVERSE Admin for your AAN.']) }}" class="btn btn-success btn-sm mx-2"> AUTHOR/ARTIST</a>
                             <a href="{{ route('please-download') }}" class="btn btn-warning btn-sm mx-2">READER</a>
                         </div>
                     </div>

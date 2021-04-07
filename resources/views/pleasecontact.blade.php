@@ -8,7 +8,7 @@
                 <div class="card-body" >
                     <div style="color:black !important"><i class="fa fa-info-circle"></i> {{ $msg }}</div>
                     <div class="mt-2 text-center">
-                        <a href="/" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Go back to HOME page.</a>
+                        <a href="/" class="btn btn-primary"><i class="fa fa-arrow-left"></i> Go back to Home Page.</a>
                     </div>
                 </div>
             </div>

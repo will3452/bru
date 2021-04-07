@@ -15,7 +15,7 @@
             <textarea name="description" id="" cols="30" rows="10" class="form-control">{{ old('description') }}</textarea>
         </div>
         <div class="form-group">
-            <label for="">Artist</label>
+            <label for="">Pen Name</label>
             <select name="artist" id="" class="form-control">
                 @foreach(auth()->user()->pens as $pen)
                 <option value="{{ $pen->name }}">

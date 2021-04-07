@@ -26,7 +26,7 @@
                                 <form method="POST" action="{{ route('register') }}" class="user" enctype="multipart/form-data">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="hidden" name="aan" value="{{ $aan }}">
-                                    <h5><i class="fa fa-user-circle"></i> Account information</h5>
+                                    <h5><i class="fa fa-user-circle"></i> Account Information</h5>
                                     <hr>
                                     <!-- <div class="form-group">
                                         <label for="aan">Account Activation Number (AAN)</label>
@@ -113,6 +113,9 @@
                                     </div>
                                     
                                     @livewire('register.choose-picture')
+                                    <div class="alert alert-danger mt-2">
+                                        <i class="fa fa-info-circle"></i> NOTE: This is your account profile picture and will not be shown to the public. This is only for reference of the Admin.  Please use your actual photo for this part. 
+                                    </div>
                                     <div class="alert alert-warning mt-2">
                                         <div>
                                             <strong>Required*</strong>

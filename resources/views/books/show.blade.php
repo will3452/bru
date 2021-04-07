@@ -178,7 +178,7 @@
                                         <option value="Novel" {{ $book->category == 'Novel' ? 'selected':''}}>Novel</option>
                                         <option value="Illustrated Novel" {{ $book->category == 'Illustrated Novel' ? 'selected':''}}>Illustrated Novel </option>
                                         <option value="Comic Book" {{ $book->category == 'Comic Book' ? 'selected':''}} >Comic Book</option>
-                                        <option value="Series" {{ $book->category == 'Series' ? 'selected':'' }}>Series</option>
+                                        {{-- <option value="Series" {{ $book->category == 'Series' ? 'selected':'' }}>Series</option> --}}
                                         <option value="Anthology" {{ $book->category == 'Anthology' ? 'selected':'' }}>Anthology</option>
                                     </select>
                                 </div>

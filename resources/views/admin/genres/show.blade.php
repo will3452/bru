@@ -37,19 +37,19 @@
                     <label for=""><i class="fa fa-fire"></i> Heat Level</label>
                     <div>
                         <label for="" class="d-block">
-                            <input type="checkbox" name="heat[]" {{ in_array('level - 1 Sweet@0', $genre->heats) ? 'checked':'' }} value="level - 1 Sweet@0" class="resetme heat_check"> Level 1 - Sweet / none
+                            <input type="checkbox" name="heat[]" {{ in_array('Level - 1 Sweet@0', $genre->heats) ? 'checked':'' }} value="Level - 1 Sweet@0" class="resetme heat_check"> Level 1 - Sweet / none
                         </label>
                         <label for="" class="d-block">
-                            <input type="checkbox" name="heat[]" {{ in_array('level - 2 Romantic@0', $genre->heats) ? 'checked':'' }} value="level - 2 Romantic@0" class="resetme heat_check"> Level 2 - Romantic / none
+                            <input type="checkbox" name="heat[]" {{ in_array('Level - 2 Romantic@16', $genre->heats) ? 'checked':'' }} value="Level - 2 Romantic@16" class="resetme heat_check"> Level 2 - Romantic / 16+
                         </label>
                         <label for="" class="d-block">
-                            <input type="checkbox" name="heat[]" {{ in_array('level - 3 Steamy@18', $genre->heats) ? 'checked':'' }} value="level - 3 Steamy@18" class="resetme heat_check"> Level 3 - Steamy / 18+
+                            <input type="checkbox" name="heat[]" {{ in_array('Level - 3 Steamy@18', $genre->heats) ? 'checked':'' }} value="Level - 3 Steamy@18" class="resetme heat_check"> Level 3 - Steamy / 18+
                         </label>
                         <label for="" class="d-block">
-                            <input type="checkbox" name="heat[]" {{ in_array('level - 4 Erotic Romance@18', $genre->heats) ? 'checked':'' }} value="level - 4 Erotic Romance@18" class="resetme heat_check"> Level 4 - Erotic Romance / 18+
+                            <input type="checkbox" name="heat[]" {{ in_array('Level - 4 Erotic Romance@18', $genre->heats) ? 'checked':'' }} value="Level - 4 Erotic Romance@18" class="resetme heat_check"> Level 4 - Erotic Romance / 18+
                         </label>
                         <label for="" class="d-block">
-                            <input type="checkbox" name="heat[]" {{ in_array('level - 5 Erotica@18', $genre->heats) ? 'checked':'' }} value="level - 5 Erotica@18" class="resetme heat_check"> Level 5 - Erotica / 18+
+                            <input type="checkbox" name="heat[]" {{ in_array('Level - 5 Erotica@18', $genre->heats) ? 'checked':'' }} value="Level - 5 Erotica@18" class="resetme heat_check"> Level 5 - Erotica / 18+
                         </label>
                         <label for="">
                             <input type="checkbox" onchange="$('.heat_check').prop('checked', !$('.heat_check').prop('checked'))"> Select/Unselect All
@@ -60,16 +60,16 @@
                     <label for=""><i class="fa fa-bolt"></i> Violence Level</label>
                     <div>
                         <label for="" class="d-block">
-                            <input type="checkbox" name="violence[]" {{ in_array('level - 1 Non-violent@0', $genre->violences) ? 'checked':'' }} value="level - 1 Non-violent@0" class="resetme vio_check"> Level 1 - Non-violent / none
+                            <input type="checkbox" name="violence[]" {{ in_array('Level - 1 Non-violent@0', $genre->violences) ? 'checked':'' }} value="Level - 1 Non-violent@0" class="resetme vio_check"> Level 1 - Non-violent / none
                         </label>
                         <label for="" class="d-block">
-                            <input type="checkbox" name="violence[]" {{ in_array('level - 2 Violent@16', $genre->violences) ? 'checked':'' }} value="level - 2 Violent@16" class="resetme vio_check"> Level 2 - Violent / 16+
+                            <input type="checkbox" name="violence[]" {{ in_array('Level - 2 Violent@16', $genre->violences) ? 'checked':'' }} value="Level - 2 Violent@16" class="resetme vio_check"> Level 2 - Violent / 16+
                         </label>
                         <label for="" class="d-block">
-                            <input type="checkbox" name="violence[]" {{ in_array('level - 3 Bloody@18', $genre->violences) ? 'checked':'' }} value="level - 3 Bloody@18" class="resetme vio_check"> Level 3 - Bloody / 18+
+                            <input type="checkbox" name="violence[]" {{ in_array('Level - 3 Bloody@18', $genre->violences) ? 'checked':'' }} value="Level - 3 Bloody@18" class="resetme vio_check"> Level 3 - Bloody / 18+
                         </label>
                         <label for="" class="d-block">
-                            <input type="checkbox" name="violence[]" {{ in_array('level - 4 Gruesome@18', $genre->violences) ? 'checked':'' }} value="level - 4 Gruesome@18" class="resetme vio_check"> Level 4 - Gruesome / 18+
+                            <input type="checkbox" name="violence[]" {{ in_array('Level - 4 Gruesome@18', $genre->violences) ? 'checked':'' }} value="Level - 4 Gruesome@18" class="resetme vio_check"> Level 4 - Gruesome / 18+
                         </label>
                         <label for="">
                             <input type="checkbox" onchange="$('.vio_check').prop('checked', !$('.vio_check').prop('checked'))"> Select/ Unselect All

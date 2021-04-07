@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('main-content')
-    <h1 class="h3 mb-4 text-gray-800">{{ __('Create Book') }}</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ __('Create a Book') }}</h1>
     <a href="{{ route('books.index') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
     @include('partials.alert')
     
@@ -43,7 +43,7 @@
                 <option value="Illustrated Novel ">Illustrated Novel</option>
                 <option value="Comic Book">Comic Book</option>
                 <option value="Anthology">Anthology</option>
-                <option value="Series">Series</option>
+                {{-- <option value="Series">Series</option> --}}
             </select>
         </div>
         <div class="form-group">
@@ -205,16 +205,16 @@
         <div class="form-group">
             <div class="alert alert-warning d-flex align-items-center">
                 <i class="fa fa-info-circle mr-2"></i>
-                <span>Please type here two questions you wish to be included on the REVIEW TEMPLATE for users, who wish to review your book.</span>
+                <span>Please write two REVIEW QUESTIONS for your book. This will appear when readers want to review your work.</span>
             </div>
         </div>
         <div class="form-group">
             <label for="#">Review Question <sup class="d-inline-block" style="width:20px;height:20px;">1</sup></label>
-            <input type="text" class="form-control" name="review_question_1" placeholder="maximum of 300 characters only" value="{{ old('review_question_1') }}">
+            <input type="text" class="form-control" name="review_question_1" placeholder="Maximum of 300 characters only." value="{{ old('review_question_1') }}">
         </div>
         <div class="form-group">
             <label for="#">Review Question <sup class="d-inline-block" style="width:20px;height:20px;">2</sup></label>
-            <input type="text" class="form-control" name="review_question_2" placeholder="maximum of 300 characters only" value="{{ old('review_question_2') }}">
+            <input type="text" class="form-control" name="review_question_2" placeholder="Maximum of 300 characters only." value="{{ old('review_question_2') }}">
         </div>
         <div class="form-group">
             <div class="alert alert-success d-flex align-items-center">

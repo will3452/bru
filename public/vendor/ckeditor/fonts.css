@@ -1,0 +1,5 @@
+@font-face {  
+    font-family: "Hoefler Text";  
+    src: url("http://www.wilsea.com/ckeditor2/fonts/Hoefler Text.ttf" ); /* IE */  
+    src: local("Hoefler Text"), url("http://www.wilsea.com/ckeditor2/fonts/Hoefler Text.ttf") format("truetype"); /*non-IE*/  
+}

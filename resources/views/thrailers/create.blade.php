@@ -1,5 +1,37 @@
 @extends('layouts.admin')
 @section('main-content')
+<h1 class="h3 mb-4 text-gray-800">{{ __('Create a Film') }}</h1>
+    <a href="{{ route('books.index') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
+    @include('partials.alert')
+    <form action="{{ route('thrailers.store') }}" method="POST" enctype="multipart/form-data">
+    {{-- <form action="#"> --}}
+    @csrf
+    <div class="form-group">
+        <label for="">Title</label>
+        <input type="text" class="form-control" name="title" required>
+    </div>
+    <div class="form-group">
+        <label for="">Pen Name</label>
+        <select name="author" id="" class="custom-select select2">
+            @foreach(auth()->user()->pens as $pen)
+            <option value="{{ $pen->name }}">
+                {{ $pen->name }}
+            </option>
+            @endforeach
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="">Description</label>
+        <textarea name="desc" id="" required class="form-control"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="">Credits</label>
+        <div class="alert alert-info">
+            <i class="fa fa-info-circle"></i> This will appear as a page after the video.
+        </div>
+        <textarea name="credit" id="" required class="form-control"></textarea>
+    </div>
     @livewire('film-create')
     <hr>
     <div class="form-group">
@@ -146,5 +178,59 @@
 
         
 
+    </script>
+    <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
+
+    <script>
+        CKEDITOR.replace('desc',{height:"50vh", toolbarGroups: [{
+          "name": "basicstyles",
+          "groups": ["basicstyles"]
+        },
+        {
+          "name": "paragraph",
+          "groups": ["list", "blocks"]
+        },
+        {
+          "name": "links",
+          "groups": ["links"]
+        },
+        {
+          "name": "document",
+          "groups": ["mode"]
+        },
+        {
+          "name": "insert",
+          "groups": ["insert"]
+        },
+        {
+          "name": "styles",
+          "groups": ["styles"]
+        }
+      ],});
+      CKEDITOR.replace('credit',{height:"50vh", toolbarGroups: [{
+          "name": "basicstyles",
+          "groups": ["basicstyles"]
+        },
+        {
+          "name": "paragraph",
+          "groups": ["list", "blocks"]
+        },
+        {
+          "name": "links",
+          "groups": ["links"]
+        },
+        {
+          "name": "document",
+          "groups": ["mode"]
+        },
+        {
+          "name": "insert",
+          "groups": ["insert"]
+        },
+        {
+          "name": "styles",
+          "groups": ["styles"]
+        }
+      ],});
     </script>
 @endsection
