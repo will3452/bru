@@ -186,7 +186,9 @@
                                 <li class="px-0">
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="d-flex">
-                                            <i class="fa fa-signature"></i>
+                                            <a target="_blank" href="{{ $pen->picture ?? '/img/emptyuserimage.png' }}">
+                                                <img src="{{ $pen->picture ?? '/img/emptyuserimage.png' }}" alt="" style="width:25px;height:25px;object-fit:cover;margin-right:10px;">
+                                            </a>
                                             <a  href="#" >
                                                 {{ $pen->name }}
                                             </a>
@@ -194,7 +196,7 @@
                                             <form action="{{ route('penname.destroy', $pen->id) }}" class="ml-2" method="POST">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button class="btn btn-danger btn-sm">
+                                                <button class="text-danger border-0 bg-white">
                                                     Delete
                                                 </button>
                                             </form>
@@ -212,14 +214,51 @@
                                             <i class="fa fa-info-circle fa-xs"></i> Details
                                         </div>
                                         <div class="card-body">
-                                            <div class="d-flex justify-content-between">
+                                            {{-- <div class="d-flex justify-content-between">
                                                 <div style="text-transform: capitalize">
                                                     <i class="fa fa-venus-mars"></i> {{ $pen->gender }}
                                                 </div>
                                                 <div>
                                                     <i class="fa fa-map-marker-alt"></i> {{ $pen->country }}
                                                 </div>
+                                            </div> --}}
+                                            <div class="mb-2">
+                                                <img src="{{ $pen->picture ?? '/img/emptyuserimage.png' }}" alt="" style="width:100px;height:100px;object-fit:cover;">
+                                                <div x-data="{
+                                                    openform:false
+                                                }">
+                                                    <a href="#" x-on:click.prevent="openform=true">Change picture</a>
+                                                    <div class="card card-body" x-show.transition="openform">
+                                                        <form action="{{ route('penname.update.picture') }}" enctype="multipart/form-data" method="POST">
+                                                            @csrf
+                                                            <input type="file" name="picture" required accept=".png, .jpg">
+                                                            <input type="hidden" name="pen_id" value="{{ $pen->id }}">
+                                                            <div class="mt-2">
+                                                                <button class="btn btn-success btn-sm"><i class="fa fa-check"></i> Save</button>
+                                                                <button class="btn btn-secondary btn-sm" x-on:click.prevent="openform=false"><i class="fa fa-times"></i> Cancel</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
                                             </div>
+                                            <table class="table table-striped">
+                                                <tr>
+                                                    <th>
+                                                        Gender
+                                                    </th>
+                                                    <td style="text-transform: capitalize">
+                                                        {{ $pen->gender }}
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>
+                                                        Country
+                                                    </th>
+                                                    <td style="text-transform: capitalize">
+                                                        {{ $pen->country }}
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </div>
                                     </div>
                                 </li>
@@ -227,9 +266,25 @@
                             </ul>
                             @if(auth()->user()->pens()->count() < 3)
                             <hr>
-                        <form class="mt-4" method="POST" action="{{ route('penname.store') }}">
+                        <form class="mt-4" method="POST" action="{{ route('penname.store') }}" enctype="multipart/form-data">
                             @csrf
-                            
+                                <div class="form-group" x-data="{
+                                    fetchImage(){
+                                        URL.revokeObjectURL(this.$refs.image.src);
+                                        let file = this.$refs.file.files[0];
+                                        let url = URL.createObjectURL(file);
+                                        this.$refs.image.src = url;
+                                    }
+                                }">
+                                    <label for="">
+                                        Photo
+                                    </label>
+                                    <div class="alert alert-info">
+                                        <i class="fa fa-info-circle"></i> The good size for a profile picture is 180 x 180 pixels.
+                                    </div>
+                                    <img src="/img/emptyuserimage.png" x-ref="image" alt="" style="width:100px;height:100px;object-fit:cover;">
+                                    <input type="file" x-ref="file" name="picture" class="d-block mt-2" accept=".png, .jpg" x-on:change="fetchImage()" x-on:click="" required>
+                                </div>
                                 <div class="form-group">
                                     <label for="">Pen Name</label>
                                     <input type="text" name="name" class="form-control w-100" id="pen1">
@@ -308,7 +363,7 @@
 
 @endsection
 @section('top')
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2.min.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('vendor\datepicker\DateTimePicker.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2-bootstrap.min.css') }}">

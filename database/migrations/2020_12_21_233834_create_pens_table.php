@@ -17,6 +17,7 @@ class CreatePensTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->string('name');
+            $table->text('picture')->nullable();
             $table->string('country');
             $table->string('gender');
             $table->timestamps();
