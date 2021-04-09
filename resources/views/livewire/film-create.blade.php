@@ -6,9 +6,10 @@
         <select wire:model="category" name="category" id="" class="custom-select">
             <option value="trailer">Trailer</option>
             <option value="film">Film</option>
+            <option value="animation">Animation</option>
         </select>
     </div>
-    @if($category == 'trailer')
+    @if($category == 'trailer' )
         <div class="form-group">
             <label for="">To which work is this trailer connected to ?</label>
             <select name="connect_id" id="" class="custom-select select2">
