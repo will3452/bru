@@ -62,19 +62,24 @@
             @copyright_disclaimer
         </div>
     </div>
-    <div class="form-group">
-        <label for="">Please submit the video for approval to the Admin. </label>
-        {{-- <input type="file" id="" accept="video/*" class="d-block" name="video" required> --}}
-        <ul id="filelist" class="list-group mb-2"></ul>
-        <div id="container">
-            <a id="browse" href="javascript:;" class="btn btn-sm btn-secondary"><i class="fa fa-folder fa-sm"></i> Browse</a>
-            <a id="start-upload" href="javascript:;" class="btn btn-sm btn-success"><i class="fa fa-play fa-sm"> </i> Start Upload</a>
+    <div class="form-group card">
+        <div class="card-header">
+            Trailer / Film / Animation Upload
         </div>
-        <input type="hidden" name="video" id="video_file">
-        <pre id="console" class="text-danger"></pre>
-        <div class="alert alert-warning mt-2">
-            <input type="checkbox" required name="cpy">
-            @copyright_disclaimer
+        <div class="card-body">
+            <label for="">Please submit the video for approval to the Admin. </label>
+            {{-- <input type="file" id="" accept="video/*" class="d-block" name="video" required> --}}
+            <ul id="filelist" class="list-group mb-2"></ul>
+            <div id="container">
+                <a id="browse" href="javascript:;" class="btn btn-sm btn-secondary"><i class="fa fa-folder fa-sm"></i> Browse</a>
+                <a id="start-upload" href="javascript:;" class="btn btn-sm btn-success"><i class="fa fa-play fa-sm"> </i> Start Upload</a>
+            </div>
+            <input type="hidden" name="video" id="video_file">
+            <pre id="console" class="text-danger"></pre>
+            <div class="alert alert-warning mt-2">
+                <input type="checkbox" required name="cpy">
+                @copyright_disclaimer
+            </div>
         </div>
     </div>
     <div class="form-group">

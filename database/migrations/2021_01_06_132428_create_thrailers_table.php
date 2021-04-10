@@ -25,10 +25,11 @@ class CreateThrailersTable extends Migration
             $table->string('preview_cost')->nullable();
             $table->string('cover')->nullable();
             $table->string('genre')->nullable();
-            $table->string('book_id')->nullable();
-            $table->string('event_id')->nullable();
-            $table->string('thrailer_id')->nullable();
+            $table->foreignId('book_id')->nullable();
+            $table->foreignId('event_id')->nullable();
+            $table->foreignId('thrailer_id')->nullable();
             $table->string('description')->nullable();
+            $table->foreignId('group_id')->nullable();
             $table->string('category')->nullable();
             $table->string('credit')->nullable();
             $table->string('age_restriction')->nullable();

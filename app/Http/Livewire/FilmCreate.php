@@ -13,6 +13,7 @@ class FilmCreate extends Component
     public $partOfEvent;
     public $hasPreview;
     public $preview;
+    public $hascollab;
     public function render()
     {
         return view('livewire.film-create');

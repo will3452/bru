@@ -58,8 +58,8 @@ class ThrailerController extends Controller
             "cpy" => "required",
             "gem" => "required",
             "category" => "required",
-            "desc" => "required",
-            "credit" => "required",
+            "desc" => "",
+            "credit" => "",
             "author" => "required",
             "video" => "required",
             "age_restriction" => "required",
@@ -106,6 +106,7 @@ class ThrailerController extends Controller
             'preview'=> $request->preview,
             'preview_cost'=> $preview_cost,
             'cover'=> $cover,
+            'group_id'=> $request->group_id,
             'genre'=>$genre,
             'book_id' => $book_id,
             'thrailer_id'=>$thrailer_id,
@@ -119,7 +120,7 @@ class ThrailerController extends Controller
             'cpy'=>now()
         ]);
         // Notification::send(Admin::get(), new VideoApproval($video));
-        return back()->with('success', 'Item stored successfully');
+        return back()->with('success', 'Item stored successfully!');
     }
 
     /**

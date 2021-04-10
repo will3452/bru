@@ -42,7 +42,7 @@
                         </div> 
                         <div class="form-group">
                             <label for="">Description</label>
-                            <textarea name="description" id="" cols="30" rows="5" class="form-control">{{ $thrailer->description }}</textarea>
+                            <textarea name="desc" id="" cols="30" rows="5" class="form-control">{{ $thrailer->description }}</textarea>
                         </div>          
                         <div class="form-group">
                             <label for="">Credits</label>
@@ -83,4 +83,60 @@
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2-bootstrap.min.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine.js" integrity="sha512-nIwdJlD5/vHj23CbO2iHCXtsqzdTTx3e3uAmpTm4x2Y8xCIFyWu4cSIV8GaGe2UNVq86/1h9EgUZy7tn243qdA==" crossorigin="anonymous"></script>
+@endsection
+@section('bottom')
+<script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
+
+<script>
+    CKEDITOR.replace('desc',{height:"50vh", toolbarGroups: [{
+      "name": "basicstyles",
+      "groups": ["basicstyles"]
+    },
+    {
+      "name": "paragraph",
+      "groups": ["list", "blocks"]
+    },
+    {
+      "name": "links",
+      "groups": ["links"]
+    },
+    {
+      "name": "document",
+      "groups": ["mode"]
+    },
+    {
+      "name": "insert",
+      "groups": ["insert"]
+    },
+    {
+      "name": "styles",
+      "groups": ["styles"]
+    }
+  ],});
+  CKEDITOR.replace('credit',{height:"50vh", toolbarGroups: [{
+      "name": "basicstyles",
+      "groups": ["basicstyles"]
+    },
+    {
+      "name": "paragraph",
+      "groups": ["list", "blocks"]
+    },
+    {
+      "name": "links",
+      "groups": ["links"]
+    },
+    {
+      "name": "document",
+      "groups": ["mode"]
+    },
+    {
+      "name": "insert",
+      "groups": ["insert"]
+    },
+    {
+      "name": "styles",
+      "groups": ["styles"]
+    }
+  ],});
+</script>
 @endsection

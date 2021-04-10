@@ -19,6 +19,10 @@ class Thrailer extends Model
     public function  recommendation(){
         return $this->morphOne(Recommendation::class, 'recommendationable');
     }
+
+    public function group(){
+        return $this->belongsTo(Group::class);
+    }
     
      //static 
      public static function GETPUBLISHED(){

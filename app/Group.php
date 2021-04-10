@@ -18,9 +18,15 @@ class Group extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function thrailers(){
+        #this is for trailers, films , and animation 
+        return $this->hasMany(Thrailer::class);
+    }
+
     public static function APPROVED(){
         return self::whereNotNull('approved')->get();
     }
+
 
     public static function UNAPPROVED(){
         return self::whereNull('approved')->get();
