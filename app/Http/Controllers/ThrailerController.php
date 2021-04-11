@@ -120,7 +120,7 @@ class ThrailerController extends Controller
             'cpy'=>now()
         ]);
         // Notification::send(Admin::get(), new VideoApproval($video));
-        return back()->with('success', 'Item stored successfully!');
+        return redirect(route('thrailers.index').'?id='.$video->id)->with('success', 'Item stored successfully!');
     }
 
     /**

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('main-content')
     <h1 class="h3 mb-4 text-gray-800">{{ __($group->name) }}</h1>
-    <a href="{{route('home') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
+    <a href="{{url()->previous() }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
     @include('partials.alert')
     <div class="card">
         <div class="card-header">
@@ -31,6 +31,14 @@
                     </th>
                     <td>
                         {{ $group->members->count() }}
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Created By
+                    </th>
+                    <td>
+                        {{ $group->creator->fullname == auth()->user()->fullname ? 'You': $group->creator->fullname}}
                     </td>
                 </tr>
             </table>
@@ -101,6 +109,7 @@
                 </ul>
             </div>
         </div>
+        
     @endif
 @endsection
 

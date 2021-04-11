@@ -17,10 +17,16 @@
                         Created By
                     </th>
                     <th>
-                        #
+                        Members
                     </th>
                     <th>
-                        #
+                        Works
+                    </th>
+                    <th>
+                        Approve
+                    </th>
+                    <th>
+                        Delete
                     </th>
                 </thead>
             </tr>
@@ -36,17 +42,23 @@
                         {{ $item->creator->full_name }}
                     </td>
                     <td>
+                        {{ $item->members()->count() }}
+                    </td>
+                    <td>
+                        {{ $item->thrailers()->count() }}
+                    </td>
+                    <td>
                         <form action="{{ route('admin.group.update', $item) }}" method="POST">
                             @csrf
                             @method('put')
-                            <button class="btn btn-success btn-sm">Approved</button>
+                            <button class="btn btn-success btn-sm">Approve</button>
                         </form>
                     </td>
                     <td>
                         <form action="{{ route('admin.group.destroy', $item) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <button class="btn btn-danger btn-sm">Delete</button>
+                            <button type="button" onclick="alert('under dev')" class="btn btn-danger btn-sm">Delete</button>
                         </form>
                     </td>
                 </tr>
@@ -86,7 +98,7 @@
                         <form action="{{ route('admin.group.destroy', $item) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <button class="btn btn-danger btn-sm">Delete</button>
+                            <button type="button" class="btn btn-danger btn-sm">Delete</button>
                         </form>
                     </td>
                 </tr>

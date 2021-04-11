@@ -1,10 +1,14 @@
 @extends('layouts.admin')
 @section('main-content')
+
     <h1>{{ $thrailer->title }}</h1>
+    <div>
+        <a href="{{ route('thrailers.index') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a> 
+    </div>
     @if (!$thrailer->approved)
         <div x-data="{viewForm:false}">
             <div class="alert alert-warning">
-                This Film / Thrailer is not yet approved. click <a href="#" x-on:click.prevent="viewForm = true">HERE</a> to enter your approval CODE.
+                This Trailer / Film / Animation is not yet approved. click <a href="#" x-on:click.prevent="viewForm = true">HERE</a> to enter your approval CODE.
             </div>
             <div x-show="viewForm">
                 <form action="#">
@@ -28,7 +32,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    Trailer / Film details
+                    Trailer / Film / Animation Details
                 </div>
                 <div class="card-body">
                     <form action="#">

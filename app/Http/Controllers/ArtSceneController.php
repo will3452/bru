@@ -56,7 +56,7 @@ class ArtSceneController extends Controller
             }
         }
 
-        return redirect()->route('arts.list')->withSuccess('Done!');
+        return redirect(route('arts.list').'?id='.$art->id);
 
     }
 

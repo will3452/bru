@@ -5,7 +5,7 @@
     <div class="d-flex mt-4 flex-wrap">
         @foreach ($songs as $book)
         <div  class="m-4 text-center " style="position:relative;" x-data="{showInfo:false}" x-on:mouseover="showInfo = true" x-on:mouseout="showInfo = false">
-            <div  style="cursor:pointer;box-shadow:10px 5px 2px #555 ;height: 200px; width: 150px; background:url('{{ $book->cover }}');background-size:contain;background-position:center;">
+            <div  id="{{ $book->id }}" style="cursor:pointer;@if(request()->id == $book->id)  box-shadow:0px 0px 10px 10px yellow; @else box-shadow:10px 5px 2px #555 ; @endif height: 200px; width: 150px; background:url('{{ $book->cover }}');background-size:contain;background-position:center;">
 
             </div>
             <div class="mt-2">

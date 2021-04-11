@@ -76,8 +76,8 @@ class SongController extends Controller
         $end_arr_file = end($arr_file);
         $validated['file'] = '/storage/songs/'.$end_arr_file;
 
-        auth()->user()->songs()->create($validated);
-        return back()->withSuccess('Done!');
+        $song = auth()->user()->songs()->create($validated);
+        return redirect(route('songs.index').'?id='.$song->id);
     }
 
     /**

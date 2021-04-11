@@ -41,7 +41,7 @@ class BookController extends Controller
             }
         }
 
-        return redirect()->route('books.list')->withSuccess('Book entitled, " '.$book->title.' " was created!');
+        return redirect(route('books.list').'?id='.$book->id);
     }
     
 

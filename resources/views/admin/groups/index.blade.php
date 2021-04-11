@@ -5,7 +5,7 @@
             <h1 class="h3 mb-4 text-gray-800">{{ __('Groups') }}</h1>
             <button class="btn btn-primary btn-sm"  x-on:click="createType = !createType">
                     <i class="fa" :class="{'fa-angle-right':!createType, 'fa-angle-down':createType}"></i> 
-                    Add Group type
+                    Add Group Type
                 </button>
         </div>
         <div class="card my-2" x-show.transition="createType">

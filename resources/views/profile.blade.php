@@ -60,6 +60,9 @@
                     <div class=" mt-3" x-data="{showCreate:false}">
                         @if (auth()->user()->groups()->count())
                             <h5><i class="fa fa-users"></i> Groups</h5>
+                            <div class="alert alert-warning">
+                                NOTE: Please create a group only if you're collaborating on ONE MATERIAL. For a collection of individual works, please Create Series instead.
+                            </div>
                             <ul class="list-group">
                                 @foreach (auth()->user()->groups as $group)
                                     <li class="list-group-item d-flex justify-content-between">
