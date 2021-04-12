@@ -83,9 +83,9 @@ class RegisterController extends Controller
             'city'=>'required',
             'birthdate'=>'required|string',
             'aan'=>'',
-            'pencountry.0'=>'required',
-            'pengender.0'=>'required',
-            'penname.0'=>'unique:pens,name',
+            // 'pencountry.0'=>'required',
+            // 'pengender.0'=>'required',
+            // 'penname.0'=>'unique:pens,name',
             'interest.*'=>'required',
             'file_url'=>'required'
             
@@ -136,18 +136,18 @@ class RegisterController extends Controller
         //     'country'=>$data['pencountry'][2]
         // ]);
 
-        for($i = 0; $i < 3; $i++){
-            if($data['penname'][$i] != null){
-                Pen::create([
-                    'user_id'=>$user->id,
-                    'name'=>$data['penname'][$i],
-                    'gender'=>$data['pengender'][$i],
-                    'country'=>$data['pencountry'][$i]
-                ]);
-            }else{
-                continue;
-            }
-        }
+        // for($i = 0; $i < 3; $i++){
+        //     if($data['penname'][$i] != null){
+        //         Pen::create([
+        //             'user_id'=>$user->id,
+        //             'name'=>$data['penname'][$i],
+        //             'gender'=>$data['pengender'][$i],
+        //             'country'=>$data['pencountry'][$i]
+        //         ]);
+        //     }else{
+        //         continue;
+        //     }
+        // }
 
         // Bio::
         Bio::create([

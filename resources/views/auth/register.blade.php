@@ -123,8 +123,8 @@
                                         <input type="checkbox" id="ck_box3" name="cpy" required>
                                         @copyright_disclaimer
                                     </div>
-                                    <h5 class="mt-4"><i class="fa fa-signature"></i> Pen names</h5>
-                                    <hr>
+                                    {{-- <h5 class="mt-4"><i class="fa fa-signature"></i> Pen names</h5> --}}
+                                    {{-- <hr>
                                     <div class="alert alert-warning">
                                         Please note that the pen name, when already used in a book, will be permanent.
                                     </div>
@@ -197,9 +197,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
-                                   <h5 class="mt-5">
+                                   <h5 class="mt-2">
                                        <i class="fa fa-heart"></i> Interest
                                    </h5>
                                    <hr>

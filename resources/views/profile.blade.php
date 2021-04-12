@@ -273,7 +273,10 @@
                                     url:this.file
                                 });
                             },
+                            submitting:false,
                             async submitForm(){
+                                this.$refs.formBtn.disabled = true;
+                                this.submitting = true;
                                 const formData = new FormData(this.$refs.form);
                                 
 
@@ -283,7 +286,6 @@
                                     blob.lastModifiedDate  = await new Date();
                                     formData.set('picture', blob, blob.name)
                                 })
-                                
                                 
                                 axios({
                                     method: 'post',
@@ -336,8 +338,8 @@
                                         </select>
                                     </div>
                                     <div class="form-group">
-                                        <button class="btn btn-primary btn-block">
-                                            Add Pen Name
+                                        <button class="btn btn-primary btn-block" x-ref="formBtn">
+                                           <img src="{{ asset('/images/loading.gif') }}" alt="" style="width:25px;" x-show="submitting"> Add Pen Name
                                         </button>
                                     </div>
                                 </form>
