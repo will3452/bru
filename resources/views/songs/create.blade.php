@@ -152,7 +152,14 @@
         </div>
         <div class="form-group">
             <label for="#">Cost</label>
-            <input type="number" name="cost" class="form-control" min="0" value="{{ old('cost') ?? 0 }}">
+            <input type="number" name="cost" class="form-control" min="0" oninput="validate(this)" value="{{ old('cost') ?? 0 }}">
+            <script>
+                function validate(input){
+                   if(input.value < 0){
+                      input.value = 0;
+                   }
+                }
+            </script>
         </div>
         <div class="form-group">
             <label for="">Song</label>

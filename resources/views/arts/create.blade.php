@@ -65,8 +65,15 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="#">Art Scene cost</label>
-            <input type="number" name="cost" class="form-control">
+            <label for="#">Cost</label>
+            <input type="number" name="cost" class="form-control" min="0" oninput="validate(this)" value="{{ old('cost') ?? 0 }}">
+            <script>
+                function validate(input){
+                   if(input.value < 0){
+                      input.value = 0;
+                   }
+                }
+            </script>
         </div>
         <h5>Upload Art</h5>
         <div class="form-group">

@@ -176,7 +176,7 @@
             <select name="lead_character" id="" class="form-control">
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
-                <option value="LGBTQ+">LGBTQI+</option>
+                <option value="LGBTQIA+">LGBTQIA+</option>
             </select>
         </div>
         <div class="form-group">
@@ -200,7 +200,14 @@
         </div>
         <div class="form-group">
             <label for="#">Cost</label>
-            <input type="number" name="cost" class="form-control" min="0" value="{{ old('cost') ?? 0 }}">
+            <input type="number" name="cost" class="form-control" min="0" oninput="validate(this)" value="{{ old('cost') ?? 0 }}">
+            <script>
+                function validate(input){
+                   if(input.value < 0){
+                      input.value = 0;
+                   }
+                }
+            </script>
         </div>
         <div class="form-group">
             <div class="alert alert-warning d-flex align-items-center">
@@ -221,7 +228,7 @@
                 <div class="mr-2">
                     <i class="fa fa-bell "></i> <strong>Reminder</strong>
                 </div>
-                <span>The Review Questions will appear as required questions the users need to answer if they wanna write a review for a specific book. </span>
+                <span>The Review Questions will appear as required questions the users need to answer if they want to write a review for a specific book. </span>
             </div>
         </div>
         <div class="form-group">

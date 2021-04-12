@@ -225,24 +225,10 @@
                                                     <i class="fa fa-map-marker-alt"></i> {{ $pen->country }}
                                                 </div>
                                             </div> --}}
-                                            <div class="mb-2">
-                                                <img src="{{ $pen->picture ?? '/img/emptyuserimage.png' }}" alt="" style="width:100px;height:100px;object-fit:cover;">
-                                                <div x-data="{
-                                                    openform:false
-                                                }">
-                                                    <a href="#" x-on:click.prevent="openform=true">Change picture</a>
-                                                    <div class="card card-body" x-show.transition="openform">
-                                                        <form action="{{ route('penname.update.picture') }}" enctype="multipart/form-data" method="POST">
-                                                            @csrf
-                                                            <input type="file" name="picture" required accept=".png, .jpg">
-                                                            <input type="hidden" name="pen_id" value="{{ $pen->id }}">
-                                                            <div class="mt-2">
-                                                                <button class="btn btn-success btn-sm"><i class="fa fa-check"></i> Save</button>
-                                                                <button class="btn btn-secondary btn-sm" x-on:click.prevent="openform=false"><i class="fa fa-times"></i> Cancel</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
+                                            <div class="mb-2"  x-data="{
+                                                openform:false,
+                                            }">
+                                                <img src="{{ $pen->picture ?? '/img/emptyuserimage.png' }}" alt="" style="width:100px;height:100px;object-fit:cover;" x-show="!openform">
                                             </div>
                                             <table class="table table-striped">
                                                 <tr>
@@ -269,50 +255,93 @@
                             </ul>
                             @if(auth()->user()->pens()->count() < 3)
                             <hr>
-                        <form class="mt-4" method="POST" action="{{ route('penname.store') }}" enctype="multipart/form-data">
-                            @csrf
-                                <div class="form-group" x-data="{
-                                    fetchImage(){
-                                        URL.revokeObjectURL(this.$refs.image.src);
-                                        let file = this.$refs.file.files[0];
-                                        let url = URL.createObjectURL(file);
-                                        this.$refs.image.src = url;
-                                    }
-                                }">
-                                    <label for="">
-                                        Photo
-                                    </label>
-                                    <div class="alert alert-info">
-                                        <i class="fa fa-info-circle"></i> This is the profile photo of your pen name or your scholar persona. This will be shown to the public. 
+                        {{-- <form class="mt-4" method="POST" action="{{ route('penname.store') }}" enctype="multipart/form-data"> --}}
+                           <div x-data="{
+                            croppie:new Croppie(document.querySelector('#image'), {
+                                viewport: { width: 200, height: 200 },
+                                boundary: { width: 250, height: 250 },
+                                showZoomer: true,
+                                enableResize: true,
+                                enableOrientation: true,
+                                mouseWheelZoom: 'ctrl'
+                            }),
+                            file:'',
+                            fetchImage(){
+                                URL.revokeObjectURL(this.file)
+                                this.file = URL.createObjectURL(this.$refs.file.files[0]);
+                                this.croppie.bind({
+                                    url:this.file
+                                });
+                            },
+                            async submitForm(){
+                                const formData = new FormData(this.$refs.form);
+                                
+
+                                await this.croppie.result('blob')
+                                .then(async function(blob){
+                                    blob.name = await `${uuidv4()}.jpg`;
+                                    blob.lastModifiedDate  = await new Date();
+                                    formData.set('picture', blob, blob.name)
+                                })
+                                
+                                
+                                axios({
+                                    method: 'post',
+                                    url:`{{ route('penname.store') }}`,
+                                    data: formData,
+                                    headers: { 'Content-Type': 'multipart/form-data' },
+                                  })
+                                  .then(function(res){
+                                      if(res.data == 'refresh'){
+                                          window.location.href=`{{ url()->current() }}`;
+                                      }
+                                  })
+                            }
+
+                            
+                        }">
+                            <form class="mt-4" x-ref="form" method="POST" action="#" enctype="multipart/form-data" x-on:submit.prevent="submitForm()">
+                                @csrf
+                                    <div class="form-group" >
+                                        <label for="">
+                                            Photo
+                                        </label>
+                                        <div class="alert alert-info">
+                                            <i class="fa fa-info-circle"></i> This is the profile photo of your pen name or your scholar persona. This will be shown to the public. 
+                                        </div>
+                                        <div id="image"></div>
+                                        
+                                       <div>
+                                        <input type="file" x-ref="file" name="picture" class="d-block mt-2" accept=".png, .jpg" x-on:change="fetchImage()" x-on:click="" required>
+                                        
+                                       </div>
                                     </div>
-                                    <img src="/img/emptyuserimage.png" x-ref="image" alt="" style="width:100px;height:100px;object-fit:cover;">
-                                    <input type="file" x-ref="file" name="picture" class="d-block mt-2" accept=".png, .jpg" x-on:change="fetchImage()" x-on:click="" required>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Pen Name</label>
-                                    <input type="text" name="name" class="form-control w-100" id="pen1">
-                                    <div id="pen1-alert"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="#" class="d-block">Gender</label>
-                                    <select name="gender" id="gender1" class="form-control w-100">
-                                        <option value="male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option  value="LGBTQIA+">LGBTQIA+</option>
-                                        <option  value="undefined">Rather not say</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="#" class="d-block" >Country</label>
-                                    <select id="pen1country" type="text" name="country" class="form-control">
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <button class="btn btn-primary btn-block">
-                                        Add Pen Name
-                                    </button>
-                                </div>
-                            </form>
+                                    <div class="form-group">
+                                        <label for="">Pen Name</label>
+                                        <input type="text" name="name" class="form-control w-100" id="pen1" required>
+                                        <div id="pen1-alert"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="#" class="d-block">Gender</label>
+                                        <select name="gender" id="gender1" class="form-control w-100">
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                            <option  value="LGBTQIA+">LGBTQIA+</option>
+                                            <option  value="undefined">Rather not say</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="#" class="d-block" >Country</label>
+                                        <select id="pen1country" type="text" name="country" class="form-control">
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-primary btn-block">
+                                            Add Pen Name
+                                        </button>
+                                    </div>
+                                </form>
+                           </div>
                             @endif
                         </div>
                     </div>
@@ -360,7 +389,6 @@
                 </div>
             </div>
         </div>
-
     </div>
     
 
@@ -370,8 +398,12 @@
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2.min.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('vendor\datepicker\DateTimePicker.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2-bootstrap.min.css') }}">
+    <link rel="stylesheet" href="/css/croppie.css">
 @endsection
 @section('bottom')
+<script src="/js/app.js"></script>
+<script src="/js/croppie.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.3.2/uuidv4.min.js" integrity="sha512-BCMqEPl2dokU3T/EFba7jrfL4FxgY6ryUh4rRC9feZw4yWUslZ3Uf/lPZ5/5UlEjn4prlQTRfIPYQkDrLCZJXA==" crossorigin="anonymous"></script>
 <script src="{{ asset('js/countries.js') }}"></script>
 <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
 <script>

@@ -141,7 +141,7 @@
                                                     <select name="pengender[]" id="gender1" class="form-control w-100">
                                                         <option value="male">Male</option>
                                                         <option value="female">Female</option>
-                                                        <option  value="LGBTQ+">LGBTQ+</option>
+                                                        <option  value="LGBTQIA+">LGBTQIA+</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group">

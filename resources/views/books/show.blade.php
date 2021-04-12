@@ -209,7 +209,7 @@
                                 <select name="lead_character" id="" class="form-control">
                                     <option value="Male" {{ $book->lead_character == 'Male' ? 'selected':''}}>Male</option>
                                     <option value="Female" {{ $book->lead_character == 'Female' ? 'selected':''}}>Female</option>
-                                    <option value="LGBTQ+" {{ $book->lead_character == 'LGBTQ+' ? 'selected':''}}>LGBTQI+</option>
+                                    <option value="LGBTQIA+" {{ $book->lead_character == 'LGBTQIA+' ? 'selected':''}}>LGBTQIA+</option>
                                 </select>
                             </div>
                             <div class="form-group">

@@ -19,7 +19,7 @@ class PenController extends Controller
         $end_path = end($path);
         $validated['picture'] = '/storage/pen/'.$end_path;
         auth()->user()->pens()->create($validated);
-        return back()->withSuccess('Done!');
+        return 'refresh';
     }
 
     public function destroy($id){

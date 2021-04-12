@@ -90,8 +90,15 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="">Cost</label>
-        <input type="number" name="cost" class="form-control" min="0" value="0">
+        <label for="#">Cost</label>
+        <input type="number" name="cost" class="form-control" min="0" oninput="validate(this)" value="{{ old('cost') ?? 0 }}">
+        <script>
+            function validate(input){
+               if(input.value < 0){
+                  input.value = 0;
+               }
+            }
+        </script>
     </div>
     <div class="form-group">
         <button class="btn btn-block btn-primary" id="submit" disabled="true">
