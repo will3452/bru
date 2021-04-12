@@ -95,7 +95,7 @@
                                     <button class="btn btn-sm btn-primary">Save</button>
                                 </form>
                             </div>
-                            @if (auth()->user()->id == $group->creator_id)
+                            @if (auth()->user()->id == $group->creator_id && auth()->user()->id != $member->id)
                             <form action="{{ route('group-member.destroy', $group) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
@@ -109,10 +109,83 @@
                 </ul>
             </div>
         </div>
-        
+        <div class="card">
+            <div class="card-header">
+                <i class="fa fa-list"></i> Group Works
+            </div>
+            <div class="card-body">
+                <table id="works" class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Title Of Work
+                            </th>
+                            <th>
+                                Type Of Work
+                            </th>
+                            <th>
+                                Cost
+                            </th>
+                            <th>
+                                Uploader
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                Details
+                            </th>
+                            <th>
+                                Reports
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{-- fetch all trailers, film and animations --}}
+                        @foreach ($group->thrailers as $work)
+                            <tr>
+                                <td>
+                                    {{ $work->title }}
+                                </td>
+                                <td style="text-transform: capitalize;">
+                                    {{ $work->category }}
+                                </td>
+                                <td>
+                                    {{ $work->cost.' '.$work->gem }}(s)
+                                </td>
+                                <td>
+                                    {{ $work->author }}
+                                </td>
+                                <td>
+                                    {{ $work->published_date ?? 'Not Published' }}
+                                    {{-- will be fix soon --}}
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary btn-sm" href="{{ route('thrailers.show', $work) }}" >View Details</a>
+                                </td>
+                                <td>
+                                    <a class="btn btn-primary btn-sm" onclick="alert('to be follow po ito')">View Reports</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
     @endif
 @endsection
 
 @section('top')
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+@endsection
+
+@section('bottom')
+    {{-- <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+    <script>
+        $(function(){
+            $('#works').DataTable();
+        })
+    </script> --}}
 @endsection

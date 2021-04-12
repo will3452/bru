@@ -155,18 +155,10 @@ class ThrailerController extends Controller
     public function update(Request $request, Thrailer $thrailer)
     {
         $validated = $this->validate($request, [
-            "title" => "required",
-            "author" => "required",
             "code"=>'required',
-            "cost"=>'required',
-            "gem"=>'required'
         ]);
 
         if($validated['code'] == $thrailer->code){
-            $thrailer->author = $validated['author'];
-            $thrailer->title = $validated['title'];
-            $thrailer->cost = $validated['cost'];
-            $thrailer->gem = $validated['gem'];
             if(empty($thrailer->approved)){
                 $thrailer->approved = date("Y/m/d");
             }
@@ -198,5 +190,16 @@ class ThrailerController extends Controller
         }
 
         return redirect()->route('thrailers.index')->with('success', 'Item deleted successfully');
+    }
+
+    public function updateCover(Thrailer $thrailer){
+        Storage::delete($thrailer->cover);
+        $path_cover = request()->cover->store('public/thrailers_cover');
+        $arr_path_cover = explode('/', $path_cover);
+        $end_path_cover = end($arr_path_cover);
+        $cover = '/storage/thrailers_cover/'.$end_path_cover;
+        $thrailer->cover = $cover;
+        $thrailer->save();
+        return back()->withSuccess('Cover Updated!');
     }
 }

@@ -202,12 +202,14 @@ Route::prefix('arts')->name('arts.')->group(function(){
 
 Route::prefix('trailers')->name('thrailers.')->group(function(){
     Route::get('/', 'ThrailerController@index')->name('index');
+    Route::post('/{thrailer}/cover', 'ThrailerController@updateCover')->name('cover.update');
     Route::get('/create', 'ThrailerController@create')->name('create');
     Route::get('/{thrailer}', 'ThrailerController@show')->name('show');
     Route::post('/', 'ThrailerController@store')->name('store');
     // Route::get('/{thrailer}/edit', 'ThrailerController@edit')->name('edit');
     Route::put('/{thrailer}', 'ThrailerController@update')->name('update');
     Route::delete('/{thrailer}', 'ThrailerController@destroy')->name('destroy');
+    
 });
 
 
@@ -234,11 +236,13 @@ Route::prefix('tickets')->name('tickets.')->group(function(){
     Route::post('delete/book/{book}', 'TicketController@bookDestroy')->name('book.delete');
     Route::post('delete/art/{art}', 'TicketController@artDestroy')->name('art.delete');
     Route::post('delete/chapter/{chapter}', 'TicketController@chapterDestroy')->name('chapter.delete');
+    Route::post('delete/trailer/{thrailer}', 'TicketController@thrailerDestroy')->name('thrailer.delete');
 
     //edit ticket
     Route::post('edit/book/{book}', 'TicketController@bookUpdate')->name('book.update');
     Route::post('edit/art/{art}', 'TicketController@artUpdate')->name('art.update');
     Route::post('edit/chapter/{chapter}', 'TicketController@chapterUpdate')->name('chapter.update');
+    Route::post('edit/trailer/{thrailer}', 'TicketController@thrailerUpdate')->name('thrailer.update');
 
 });
 

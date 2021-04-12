@@ -28,5 +28,10 @@ class Thrailer extends Model
      public static function GETPUBLISHED(){
         return self::whereNotNull('approved')->get();
     }
+
+    public function tickets()
+    {
+        return $this->morphMany(Ticket::class, 'ticketable');
+    }
     
 }

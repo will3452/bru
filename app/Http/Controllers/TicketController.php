@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Art;
 use App\Book;
 use App\Chapter;
+use App\Thrailer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -85,6 +86,29 @@ class TicketController extends Controller
         ]);
         $validated['user_id'] = auth()->user()->id;
         $Chapter->tickets()->create($validated);
+        return 1;
+    }
+
+    // trailer 
+    public function thrailerDestroy(Thrailer $thrailer){
+        if(!$this->correctPassword(request()->password)) return 2;
+        $thrailer->tickets()->create([
+            'reason'=>request()->reason,
+            'delete'=>now(),
+            'user_id'=>auth()->user()->id
+        ]);
+
+        return 1;
+    }
+    public function thrailerUpdate(Thrailer $thrailer){
+        if(!$this->correctPassword(request()->password)) return 2;
+        $validated = request()->validate([
+            'reason'=>'',
+            'title'=>'',
+            'cost'=>''
+        ]);
+        $validated['user_id'] = auth()->user()->id;
+        $thrailer->tickets()->create($validated);
         return 1;
     }
 }
