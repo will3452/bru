@@ -8,7 +8,8 @@
         @csrf
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" name="title">
+            <input type="text" class="form-control" name="title" id="title" value="{{ $book->title ?? '' }}">
+            <div id="please-add-alert" class="text-warning"></div>
         </div>
         {{-- <div class="form-group">
             <label for="title">Category</label>
@@ -21,7 +22,7 @@
             </select>
         </div> --}}
         <div class="form-group">
-            <label for="">Book Cover</label>
+            <label for="">Audio Book Cover</label>
             <div class="custom-file">
                 <label class="custom-file-label" for="picture">Choose File</label>
                 <input type="file" name="picture" id="picture" accept="image/*" required class="custom-file-input">
@@ -34,11 +35,76 @@
             <input type="checkbox" required id="ck_box" name="cpy">
             @copyright_disclaimer
         </div>
+        @if (!request()->has('autofill'))
+            <div class="form-group" x-data="{
+                hasEbook:false,
+                isAutoFill:false,
+                updateHasEbook(){
+                    if(this.$refs.inputHasEbook.value =='yes'){
+                        this.hasEbook = true;
+                    }else {
+                        this.hasEbook = false;
+                    }
+                },
+                updateAutoFill(){
+                    const title = document.getElementById('title');
+                    
+                    if(this.$refs.inputAutoFill.value =='yes'){
+                        if(!title.value.length){
+                            title.focus();
+                            document.querySelector('#please-add-alert').innerText = `Input Title first.`;
+                            this.$refs.inputAutoFill.value = 'no';
+                            return;
+                        }
+                        axios.post(`{{ route('auto.fill') }}`, {title:title.value})
+                        .then(res=>{
+                            console.log(res.data)
+                            if(res.data.length == 0){
+                                swal.fire({
+                                    'title':'No Ebook found!',
+                                    timer:'3000'
+                                });
+                            }
+                            window.location.href=`{{ url()->current() }}?b=784854hfjfuyj52w6&xx=${res.data.id}&autofill=true&`
+                        })
+                        this.isAutoFill = true;
+                    }else {
+                        this.isAutoFill = false;
+                    }
+                }
+            }">
+                <p>
+                    Does this Audio Book have a published ebook version on the app?
+                </p>
+                <select id="hasEbook" x-ref="inputHasEbook" x-on:change = "updateHasEbook()" class="custom-select">
+                    <option value="no">No</option>
+                    <option value="yes">Yes</option>
+                </select>
+                <template x-if="hasEbook">
+                    <div class="card mt-2">
+                        <div class="card-body">
+                            <p>
+                                Would you like to auto-fill the information?
+                            </p>
+                            <select id="isAutoFill" x-ref="inputAutoFill" x-on:change = "updateAutoFill()" class="custom-select">
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                            <template x-if="isAutoFill">
+                                <div class=" mt-2">
+                                    
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        @endif
         <div class="form-group">
             <label for="#">Pen Name</label>
-            <select name="author" class="form-control">
+            <select name="author" class="custom-select" id="penname">
                 @foreach(auth()->user()->pens as $pen)
-                    <option value="{{ $pen->name }}">{{ $pen->name }}</option>
+                    <option value="{{ $pen->name }}" @if(isset($book) && $pen->name == $book->author) selected @endif>{{ $pen->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -54,7 +120,7 @@
                         $first = $genre;
                     @endphp
                 @endif
-                <option value="{{ $genre->name }}">
+                <option value="{{ $genre->name }}" @if(isset($book) && $genre->name == $book->genre) selected @endif>
                     {{ $genre->name }}
                 </option>
                 @endforeach
@@ -75,7 +141,7 @@
                     @if($loop->first)
                         @php $first_heat = end($heat_arr); @endphp
                     @endif
-                    <option value="{{ $heat }}">{{ $heat_arr[0] }}</option>
+                    <option value="{{ $heat }}"  @if(isset($book) && $heat== $book->heat_level) selected @endif>{{ $heat_arr[0] }}</option>
                     @endforeach
                 </select>
             </div>
@@ -89,20 +155,20 @@
                     @if($loop->first)
                         @php $first_violence = end($violence_arr); @endphp
                     @endif
-                    <option value="{{ $violence }}"> {{ $violence_arr[0] }}</option>
+                    <option value="{{ $violence }}" @if(isset($book) && $violence== $book->violence_level) selected @endif> {{ $violence_arr[0] }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="col-md-4" id="age_container">
                 <label for="">Set Age Restriction</label>
                 <select name="age_restriction" id="age_level" class="form-control">
-                    <option value="0">
+                    <option value="0"  @if(isset($book) && '0'== $book->age_restriction) selected @endif>
                         None
                     </option>
-                    <option value="16">
+                    <option value="16"  @if(isset($book) && '16'== $book->age_restriction) selected @endif>
                         16 and up
                     </option>
-                    <option value="18" id="_18">
+                    <option value="18" id="_18"  @if(isset($book) && '18"'== $book->age_restriction) selected @endif>
                         18 and up
                     </option>
                 </select>
@@ -140,31 +206,37 @@
         </div> --}}
         <div class="form-grpup">
             <label for="#">Language</label>
-            <select name="language" id="" class="form-control">
-                <option value="English">English</option>
-                <option value="Filipino">Filipino</option>
+            <select name="language" id="language" class="form-control">
+                <option value="English" @if(isset($book) &&'English'== $book->language) selected @endif>English</option>
+                <option value="Filipino" @if(isset($book) &&'Filipino'== $book->language) selected @endif>Filipino</option>
             </select>
         </div>
         <div class="form-group">
             <label for="#">Lead Character</label>
-            <select name="lead_character" id="" class="form-control">
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="LGBTQA+">LGBTQIA+</option>
+            <select name="lead_character" id="lead_character" class="form-control">
+                <option value="Male"  @if(isset($book) &&'Male'== $book->lead_character) selected @endif>Male</option>
+                <option value="Female"  @if(isset($book) &&'Female'== $book->lead_character) selected @endif>Female</option>
+                <option value="LGBTQA+"  @if(isset($book) &&'LGBTQA+'== $book->lead_character) selected @endif>LGBTQIA+</option>
             </select>
         </div>
         <div class="form-group">
             <label for="#">Lead's College</label>
-            <select class="form-control" name="lead_college">
-                <option value="Integrated School">Integrated School</option>
-                <option value="Berkeley">Berkeley</option>
-                <option value="Reagan">Reagan</option>
-                <option value="NON-BRU">NON-BRU</option>
+            <select class="form-control" id="lead_college" name="lead_college">
+                <option value="Integrated School" @if(isset($book) &&'Integrated School'== $book->lead_college) selected @endif>Integrated School</option>
+                <option value="Berkeley" @if(isset($book) &&'Berkeley'== $book->lead_college) selected @endif>Berkeley</option>
+                <option value="Reagan" @if(isset($book) &&'Reagan'== $book->lead_college) selected @endif>Reagan</option>
+                <option value="NON-BRU" @if(isset($book) &&'NON-BRU'== $book->lead_college) selected @endif>NON-BRU</option>
             </select>
         </div>
         <div class="form-group">
             <label for="#">Blurb</label>
-            <textarea name="blurb" id="tetxArea" cols="30" rows="10" >{{ old('blurb') }}</textarea>
+            <textarea name="blurb" id="blurb" cols="30" rows="10" >
+                @if(isset($book))
+                    {{ $book->blurb ?? ''}}
+                @else
+                {{ old('blurb') ?? ''}}
+                @endif
+            </textarea>
         </div>
         <div class="form-group">
             <div class="alert alert-warning d-flex align-items-center">
@@ -174,7 +246,8 @@
         </div>
         <div class="form-group">
             <label for="#">Cost</label>
-            <input type="number" name="cost" class="form-control" min="0" oninput="validate(this)" value="{{ old('cost') ?? 0 }}">
+            <input type="number" name="cost" class="form-control" min="0" oninput="validate(this)" value="@if(isset($book)){{ $book->cost ?? ''}} @else{{ old('cost') ?? ''}}@endif
+        ">
             <script>
                 function validate(input){
                    if(input.value < 0){
@@ -191,11 +264,13 @@
         </div>
         <div class="form-group">
             <label for="#">Review Question <sup class="d-inline-block" style="width:20px;height:20px;">1</sup></label>
-            <input type="text" class="form-control" name="review_question_1" placeholder="maximum of 300 characters only" value="{{ old('review_question_1') }}">
+            <input type="text" class="form-control" name="review_question_1" placeholder="maximum of 300 characters only" value="@if(isset($book)){{ $book->review_question_1 ?? ''}}@else{{ old('review_question_1') ?? ''}}@endif
+            ">
         </div>
         <div class="form-group">
             <label for="#">Review Question <sup class="d-inline-block" style="width:20px;height:20px;">2</sup></label>
-            <input type="text" class="form-control" name="review_question_2" placeholder="maximum of 300 characters only" value="{{ old('review_question_2') }}">
+            <input type="text" class="form-control" name="review_question_2" placeholder="maximum of 300 characters only" value="@if(isset($book)){{ $book->review_question_2 ?? ''}}@else{{ old('review_question_2') ?? ''}}@endif
+            ">
         </div>
         <div class="form-group">
             <div class="alert alert-success d-flex align-items-center">
@@ -213,7 +288,11 @@
         </div>
         <div class="form-group">
             <label for="#">Credit Page</label>
-            <textarea name="credit_page" rows="10">{{ old('credit_page') }}</textarea>
+            <textarea name="credit_page" id="credit_page" rows="10">
+                @if(isset($book)){{ $book->credit_page ?? ''}}
+                @else{{ old('credit_page') ?? ''}}
+                @endif
+            </textarea>
         </div>
         <div class="form-group">
             <label for="">With Free Art Scene ?</label>
@@ -260,6 +339,8 @@
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2-bootstrap.min.css') }}">
 @endsection
 @section('bottom')
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+    <script src="/js/app.js"></script>
     <script>
         $.ajaxSetup({
             headers: {
@@ -268,7 +349,7 @@
         });
     </script>
     <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
-    <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
+    {{-- <script src="{{ asset('vendor/select2/select2.min.js') }}"></script> --}}
     <script>
         $(function(){
             let upload_art = $('#upload_art').detach();
@@ -288,12 +369,12 @@
     </script>
     <script>
         $(function(){
-            $.fn.select2.defaults.set( "theme", "bootstrap" );
-            $('select').select2();
-            $('#tag').select2({
-                tags:true,
-                tokenSeparators: [',', ' ']
-            });
+            // $.fn.select2.defaults.set( "theme", "bootstrap" );
+            // $('select').select2();
+            // $('#tag').select2({
+            //     tags:true,
+            //     tokenSeparators: [',', ' ']
+            // });
 
             $(".custom-file-input").on("change", function() {
             var fileName = $(this).val().split("\\").pop();
@@ -301,7 +382,7 @@
             });
 
             //rich editor
-            CKEDITOR.replace('blurb',{height:"50vh", toolbarGroups: [{
+            const blurb = CKEDITOR.replace('blurb',{height:"50vh", toolbarGroups: [{
           "name": "basicstyles",
           "groups": ["basicstyles"]
         },
@@ -322,7 +403,7 @@
           "groups": ["styles"]
         }
       ],});
-            CKEDITOR.replace('credit_page',{height:"50vh", toolbarGroups: [{
+            const credit_page = CKEDITOR.replace('credit_page',{height:"50vh", toolbarGroups: [{
           "name": "basicstyles",
           "groups": ["basicstyles"]
         },
@@ -418,5 +499,14 @@
                 }
             })
         })
+    </script>
+    <script>
+        @if(request()->has('xx'))
+
+        swal.fire({
+            'text':'Please double-check all data if applicable and updated. ',
+            timer:5000
+        });
+        @endif
     </script>
 @endsection

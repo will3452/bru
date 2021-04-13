@@ -26,6 +26,12 @@ class AudioController extends Controller
      */
     public function create()
     {
+        // xx = book --> for security
+        if(request()->has('xx')){
+            $book = auth()->user()->books()->find(request()->xx);
+            return view('audio.create', compact('book'));
+        }
+
         return view('audio.create');
     }
 

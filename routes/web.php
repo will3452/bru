@@ -257,3 +257,5 @@ Route::post('password-confirm', function(){ //to check the password
     $ipassword = request()->password;
     return Hash::check($ipassword, auth()->guard('admin')->user()->password);
 })->name('password-confirm');
+
+Route::post('autofill-aduio-book', 'autoFillController')->name('auto.fill');
