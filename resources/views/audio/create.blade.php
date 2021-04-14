@@ -64,7 +64,7 @@
                                     'title':'No Ebook found!',
                                     timer:'3000'
                                 });
-                            }
+                            }else
                             window.location.href=`{{ url()->current() }}?b=784854hfjfuyj52w6&xx=${res.data.id}&autofill=true&`
                         })
                         this.isAutoFill = true;
@@ -294,33 +294,75 @@
                 @endif
             </textarea>
         </div>
-        <div class="form-group">
+        <div class="form-group" x-data="
+        {
+            viewForm:false,
+            updateViewForm(){
+                if(document.querySelector('#isFreeArt').value == 'yes') this.viewForm = true;
+                else this.viewForm = false;
+            }
+        }
+        ">
             <label for="">With Free Art Scene ?</label>
-            <div>
-                <input type="radio" id="yes_upload" name="ans"> Yes
-            </div>
-            <div>
-                <input type="radio" id="no_upload" name="ans"> No
-            </div>
-            <div id="art-result">
-                <div class="card card-body shadow mt-2" id="upload_art">
-                    <label for="">Please upload your free Art Scene here. </label>
-                    <input type="file" accept="image/*" class="d-block" name="free_art">
-                    <div class="alert alert-warning mt-2">
-                        <input type="checkbox" required name="">
-                        @copyright_disclaimer
+            <select id="isFreeArt" x-on:change="updateViewForm()" class="custom-select">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+            <template x-if="viewForm">
+                <div id="art-result">
+                    <div class="card card-body shadow mt-2" id="upload_art">
+                        <label for="">Please upload your free Art Scene here. </label>
+                        <input type="file" accept="image/*" class="d-block" name="free_art">
+                        <div class="alert alert-warning mt-2">
+                            <input type="checkbox" required name="">
+                            @copyright_disclaimer
+                        </div>
+                    </div>
+                    <div class="alert alert-info mt-2" id="no_upload_art">
+                        Ok, you may proceed.
                     </div>
                 </div>
-                <div class="alert alert-info mt-2" id="no_upload_art">
-                    Ok, you may proceed.
+            </template>
+        </div>
+        <div class="form-group" x-data="
+        {
+            viewForm:false,
+            updateViewForm(){
+                if(document.querySelector('#isWork').value == 'yes') this.viewForm = true;
+                else this.viewForm = false;
+            }
+        }">
+            <label for="">Is this work in collaboration with others?</label>
+            <select  id="isWork" x-on:change = "updateViewForm()" class="custom-select">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
+            <template x-if="viewForm">
+                <div class="mt-2">
+                    <label for="">Select group.</label>
+                    <select name="group_id" id="" class="custom-select">
+                        @foreach (auth()->user()->groups as $group)
+                            <option value="{{ $group->id }}">{{ $group->name }}</option>
+                        @endforeach
+                    </select>
+                    <div class="alert alert-warning mt-2">
+                        NOTE: If the voice actors of your audio book is not a Scholar of BRU (meaning, no BRU Account), please use the Credits section instead.
+                    </div>
                 </div>
-            </div>
+            </template>
         </div>
         <div class="card card-body shadow mb-4">
             <h3>Upload Audio file</h3>
             <div class="form-group">
                 <label for="">Audio file (.mp3, .wav)</label>
-                <input type="file" accept="audio/*" name="audio" required class="d-block">
+                {{-- <input type="file" accept="audio/*" name="audio" required class="d-block"> --}}
+                <ul id="filelist" class="list-group mb-2"></ul>
+                <div id="container">
+                    <a id="browse" href="javascript:;" class="btn btn-sm btn-secondary"><i class="fa fa-folder fa-sm"></i> Browse</a>
+                    <a id="start-upload" href="javascript:;" class="btn btn-sm btn-success"><i class="fa fa-play fa-sm"> </i> Start Upload</a>
+                </div>
+                <input type="hidden" name="audio" id="audio_file">
+                <pre id="console" class="text-danger"></pre>
                 <div class="alert alert-warning mt-2">
                     <input type="checkbox" required name="">
                     @copyright_disclaimer
@@ -328,7 +370,7 @@
             </div>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            <button type="submit" id="submit" disabled class="btn btn-primary btn-block">Submit</button>
         </div>
     </form>
 @endsection
@@ -349,24 +391,75 @@
         });
     </script>
     <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
-    {{-- <script src="{{ asset('vendor/select2/select2.min.js') }}"></script> --}}
+    <script src="{{ asset('/vendor/plupload/js/plupload.full.min.js') }}"></script>
     <script>
-        $(function(){
-            let upload_art = $('#upload_art').detach();
-            let no_upload_art = $('#no_upload_art').detach();
-
-            $('#yes_upload').click(function(){
-                $('#art-result').append(upload_art)
-                $('#no_upload_art').remove();
+        var uploader = new plupload.Uploader({
+                browse_button: 'browse', // this can be an id of a DOM element or the DOM element itself
+                runtimes : 'html5,html4',
+                url: '{{ route('audio.uploader') }}',
+                chunk_size: '200kb',
+                max_retries: 3,
+                multi_selection:false,
+                headers:{
+                    'X-CSRF-TOKEN':'{{ csrf_token() }}'
+                },
+                max_file_size:'30mb',
+                filters: {
+                mime_types : [
+                    { title : "audio files", extensions : "mp3, wav" },
+                ]
+                }
+            });
+    
+            uploader.bind('FilesAdded', function(up, files) {
+                var html = '';
+                if(up.files.length > 1) up.files.splice(0,1);
+                plupload.each(files, function(file) {
+                    html += '<li class="list-group-item" id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></li>';
+                });
+                document.getElementById('filelist').innerHTML = html;
+                document.getElementById('console').textContent = '';
+            });
+    
+            uploader.bind('UploadProgress', function(up, file) {
+                document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = `
+                <span>${file.percent}%</span>
+                <div class="progress">
+                    <div id="p-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: ${file.percent}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                `;
+                
+            });
+            uploader.bind('FileUploaded',  async function(up, file, info) {
+            let res = JSON.parse(info.response)
+            let path = res.file_name;
+            await swal.fire({
+                iconHtml:'<i class="fa fa-check fa-success"></i>',
+                title:'Audio Uploaded!',
+                showConfirmButton:false,
+                timer:3000
             })
-            //
-            $('#no_upload').click(function(){
-                $('#art-result').append(no_upload_art)
-                $('#upload_art').remove();
-            })
+            document.querySelector('#p-bar').classList.remove('progress-bar-animated')
+            document.getElementById('submit').disabled = false;
+            document.getElementById('audio_file').value=path;
             
-        })
-    </script>
+            });
+    
+            uploader.bind('Error', function(up, err) {
+                document.getElementById('console').innerHTML += err.message;
+                alert(err.message)
+            });
+    
+            document.getElementById('start-upload').onclick = function() {
+                uploader.start();
+            };
+            uploader.init();
+    
+    
+            
+    
+        </script>
+    {{-- <script src="{{ asset('vendor/select2/select2.min.js') }}"></script> --}}
     <script>
         $(function(){
             // $.fn.select2.defaults.set( "theme", "bootstrap" );

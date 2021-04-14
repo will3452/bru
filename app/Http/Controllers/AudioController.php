@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Audio;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\AudioForm;
 
@@ -44,13 +45,9 @@ class AudioController extends Controller
     public function store(AudioForm $request)
     {
         $validated = $request->validated();
+        $code = Str::random(8);
+        $validated['code'] = $code;
         $validated['cpy'] = now();
-
-        $path = $validated['audio']->store('public/audios');
-        $arr_path = explode('/', $path);
-        $end_path = end($arr_path);
-        $validated['audio'] = '/storage/audios/'.$end_path;
-
         if(request()->has('free_art')){
             $path = request()->free_art->store('public/free_arts');
             $arr_path = explode('/', $path);
@@ -60,7 +57,7 @@ class AudioController extends Controller
         $audio = auth()->user()->audio()->create($validated);
 
         
-        return back()->withSuccess('Done! Audio book added!');
+        return redirect(route('audio.index').'?id='.$audio->id);
 
     }
 
@@ -94,22 +91,22 @@ class AudioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Audio $audio)
     {
         $validated = $this->validate($request, [
-            'title'=>'required',
-            'language'=>'required',
-            'cost'=>'',
-            'lead_character'=>'required',
-            'lead_college'=>'required',
-            'review_question_1'=>'required',
-            'review_question_2'=>'required',
-            'credit_page'=>'required',
-            'blurb'=>'required',
+            "code"=>'required',
         ]);
 
-        Audio::findOrFail($id)->update($validated);
-        return  back()->withSuccess('Done!');
+        if($validated['code'] == $audio->code){
+            if(empty($audio->approved)){
+                $audio->approved = date("Y/m/d");
+            }
+            $audio->save();
+        }else {
+            return back()->withErrors('Invalid Code, please contact the Adminstrator');
+        }
+
+        return back()->with('success', 'Item updated successfully');
     }
 
     /**
@@ -122,5 +119,23 @@ class AudioController extends Controller
     {
         Audio::findOrFail($id)->delete();
         return redirect()->route('audio.index')->withSuccess('Done!');
+    }
+
+    public function updateSome(Audio $audio){
+        $validated = request()->validate([
+            'language'=>'',
+            'gender'=>'',
+            'lead_character'=>'',
+            'lead_college'=>'',
+            'blurb'=>'',
+            'review_question_1'=>'',
+            'review_question_2'=>'',
+            'credit_page'=>'',
+            'publish_date'=>''
+        ]);
+        $audio->update($validated);
+
+        return back()->withSuccess('Done!');
+
     }
 }

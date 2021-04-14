@@ -215,6 +215,7 @@ Route::prefix('trailers')->name('thrailers.')->group(function(){
 
 //large video files handler 
 Route::post('/large-video-uploader','VideoUploader')->name('video.uploader');
+Route::post('/large-audio-uploader','VideoUploader')->name('audio.uploader');
 
 
 Route::prefix('events')->name('events.')->group(function(){
@@ -225,6 +226,9 @@ Route::prefix('events')->name('events.')->group(function(){
 });
 
 Route::resource('audio', 'AudioController');
+//update content such as: languages, male, college, blurb etc..,
+Route::put('audio/update-some/{audio}','AudioController@updateSome')->name('audio.updatesome');
+
 Route::resource('songs', 'SongController');
 Route::resource('inbox', 'InboxController');
 Route::resource('group', 'GroupController');
@@ -237,12 +241,14 @@ Route::prefix('tickets')->name('tickets.')->group(function(){
     Route::post('delete/art/{art}', 'TicketController@artDestroy')->name('art.delete');
     Route::post('delete/chapter/{chapter}', 'TicketController@chapterDestroy')->name('chapter.delete');
     Route::post('delete/trailer/{thrailer}', 'TicketController@thrailerDestroy')->name('thrailer.delete');
+    Route::post('delete/audio/{audio}', 'TicketController@audioDestroy')->name('audio.delete');
 
     //edit ticket
     Route::post('edit/book/{book}', 'TicketController@bookUpdate')->name('book.update');
     Route::post('edit/art/{art}', 'TicketController@artUpdate')->name('art.update');
     Route::post('edit/chapter/{chapter}', 'TicketController@chapterUpdate')->name('chapter.update');
     Route::post('edit/trailer/{thrailer}', 'TicketController@thrailerUpdate')->name('thrailer.update');
+    Route::post('edit/audio/{audio}', 'TicketController@audioUpdate')->name('audio.update');
 
 });
 

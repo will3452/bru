@@ -2,7 +2,8 @@
 
 @section('main-content')
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800"> audio {{ $audio->title }}</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ $audio->title }}</h1>
+    @include('partials.alert')
     <div class="d-flex justify-content-between mb-2 align-items-center">
         <a href="{{ route('books.index') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a> 
     </div>
@@ -13,6 +14,31 @@
                     <li>{{ $error }}</li>
                 @endforeach
             </ul>
+        </div>
+    @endif
+    @if ($audio->approved == null)
+        <div x-data="{viewForm:false}">
+            <div class="alert alert-warning">
+                This Audio Book is not yet approved. click <a href="#" x-on:click.prevent="viewForm = true">HERE</a> to enter your approval CODE.
+            </div>
+            <div x-show="viewForm">
+                <form action="{{ route('audio.update', $audio) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="form-group">
+                        <label for="">Code</label>
+                        <input type="text" class="form-control" name="code">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary">
+                            Verify
+                        </button>
+                        <button class="btn btn-danger" x-on:click.prevent="viewForm = false">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     @endif
     <div class="card card-body my-2">
@@ -66,13 +92,13 @@
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('audio.update', $audio) }}" autocomplete="off" id="updateForm">
+                    <form method="POST" action="{{ route('audio.updatesome', $audio) }}" autocomplete="off" id="updateForm">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="_method" value="PUT">
                         <div class="pl-lg-4">
                             <div class="form-group">
                                 <label for="#">Title</label>
-                                <input type="text" name="title" class="form-control" value="{{ old('title') ?? $audio->title }}">
+                                <input type="text" disabled class="form-control" value="{{ old('title') ?? $audio->title }}">
                             </div>
                             {{-- <div class="row form-group">
                                 <div class="col-12 focused">
@@ -100,7 +126,7 @@
                                 <select name="lead_character" id="" class="form-control">
                                     <option value="Male" {{ $audio->lead_character == 'Male' ? 'selected':''}}>Male</option>
                                     <option value="Female" {{ $audio->lead_character == 'Female' ? 'selected':''}}>Female</option>
-                                    <option value="LGBTQ+" {{ $audio->lead_character == 'LGBTQ+' ? 'selected':''}}>LGBTQI+</option>
+                                    <option value="LGBTQIA+" {{ $audio->lead_character == 'LGBTQIA+' ? 'selected':''}}>LGBTQIA+</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -117,7 +143,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="#">Cost</label>
-                                <input type="number" name="cost" class="form-control" min="0" value="{{ $audio->cost }}">
+                                <input type="number" disabled class="form-control" min="0" value="{{ $audio->cost }}">
                             </div>
                             <div class="form-group">
                                 <label for="#">Review Question <sup class="d-inline-block" style="width:20px;height:20px;">1</sup></label>
@@ -153,20 +179,182 @@
 
     </div>
 
-    <div class="card card-body">
-        <form action="{{ route('audio.destroy', $audio) }}" x-data="{isDelete:false}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button type="button" class="btn btn-danger" x-on:click="isDelete = !isDelete" x-show="!isDelete">DELETE THIS AUDIO BOOK</button>
-            <div x-show="isDelete">
-                <div>
-                    Are you sure you want to delete this audio book? 
-                </div>
-                <button class="btn btn-danger" x-show="isDelete">Yes</button>
-                <button type="button" class="btn btn-secondary" x-on:click="isDelete = !isDelete" x-show="isDelete">No</button>
-            </div>
-        </form>
-    </div>
+    @if($audio->approved != null )
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                      <h6 class="m-0 font-weight-bold text-primary">Publish Work</h6>
+                  </div>
+                  <div class="card-body">
+                      
+                      <form class=" pl-lg-4" method="POST" action="{{ route('audio.updatesome', $audio) }}">
+                          @csrf
+                          @method('PUT')
+                          <div class="form-group">
+                              <input type="text" id="pdate" name="publish_date" required readonly class="form-control" data-field="date" value="{{ $audio->publish_date }}">
+                              <div id="dbox"></div>
+                          </div>
+                          <div class="form-group"></div>
+                          <div class="row justify-content-center">
+                              <button class="btn btn-primary">Set Publish Date</button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+      @endif
+      @if ($audio->approved != null)
+      <div x-data="{
+          showDeleteForm:false,
+          makeConfirmation(){
+              swal.fire({
+              text: `Your request to delete your Audio Book is subject to Admin's approval. Would you like to proceed?`,
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes',
+              cancelButtonText: 'No',
+              }).then((result) => {
+              if (result.isConfirmed) {
+                  this.deleteForm();
+              }
+              })
+          },
+          async deleteForm(){
+              const { value: formValues } = await swal.fire({
+                  title: 'Send Ticket',
+                  html:
+                    `
+                    <div class='alert alert-warning ' style='font-size:11px;text-align:left;'>
+                      You are now requesting to delete your Audio Book. Please fill out the necessary fields and provide a brief explanation for the request. 
+                      <br><br>
+                      However, please be reminded that your Audio Book is under contract. Please confirm with BRUMULTIVERSE personally after submitting the request. 
+                    </div>
+                    <input id='password' type='password' placeholder='Enter your password here.' class='swal2-input'>
+                    <textarea id='reason' placeholder='Enter your reason' class='swal2-textarea' row='5' required></textarea>`,
+                  focusConfirm: false,
+                  showCloseButton: true,
+                  showCancelButton: true,
+                  confirmButtonText:'submit',
+                  preConfirm: () => {
+                    return [
+                      document.getElementById('password').value,
+                      document.getElementById('reason').value
+                    ]
+                  }
+                })
+                {{-- JSON.stringify(formValues) --}}
+                if (formValues) {
+                  axios.post('{{ route('tickets.audio.delete', $audio) }}', {password:formValues[0], reason:formValues[1]})
+                  .then(res=>{
+                      if(res.data == 1){
+                          swal.fire({
+                              iconHtml:`<i class='fa fa-check text-success'></i>`,
+                              title: 'Your Ticket has been sent!',
+                              showConfirmButton: false,
+                              timer: 1500
+                            })
+                      }else if(res.data == 2){
+                          swal.fire({
+                              iconHtml:`<i class='fa fa-times text-danger'></i>`,
+                              title: 'Your Password is wrong!',
+                              showConfirmButton: false,
+                              timer: 3000
+                            })
+                      }
+                  })
+                }
+          },
+          makeUpdateConfirm(){
+              swal.fire({
+                  text: `Request to change the Title, Audio Book is subject to Admin's approval. Would you like to proceed?`,
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Yes',
+                  cancelButtonText: 'No',
+                  }).then((result) => {
+                  if (result.isConfirmed) {
+                      this.updateForm();
+                  }
+                  })
+          },
+          async updateForm(){
+              const { value: formValues } = await swal.fire({
+                  title: 'Send Ticket',
+                  html:
+                    `
+                    <div class='alert alert-warning ' style='font-size:11px;text-align:left;'>
+                      You are now requesting a change of either the Title or the Cost of your Audio Book. Please fill out the necessary field/s that you wish to update in the boxes below and provide a brief explanation for the change.
+                      <br><br>
+                      However, please be reminded that changing your Audio Book Title will require an amendment to your contract, and thus, will entail additional cost on your end.
+                    </div>
+                    <input id='password' type='password' placeholder='Enter your password here.' class='swal2-input'>
+                    <input id='title' type='text' placeholder='Enter new title here.' class='swal2-input'>
+                    <input id='cost' type='number' placeholder='Enter new cost here' class='swal2-input'>
+                    <textarea id='reason' placeholder='Enter your reason' class='swal2-textarea' row='5' required></textarea>
+                    `,
+                  focusConfirm: false,
+                  showCloseButton: true,
+                  showCancelButton: true,
+                  confirmButtonText:'submit',
+                  preConfirm: () => {
+                    return {
+                      'password':document.getElementById('password').value,
+                      'reason':document.getElementById('reason').value,
+                      'title':document.getElementById('title').value,
+                      'cost':document.getElementById('cost').value
+                    }
+                  }
+                })
+                {{-- JSON.stringify(formValues) --}}
+                if(!formValues.password.length){
+                  await swal.fire({
+                      iconHtml:`<i class='fa fa-times text-danger'></i>`,
+                      title: 'Please input your password',
+                      showConfirmButton: false,
+                      timer: 3000
+                    })
+                    this.updateForm();
+                }
+                else if (formValues) {
+                  axios.post('{{ route('tickets.audio.update', $audio) }}', formValues)
+                  .then(res=>{
+                      if(res.data == 1){
+                          swal.fire({
+                              iconHtml:`<i class='fa fa-check text-success'></i>`,
+                              title: 'Your ticket has been sent!',
+                              showConfirmButton: false,
+                              timer: 1500
+                            })
+                      }else if(res.data == 2){
+                          swal.fire({
+                              iconHtml:`<i class='fa fa-times text-danger'></i>`,
+                              title: 'Your Password is wrong!',
+                              showConfirmButton: false,
+                              timer: 3000
+                            })
+                      }
+                  })
+                  .catch(err=>{
+                      swal.fire({
+                          iconHtml:`<i class='fa fa-times text-danger'></i>`,
+                          title: 'Something went wrong!',
+                          showConfirmButton: false,
+                          timer: 3000
+                        })
+                  })
+                }
+          }
+      }">
+          <button class="btn btn-danger" x-show="!showDeleteForm" type="button" x-on:click="makeConfirmation()"><i class="fa fa-trash" click="showDeleteForm"></i> Delete</button>
+          <button class="btn btn-info" x-on:click="makeUpdateConfirm()" type="button" x-on:click="makeConfirmation()"><i class="fa fa-paper-plane" click="showDeleteForm"></i> Send Update Ticket</button>
+      </div>
+      @endif
 @endsection
 
 
@@ -181,6 +369,7 @@
     <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}" defer></script>
     <script src="{{ asset('vendor\datepicker\DateTimePicker.min.js') }}"></script>
     <script src="{{ asset('vendor/select2/select2.min.js') }}" defer></script>
+    <script src="/js/app.js"></script>
     <script>
         $(function(){
             $('#dbox').DateTimePicker();

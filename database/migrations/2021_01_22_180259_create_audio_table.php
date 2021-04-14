@@ -29,6 +29,7 @@ class CreateAudioTable extends Migration
             $table->string('cost')->nullable();
             $table->string('content_warning')->nullable();
             $table->string('publish_date')->nullable();
+            $table->string('code')->nullable();
             $table->text('review_question_1')->nullable();
             $table->text('review_question_2')->nullable();
             $table->text('front')->nullable();
@@ -39,7 +40,9 @@ class CreateAudioTable extends Migration
             $table->text('age_restriction')->nullable();
             $table->string('free_art')->nullable();
             $table->text('audio')->nullable();
+            $table->foreignId('group_id')->nullable();
             $table->timestamp('cpy')->nullable();
+            $table->string('approved')->nullable();
             $table->timestamps();
         });
     }

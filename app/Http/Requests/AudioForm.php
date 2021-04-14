@@ -75,7 +75,8 @@ class AudioForm extends FormRequest
             'cover'=>'required',
             'audio'=>'required',
             'free_art'=>'',
-            'cpy'=>''
+            'cpy'=>'',
+            'group_id'=>''
             // 'event_id'=>''
         ];
     }

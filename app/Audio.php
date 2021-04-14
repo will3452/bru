@@ -23,4 +23,9 @@ class Audio extends Model
         return self::whereNotNull('publish_date')->get();
     }
     
+    //tickets that will send to the administrator to edit the book.
+    public function tickets()
+    {
+        return $this->morphMany(Ticket::class, 'ticketable');
+    }
 }

@@ -110,7 +110,7 @@ class ThrailerController extends Controller
             'genre'=>$genre,
             'book_id' => $book_id,
             'thrailer_id'=>$thrailer_id,
-            'description'=>request()->desc,
+            'desc'=>request()->desc,
             'category'=>request()->category,
             'credit'=>request()->credit,
             'age_restriction'=>request()->age_restriction,
@@ -155,18 +155,28 @@ class ThrailerController extends Controller
     public function update(Request $request, Thrailer $thrailer)
     {
         $validated = $this->validate($request, [
-            "code"=>'required',
+            'category'=>'',
+            'genre'=>'',
+            'type'=>'',
+            'language'=>'',
+            'lead_character'=>'',
+            'lead_college'=>'',
+            'blurb'=>'',
+            'review_question_1'=>'',
+            'review_question_2'=>'',
+            'credit'=>'',
+            'desc'=>'',
+            'publish_date'=>'',
+            'code'=>''
         ]);
-
-        if($validated['code'] == $thrailer->code){
-            if(empty($thrailer->approved)){
-                $thrailer->approved = date("Y/m/d");
+        if(request()->has('code')){
+            if( $validated['code'] == $thrailer->code){
+                $validated['approved'] = date("Y/m/d");
+            }else {
+                return back()->withErrors('Invalid Code, please contact the Adminstrator');
             }
-            $thrailer->save();
-        }else {
-            return back()->withErrors('Invalid Code, please contact the Adminstrator');
         }
-
+        $thrailer->update($validated);
         return back()->with('success', 'Item updated successfully');
     }
 
@@ -202,4 +212,6 @@ class ThrailerController extends Controller
         $thrailer->save();
         return back()->withSuccess('Cover Updated!');
     }
+
+    
 }

@@ -38,7 +38,9 @@
                     Trailer / Film / Animation Details
                 </div>
                 <div class="card-body">
-                    <form action="#">
+                    <form action="{{ route('thrailers.update', $thrailer) }}" method="POST">
+                      @csrf
+                      @method('PUT')
                         <div class="form-group">
                             <label for="">Title</label>
                             <input type="text" disabled value="{{ $thrailer->title }}" class="form-control">
@@ -49,7 +51,7 @@
                         </div> 
                         <div class="form-group">
                             <label for="">Description</label>
-                            <textarea name="desc" id="" cols="30" rows="5" class="form-control">{{ $thrailer->description }}</textarea>
+                            <textarea name="desc" id="" cols="30" rows="5" class="form-control">{{ $thrailer->desc }}</textarea>
                         </div>          
                         <div class="form-group">
                             <label for="">Credits</label>
@@ -99,6 +101,32 @@
             </div>
         </div> --}}
     </div>
+    @if($thrailer->approved != null )
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                      <h6 class="m-0 font-weight-bold text-primary">Publish Work</h6>
+                  </div>
+                  <div class="card-body">
+                      
+                      <form class=" pl-lg-4" method="POST" action="{{ route('thrailers.update', $thrailer) }}">
+                          @csrf
+                          @method('PUT')
+                          <div class="form-group">
+                              <input type="text" id="pdate" name="publish_date" required readonly class="form-control" data-field="date" value="{{ $thrailer->publish_date }}">
+                              <div id="dbox"></div>
+                          </div>
+                          <div class="form-group"></div>
+                          <div class="row justify-content-center">
+                              <button class="btn btn-primary">Set Publish Date</button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+      @endif
 
     @if ($thrailer->approved != null)
     <div x-data="{
@@ -256,13 +284,15 @@
 @section('top')
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2-bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor\datepicker\DateTimePicker.css') }}">
     <script src="/js/app.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine.js" integrity="sha512-nIwdJlD5/vHj23CbO2iHCXtsqzdTTx3e3uAmpTm4x2Y8xCIFyWu4cSIV8GaGe2UNVq86/1h9EgUZy7tn243qdA==" crossorigin="anonymous"></script>
 @endsection
 @section('bottom')
 <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
-
+<script src="{{ asset('vendor\datepicker\DateTimePicker.min.js') }}"></script>
 <script>
+    $('#dbox').DateTimePicker();
     CKEDITOR.replace('desc',{height:"50vh", toolbarGroups: [{
       "name": "basicstyles",
       "groups": ["basicstyles"]

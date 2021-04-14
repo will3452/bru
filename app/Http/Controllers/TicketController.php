@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Art;
 use App\Book;
+use App\Audio;
 use App\Chapter;
 use App\Thrailer;
 use Illuminate\Http\Request;
@@ -111,4 +112,28 @@ class TicketController extends Controller
         $thrailer->tickets()->create($validated);
         return 1;
     }
+
+    // audio
+    public function audioDestroy(Audio $audio){
+        if(!$this->correctPassword(request()->password)) return 2;
+            $audio->tickets()->create([
+                'reason'=>request()->reason,
+                'delete'=>now(),
+                'user_id'=>auth()->user()->id
+            ]);
+
+            return 1;
+        }
+        public function audioUpdate(Audio $audio){
+        if(!$this->correctPassword(request()->password)) return 2;
+        $validated = request()->validate([
+            'reason'=>'',
+            'title'=>'',
+            'cost'=>''
+        ]);
+        $validated['user_id'] = auth()->user()->id;
+        $audio->tickets()->create($validated);
+        return 1;
+    }
+
 }
