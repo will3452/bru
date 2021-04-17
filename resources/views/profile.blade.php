@@ -70,7 +70,7 @@
                                             <a href="{{ route('group.show', $group->id) }}">{{ $group->name }}</a>
                                         </div>
                                         <div>
-                                            {{ $group->approved ? 'Approved':'Not Approved' }}
+                                            {{ $group->status }}
                                         </div>
                                     </li>
                                 @endforeach
