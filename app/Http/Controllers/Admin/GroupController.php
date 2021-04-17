@@ -19,7 +19,18 @@ class GroupController extends Controller
      */
     public function index()
     {
-        return view('admin.groups.index');
+        $groups = Group::where('status','pending')->whereNull('approved')->get();// pending status
+        if(request()->has('status') && request()->status != 'pending'){
+
+            if(request()->has('status') && request()->status ==  'dis'){
+                $groups = Group::where('status','disapproved')->get();
+            }else {
+                $groups = Group::where('status','approved')->whereNotNull('approved')->get();
+            }
+            // dd($groups);
+            
+        }
+        return view('admin.groups.index', compact('groups'));
     }
 
     /**
@@ -75,6 +86,8 @@ class GroupController extends Controller
     public function update(Request $request, $id)
     {
         $group = Group::find($id);
+        $group->reason = '';
+        $group->status = 'approved';
         $group->approved = now();
         $group->save();
         return back()->withSuccess('Done!');
@@ -91,5 +104,17 @@ class GroupController extends Controller
     {
         Group::find($id)->delete();
         return back()->withSuccess('Done!');
+    }
+
+    public function updateReason($id){
+        $group = Group::findOrFail($id);
+        request()->validate([
+            'reason'=>'required'
+        ]);
+        $group->reason = request()->reason;
+        $group->status = 'disapproved';
+        $group->save();
+        return back()->withSuccess('Done!');
+
     }
 }

@@ -23,6 +23,13 @@ class Group extends Model
         return $this->hasMany(Thrailer::class);
     }
 
+    //count of total works
+    public function getNumberOfWorksAttribute(){
+        $total = 0;
+        $total+= $this->thrailers()->count();
+        return $total;
+    }
+
     public static function APPROVED(){
         return self::whereNotNull('approved')->get();
     }

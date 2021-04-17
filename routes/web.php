@@ -135,6 +135,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     //group approval,
     Route::resource('/group', 'Admin\\GroupController');
+    Route::put('/group-disapprove/{id}', 'Admin\\GroupController@updateReason')->name('group.disapprove');
 
     //create type of group
     Route::resource('/grouptypes', 'Admin\\GroupTypeController');

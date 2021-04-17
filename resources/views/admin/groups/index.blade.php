@@ -47,12 +47,12 @@
     {{-- <div class="d-flex justify-content-between mb-2">
         <a href="{{ url()->previous() }}" class="btn btn-primary btn-sm"><i class="fa fa-angle-left"></i> Back</a>
     </div> --}}
-    <div>
-        <a href="{{ url()->current() }}?status=pending" class="btn btn-sm p-1">@if((isset(request()->status) && request()->status == 'pending') || !isset(request()->status)) * @endif Pending</a>
-        <a href="{{ url()->current() }}?status=approved" class="btn btn-sm p-1">@if(isset(request()->status) && request()->status == 'approved') * @endif Approved</a>
-        <a href="{{ url()->current() }}?status=dis" class="btn btn-sm p-1">@if(isset(request()->status) && request()->status == 'dis') * @endif Dis Approved</a>
+    <div class="my-2">
+        <a href="{{ url()->current() }}?status=pending" class="btn btn-sm p-1 @if((isset(request()->status) && request()->status == 'pending') || !isset(request()->status)) btn-primary @endif"> Pending</a>
+        <a href="{{ url()->current() }}?status=approved" class="btn btn-sm p-1 @if(isset(request()->status) && request()->status == 'approved') btn-primary @endif"> Approved</a>
+        <a href="{{ url()->current() }}?status=dis" class="btn btn-sm p-1 @if(isset(request()->status) && request()->status == 'dis') btn-primary @endif"> Disapproved</a>
     </div>
-    <table id="bookstable" class="table table-stripped table-bordered">
+    <table id="bookstable" class="table table-stripped table-bordered" >
         <thead>
             <th>
                 Name
@@ -77,7 +77,61 @@
             </th>
         </thead>
         <tbody>
-           
+            @foreach ($groups as $group)
+                <tr x-data="{
+                    disapproveMode:false,
+                    updateMyReason(){
+                        document.getElementById('reason{{ $group->id }}').textContent = document.getElementById('text{{ $group->id }}').value;
+                    }
+                }">
+                    <td>
+                        {{ $group->name }}
+                    </td>
+                    <td>
+                        {{ $group->creator->full_name }}
+                    </td>
+                    <td>
+                        {{ $group->type }}
+                    </td>
+                    <td>
+                        {{ $group->numberOfWorks }}
+                    </td>
+                    <td>
+                        {{ $group->members()->count() }}
+                    </td>
+                    <td>
+                        @if ($group->status != 'disapproved')
+                        <div x-show="disapproveMode">
+                            <form action="{{ route('admin.group.disapprove', $group->id) }}" method="POST">
+                                @csrf
+                                @method('put')
+                                <div class="form-group">
+                                    <label for="">Reason</label>
+                                    <textarea name="reason" id="text{{ $group->id }}" cols="30" rows="5" class="form-control" x-on:input="updateMyReason()"></textarea>
+                                </div>
+                                <button class="btn btn-sm btn-primary">submit</button>
+                                <button type="button" class="btn btn-secondary btn-sm" x-on:click.prevent="disapproveMode=false">cancel</button>
+                            </form>
+                        </div>
+                        <button class="btn btn-danger btn-sm" x-show="!disapproveMode" x-on:click="disapproveMode = true">
+                            disapprove
+                        </button>
+                        @endif
+                        @if ($group->status != 'approved')
+                            <form action="{{ route('admin.group.update', $group) }}" method="POST">
+                                @csrf 
+                                @method('put')
+                                <button class="btn btn-success btn-sm" x-show="!disapproveMode">
+                                    approve
+                                </button>
+                            </form>
+                        @endif
+                    </td>
+                    <td id="reason{{ $group->id }}">
+                        {{ $group->reason  }}
+                    </td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 @endsection

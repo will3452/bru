@@ -18,6 +18,8 @@ class CreateGroupsTable extends Migration
             $table->foreignId('creator_id');
             $table->string('name');
             $table->string('type');
+            $table->string('status')->default('pending');
+            $table->text('reason')->nullable();
             $table->timestamp('approved')->nullable();
             $table->timestamps();
         });
