@@ -22,7 +22,7 @@ class CreateSongsTable extends Migration
             $table->text('description')->nullable();
             $table->text('credits')->nullable();
             $table->string('type')->nullable();
-            $table->foreingId('group_id')->nullable();
+            $table->foreignId('group_id')->nullable();
             $table->foreignId('book_id')->nullable();
             $table->foreignId('audio_id')->nullable();
             $table->foreignId('art_id')->nullable();
