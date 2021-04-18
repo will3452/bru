@@ -84,41 +84,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="">Other Artist</label>
-                                <textarea name="artist_others" class="form-control">{{ $song->artist_others }}</textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="#">Composer</label>
-                                <select name="composer" id="" class="form-control">
-                                    @foreach (\App\Pen::get() as $pen)
-                                        <option value="{{ $pen->name }}" {{ $pen->name ==  $song->composer ? 'selected':'' }}>{{ $pen->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="">Other Composer</label>
-                                <textarea name="composer_others" class="form-control">{{ $song->composer_others }}</textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="#">Lyricist</label>
-                                <select name="lyricist" id="" class="form-control">
-                                    @foreach (\App\Pen::get() as $pen)
-                                        <option value="{{ $pen->name }}" {{ $pen->name ==  $song->lyricist ? 'selected':'' }}>{{ $pen->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="">Other Lyricist</label>
-                                <textarea name="lyricist_others" class="form-control">{{ $song->lyricist_others }}</textarea>
-                            </div>
-                            
-                            <div class="form-group">
                                 <label for="#">Description</label>
-                                <textarea name="description" class="form-control" >{{ old('description') ?? $song->description }}</textarea>
+                                <textarea name="desc" class="form-control" >{{ old('description') ?? $song->description }}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="">Genre</label>
@@ -254,6 +221,7 @@
 
 @section('top')
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2.min.css') }}">
+    <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2-bootstrap.min.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine.js" integrity="sha512-nIwdJlD5/vHj23CbO2iHCXtsqzdTTx3e3uAmpTm4x2Y8xCIFyWu4cSIV8GaGe2UNVq86/1h9EgUZy7tn243qdA==" crossorigin="anonymous"></script>
 @endsection
@@ -275,4 +243,10 @@
 
         })
     </script>
+    <script>
+        CKEDITOR.replace('desc');
+        CKEDITOR.replace('credits');
+        CKEDITOR.replace('copyright');
+    </script>
 @endsection
+

@@ -43,12 +43,12 @@ class StoreNovelFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'=>'required',
+            'title'=>'',
             'content'=>'required',
             'type'=>'required',
             'art_cost'=>'',
             'art'=>'',
-            'sq'=>'required',
+            'sq'=>'',
             'slug'=>'required',
             'cpy'=>'',
             'cost'=>'',

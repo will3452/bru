@@ -94,7 +94,7 @@
                         </div>
                         <div class="form-group">
                             <label for="">Art Scene Description</label>
-                            <textarea name="description" id="" cols="30" rows="10" class="form-control">{{ old('description') ?? $art->description }}</textarea>
+                            <textarea name="desc" id="" cols="30" rows="10" class="form-control">{{ old('description') ?? $art->description }}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="">Artist</label>
@@ -320,6 +320,7 @@
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor\datepicker\DateTimePicker.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2-bootstrap.min.css') }}">
+    
     <script src="/js/app.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
 @endsection
@@ -327,6 +328,8 @@
     <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}" defer></script>
     <script src="{{ asset('vendor\datepicker\DateTimePicker.min.js') }}"></script>
     <script src="{{ asset('vendor/select2/select2.min.js') }}" defer></script>
+    <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
+
     <script>
         $(function(){
             $('#dbox').DateTimePicker();
@@ -343,8 +346,7 @@
             });
 
             //rich editor
-            CKEDITOR.replace('blurb');
-            CKEDITOR.replace('credit_page');
+            CKEDITOR.replace('desc');
         });
     </script>
 @endsection

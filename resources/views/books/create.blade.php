@@ -263,7 +263,7 @@
                 </div>
             </div>
             <div class="alert alert-info mt-2" id="no_upload_art">
-                Ok, you may proceed.
+                Great, you may proceed.
             </div>
         </div>
         

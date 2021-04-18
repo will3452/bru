@@ -45,15 +45,11 @@ class SongController extends Controller
             'title'=>'required',
             'genre'=>'required',
             'artist'=>'required',
-            'artist_others'=>'',
-            'composer'=>'required',
-            'composer_others'=>'',
-            'lyricist'=>'required',
-            'lyricist_others'=>'',
-            'description'=>'',
+            'desc'=>'',
             'credits'=>'',
             'associated_type'=>'',
             'book_id'=>'',
+            'group_id'=>'',
             'audio_id'=>'',
             'art_id'=>'',
             'thrailer_id'=>'',
@@ -64,7 +60,9 @@ class SongController extends Controller
             'file'=>'',
             'cpy'=>'',
         ]);
-
+        $validated['description'] = $validated['desc'];
+        unset($validated['desc']);
+        $validated['cpy'] = now();
         $pathCover = $request->cover->store('/public/book_cover');
         $pathFile = $request->file->store('/public/songs');
 
@@ -106,15 +104,11 @@ class SongController extends Controller
             'title'=>'required',
             'genre'=>'required',
             'artist'=>'required',
-            'artist_others'=>'',
-            'composer'=>'required',
-            'composer_others'=>'',
-            'lyricist'=>'required',
-            'lyricist_others'=>'',
-            'description'=>'',
+            'desc'=>'',
             'credits'=>'',
             'associated_type'=>'',
             'book_id'=>'',
+            'group_id'=>'',
             'audio_id'=>'',
             'art_id'=>'',
             'thrailer_id'=>'',

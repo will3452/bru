@@ -20,60 +20,46 @@
                 @endforeach
             </select>
         </div>
-        <div class="form-group" x-data="{hasOther:false}">
+        <div x-data="{
+            typeOfWork:1, 
+            updateWork(){
+                this.typeOfWork = document.getElementById('workSelector').value;
+            }
+        }">
+        <div class="form-group">
+            <label for="">Type of Work</label>
+            <select id="workSelector" x-on:change="updateWork()" class="custom-select">
+                <option value="1">Solo</option>
+                <option value="2">Collaboration</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label for="">Artist</label>
             <select name="artist" id="" class="form-control">
                 @foreach (\App\Pen::get() as $pen)
                     <option value="{{ $pen->name }}">{{ $pen->name }}</option>
                 @endforeach
             </select>
-            <div class="form-group mt-2">
-                <input type="checkbox" x-on:change = "hasOther = !hasOther"> Include others ? 
-            </div>
-            <template x-if="hasOther">
-                <div>
-                    <textarea name="artist_others" class="form-control" placeholder="Enter others here." required></textarea>
-                </div>
-            </template>
         </div>
-        <div class="form-group" x-data="{hasOther:false}">
-            <label for="">Composer</label>
-            <select name="composer" id="" class="form-control">
-                @foreach (\App\Pen::get() as $pen)
-                    <option value="{{ $pen->name }}">{{ $pen->name }}</option>
-                @endforeach
-            </select>
-            <div class="form-group mt-2">
-                <input type="checkbox" x-on:change = "hasOther = !hasOther"> Include others ? 
+        <template x-if="typeOfWork == 2">
+            <div class="form-group">
+                Select Group
+                <select name="group_id" id="" class="custom-select">
+                    @foreach (auth()->user()->groups as $g)
+                        <option value="{{ $g->id }}">
+                        {{ $g->name }}
+                    </option>
+                    @endforeach
+                </select>
             </div>
-            <template x-if="hasOther">
-                <div>
-                    <textarea name="composer_others" class="form-control" placeholder="Enter others here." required></textarea>
-                </div>
-            </template>
-        </div>
-        <div class="form-group" x-data="{hasOther:false}">
-            <label for="">Lyricist</label>
-            <select name="lyricist" id="" class="form-control">
-                @foreach (\App\Pen::get() as $pen)
-                    <option value="{{ $pen->name }}">{{ $pen->name }}</option>
-                @endforeach
-            </select>
-            <div class="form-group mt-2">
-                <input type="checkbox" x-on:change = "hasOther = !hasOther"> Include others ? 
-            </div>
-            <template x-if="hasOther">
-                <div>
-                    <textarea name="lyricist_others" class="form-control" placeholder="Enter others here." required></textarea>
-                </div>
-            </template>
+        </template>
         </div>
         <div class="form-group">
             <label for="">Description</label>
-            <textarea name="description" id="" class="form-control" required></textarea>
+            <textarea name="desc" id="" class="form-control" required></textarea>
         </div>
         <div class="form-group">
-            <label for="">Additional Credits</label>
+            <label for="">Credits</label>
             <textarea name="credits" required class="form-control"></textarea>
         </div>
         <div class="form-group" x-data="{isAssoc:false}">
@@ -190,5 +176,15 @@
 @section('top')
     
     {{-- <script src="{{asset('/js/app.js')}}"></script> --}}
+    <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine.js" integrity="sha512-nIwdJlD5/vHj23CbO2iHCXtsqzdTTx3e3uAmpTm4x2Y8xCIFyWu4cSIV8GaGe2UNVq86/1h9EgUZy7tn243qdA==" crossorigin="anonymous"></script>
+@endsection
+@section('bottom')
+    
+    <script>
+        CKEDITOR.replace('desc');
+        CKEDITOR.replace('credits');
+        CKEDITOR.replace('copyright');
+    </script>
+
 @endsection

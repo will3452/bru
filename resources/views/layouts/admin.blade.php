@@ -437,7 +437,7 @@
     const swal = Swal.mixin({
         position: 'top',
         padding:'0.5em',
-        background:"url('/img/modal-bg-custom.png')"
+        background:"url('{{ asset('/img/modal-bg-custom.png') }}')"
     })
 </script>
 @yield('bottom')

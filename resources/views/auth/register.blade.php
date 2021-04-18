@@ -70,7 +70,7 @@
                                             <select name="gender" id="gender" class="custom-select" value="{{ old('gender') }}">
                                                 <option {{ old('gender') == 'male' ? 'selected':'' }}value="male">Male</option>
                                                 <option {{ old('gender') == 'female' ? 'selected':'' }}value="female">Female</option>
-                                                <option {{ old('gender') == 'LGBTQ+' ? 'selected':'' }} value="LGBTQ+">LGBTQ+</option>
+                                                <option {{ old('gender') == 'LGBTQIA+' ? 'selected':'' }} value="LGBTQ+">LGBTQIA+</option>
                                             </select>
                                         </div>
                                     </div>

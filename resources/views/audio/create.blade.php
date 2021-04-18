@@ -319,7 +319,7 @@
                         </div>
                     </div>
                     <div class="alert alert-info mt-2" id="no_upload_art">
-                        Ok, you may proceed.
+                        Great, you may proceed.
                     </div>
                 </div>
             </template>
@@ -339,7 +339,7 @@
             </select>
             <template x-if="viewForm">
                 <div class="mt-2">
-                    <label for="">Select group.</label>
+                    <label for="">Select Group.</label>
                     <select name="group_id" id="" class="custom-select">
                         @foreach (auth()->user()->groups as $group)
                             <option value="{{ $group->id }}">{{ $group->name }}</option>

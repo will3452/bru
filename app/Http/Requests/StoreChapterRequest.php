@@ -46,11 +46,11 @@ class StoreChapterRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'=>'required',
+            'title'=>'',
             'slug'=>'required',
             'art'=>'',
             'art_cost'=>'',
-            'sq'=>'required',
+            'sq'=>'',
             'type'=>'required',
             'content'=>'required',
             'cpy'=>'',

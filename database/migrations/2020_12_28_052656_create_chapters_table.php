@@ -15,11 +15,11 @@ class CreateChaptersTable extends Migration
     {
         Schema::create('chapters', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('book_id')->constrained()->onDelete('cascade');
-            $table->string('title')->default('Untitled');
+            $table->foreignId('book_id');
+            $table->string('title')->nullable();
             $table->string('slug');
             $table->string('cost');//chapter cost
-            $table->string('sq'); // to order
+            $table->string('sq')->nullable(); // to order
             $table->string('mode')->default('chapter'); //prolouge, epiloque or chapter
             $table->longText('content')->nullable();
             $table->string('type')->nullable();

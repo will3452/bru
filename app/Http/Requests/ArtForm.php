@@ -20,7 +20,7 @@ class ArtForm extends FormRequest
     {
         return [
             'title'=>'required',
-            'description'=>'required',
+            'desc'=>'required',
             'genre'=>'required',
             'age_restriction'=>'required',
             'cost'=>'required',

@@ -19,7 +19,7 @@
     @if ($audio->approved == null)
         <div x-data="{viewForm:false}">
             <div class="alert alert-warning">
-                This Audio Book is not yet approved. click <a href="#" x-on:click.prevent="viewForm = true">HERE</a> to enter your approval CODE.
+                This Audio Book is not yet approved. Click <a href="#" x-on:click.prevent="viewForm = true">HERE</a> to enter your approval CODE.
             </div>
             <div x-show="viewForm">
                 <form action="{{ route('audio.update', $audio) }}" method="POST">

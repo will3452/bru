@@ -38,9 +38,14 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    
+
     protected function redirectTo()
     {
         session()->flash('success', 'You are logged in!');
+        if(!auth()->user()->pens()->count()) {
+           return route('profile').'#pen';
+        }
         return $this->redirectTo;
     }
 }

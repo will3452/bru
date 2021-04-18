@@ -175,8 +175,16 @@
                 </div>
 
             </div>
-
-            <div class="row">
+            @if (auth()->user()->pens()->count() == 0)
+               <script>
+                   swal.fire({
+                       iconHtml:`<i class="fa fa-check"></i>`,
+                       text:'You\'re all set! Here\s your profile page. Please create your pen names to begin uploading your masterpieces. You may have 3 pen names. Once used on any uploaded work, they become permanent. Have fun!',
+                       confirmButtonText:'OK',
+                   })
+               </script>
+            @endif
+            <div class="row" id="pen">
                 <div class="col-md-12">
                     <div class=" card shadow mb-2">
                         <div class="card-body">
@@ -305,6 +313,7 @@
                             <form class="mt-4" x-ref="form" method="POST" action="#" enctype="multipart/form-data" x-on:submit.prevent="submitForm()">
                                 @csrf
                                     <div class="form-group" >
+                                        
                                         <label for="">
                                             Photo
                                         </label>

@@ -12,7 +12,7 @@
         </div>
         <div class="form-group">
             <label for="">Art Scene Description</label>
-            <textarea name="description" id="" cols="30" rows="10" class="form-control">{{ old('description') }}</textarea>
+            <textarea name="desc" id="" cols="30" rows="10" class="form-control">{{ old('description') }}</textarea>
         </div>
         <div class="form-group">
             <label for="">Pen Name</label>
@@ -96,6 +96,7 @@
 @section('top')
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2-bootstrap.min.css') }}">
+    <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
 @endsection
 @section('bottom')
     <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
@@ -115,8 +116,7 @@
             });
 
             //rich editor
-            CKEDITOR.replace('blurb');
-            CKEDITOR.replace('credit_page');
+            CKEDITOR.replace('desc');
         })
     </script>
 @endsection

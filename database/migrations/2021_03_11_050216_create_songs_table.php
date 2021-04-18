@@ -17,13 +17,12 @@ class CreateSongsTable extends Migration
             $table->id();
             $table->string('title');
             $table->foreignId('user_id');
-            $table->string('genre')->nullable();
             $table->string('artist')->nullable();
-            $table->string('composer')->nullable();
-            $table->string('lyricist')->nullable();
+            $table->string('genre')->nullable();
             $table->text('description')->nullable();
             $table->text('credits')->nullable();
             $table->string('type')->nullable();
+            $table->foreingId('group_id')->nullable();
             $table->foreignId('book_id')->nullable();
             $table->foreignId('audio_id')->nullable();
             $table->foreignId('art_id')->nullable();
@@ -36,9 +35,6 @@ class CreateSongsTable extends Migration
             $table->string('cover_cpy')->default('false');
             $table->text('file');
             $table->string('associated_type')->nullable();
-            $table->string('artist_others')->nullable();
-            $table->string('composer_others')->nullable();
-            $table->string('lyricist_others')->nullable();
             $table->string('is_copyright')->nullable();
             $table->timestamp('cpy')->nullable();
             $table->softDeletes();

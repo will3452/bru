@@ -31,6 +31,8 @@ class ArtSceneController extends Controller
     public function store(ArtForm $request){
         $validated = $request->validated();
         $validated['cpy'] = now();
+        $validated['description'] = $validated['desc'];
+        unset($validated['desc']);
         $rtag =request()->tag;
         unset($validated['tag']);
         $file = $validated['file']->store('public/arts');
@@ -62,13 +64,14 @@ class ArtSceneController extends Controller
 
     public function update(Art $art){
         $validated = request()->validate([
-            'description'=>'',
+            'desc'=>'',
             'artist'=>'',
             'genre'=>'',
             'lead_college'=>'',
         ]);
 
-        
+        $validated['description'] = $validated['desc'];
+        unset($validated['desc']);
 
         $art->update($validated);
         return back()->withSuccess('Done!');
