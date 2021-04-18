@@ -2,7 +2,7 @@
 
 @section('main-content')
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Show Art Scene</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ $art->title }}</h1>
     <a href="{{ route('arts.list') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
     @if ($errors->any())
         <div class="alert alert-danger border-left-danger" role="alert">
@@ -196,7 +196,7 @@
                 focusConfirm: false,
                 showCloseButton: true,
                 showCancelButton: true,
-                confirmButtonText:'submit',
+                confirmButtonText:'Submit',
                 preConfirm: () => {
                   return [
                     document.getElementById('password').value,
@@ -259,7 +259,7 @@
                 focusConfirm: false,
                 showCloseButton: true,
                 showCancelButton: true,
-                confirmButtonText:'submit',
+                confirmButtonText:'Submit',
                 preConfirm: () => {
                   return {
                     'password':document.getElementById('password').value,

@@ -2,7 +2,7 @@
 
 @section('main-content')
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">Show {{  $book->class }} book {{ $book->title }}</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ $book->title }}</h1>
     <div class="d-flex justify-content-between mb-2 align-items-center">
         <a href="{{ route('books.list') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a> 
         <a href="{{ route('books.chapters.create', $book) }}" class="btn btn-primary btn-sm"><i class="fa fa-plus-circle"></i> {{ $book->category != 'Series' ? 'Chapter':'Books' }}</a>
@@ -315,7 +315,7 @@
                         focusConfirm: false,
                         showCloseButton: true,
                         showCancelButton: true,
-                        confirmButtonText:'submit',
+                        confirmButtonText:'Submit',
                         preConfirm: () => {
                           return [
                             document.getElementById('password').value,
@@ -377,7 +377,7 @@
                           `,
                         showCloseButton: true,
                         showCancelButton: true,
-                        confirmButtonText:'submit',
+                        confirmButtonText:'Submit',
                         focusConfirm: false,
 
                         preConfirm: () => {

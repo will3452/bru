@@ -149,7 +149,7 @@
                         focusConfirm: false,
                         showCloseButton: true,
                         showCancelButton: true,
-                        confirmButtonText:'submit',
+                        confirmButtonText:'Submit',
                         preConfirm: () => {
                           return [
                             document.getElementById('password').value,
@@ -218,7 +218,7 @@
                           `,
                         showCloseButton: true,
                         showCancelButton: true,
-                        confirmButtonText:'submit',
+                        confirmButtonText:'Submit',
                         focusConfirm: false,
 
                         preConfirm: () => {
