@@ -64,15 +64,10 @@ class SongController extends Controller
         unset($validated['desc']);
         $validated['cpy'] = now();
         $pathCover = $request->cover->store('/public/book_cover');
-        $pathFile = $request->file->store('/public/songs');
 
         $arr_cover = explode('/', $pathCover);
         $end_arr_cover = end($arr_cover);
         $validated['cover'] = '/storage/book_cover/'.$end_arr_cover;
-
-        $arr_file = explode('/', $pathFile);
-        $end_arr_file = end($arr_file);
-        $validated['file'] = '/storage/songs/'.$end_arr_file;
 
         $song = auth()->user()->songs()->create($validated);
         return redirect(route('songs.index').'?id='.$song->id);
