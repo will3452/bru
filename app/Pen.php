@@ -19,7 +19,7 @@ class Pen extends Model
         if(Book::where('author',$this->name)->count()) return false;
         if(Audio::where('author',$this->name)->count()) return false;
         if(Art::where('artist', $this->name)->count()) return false;
-        if(Song::where('artist', $this->name)->orWhere('composer', $this->name)->orWhere('lyricist')->count()) return false;
+        if(Song::where('artist', $this->name)->count()) return false;
         if(Thrailer::where('author', $this->name)->count()) return false;
         return true;
     }
