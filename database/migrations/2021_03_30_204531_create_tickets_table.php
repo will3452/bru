@@ -22,7 +22,7 @@ class CreateTicketsTable extends Migration
             $table->string('cost')->nullable();
             $table->timestamp('delete')->nullable();
             $table->text('reason')->nullable();
-            $table->text('status')->default('pending');
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }
