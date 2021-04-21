@@ -36,7 +36,7 @@
         <div class="form-group">
             <label for="">Artist</label>
             <select name="artist" id="" class="form-control">
-                @foreach (\App\Pen::get() as $pen)
+                @foreach (auth()->user()->pens as $pen)
                     <option value="{{ $pen->name }}">{{ $pen->name }}</option>
                 @endforeach
             </select>

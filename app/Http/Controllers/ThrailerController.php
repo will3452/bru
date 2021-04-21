@@ -75,15 +75,17 @@ class ThrailerController extends Controller
         $cover = '/storage/thrailers_cover/'.$end_path_cover;
 
         if($request->category == 'trailer'){
-            $connect = $request->connect_id;
-            $connect_array = explode('-', $connect);
-            $connect_type = $connect_array[0];
-            $connect_id = end($connect_array);
+            if($request->connect_id != null){
+                $connect = $request->connect_id;
+                $connect_array = explode('-', $connect);
+                $connect_type = $connect_array[0];
+                $connect_id = end($connect_array);
 
-            if($connect_type == 'book'){
-                $book_id = $connect_id;
-            }else{
-                $thrailer_id = $connect_id;
+                if($connect_type == 'book'){
+                    $book_id = $connect_id;
+                }else {
+                    $thrailer_id = $connect_id;
+                }
             }
         }else {
             $genre = $request->genre;
@@ -119,6 +121,7 @@ class ThrailerController extends Controller
             'cost'=>request()->cost,
             'cpy'=>now()
         ]);
+
         // Notification::send(Admin::get(), new VideoApproval($video));
         return redirect(route('thrailers.index').'?id='.$video->id)->with('success', 'Item stored successfully!');
     }

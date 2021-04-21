@@ -266,3 +266,6 @@ Route::post('password-confirm', function(){ //to check the password
 })->name('password-confirm');
 
 Route::post('autofill-aduio-book', 'autoFillController')->name('auto.fill');
+
+//support chat //customer support 
+Route::view('support-chat', 'support_chat');
