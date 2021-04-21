@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    @livewireStyles
     @yield('top')
     <!-- Favicon -->
     <link href="{{ asset('img/logo.png') }}" rel="icon" type="image/png">
@@ -451,6 +452,7 @@
         background:"url('{{ asset('/img/modal-bg-custom.png') }}')"
     })
 </script>
+@livewireScripts
 @yield('bottom')
 </body>
 </html>
