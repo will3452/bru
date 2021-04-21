@@ -77,7 +77,8 @@ class BookForms extends FormRequest
             'cover'=>'required',
             'event_id'=>'',
             'free_art'=>'',
-            'cpy'=>''
+            'cpy'=>'',
+            'group_id'=>''
         ];
     }
 }

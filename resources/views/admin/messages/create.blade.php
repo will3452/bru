@@ -24,7 +24,7 @@
     </div>
     <div class="card">
         <div class="card-header">
-            New Message for @{{ selected|usertype }}
+            New Message for <span style="text-transform:capitalize">@{{ selected|usertype }}</span>
         </div>
         <div class="card-body">
             <form action="{{ route('admin.messages.store') }}" method="POST">
@@ -33,7 +33,7 @@
                
                     <input type="hidden" :value="selected" name="type">
                     <div class="form-group">
-                        <label for="">to user: </label>
+                        <label for="">to User: </label>
                         <select name="to" id="" class="custom-select">
                             <option value="" selected disabled>----</option>
                             <option :value="user.id" v-for="user in users">

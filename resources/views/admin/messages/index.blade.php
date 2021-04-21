@@ -17,7 +17,7 @@
                 <th>Subject</th>
                 <th>To</th>
                 <th>From</th>
-                <th>Date created</th>
+                <th>Date sent</th>
                 <th></th>
             </tr>
         </thead>
@@ -44,11 +44,11 @@
                         {{ $msg->created_at }}
                     </td>
                     <td>
-                       <a href="{{ route('admin.messages.show', $msg->id) }}" class="btn btn-primary btn-sm">view</a>
-                       <form action="{{ route('admin.messages.destroy', $msg->id) }}" class="d-inline" method="POST">
+                       <a href="{{ route('admin.messages.show', $msg->id) }}" class="btn btn-primary btn-sm">View</a>
+                       <form action="{{ route('admin.messages.destroy', $msg->id) }}" class="d-inline" method="POST" id="deleteform{{ $msg->id }}">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-sm btn-danger">delete</button>
+                            <button class="btn btn-sm btn-danger" type="button" onclick="#">Delete</button>
                        </form>
                     </td>
                 </tr>

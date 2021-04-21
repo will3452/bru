@@ -17,6 +17,7 @@ class CreateBooksTable extends Migration
             $table->id();
             $table->bigInteger('series_id')->nullable();
             $table->bigInteger('event_id')->nullable();
+            $table->bigInteger('group_id')->nullable();
             $table->foreignId('user_id');
             $table->string('title')->nullable();
             $table->text('slug')->nullable();

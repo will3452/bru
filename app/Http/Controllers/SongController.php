@@ -111,6 +111,8 @@ class SongController extends Controller
             'cost'=>'',
             'copyright'=>'',
         ]);
+        $validated['description'] = $validated['desc'];
+        unset($validated['desc']);
         Song::find($id)->update($validated);
 
         return back()->withSuccess('Done!');

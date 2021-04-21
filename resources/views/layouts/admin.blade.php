@@ -113,9 +113,9 @@
         <hr class="sidebar-divider">
 
         <!-- Heading -->
-        <div class="sidebar-heading">
+        {{-- <div class="sidebar-heading">
             {{ __('Menu') }}
-        </div>
+        </div> --}}
 
         {{-- <!-- Nav Item - Profile -->
         <li class="nav-item {{ Nav::isRoute('books.*') }}">
@@ -125,12 +125,12 @@
             </a>
         </li> --}}
 
-        <li class="nav-item {{ Nav::isRoute('events.*') }}">
+        {{-- <li class="nav-item {{ Nav::isRoute('events.*') }}">
             <a class="nav-link" href="{{ route('events.index') }}">
                 <img src="{{ asset('img/icons/event.png') }}" alt="" class="icon">
                 <span>{{ __('My Event') }}</span>
             </a>
-        </li>
+        </li> --}}
         <!-- Divider -->
         <hr class="sidebar-divider">
 
@@ -274,6 +274,7 @@
                             <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                         </div>
                     </li>
+                    @livewire('notification-message')
                     <!-- Nav Item - Messages -->
                     {{-- <li class="nav-item dropdown no-arrow mx-1">
                         <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -428,7 +429,20 @@
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
-<script>
+{{-- <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+    (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/607fb8bb5eb20e09cf350783/1f3pej7l1';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+    })();
+    </script>
+    <!--End of Tawk.to Script-->
+<script> --}}
     window.onload = function(){
         $('.loader-container').fadeOut(1000);
     }

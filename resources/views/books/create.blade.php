@@ -68,6 +68,28 @@
                 @endforeach
             </select>
         </div>
+        <div class="form-group" x-data="{
+            typeOfWork:1,
+            updateWork(){
+                this.typeOfWork = document.getElementById('tw').value;
+            }
+        }">
+            <label for="#">Type of Work</label>
+            <select name="" id="tw" class="form-control" x-on:change="updateWork()">
+                <option value="1">Solo</option>
+                <option value="2">Collaboration</option>
+            </select>
+            <template x-if="typeOfWork == 2">
+                <div class="form-group mt-2">
+                    <label for="">Select Group</label>
+                    <select name="group_id"  class="form-control">
+                        @foreach (auth()->user()->groups as $group)
+                            <option value="{{ $group->id }}">{{ $group->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </template>
+        </div>
         <div class="form-group">
             <label for="#">Genre</label>
             <select name="genre" id="genre" class="form-control">
@@ -308,6 +330,7 @@
     </script>
     <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
     <script>
         $(function(){
             $.fn.select2.defaults.set( "theme", "bootstrap" );

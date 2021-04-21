@@ -4,7 +4,7 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">{{ $song->title }}</h1>
     <div class="d-flex justify-content-between mb-2 align-items-center">
-        <a href="{{ route('books.list') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back To My Works</a> 
+        <a href="{{ route('songs.index') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back To My Works</a> 
     </div>
     @if ($errors->any())
         <div class="alert alert-danger border-left-danger" role="alert">

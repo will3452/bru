@@ -179,7 +179,7 @@
                <script>
                    swal.fire({
                        iconHtml:`<i class="fa fa-check"></i>`,
-                       text:'You\'re all set! Here\s your profile page. Please create your pen names to begin uploading your masterpieces. You may have 3 pen names. Once used on any uploaded work, they become permanent. Have fun!',
+                       text:'You\'re all set! Here\'s your profile page. Please create your pen names to begin uploading your masterpieces. You may have 3 pen names. Once used on any uploaded work, they become permanent. Have fun!',
                        confirmButtonText:'OK',
                    })
                </script>
@@ -312,21 +312,7 @@
                         }">
                             <form class="mt-4" x-ref="form" method="POST" action="#" enctype="multipart/form-data" x-on:submit.prevent="submitForm()">
                                 @csrf
-                                    <div class="form-group" >
-                                        
-                                        <label for="">
-                                            Photo
-                                        </label>
-                                        <div class="alert alert-info">
-                                            <i class="fa fa-info-circle"></i> This is the profile photo of your pen name or your scholar persona. This will be shown to the public. 
-                                        </div>
-                                        <div id="image"></div>
-                                        
-                                       <div>
-                                        <input type="file" x-ref="file" name="picture" class="d-block mt-2" accept=".png, .jpg" x-on:change="fetchImage()" x-on:click="" required>
-                                        
-                                       </div>
-                                    </div>
+                                   
                                     <div class="form-group">
                                         <label for="">Pen Name</label>
                                         <input type="text" name="name" class="form-control w-100" id="pen1" required>
@@ -345,6 +331,21 @@
                                         <label for="#" class="d-block" >Country</label>
                                         <select id="pen1country" type="text" name="country" class="form-control">
                                         </select>
+                                    </div>
+                                    <div class="form-group" >
+                                        
+                                        <label for="">
+                                            Photo
+                                        </label>
+                                        <div class="alert alert-info">
+                                            <i class="fa fa-info-circle"></i> This is the profile photo of your pen name or your scholar persona. This will be shown to the public. 
+                                        </div>
+                                        <div id="image"></div>
+                                        
+                                       <div>
+                                        <input type="file" x-ref="file" name="picture" class="d-block mt-2" accept=".png, .jpg" x-on:change="fetchImage()" x-on:click="" required>
+                                        
+                                       </div>
                                     </div>
                                     <div class="form-group">
                                         <button class="btn btn-primary btn-block" x-ref="formBtn">
