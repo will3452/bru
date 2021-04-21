@@ -429,7 +429,7 @@
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
-{{-- <!--Start of Tawk.to Script-->
+<!--Start of Tawk.to Script-->
 <script type="text/javascript">
     var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
     (function(){
@@ -442,7 +442,7 @@
     })();
     </script>
     <!--End of Tawk.to Script-->
-<script> --}}
+<script>
     window.onload = function(){
         $('.loader-container').fadeOut(1000);
     }
