@@ -1,4 +1,4 @@
-<li wire:poll.5s class="nav-item dropdown no-arrow mx-1">
+<li wire:poll class="nav-item dropdown no-arrow mx-1">
     <a class="nav-link dropdown-toggle" href="{{ route('inbox.index') }}" id="messagesDropdown"  >
         <i class="fas fa-envelope fa-fw"></i>
         <!-- Counter - Messages -->
