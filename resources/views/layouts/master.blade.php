@@ -97,9 +97,18 @@
                     <span>{{ __('Dashboard') }}</span></a>
             </li>
         @endif
+        @if (auth()->user()->allowed('admin'))
+            
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item {{ Nav::isRoute('admin.tickets.*') }}">
+                <a class="nav-link" href="{{ route('admin.tickets.index') }}">
+                    <i class="fa fa-sticky-note text-white" style="font-size:24px"></i>
+                    <span>{{ __('tickets') }}</span></a>
+            </li>
+        @endif
         
         <!-- Heading -->
-        @if (auth()->user()->allowed('admin'))
+        @if (auth()->user()->allowed('aan'))
         
             <li class="nav-item {{ Nav::isRoute('admin.aan.index') }}">
                 <a class="nav-link" href="{{ route('admin.aan.index') }}">
@@ -109,7 +118,7 @@
             </li>
         @endif
 
-        @if (auth()->user()->allowed('aan'))
+        @if (auth()->user()->allowed('admin'))
         
             <li class="nav-item {{ Nav::isRoute('admin.admins.index') }}">
                 <a class="nav-link" href="{{ route('admin.admins.index') }}">

@@ -34,9 +34,9 @@
                     <input type="hidden" :value="selected" name="type">
                     <div class="form-group">
                         <label for="">to User: </label>
-                        <select name="to" id="" class="custom-select">
+                        <select name="to" id="" class="custom-select" >
                             <option value="" selected disabled>----</option>
-                            <option :value="user.id" v-for="user in users">
+                            <option :value="user.id" v-for="user in users" :selected="user.id == selectedUserId">
                                 @{{ user.email }}
                             </option>
                         </select>
@@ -97,7 +97,8 @@
             el:"#message",
             data:{
                 selected:1,
-                users:@json($users)
+                users:@json($users),
+                selectedUserId:{{ request()->email ?? 0}}
             },
             filters:{
                 usertype(a){

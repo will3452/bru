@@ -57,8 +57,8 @@
         <tbody>
             @if(count($books))
             @foreach($books as $key=>$book)
-            <tr>
-                <td class="d-flex justify-content-center"><img src="{{ $book->cover}}"  class="avatar font-weight-bold d-block" alt=""></td>
+            <tr >
+                <td class=""><img src="{{ $book->cover}}"  class="avatar font-weight-bold d-block" alt=""></td>
                 <td>
                     {{ $book->title }}
                 </td>
@@ -69,7 +69,7 @@
                 <td>{{ $book->cost }}</td>
                 <td>{{ $book->created_at->format('M d, Y') }}</td>
                 <td>{!! $book->ispublic ? '<i class="fa fa-check fa-xs" ></i> yes':'<i class="fa fa-times fa-xs" ></i> no'!!}</td>
-                <td>
+                <td >
                     <form action="{{ route('admin.bin.restore', $book->id) }}" method="POST">
                         @csrf
                         @method('PUT')

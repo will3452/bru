@@ -19,7 +19,6 @@
             return sprintf('%.02F', $bytes / pow(1024, $i)) * 1 . ' ' . $sizes[$i];
     }
     @endphp 
-
     <div class="card">
         <div class="card-header">
             Storage  

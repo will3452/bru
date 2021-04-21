@@ -134,10 +134,10 @@
         <!-- Divider -->
         {{-- <hr class="sidebar-divider"> --}}
 
-        <!-- Heading -->
+        {{-- <!-- Heading -->
         <div class="sidebar-heading">
             {{ __('Marketing') }}
-        </div>
+        </div> --}}
 
         <!-- Nav Item - Profile -->
         <li class="nav-item {{ Nav::isRoute('inbox.*') }}">

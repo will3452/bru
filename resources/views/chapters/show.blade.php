@@ -2,7 +2,7 @@
 
 @section('main-content')
     <h1>
-        View and Edit <span style="text-transform:capitalize"> {{ $chapter->mode }}</span>
+        <span style="text-transform:capitalize"> {{ $chapter->mode }}</span>
     </h1>
     <div class="row">
         <div class="col-md-8">
@@ -16,14 +16,17 @@
                     <form action="{{ route('books.chapters.update', ['book'=>$book, 'chapter'=>$chapter]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        <div class="form-group">
-                            <label for="">Title</label>
-                            <input type="text" class="form-control" value="{{ $chapter->title}}" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Cost</label>
-                            <input type="text" class="form-control" value="{{ $chapter->cost}}" disabled>
-                        </div>
+                        @if (!in_array($chapter->mode, ['prolouge', 'epilouge']))
+                            <div class="form-group">
+                                <label for="">Title</label>
+                                <input type="text" class="form-control" value="{{ $chapter->title}}" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Cost</label>
+                                <input type="text" class="form-control" value="{{ $chapter->cost}}" disabled>
+                            </div>
+                        @endif
+                        
                         @if ($chapter->art)
                             <div class="form-group">
                                 <a href="{{  $chapter->art }}" class="btn btn-success btn-sm" target="_blank">View Art Scene</a>
@@ -56,9 +59,12 @@
                         <button class="btn btn-danger" x-on:click="confirm()" x-data="getDeleteData()">
                             <i class="fa fa-trash"></i> Delete
                         </button>
+
+                        @if (!in_array($chapter->mode, ['prolouge', 'epilouge']))
                         <button class="btn btn-secondary" x-on:click="confirm()" x-data="getSendTicketData()">
                             <i class="fa fa-paper-plane"></i> Send Ticket
                         </button>
+                        @endif
                     </div>
                 </div>
             </div>

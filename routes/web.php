@@ -143,6 +143,9 @@ Route::prefix('admin')->name('admin.')->group(function(){
     //users
     Route::resource('/users', 'Admin\\UserController');
 
+    //ticket for edinting works
+    Route::resource('/tickets', 'Admin\\TicketController');
+
 });
 
 //checkers
@@ -192,6 +195,7 @@ Route::prefix('books')->name('books.')->group(function(){
     
 });
 
+//arts
 Route::prefix('arts')->name('arts.')->group(function(){
     Route::get('/create', 'ArtSceneController@create')->name('create');
     Route::get('/list', 'ArtSceneController@list')->name('list');
@@ -201,6 +205,7 @@ Route::prefix('arts')->name('arts.')->group(function(){
     Route::delete('/{art}', 'ArtSceneController@destroy')->name('destroy');
 });
 
+//trailer
 Route::prefix('trailers')->name('thrailers.')->group(function(){
     Route::get('/', 'ThrailerController@index')->name('index');
     Route::post('/{thrailer}/cover', 'ThrailerController@updateCover')->name('cover.update');
