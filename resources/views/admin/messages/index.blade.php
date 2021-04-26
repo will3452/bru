@@ -44,11 +44,12 @@
                         {{ $msg->created_at }}
                     </td>
                     <td>
+                        
                        <a href="{{ route('admin.messages.show', $msg->id) }}" class="btn btn-primary btn-sm">View</a>
-                       <form action="{{ route('admin.messages.destroy', $msg->id) }}" class="d-inline" method="POST" id="deleteform{{ $msg->id }}">
+                       <form action="{{ route('admin.messages.destroy', $msg->id) }}" id="delete{{ $msg->id }}" class="d-inline" method="POST" id="deleteform{{ $msg->id }}">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-sm btn-danger" type="button" onclick="#">Delete</button>
+                            <button class="btn btn-sm btn-danger" type="button" onclick="validatePassword('delete{{ $msg->id }}');">Delete</button>
                        </form>
                     </td>
                 </tr>
@@ -61,8 +62,21 @@
     <link rel="stylesheet" href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css">
+    <script src="/js/app.js"></script>
 @endsection
 @section('bottom')
+<script>
+    function validatePassword(elId){
+                let password = prompt('Enter your password');
+                axios.post('{{ route('password-confirm') }}', {password})
+                .then(res=>{
+                    if(res.data == 1){
+                        document.getElementById(elId).submit();
+
+                    }
+                })
+            }
+</script>
 <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
@@ -79,7 +93,7 @@
             $('#bookstable').DataTable( {
         dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'excel', 'pdf','colvis'
+            'copy', 'csv', 'excel', 'pdf',
         ],
     });
         $('button').addClass('.btn')

@@ -1,9 +1,9 @@
 @extends('layouts.master')
 @section('main-content')
     @if (!request()->has('closed'))
-        <h1 class="h3 mb-4 text-gray-800">{{ __('List of tickets') }}</h1>
+        <h1 class="h3 mb-4 text-gray-800">{{ __('List of Tickets') }}</h1>
     @else
-        <h1 class="h3 mb-4 text-gray-800">{{ __('List of closed tickets') }}</h1>
+        <h1 class="h3 mb-4 text-gray-800">{{ __('List of Closed Tickets') }}</h1>
     @endif
     <div class="d-flex justify-content-between">
         <a href="{{ url()->previous() }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
@@ -15,7 +15,7 @@
         <thead>
             <tr>
                 <th>
-                    Id
+                    ID
                 </th>
                 <th>
                     Status
@@ -52,8 +52,18 @@
                     <td>
                         {{ $ticket->uniq_id }}
                     </td>
-                    <td>
-                        {{ $ticket->status }}
+                    <td style="text-transform:capitalize;">
+                        {{ $ticket->status == 'declined' ? 'disapproved' : $ticket->status}}
+                        @if($ticket->status == 'declined')
+                        <div x-data="{
+                            showReason:false
+                        }">
+                            <div x-show="showReason" class="p-2">
+                                {{ $ticket->admin_reason }}
+                            </div>
+                            <a href="#" x-on:click="showReason = !showReason">Reason</a>
+                        </div>
+                        @endif
                     </td>
                     <td>
                         {{ $ticket->user->full_name }}
@@ -88,24 +98,39 @@
                         {{ $ticket->created_at->format('m/d/y') }}
                     </td>
                     @if (!request()->has('closed'))
-                        <td>
-                            <form action="{{ route('admin.tickets.update', $ticket) }}" class="d-inline" method="POST">
+                        <td x-data="{
+                            isIgnore:false, 
+                            ignore(){
+
+                            }
+                        }">
+                            <form  action="{{ route('admin.tickets.update', $ticket) }}" class="d-inline" method="POST">
                                 @csrf
                                 @method('PUT')
-                                <button class="btn btn-primary btn-sm">
+                                <button x-show="!isIgnore" class="btn btn-primary btn-sm">
                                     <i class="fa fa-check-circle"></i> Approve
                                 </button>
                             </form>
-                            <form action="{{ route('admin.tickets.update', $ticket) }}" class="d-inline" method="POST">
+                            <form  action="{{ route('admin.tickets.update', $ticket) }}" class="d-inline" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <input type="hidden" name="action" value="ignore">
-                                <button class="btn btn-danger btn-sm">
-                                    <i class="fa fa-times-circle"></i> Ignore
+                                <button x-show="!isIgnore" x-on:click="isIgnore = true" class="btn btn-danger btn-sm" type="button">
+                                    <i class="fa fa-times-circle"></i> Disapprove
                                 </button>
+                                <div x-show="isIgnore" class="mb-2">
+                                    <label for="">Your Reason</label>
+                                    <textarea name="admin_reason" required id="" cols="30" rows="5" class="form-control"></textarea>
+                                    <button class="btn btn-warning btn-sm" >
+                                        Submit
+                                    </button>
+                                    <button class="btn btn-secondary btn-sm" type="button" x-on:click="isIgnore = false">
+                                        Cancel
+                                    </button>
+                                </div>
                             </form>
                             
-                            <a href="{{ route('admin.messages.create') }}?email={{ $ticket->user->id }}" class="btn btn-success btn-sm">
+                            <a  x-show="!isIgnore" href="{{ route('admin.messages.create') }}?email={{ $ticket->user->id }}" class="btn btn-success btn-sm">
                                 <i class="fa fa-envelope"></i> Message
                             </a>
                         </td>
@@ -122,6 +147,7 @@
 @endsection
 
 @section('top')
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
     <link rel="stylesheet" href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css">
@@ -144,7 +170,7 @@
         dom: 'Bfrtip',
         buttons: [
             // 'copy', 'csv', 'excel', 'pdf','colvis'
-           'pdf','colvis'
+           'pdf'
         ],
     });
         $('button').addClass('.btn')

@@ -249,8 +249,8 @@
                 {{ __('Marketing') }}
             </div>
 
-            <li class="nav-item {{ Nav::isRoute('admin.aan.index') }}">
-                <a class="nav-link" href="{{ route('admin.messages.index') }}">
+            <li class="nav-item {{ Nav::isRoute('admin.aan.create') }}">
+                <a class="nav-link" href="{{ route('admin.messages.create') }}">
                     <i class="fa fa-envelope text-white" style="font-size:20px;"></i>
                     <span>Message</span>
                 </a>

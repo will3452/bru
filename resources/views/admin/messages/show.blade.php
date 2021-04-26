@@ -3,7 +3,7 @@
     <h1 class="h3 mb-4 text-gray-800">{{ __('Message') }}</h1>
     <div class="d-flex justify-content-between mb-2">
         <a href="{{ url()->previous() }}" class="btn btn-primary btn-sm"><i class="fa fa-angle-left"></i> Back</a>
-        <a href="{{ route('admin.messages.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil fa-sm"></i> Write new message</a>
+        <a href="{{ route('admin.messages.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil fa-sm"></i> Write New Message</a>
     </div>
     <div class="card">
         <div class="card-header">

@@ -4,7 +4,7 @@
     <h1 class="h3 mb-4 text-gray-800">{{ __('Compose Message') }}</h1>
     <div class="d-flex justify-content-between mb-2">
         <a href="{{ url()->previous() }}" class="btn btn-primary btn-sm"><i class="fa fa-angle-left"></i> Back</a>
-        {{-- <a href="{{ route('admin.events.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus fa-sm"></i> Create new event</a> --}}
+        <a href="{{ route('admin.messages.index') }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil fa-sm"></i>List of Messages</a>
     </div>
     <div class="my-2">
         <div>
@@ -77,7 +77,7 @@
             </div>
             <div class="form-group">
                 <label for="">Message:</label>
-                <textarea name="message" required id="fes" cols="30" rows="7" class="form-control" placeholder="Aa"></textarea>
+                <textarea name="message" required id="fes" cols="30" rows="7" class="form-control" placeholder="Aa">{{ request()->message??'' }}</textarea>
             </div>
             <div class="form-group">
                 <button class="btn btn-primary btn-block">Send Now</button>

@@ -197,7 +197,7 @@ class MessageController extends Controller
             }
 
         }
-        return redirect()->route('admin.messages.index')->withSuccess('messages successfully sent!');
+        return redirect()->route('admin.messages.index')->withSuccess('Message sent!');
     }
 
     /**

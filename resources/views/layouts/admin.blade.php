@@ -169,7 +169,7 @@
         <li class="nav-item {{ Nav::isRoute('support-chat') }}">
             <a class="nav-link" href="/support-chat">
                 <i class="fa fa-headset text-white" style="font-size:26px;"></i>
-                <span>{{ __('Chat Support') }}</span>
+                <span>{{ __('Tech. Support') }}</span>
             </a>
         </li>
 
