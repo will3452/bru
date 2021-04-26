@@ -4,7 +4,7 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">{{ $song->title }}</h1>
     <div class="d-flex justify-content-between mb-2 align-items-center">
-        <a href="{{ route('songs.index') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back To My Works</a> 
+        <a href="{{ route('songs.index') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back to My Works</a> 
     </div>
     @if ($errors->any())
         <div class="alert alert-danger border-left-danger" role="alert">
@@ -35,7 +35,7 @@
                     {{-- <div class="row">
                         <div class="col-md-4">
                             <div class="card-profile-stats">
-                                <span class="heading"><i class="fa fa-heart"></i></span>
+                                <span class="heading"><i class="fa fa-hesong"></i></span>
                                 <span class="description">123</span>
                             </div>
                         </div>
@@ -72,13 +72,13 @@
 
                             <div class="form-group">
                                 <label for="#">Title</label>
-                                <input type="text" name="title" class="form-control" value="{{ old('title') ?? $song->title }}">
+                                <input type="text" class="form-control" value="{{ old('title') ?? $song->title }}" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="#">Artist</label>
-                                <select name="artist" id="" class="form-control">
+                                <select name="songist" id="" class="form-control">
                                     @foreach (\App\Pen::get() as $pen)
-                                        <option value="{{ $pen->name }}" {{ $pen->name ==  $song->artist ? 'selected':'' }}>{{ $pen->name }}</option>
+                                        <option value="{{ $pen->name }}" {{ $pen->name ==  $song->songist ? 'selected':'' }}>{{ $pen->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -89,7 +89,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Genre</label>
-                                <select name="genre" id="">
+                                <select name="genre" id="" class="custom-select">
                                     @foreach (\App\SongGenre::get() as $genre)
                                         <option value="{{ $genre->name }}" {{ $song->genre == $genre->name ? 'selected':'' }}>
                                             {{ $genre->name }}
@@ -100,7 +100,7 @@
 
                             <div class="form-group">
                                 <label for="#">Cost Type</label>
-                                <select name="cost_type" class="form-control" id="">
+                                <select name="cost_type" class="form-control" id="" disabled>
                                     <option value="purple">Purple</option>
                                     <option value="white" {{ $song->cost_type == 'white' ? 'selected':''}}>White</option>
                                 </select>
@@ -108,7 +108,7 @@
 
                             <div class="form-group">
                                 <label for="#">Cost</label>
-                                <input type="number" name="cost" class="form-control" min="0" value="{{ $song->cost }}">
+                                <input type="number" disabled class="form-control" min="0" value="{{ $song->cost }}">
                             </div>
                         
                             <div class="form-group" x-data="{isAssoc:{{ $song->associated_type != null ? 'true':'false' }}}">
@@ -143,10 +143,10 @@
                                             </div>
                                             <div class="col-md-3">
                                                 <div>Arts Scenes</div>
-                                                <select name="art_id" id="" class="form-control">
+                                                <select name="song_id" id="" class="form-control">
                                                     <option value="" selected>None</option>
                                                     @foreach (\App\Art::GETPUBLISHED() as $book)
-                                                        <option value="{{ $book->id }}" {{ $song->art_id == $book->id ? 'selected':''}}>{{ $book->title }}</option>
+                                                        <option value="{{ $book->id }}" {{ $song->song_id == $book->id ? 'selected':''}}>{{ $book->title }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -165,7 +165,7 @@
                                 <template x-if="!isAssoc">
                                     <div>
                                         <input type="hidden" name="book_id" value="">
-                                        <input type="hidden" name="art_id" value="">
+                                        <input type="hidden" name="song_id" value="">
                                         <input type="hidden" name="audio_id" value="">
                                         <input type="hidden" name="thrailer_id" value="">
                                     </div>
@@ -202,25 +202,160 @@
             </div>
         </div>
     </div>
-    <div class="card card-body">
-        <form action="{{ route('songs.destroy', $song) }}" x-data="{isDelete:false}" method="POST">
-            @csrf
-            @method('DELETE')
-            <button type="button" class="btn btn-danger" x-on:click="isDelete = !isDelete" x-show="!isDelete">DELETE THIS SONG</button>
-            <div x-show="isDelete">
-                <div>
-                    Are you sure you want to delete this song? 
-                </div>
-                <button class="btn btn-danger" x-show="isDelete">Yes</button>
-                <button type="button" class="btn btn-secondary" x-on:click="isDelete = !isDelete" x-show="isDelete">No</button>
-            </div>
-        </form>
+    <div x-data="{
+        showDeleteForm:false,
+        makeConfirmation(){
+            swal.fire({
+            text: `Your request to delete your Song is subject to Admin's approval. Would you like to proceed?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
+            }).then((result) => {
+            if (result.isConfirmed) {
+                this.deleteForm();
+            }
+            })
+        },
+        async deleteForm(){
+            const { value: formValues } = await swal.fire({
+                title: 'Send Ticket',
+                html:
+                  `
+                  <div class='alert alert-warning ' style='font-size:11px;text-align:left;'>
+                    You are now requesting to delete your Song. Please fill out the necessary fields and provide a brief explanation for the request. 
+                    <br><br>
+                    However, please be reminded that your Song is under contract. Please confirm with BRUMULTIVERSE personally after submitting the request. 
+                  </div>
+                  <input id='password' type='password' placeholder='Enter your password here.' class='swal2-input'>
+                  <textarea id='reason' placeholder='Enter your reason' class='swal2-textarea' row='5' required></textarea>`,
+                focusConfirm: false,
+                showCloseButton: true,
+                showCancelButton: true,
+                confirmButtonText:'Submit',
+                preConfirm: () => {
+                  return [
+                    document.getElementById('password').value,
+                    document.getElementById('reason').value
+                  ]
+                }
+              })
+              {{-- JSON.stringify(formValues) --}}
+              if (formValues) {
+                axios.post('{{ route('tickets.song.delete', $song) }}', {password:formValues[0], reason:formValues[1]})
+                .then(res=>{
+                    if(res.data == 1){
+                        swal.fire({
+                            iconHtml:`<i class='fa fa-check text-success'></i>`,
+                            title: 'Your Ticket has been sent!',
+                            showConfirmButton: false,
+                            timer: 1500
+                          })
+                    }else if(res.data == 2){
+                        swal.fire({
+                            iconHtml:`<i class='fa fa-times text-danger'></i>`,
+                            title: 'Your Password is wrong!',
+                            showConfirmButton: false,
+                            timer: 3000
+                          })
+                    }
+                })
+              }
+        },
+        makeUpdateConfirm(){
+            swal.fire({
+                text: `Request to change the Title, Cost of Song is subject to Admin's approval. Would you like to proceed?`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No',
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    this.updateForm();
+                }
+                })
+        },
+        async updateForm(){
+            const { value: formValues } = await swal.fire({
+                title: 'Send Ticket',
+                html:
+                  `
+                  <div class='alert alert-warning ' style='font-size:11px;text-align:left;'>
+                    You are now requesting a change of either the Title or the Cost of your Song. Please fill out the necessary field/s that you wish to update in the boxes below and provide a brief explanation for the change.
+                    <br><br>
+                    However, please be reminded that changing your Song Title will require an amendment to your contract, and thus, will entail additional cost on your end.
+                  </div>
+                  <input id='password' type='password' placeholder='Enter your password here.' class='swal2-input'>
+                  <input id='title' type='text' placeholder='Enter new title here.' class='swal2-input'>
+                  <input id='cost' type='number' placeholder='Enter new cost here' class='swal2-input'>
+                  <textarea id='reason' placeholder='Enter your reason' class='swal2-textarea' row='5' required></textarea>
+                  `,
+                focusConfirm: false,
+                showCloseButton: true,
+                showCancelButton: true,
+                confirmButtonText:'Submit',
+                preConfirm: () => {
+                  return {
+                    'password':document.getElementById('password').value,
+                    'reason':document.getElementById('reason').value,
+                    'title':document.getElementById('title').value,
+                    'cost':document.getElementById('cost').value
+                  }
+                }
+              })
+              {{-- JSON.stringify(formValues) --}}
+              if(!formValues.password.length){
+                await swal.fire({
+                    iconHtml:`<i class='fa fa-times text-danger'></i>`,
+                    title: 'Please input your password',
+                    showConfirmButton: false,
+                    timer: 3000
+                  })
+                  this.updateForm();
+              }
+              else if (formValues) {
+                axios.post('{{ route('tickets.song.update', $song) }}', formValues)
+                .then(res=>{
+                    if(res.data == 1){
+                        swal.fire({
+                            iconHtml:`<i class='fa fa-check text-success'></i>`,
+                            title: 'Your ticket has been sent!',
+                            showConfirmButton: false,
+                            timer: 1500
+                          })
+                    }else if(res.data == 2){
+                        swal.fire({
+                            iconHtml:`<i class='fa fa-times text-danger'></i>`,
+                            title: 'Your Password is wrong!',
+                            showConfirmButton: false,
+                            timer: 3000
+                          })
+                    }
+                })
+                .catch(err=>{
+                    swal.fire({
+                        iconHtml:`<i class='fa fa-times text-danger'></i>`,
+                        title: 'Something went wrong!',
+                        showConfirmButton: false,
+                        timer: 3000
+                      })
+                })
+              }
+        }
+    }">
+        <button class="btn btn-danger" x-show="!showDeleteForm" type="button" x-on:click="makeConfirmation()"><i class="fa fa-trash" click="showDeleteForm"></i> Delete</button>
+        <button class="btn btn-info" x-on:click="makeUpdateConfirm()" type="button" x-on:click="makeConfirmation()"><i class="fa fa-paper-plane" click="showDeleteForm"></i> Send Update Ticket</button>
     </div>
 @endsection
 
 
 @section('top')
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2.min.css') }}">
+    <script src="/js/app.js"></script>
     <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2-bootstrap.min.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine.js" integrity="sha512-nIwdJlD5/vHj23CbO2iHCXtsqzdTTx3e3uAmpTm4x2Y8xCIFyWu4cSIV8GaGe2UNVq86/1h9EgUZy7tn243qdA==" crossorigin="anonymous"></script>

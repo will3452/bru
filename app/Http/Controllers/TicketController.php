@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Art;
 use App\Book;
+use App\Song;
 use App\Audio;
 use App\Chapter;
 use App\Thrailer;
@@ -133,6 +134,29 @@ class TicketController extends Controller
         ]);
         $validated['user_id'] = auth()->user()->id;
         $audio->tickets()->create($validated);
+        return 1;
+    }
+
+    // song
+    public function songDestroy(Song $song){
+        if(!$this->correctPassword(request()->password)) return 2;
+            $song->tickets()->create([
+                'reason'=>request()->reason,
+                'delete'=>now(),
+                'user_id'=>auth()->user()->id
+            ]);
+
+            return 1;
+        }
+        public function songUpdate(Song $song){
+        if(!$this->correctPassword(request()->password)) return 2;
+        $validated = request()->validate([
+            'reason'=>'',
+            'title'=>'',
+            'cost'=>''
+        ]);
+        $validated['user_id'] = auth()->user()->id;
+        $song->tickets()->create($validated);
         return 1;
     }
 

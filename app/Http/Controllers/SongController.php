@@ -96,7 +96,6 @@ class SongController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $this->validate($request, [
-            'title'=>'required',
             'genre'=>'required',
             'artist'=>'required',
             'desc'=>'',
@@ -108,7 +107,6 @@ class SongController extends Controller
             'art_id'=>'',
             'thrailer_id'=>'',
             'cost_type'=>'required',
-            'cost'=>'',
             'copyright'=>'',
         ]);
         $validated['description'] = $validated['desc'];

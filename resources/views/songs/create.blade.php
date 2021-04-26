@@ -148,7 +148,7 @@
             </script>
         </div>
         <div class="form-group">
-            <label for="">Song</label>
+            <label for="">Upload your Song</label>
             <ul id="filelist" class="list-group mb-2"></ul>
             <div id="container">
                 <a id="browse" href="javascript:;" class="btn btn-sm btn-secondary"><i class="fa fa-folder fa-sm"></i> Browse</a>
