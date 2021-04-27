@@ -18,7 +18,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 |
 */
 
-Route::view('/', 'welcome')->middleware('guest');
+Route::view('/', 'welcome_boots')->middleware('guest');
 
 //static website
 Route::view('/about', 'about');
