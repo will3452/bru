@@ -1,83 +1,89 @@
 @extends('layouts.master')
 @section('main-content')
-    <h1 class="h3 mb-4 text-gray-800">{{ __('Messages') }}</h1>
     <div class="d-flex justify-content-between mb-2">
-        <a href="{{ url()->previous() }}" class="btn btn-primary btn-sm"><i class="fa fa-angle-left"></i> Back</a>
-        <a href="{{ route('admin.messages.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil fa-sm"></i> Write New Message</a>
+        <a href="{{ route('admin.home') }}" class="btn btn-sm btn-primary">Back to Dashboard</a>
+        <div>
+            <a href="{{ route('admin.messages.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-pen fa-sm mr-2"></i>Write</a>
+            <a href="{{ route('admin.messages.index') }}" class="btn btn-sm btn-primary"><i class="fas fa-inbox fa-sm mr-2"></i>Inbox</a>
+
+        </div>
     </div>
-    
-    <div class="alert alert-info">
-        <i class="fa fa-bell"></i> <span>Hi, {{ auth()->guard('admin')->user()->full_name }}! </span>
+    <div class="mb-2">
+        <form action="{{ url()->current() }}" method="GET" id="utypeform">
+            <select name="utype" id="typeSelector" class="custom-select" onchange="$('#utypeform').submit()">
+                <option value="user" @if(request()->utype == 'user') selected @endif>User</option>
+                <option value="scholars" @if(request()->utype == 'scholars') selected @endif>All Scholars</option>
+                <option value="students" @if(request()->utype == 'students') selected @endif>All Students</option>
+                <option value="integrated school" @if(request()->utype == 'integrated school') selected @endif>All IS Students</option>
+                <option value="reagan" @if(request()->utype == 'reagan') selected @endif>All Reagan Students</option>
+                <option value="berkeley" @if(request()->utype == 'berkeley') selected @endif>All Berkeley Students</option>
+                <option value="users" @if(request()->utype == 'users') selected @endif>All Users</option>
+                <option value="vip" @if(request()->utype == 'vip') selected @endif>All VIP</option>
+            </select>
+        </form>
     </div>
-    
-    <table id="bookstable">
+  <form action="{{ route('admin.messages.delete.all') }}" method="POST">
+    @csrf
+    <table id="msgtable" class="table">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Subject</th>
-                <th>To</th>
-                <th>From</th>
-                <th>Date sent</th>
-                <th></th>
+                <th>#</th>
+                <th>
+                  Date
+                </th>
+                <th>
+                  Recipient
+                </th>
+                <th>
+                  Subject
+                </th>
+                <th>
+                  Status
+                </th>
+                <th>
+                    View
+                </th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($messages as $msg)
+            @foreach ($messages as $message)
                 <tr>
                     <td>
-                        {{ $msg->id }}
+                        <input type="checkbox" name="message_id[]" value="{{ $message->id }}">
                     </td>
                     <td>
-                        {{ $msg->subject }}
+                        {{ $message->created_at }}
                     </td>
                     <td>
-                        @if($msg->to_id != null)
-                            {{ $msg->i_receiver()->full_name }}
-                        @else
-                            {{ $msg->desc }}
-                        @endif
-                    </td>
-                    <td>
-                        {{ $msg->outboxable->full_name == auth()->user()->full_name ? 'You' :  $msg->outboxable->full_name}}
-                    </td>
-                    <td>
-                        {{ $msg->created_at }}
-                    </td>
-                    <td>
-                        
-                       <a href="{{ route('admin.messages.show', $msg->id) }}" class="btn btn-primary btn-sm">View</a>
-                       <form action="{{ route('admin.messages.destroy', $msg->id) }}" id="delete{{ $msg->id }}" class="d-inline" method="POST" id="deleteform{{ $msg->id }}">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-sm btn-danger" type="button" onclick="validatePassword('delete{{ $msg->id }}');">Delete</button>
-                       </form>
-                    </td>
+                          {{ $message->receiver->full_name }}
+                     </td>
+                     <td>
+                         {{ $message->subject }}
+                     </td>
+                     <td>
+                         {{ $message->read_at != null ? 'Seen' : 'Not yet seen' }}
+                     </td>
+                     <td>
+                         <a href="{{ route('admin.messages.show', $message) }}" class="btn btn-primary btn-sm">View</a>
+                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+    <button class="btn btn-sm btn-danger">Delete All Selected</button>
+  </form>
 @endsection
 
-@section('top')
+
+@section('top') 
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
     <link rel="stylesheet" href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css">
-    <script src="/js/app.js"></script>
 @endsection
-@section('bottom')
-<script>
-    function validatePassword(elId){
-                let password = prompt('Enter your password');
-                axios.post('{{ route('password-confirm') }}', {password})
-                .then(res=>{
-                    if(res.data == 1){
-                        document.getElementById(elId).submit();
 
-                    }
-                })
-            }
-</script>
-<script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
+@section('bottom')
+    <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
     <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
@@ -87,13 +93,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.colVis.min.js"></script>
     <script>
         $(function(){
-            $('#bookstable').DataTable( {
+            $('#msgtable').DataTable( {
         dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'excel', 'pdf',
+            // 'copy', 'csv', 'excel', 'pdf','colvis'
+             'pdf'
         ],
     });
         $('button').addClass('.btn')

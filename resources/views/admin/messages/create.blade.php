@@ -1,156 +1,104 @@
 @extends('layouts.master')
 @section('main-content')
-<div id="message">
-    <h1 class="h3 mb-4 text-gray-800">{{ __('Compose Message') }}</h1>
     <div class="d-flex justify-content-between mb-2">
-        <a href="{{ url()->previous() }}" class="btn btn-primary btn-sm"><i class="fa fa-angle-left"></i> Back</a>
-        <a href="{{ route('admin.messages.index') }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil fa-sm"></i>List of Messages</a>
-    </div>
-    <div class="my-2">
+        <a href="{{ route('admin.home') }}" class="btn btn-sm btn-primary">Back to Dashboard</a>
         <div>
-            <strong>
-                A Message to: 
-            </strong>
-            <div>
-                <a href="#" class="btn btn-outline-primary" v-on:click="selected = 1" :class="{'btn-secondary':selected == 1}">Invidual User</a>
-                    <a href="#" class="btn btn-outline-primary" :class="{'btn-secondary':selected == 2}" v-on:click="selected = 2">All Users</a>
-                    <a href="#" class="btn btn-outline-primary" :class="{'btn-secondary':selected == 3}" v-on:click="selected = 3">All Scholars</a>
-                    <a href="#" class="btn btn-outline-primary" :class="{'btn-secondary':selected == 4}" v-on:click="selected = 4">All Integrated School Students</a>
-                    <a href="#" class="btn btn-outline-primary" :class="{'btn-secondary':selected == 5}" v-on:click="selected = 5">All Reagan Students</a>
-                    <a href="#" class="btn btn-outline-primary" :class="{'btn-secondary':selected == 6}" v-on:click="selected = 6">All Berkeley Students</a>
-                    <a href="#" class="btn btn-outline-primary" :class="{'btn-secondary':selected == 6}" v-on:click="selected = 7">All VIP users</a>
-            </div>
+            <a href="{{ route('admin.messages.index') }}?utype=user" class="btn btn-sm btn-primary"><i class="fas fa-check-circle fa-sm mr-2"></i>Outbox</a>
+            <a href="{{ route('admin.messages.index') }}" class="btn btn-sm btn-primary"><i class="fas fa-inbox fa-sm mr-2"></i>Inbox</a>
         </div>
     </div>
     <div class="card">
         <div class="card-header">
-            New Message for <span style="text-transform:capitalize">@{{ selected|usertype }}</span>
+            <div>
+                <i class="fa fa-pen mr-2">
+                </i> Write New Message
+            </div>
         </div>
         <div class="card-body">
-            <form action="{{ route('admin.messages.store') }}" method="POST">
+            <form action="{{ route('admin.messages.store') }}" method="POST" x-data="{
+                type:'user',
+                updateType(){
+                    this.type = document.getElementById('typeSelector').value;
+                }
+            }">
             @csrf
-            <div v-if="selected == 1">
-               
-                    <input type="hidden" :value="selected" name="type">
+                <div class="form-group">
+                    <label for="">
+                        A Message for
+                    </label>
+                    <select name="type" id="typeSelector" class="custom-select" x-on:change="updateType()">
+                        <option value="user">User</option>
+                        <option value="scholars">All Scholars</option>
+                        <option value="students">All Students</option>
+                        <option value="integrated school">All IS Students</option>
+                        <option value="reagan">All Reagan Students</option>
+                        <option value="berkeley">All Berkeley Students</option>
+                        <option value="users">All Users</option>
+                        <option value="vip">All VIP</option>
+                    </select>
+                </div>
+                <template x-if="type == 'user' " >
                     <div class="form-group">
-                        <label for="">to User: </label>
-                        <select name="to" id="" class="custom-select" >
-                            <option value="" selected disabled>----</option>
-                            <option :value="user.id" v-for="user in users" :selected="user.id == selectedUserId">
-                                @{{ user.email }}
+                        <label for="">Select User</label>
+                        <select name="receiver_id" id="" class="custom-select">
+                            @foreach ($users as $user)
+                                <option value="{{ $user->id }}" @if(isset(request()->email) && request()->email == $user->id) selected @endif>
+                                    {{ $user->full_name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </template>
+                <div class="form-group">
+                    <label for="">
+                        Send as
+                    </label>
+                    <select name="character" id="" class="custom-select">
+                        @foreach ($characters as $character)
+                            <option value="{{ $character->name }}">
+                                {{ $character->name }}
                             </option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Send As: </label>
-                        <select name="character_sender" id="" class="custom-select">
-                            <option value="" selected disabled>----</option>
-                            @foreach ($characters as $char)
-                                <option value="{{ $char->name }}">{{$char->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Subject : </label>
-                        <input type="text" class="form-control" name="subject" required>
-                    </div>
-                    
-                    
-            </div>
-
-            <div v-else>
-                
-                    <input type="hidden" :value="selected" name="type">
-                    <div class="form-group">
-                        <label for="">Send As: </label>
-                        <select name="character_sender" id="" class="custom-select">
-                            <option value="" selected disabled>----</option>
-                            @foreach ($characters as $char)
-                                <option value="{{ $char->name }}">{{$char->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="">Subject : </label>
-                        <input type="text" name="subject" class="form-control" required>
-                    </div>
-            </div>
-            <div class="form-group">
-                <label for="">Message:</label>
-                <textarea name="message" required id="fes" cols="30" rows="7" class="form-control" placeholder="Aa">{{ request()->message??'' }}</textarea>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary btn-block">Send Now</button>
-            </div>
-        </form>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">
+                        Subject
+                    </label>
+                    <input type="text" class="form-control" name="subject" value="{{ isset(request()->ticket) ? 'Admin Reply: '.request()->ticket :''}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="">Body</label>
+                    <textarea name="body" id="" cols="30" rows="10">{!! request()->message !!}</textarea>
+                </div>
+                <input type="hidden" name="to_ticket" value="{{ request()->ticket }}">
+                <div class="form-group">
+                    <label for="">Replyable ? </label>
+                    <span>
+                    <input type="checkbox" name="replyable" value="1">
+                    Yes
+                    </span>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-block btn-primary">
+                        Send Message
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
-    
-</div>
+@endsection
 
+
+@section('top') 
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
 @endsection
 
 @section('bottom')
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-    <script>
-        const app = new Vue({
-            el:"#message",
-            data:{
-                selected:1,
-                users:@json($users),
-                selectedUserId:{{ request()->email ?? 0}}
-            },
-            filters:{
-                usertype(a){
-                    switch(a){
-                        case 1: return 'individual User';
-                        case 2: return 'all users';
-                        case 3: return 'all scholars';
-                        case 4: return 'all I.S students';
-                        case 5: return 'all Reagan students';
-                        case 6: return 'all Berkeley students';
-                        case 7: return 'all VIP users';
-                    }
-                }
-            },
-            methods:{
-                
-            }
-        });
-    </script>
     <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
 
     <script>
-        CKEDITOR.replace('fes',{height:"50vh", toolbarGroups: [{
-            "name": "basicstyles",
-            "groups": ["basicstyles"]
-            },
-            {
-            "name": "paragraph",
-            "groups": ["list", "blocks"]
-            },
-            {
-            "name": "links",
-            "groups": ["links"]
-            },
-            {
-            "name": "document",
-            "groups": ["mode"]
-            },
-            {
-            "name": "insert",
-            "groups": ["insert"]
-            },
-            {
-            "name": "styles",
-            "groups": ["styles"]
-            }
-        ],});
+        CKEDITOR.replace('body')
     </script>
-@endsection
 
-@section('top')
-    <style>
-        
-    </style>
-@endsection 
+@endsection

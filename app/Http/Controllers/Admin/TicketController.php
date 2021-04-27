@@ -98,7 +98,7 @@ class TicketController extends Controller
             $ticket->status = $status;
             $ticket->admin_reason = $request->admin_reason;
             $ticket->save();
-            return redirect(route('admin.messages.create').'?email='.$ticket->user->id.'&message=<p>We have received your request to change the Title and/or Cost or your work '.$ticket->ticketable->title.'. We regret to inform you that your request has been disapproved due to the following reason/s:</p><p>'.$ticket->admin_reason.'</p><p> Should you wish to file for an appeal, please contact BRU Admin via Tech Support or email. </p><p>Thank you!</p>');
+            return redirect(route('admin.messages.create').'?email='.$ticket->user->id.'&ticket='.$ticket->uniq_id.'&message=<p>We have received your request to change the Title and/or Cost or your work '.$ticket->ticketable->title.'. We regret to inform you that your request has been disapproved due to the following reason/s:</p><p>'.$ticket->admin_reason.'</p><p> Should you wish to file for an appeal, please contact BRU Admin via Tech Support or email. </p><p>Thank you!</p>');
         }
         
 

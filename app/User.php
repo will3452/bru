@@ -108,21 +108,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Song::class);
     }
 
-    public function messages(){
-        return $this->morphMany(Message::class, 'messagable');
-    }
-
-    public function outboxes(){
-        return $this->morphMany(Outbox::class, 'outboxable');
-    }
-
-    public function inboxes(){
-        return $this->hasMany(Message::class, 'to_id');
-    }
-
-    public function getUnreadMessagesAttribute(){
-        return auth()->user()->inboxes()->whereNull('read_at')->get();
-    }
 
     public function createGroups(){
         return $this->hasMany(Group::class,'creator_id');
@@ -134,6 +119,18 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getApprovedGroupsAttribute(){
         return $this->groups()->whereNotNull('approved');
+    }
+
+    public function conversations(){
+        return $this->belongsToMany(Conversation::class);
+    }
+
+    public function inboxes(){
+        return  $this->hasMany(Message::class, 'receiver_id');
+    }
+
+    public function outboxes(){
+        return  $this->hasMany(Message::class, 'sender_id');
     }
 
 }

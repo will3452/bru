@@ -99,8 +99,6 @@ Route::prefix('admin')->name('admin.')->group(function(){
     //setting the event day away
     Route::put('/event-day-away/setting', 'Admin\EventSetDayAwayUpdate')->name('event_set_day_away');
 
-    //messages
-    Route::resource('/messages', 'Admin\MessageController');
 
     //characters management
     Route::resource('/characters', 'Admin\\CharacterController');
@@ -145,6 +143,12 @@ Route::prefix('admin')->name('admin.')->group(function(){
 
     //ticket for edinting works
     Route::resource('/tickets', 'Admin\\TicketController');
+
+    //messages
+    Route::resource('/messages', 'AdminMessageController');
+
+    //message delete all
+    Route::post('/messages-delete', 'AdminMessageDeleteController')->name('messages.delete.all');
 
 });
 
@@ -236,7 +240,6 @@ Route::resource('audio', 'AudioController');
 Route::put('audio/update-some/{audio}','AudioController@updateSome')->name('audio.updatesome');
 
 Route::resource('songs', 'SongController');
-Route::resource('inbox', 'InboxController');
 Route::resource('group', 'GroupController');
 Route::resource('group-member', 'GroupMemberController');
 

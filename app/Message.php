@@ -9,8 +9,20 @@ class Message extends Model
 {
     use HasFactory;
     protected $guarded = [];
-
-    public function messagable(){
-        return $this->morphTo();
+    public function receiver(){
+        return $this->belongsTo(User::class, 'receiver_id');
     }
+
+    public function sender(){
+        return $this->belongsTo(User::class, 'sender_id');
+    }
+
+    public function admin_sender(){
+        return $this->belongsTo(Admin::class, 'admin_sender_id');
+    }
+
+    public function admin_receiver(){
+        return $this->belongsTo(Admin::class, 'admin_receiver_id');
+    }
+
 }

@@ -1,38 +1,75 @@
 @extends('layouts.master')
 @section('main-content')
-    <h1 class="h3 mb-4 text-gray-800">{{ __('Message') }}</h1>
-    <div class="d-flex justify-content-between mb-2">
-        <a href="{{ url()->previous() }}" class="btn btn-primary btn-sm"><i class="fa fa-angle-left"></i> Back</a>
-        <a href="{{ route('admin.messages.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-pencil fa-sm"></i> Write New Message</a>
+<div class="d-flex justify-content-between mb-2">
+    <a href="{{ route('admin.home') }}" class="btn btn-sm btn-primary">Back to Dashboard</a>
+    <div>
+        <a href="{{ route('admin.messages.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-pen fa-sm mr-2"></i>Write</a>
+        <a href="{{ route('admin.messages.index') }}" class="btn btn-sm btn-primary"><i class="fas fa-inbox fa-sm mr-2"></i>Inbox</a>
     </div>
-    <div class="card">
-        <div class="card-header">
-            <div class="d-flex justify-content-between">
-                <div>
-                   <div>
-                    <strong>To:</strong>  @if($msg->to_id != null)
-                    {{ $msg->i_receiver()->email }}
-                @else
-                    {{ $msg->desc }}
-                @endif
-                   </div>
-                   <div>
-                       <strong>Subject:</strong> {{ $msg->subject }}
-                   </div>
-                </div>
-                <div>
-                    <small class="text-sm">{{ $msg->created_at }}</small>
-                </div>
-            </div>
+</div>
+<div class="card">
+    <div class="card-header d-flex justify-content-between">
+        <div>
+            <i class="fa fa-envelope-open mr-2"></i> 
         </div>
-        <div class="card-body">
-            <p>- {!! $msg->message !!}</p>
+        <div>
+            {{ $message->read_at != null ? 'Seen' : 'Not yet seen' }}
         </div>
     </div>
+    <div class="card-body">
+        <div>
+            Recipient : {{ $message->receiver->full_name }}
+        </div>
+        <div>
+            Subject : {{ $message->subject }}
+        </div>
+        <hr>
+        <div>
+            {!! $message->body !!}
+        </div>
+        <hr>
+        <small class="text-secondary" style="font-size:10px">
+            {{ $message->created_at}}
+        </small>
+    </div>
+</div>
+<form action="{{ route('admin.messages.destroy', $message) }}" method="POST">
+    @csrf
+    @method("DELETE")
+    <button class="btn btn-danger btn-sm mt-2">Delete</button>
+</form>
+@endsection
+
+
+@section('top') 
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+    <link rel="stylesheet" href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css">
 @endsection
 
 @section('bottom')
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-   
-
+    <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
+    <script>
+        $(function(){
+            $('#msgtable').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            // 'copy', 'csv', 'excel', 'pdf','colvis'
+             'pdf'
+        ],
+    });
+        $('button').addClass('.btn')
+        })
+        
+    </script>
 @endsection

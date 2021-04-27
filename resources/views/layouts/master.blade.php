@@ -244,12 +244,12 @@
         </li> --}}
         <!-- Divider -->
         @if (auth()->user()->allowed('message'))
-            <hr class="sidebar-divider">
+            {{-- <hr class="sidebar-divider">
             <div class="sidebar-heading">
                 {{ __('Marketing') }}
-            </div>
+            </div> --}}
 
-            <li class="nav-item {{ Nav::isRoute('admin.aan.create') }}">
+            <li class="nav-item {{ Nav::isRoute('admin.messages.*') }}">
                 <a class="nav-link" href="{{ route('admin.messages.create') }}">
                     <i class="fa fa-envelope text-white" style="font-size:20px;"></i>
                     <span>Message</span>

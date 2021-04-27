@@ -53,7 +53,6 @@ class Admin extends Authenticatable
         return false;
     }
 
-
     public function tags(){
         return $this->hasMany(Tag::class);
     }
@@ -62,18 +61,16 @@ class Admin extends Authenticatable
         return $this->hasMany(AAN::class);
     }
 
-    public function messages(){
-        return $this->morphMany(Message::class, 'messagable');
-    }
-
-    public function outboxes(){
-        return $this->morphMany(Outbox::class, 'outboxable');
-    }
-
     public function roles()
     {
         return $this->belongsToMany(Role::class);
     }
 
-    
+    public function inboxes(){
+        return  $this->hasMany(Message::class, 'admin_receiver_id');
+    }
+
+    public function outboxes(){
+        return  $this->hasMany(Message::class, 'admin_sender_id');
+    }
 }
