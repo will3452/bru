@@ -25,4 +25,9 @@ class Message extends Model
         return $this->belongsTo(Admin::class, 'admin_receiver_id');
     }
 
+
+    public function getRepliesAttribute(){
+        return self::where('reply_id', $this->id)->get();
+    }
+
 }

@@ -4,7 +4,7 @@
         <a href="{{ route('admin.home') }}" class="btn btn-sm btn-primary">Back to Dashboard</a>
         <div>
             <a href="{{ route('admin.messages.index') }}?utype=user" class="btn btn-sm btn-primary"><i class="fas fa-check-circle fa-sm mr-2"></i>Outbox</a>
-            <a href="{{ route('admin.messages.index') }}" class="btn btn-sm btn-primary"><i class="fas fa-inbox fa-sm mr-2"></i>Inbox</a>
+            <a href="{{ route('admin.messages.index') }}?utype=user&mtype=in" class="btn btn-sm btn-primary"><i class="fas fa-inbox fa-sm mr-2"></i>Inbox</a>
         </div>
     </div>
     <div class="card">
@@ -42,7 +42,7 @@
                         <label for="">Select User</label>
                         <select name="receiver_id" id="" class="custom-select">
                             @foreach ($users as $user)
-                                <option value="{{ $user->id }}" @if(isset(request()->email) && request()->email == $user->id) selected @endif>
+                                <option value="{{ $user->id }}" @if(isset(request()->email) && request()->email == $user->id) selected @endif >
                                     {{ $user->full_name }}
                                 </option>
                             @endforeach
@@ -65,14 +65,14 @@
                     <label for="">
                         Subject
                     </label>
-                    <input type="text" class="form-control" name="subject" value="{{ isset(request()->ticket) ? 'Admin Reply: '.request()->ticket :''}}" required>
+                    <input type="text" class="form-control" name="subject" value="@if(isset(request()->ticket))  Admin Reply: {{ request()->ticket }} @elseif(isset(request()->subject))  {{ request()->subject }} @endif" required>
                 </div>
                 <div class="form-group">
                     <label for="">Body</label>
                     <textarea name="body" id="" cols="30" rows="10">{!! request()->message !!}</textarea>
                 </div>
                 <input type="hidden" name="to_ticket" value="{{ request()->ticket }}">
-                <div class="form-group">
+                <div class="form-group" x-show="type == 'user'">
                     <label for="">Replyable ? </label>
                     <span>
                     <input type="checkbox" name="replyable" value="1">

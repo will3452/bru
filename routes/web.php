@@ -242,6 +242,7 @@ Route::put('audio/update-some/{audio}','AudioController@updateSome')->name('audi
 Route::resource('songs', 'SongController');
 Route::resource('group', 'GroupController');
 Route::resource('group-member', 'GroupMemberController');
+Route::resource('inbox', 'InboxController');
 
 //tickets 
 Route::prefix('tickets')->name('tickets.')->group(function(){

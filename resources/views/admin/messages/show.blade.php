@@ -4,7 +4,7 @@
     <a href="{{ route('admin.home') }}" class="btn btn-sm btn-primary">Back to Dashboard</a>
     <div>
         <a href="{{ route('admin.messages.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-pen fa-sm mr-2"></i>Write</a>
-        <a href="{{ route('admin.messages.index') }}" class="btn btn-sm btn-primary"><i class="fas fa-inbox fa-sm mr-2"></i>Inbox</a>
+        <a href="{{ route('admin.messages.index') }}?mtype=in&utype=user" class="btn btn-sm btn-primary"><i class="fas fa-inbox fa-sm mr-2"></i>Inbox</a>
     </div>
 </div>
 <div class="card">
@@ -17,9 +17,16 @@
         </div>
     </div>
     <div class="card-body">
-        <div>
-            Recipient : {{ $message->receiver->full_name }}
-        </div>
+        @if ($message->sender_id == null)
+            <div>
+                Recipient : {{ $message->receiver->full_name }}
+            </div>
+        @else
+            <div>
+                Sender : {{ $message->sender->full_name }}
+            </div>
+        @endif
+        
         <div>
             Subject : {{ $message->subject }}
         </div>
@@ -33,10 +40,16 @@
         </small>
     </div>
 </div>
-<form action="{{ route('admin.messages.destroy', $message) }}" method="POST">
+<form class="mt-2"  action="{{ route('admin.messages.destroy', $message) }}" method="POST">
     @csrf
     @method("DELETE")
-    <button class="btn btn-danger btn-sm mt-2">Delete</button>
+    <button class="btn btn-danger btn-sm ">
+        <i class="fa fa-trash fa-sm"></i>
+        Delete
+    </button>
+    <a href="{{ route('admin.messages.create') }}?subject={{ $message->subject }}&email={{ $message->sender->id }}" class="btn btn-primary btn-sm">
+        <i class="fa fa-pen fa-sm"></i> Write Message
+    </a>
 </form>
 @endsection
 

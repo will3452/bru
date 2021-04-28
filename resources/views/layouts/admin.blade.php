@@ -141,7 +141,7 @@
         </div> --}}
 
         <!-- Nav Item - Profile -->
-        {{-- <li class="nav-item {{ Nav::isRoute('inbox.*') }}">
+        <li class="nav-item {{ Nav::isRoute('inbox.*') }}">
             <a class="nav-link" href="{{ route('inbox.index') }}">
                 <i class="fa fa-inbox text-white" style="font-size:1.7em !important;"></i>
                 <span>{{ __('Inbox') }}</span>
@@ -149,7 +149,7 @@
         </li>
 
         <!-- Divider -->
-        <hr class="sidebar-divider"> --}}
+        <hr class="sidebar-divider">
 
         <!-- Heading -->
         <div class="sidebar-heading">

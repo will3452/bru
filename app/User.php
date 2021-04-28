@@ -133,4 +133,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return  $this->hasMany(Message::class, 'sender_id');
     }
 
+    public function getUnreadMessagesAttribute(){
+        return $this->inboxes()->whereNull('read_at')->get();
+    }
+
 }

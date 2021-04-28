@@ -27,36 +27,64 @@ class AdminMessageController extends Controller
     {
         $messages = [];
         if(request()->mtype == 'in'){
-
+            switch(request()->utype){
+                case 'user':
+                    $messages = auth()->guard('admin')->user()->inboxes()->where('type', 'user')->latest()->get();
+                break;
+                case 'scholars':
+                    $messages = auth()->guard('admin')->user()->inboxes()->where('type', 'scholars')->latest()->get();
+                break;
+                case 'students':
+                    $messages = auth()->guard('admin')->user()->inboxes()->where('type', 'students')->latest()->get();
+                break;
+                case 'integrated school':
+                    $messages = auth()->guard('admin')->user()->inboxes()->where('type', 'integrated school')->latest()->get();
+                break;
+                case 'reagan':
+                    $messages = auth()->guard('admin')->user()->inboxes()->where('type', 'reagan')->latest()->get();
+                break;
+                case 'berkeley':
+                    $messages = auth()->guard('admin')->user()->inboxes()->where('type', 'berkeley')->latest()->get();
+                break;
+                case 'vip':
+                    $messages = auth()->guard('admin')->user()->inboxes()->where('type', 'vip')->latest()->get();
+                break;
+                case 'vip':
+                    $messages = auth()->guard('admin')->user()->inboxes()->where('type', 'vip')->latest()->get();
+                break;
+                case 'users':
+                    $messages = auth()->guard('admin')->user()->inboxes()->where('type', 'users')->latest()->get();
+                break;
+            }
         }else {
             
             switch(request()->utype){
                 case 'user':
-                    $messages = auth()->guard('admin')->user()->outboxes()->where('type', 'user')->get();
+                    $messages = auth()->guard('admin')->user()->outboxes()->where('type', 'user')->latest()->get();
                 break;
                 case 'scholars':
-                    $messages = auth()->guard('admin')->user()->outboxes()->where('type', 'scholars')->get();
+                    $messages = auth()->guard('admin')->user()->outboxes()->where('type', 'scholars')->latest()->get();
                 break;
                 case 'students':
-                    $messages = auth()->guard('admin')->user()->outboxes()->where('type', 'students')->get();
+                    $messages = auth()->guard('admin')->user()->outboxes()->where('type', 'students')->latest()->get();
                 break;
                 case 'integrated school':
-                    $messages = auth()->guard('admin')->user()->outboxes()->where('type', 'integrated school')->get();
+                    $messages = auth()->guard('admin')->user()->outboxes()->where('type', 'integrated school')->latest()->get();
                 break;
                 case 'reagan':
-                    $messages = auth()->guard('admin')->user()->outboxes()->where('type', 'reagan')->get();
+                    $messages = auth()->guard('admin')->user()->outboxes()->where('type', 'reagan')->latest()->get();
                 break;
                 case 'berkeley':
-                    $messages = auth()->guard('admin')->user()->outboxes()->where('type', 'berkeley')->get();
+                    $messages = auth()->guard('admin')->user()->outboxes()->where('type', 'berkeley')->latest()->get();
                 break;
                 case 'vip':
-                    $messages = auth()->guard('admin')->user()->outboxes()->where('type', 'vip')->get();
+                    $messages = auth()->guard('admin')->user()->outboxes()->where('type', 'vip')->latest()->get();
                 break;
                 case 'vip':
-                    $messages = auth()->guard('admin')->user()->outboxes()->where('type', 'vip')->get();
+                    $messages = auth()->guard('admin')->user()->outboxes()->where('type', 'vip')->latest()->get();
                 break;
                 case 'users':
-                    $messages = auth()->guard('admin')->user()->outboxes()->where('type', 'users')->get();
+                    $messages = auth()->guard('admin')->user()->outboxes()->where('type', 'users')->latest()->get();
                 break;
             }
 
@@ -158,7 +186,12 @@ class AdminMessageController extends Controller
      */
     public function show($id)
     {
-        $message = $this->message->find($id);
+       
+        $message = $this->message->findOrFail($id);
+        if($message->admin_receiver_id != null){
+            $message->read_at = now();
+            $message->save();
+        } 
         return view('admin.messages.show', compact('message'));
     }
 

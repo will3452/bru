@@ -4,12 +4,20 @@
         <a href="{{ route('admin.home') }}" class="btn btn-sm btn-primary">Back to Dashboard</a>
         <div>
             <a href="{{ route('admin.messages.create') }}" class="btn btn-sm btn-primary"><i class="fa fa-pen fa-sm mr-2"></i>Write</a>
-            <a href="{{ route('admin.messages.index') }}" class="btn btn-sm btn-primary"><i class="fas fa-inbox fa-sm mr-2"></i>Inbox</a>
+            
+            @if (!isset(request()->mtype))
+                <a href="{{ route('admin.messages.index') }}?utype=user&mtype=in" class="btn btn-sm btn-primary"><i class="fas fa-inbox fa-sm mr-2"></i>Inbox</a>
+            @else
+                <a href="{{ route('admin.messages.index') }}?utype=user" class="btn btn-sm btn-primary"><i class="fas fa-check-circle fa-sm mr-2"></i>Outbox</a>
+            @endif
 
         </div>
     </div>
     <div class="mb-2">
         <form action="{{ url()->current() }}" method="GET" id="utypeform">
+            @if(isset(request()->mtype))
+                <input type="hidden" name="mtype" value="in">
+            @endif
             <select name="utype" id="typeSelector" class="custom-select" onchange="$('#utypeform').submit()">
                 <option value="user" @if(request()->utype == 'user') selected @endif>User</option>
                 <option value="scholars" @if(request()->utype == 'scholars') selected @endif>All Scholars</option>
@@ -24,6 +32,7 @@
     </div>
   <form action="{{ route('admin.messages.delete.all') }}" method="POST">
     @csrf
+    @if (!isset(request()->mtype))
     <table id="msgtable" class="table">
         <thead>
             <tr>
@@ -70,6 +79,54 @@
             @endforeach
         </tbody>
     </table>
+    @else
+    <table id="msgtable" class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>
+                  Date
+                </th>
+                <th>
+                    To
+                </th>
+                <th>
+                  Subject
+                </th>
+                <th>
+                  Status
+                </th>
+                <th>
+                    View
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($messages as $message)
+                <tr>
+                    <td>
+                        <input type="checkbox" name="message_id[]" value="{{ $message->id }}">
+                    </td>
+                    <td>
+                        {{ $message->created_at }}
+                    </td>
+                    <td>
+                        {{ $message->sender->full_name }}
+                    </td>
+                     <td>
+                         {{ $message->subject }}
+                     </td>
+                     <td>
+                         {{ $message->read_at != null ? 'Seen' : 'Not yet seen' }}
+                     </td>
+                     <td>
+                         <a href="{{ route('admin.messages.show', $message) }}" class="btn btn-primary btn-sm">View</a>
+                     </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+    @endif
     <button class="btn btn-sm btn-danger">Delete All Selected</button>
   </form>
 @endsection
