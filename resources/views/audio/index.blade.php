@@ -9,7 +9,7 @@
 
             </div>
             <div class="mt-2">
-                <a href="{{ route('audio.show', $book) }}">{{ Str::limit($book->title, 10) }}</a>
+                <a href="{{ route('audio.show', $book) }}">{{ $book->title }}</a>
             </div>
             <div  x-show.transition="showInfo" style="position:absolute;top:-10px;left:100px; height:250px; width:200px;background:rgba(17,0,31, 0.9);z-index:999" >
                 <div style="position:absolute;top:6px;left:-14px;height:32px; width:32px;border:4px #014E7F solid;background:url('{{ asset('img/card-bg-custom.png') }}');background-position:center;border-top:none;border-right:none;transform:rotate(45deg);z-index:998;"></div>
