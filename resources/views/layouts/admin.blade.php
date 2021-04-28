@@ -17,11 +17,12 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/sb-admin-2.css') }}" rel="stylesheet">
     @livewireStyles
     @yield('top')
     <!-- Favicon -->
     <link href="{{ asset('img/logo.png') }}" rel="icon" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
     <style>
         :root {
             --blue:#322F46;
@@ -85,7 +86,35 @@
             padding:0px 0px !important;
         }
     </style>
+    <style>
+        #pp{
+            position: fixed;
+            
+            top:100px;
+            text-align: center;
+            color: white;
+            border-radius: 0px;
+            padding:20px;
+            display:flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            z-index:9999;
+        }
+    </style>
 </head>
+<div id="pp">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4 p-4 " style="background:url('/img/card-bg-custom.png');
+        background-size: cover;">
+            <div>
+                Please take time to read our <a href="#">Privacy Policy</a>. By continuing to browse this site and/or clicking I AGREE, you guarantee that you have read and have understood our Privacy Policy and that you consent to its terms. Thank you!
+            </div>
+            <button class="btn btn-primary mt-5" onclick="ppAgree()">I AGREE</button>
+        </div>
+    </div>
+</div>
 <body id="page-top" class="sidebar-toggled">
 
 <!-- Page Wrapper -->
@@ -439,6 +468,29 @@
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+<script>
+
+        
+    $('#pp, #pp > *').hide(100)
+
+    if(Cookies.get('pp') == undefined){
+       setTimeout(function(){
+           $('#pp, #pp> *').show();
+       }, 3000);
+    }
+    function ppAgree(){
+       $('#pp').hide(500);
+       Cookies.set('pp', '1', { expires: 365 });
+    }
+    let click = 0;
+    $('#admin').click(function(){
+        click++;
+        if(click == 3){
+            window.location.href = "/admin/login";
+        }
+    })
+
+</script>
 
 <script>
     window.onload = function(){

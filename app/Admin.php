@@ -73,4 +73,8 @@ class Admin extends Authenticatable
     public function outboxes(){
         return  $this->hasMany(Message::class, 'admin_sender_id');
     }
+
+    public function getUnreadMessagesAttribute(){
+        return $this->inboxes()->whereNull('read_at')->get();
+    }
 }

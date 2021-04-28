@@ -73,7 +73,7 @@
                 </div>
                 <input type="hidden" name="to_ticket" value="{{ request()->ticket }}">
                 <div class="form-group" x-show="type == 'user'">
-                    <label for="">Replyable ? </label>
+                    <label for="">Allow Reply ? </label>
                     <span>
                     <input type="checkbox" name="replyable" value="1">
                     Yes

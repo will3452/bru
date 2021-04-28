@@ -70,6 +70,7 @@
             color: #4A1574 !important;
         }
     </style>
+    @livewireStyles
 </head>
 <body id="page-top">
 
@@ -407,6 +408,8 @@
                             <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                         </div>
                     </li>
+                    @livewire('admin.notification-message')
+                    
                      {{-- <!-- Nav Item - Alerts -->
                     <li class="nav-item dropdown no-arrow mx-1">
                         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -608,6 +611,9 @@
         $('.loader-container').fadeOut(1000);
     }
 </script>
+@livewireScripts()
 @yield('bottom')
+
+
 </body>
 </html>

@@ -38,6 +38,6 @@ class BinController extends Controller
             Book::withTrashed()->where('id', $id)->restore();
         }
 
-        return back()->withSuccess($type.' restored!');
+        return back()->withSuccess(ucwords($type).'is restored!');
     }
 }

@@ -1,22 +1,20 @@
 @extends('layouts.master')
 @section('main-content')
-    <h1 class="h3 mb-4 text-gray-800">{{ __('List of works in bin') }}</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ __('List of Works in Bin') }}</h1>
     <a href="{{ url()->previous() }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
     <div class="alert alert-info">
-        <i class="fa fa-bell"></i> <span> Hi, {{ auth()->guard('admin')->user()->full_name }} This list shows books, trailers and artworks that have been deleted from the app. Please note that clicking RESTORE will return the work to the account of the owner on Unpublished Status. </span>
+        <i class="fa fa-bell"></i> <span> Hi, {{ auth()->guard('admin')->user()->full_name }}! This list shows books, trailers and artworks that have been deleted from the app. Please note that clicking RESTORE will return the work to the account of the owner on Unpublished Status. </span>
     </div>
     <div class="my-2">
-        <ul>
-            <li>
-                <a href="{{ url()->current() }}?type=books">books </a>@if($type == 'book')* @endif
-            </li>
-            <li>
-                <a href="{{ url()->current() }}?type=arts">arts</a> @if($type == 'art')* @endif
-            </li>
-            <li>
-                <a href="{{ url()->current() }}?type=trailers">Films</a> @if($type == 'trailer')* @endif
-            </li>
-        </ul>
+        <form action="{{ url()->current() }}" id="typeForm">
+            <div class="form-group">
+                <select name="type" class="custom-select" onchange="document.getElementById('typeForm').submit()">
+                    <option value="books" @if($type == 'book') selected  @endif >Books</option>
+                    <option value="arts" @if($type == 'art') selected  @endif >Arts</option>
+                    <option value="trailers" @if($type == 'trailer')selected  @endif >Trailers / Animation / Films</option>
+                </select>
+            </div>
+        </form>
     </div>
     @if($type == 'book')
     <table id="bookstable" class="table table-stripped table-bordered">
@@ -68,7 +66,7 @@
                 <td>{{ $book->language }}</td>
                 <td>{{ $book->cost }}</td>
                 <td>{{ $book->created_at->format('M d, Y') }}</td>
-                <td>{!! $book->ispublic ? '<i class="fa fa-check fa-xs" ></i> yes':'<i class="fa fa-times fa-xs" ></i> no'!!}</td>
+                <td>{!! $book->ispublic ? '<i class="fa fa-check fa-xs" ></i> Yes':'<i class="fa fa-times fa-xs" ></i> No'!!}</td>
                 <td >
                     <form action="{{ route('admin.bin.restore', $book->id) }}" method="POST">
                         @csrf
@@ -231,7 +229,7 @@
         dom: 'Bfrtip',
         buttons: [
             // 'copy', 'csv', 'excel', 'pdf','colvis'
-             'pdf','colvis'
+             'pdf'
         ],
     });
         $('button').addClass('.btn')

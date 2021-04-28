@@ -33,7 +33,7 @@
             <div class="col-md-4 p-4 " style="background:url('/img/card-bg-custom.png');
             background-size: cover;">
                 <div>
-                    Kindly take time to read our <a href="#">Privacy Policy</a>. By continuiong to browse this site and/or clicking "I AGREE". You guarantee that you have read and understand our Privacy Policy and consent to its terms.
+                    Please take time to read our <a href="#">Privacy Policy</a>. By continuing to browse this site and/or clicking I AGREE, you guarantee that you have read and have understood our Privacy Policy and that you consent to its terms. Thank you!
                 </div>
                 <button class="btn btn-primary mt-5" onclick="ppAgree()">I AGREE</button>
             </div>
@@ -201,7 +201,7 @@
          }
          function ppAgree(){
             $('#pp').hide(500);
-            Cookies.set('pp', '1', { expires: 7 });
+            Cookies.set('pp', '1', { expires: 365 });
          }
          let click = 0;
          $('#admin').click(function(){
