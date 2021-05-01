@@ -34,16 +34,19 @@
     <table id="bookstable" class="table table-stripped table-bordered">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Delete</th>
             </tr>
         </thead>
+        @php 
+        $count = 1;
+        @endphp 
         <tbody>
             @foreach($genres as $genre)
             <tr>
                 <td>
-                    {{ $genre->id }}
+                    {{ $count++ }}
                 </td>
                 <td>
                     <a href="{{ route('admin.genres.show', $genre) }}">{{ $genre->name }} <i class="fa fa-link fa-xs"></i></a>

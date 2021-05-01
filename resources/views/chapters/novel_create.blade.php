@@ -6,6 +6,11 @@
     <div id="form-app">
         <form action="{{ route('books.chapters.store.novel', $book) }}" method="POST" enctype="multipart/form-data" x-data="{
             mode:'chapter',
+            typeChapter:'regular',
+            updateTypeChapter(){
+                let ctselector = document.getElementById('chapter_type');
+                this.typeChapter = ctselector.value;
+            },
             updateMode(){
                 this.mode = document.getElementById('mode').value;
             }
@@ -50,14 +55,45 @@
                 <label for="">
                     Type
                 </label>
-                <select name="chapter_type" id="chapter_type" class="form-control">
+                <select name="chapter_type" x-on:change="updateTypeChapter()" id="chapter_type" class="form-control">
                     <option value="regular">Regular</option>
                     <option value="special">Special</option>
                     <option value="premium">Premium</option>
-                    <option value="premium_with">Premium w/ Free Art Scene</option>
+                    <option value="premium_with">Premium w/ Free Artscene</option>
                 </select>
-                
             </div>
+            <template x-if="mode == 'chapter' && (typeChapter == 'premium' || typeChapter =='premium_with')">
+                <div>
+                    <div class="form-group">
+                       <label for=""> Chapter Description </label>
+                       <div class="alert alert-warning">
+                        This description will appear with the prompt, confirming whether reader wishes to proceed to the Premium Chapter for a fee. Make it as enticing as possible to lure them in. 
+                       </div>
+                       <textarea name="desc" id="" cols="30" rows="10" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for=""> Notes </label>
+                        <textarea name="foot_note" id="" cols="30" rows="10" class="form-control"></textarea>
+                        <script>
+                            CKEDITOR.replace('foot_note')
+                        </script>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Set Age Restriction</label>
+                        <select name="age_restriction" id="age_level" class="form-control">
+                            <option value="0">
+                                None
+                            </option>
+                            <option value="16">
+                                16 and up
+                            </option>
+                            <option value="18" id="_18">
+                                18 and up
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </template>
             <div class="form-group">
                 <label for="">Cost</label>
                 <input type="number" name="cost" value="{{ old('cost') ?? 0 }}" class="form-control">
@@ -88,10 +124,6 @@
     </div>
        
 @endsection
-@section('top')
-    <link rel="stylesheet" href="{{ asset('vendor/select2/select2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendor/select2/select2-bootstrap.min.css') }}">
-@endsection
 
 @section('bottom')
     @if (isset(request()->first))
@@ -113,12 +145,10 @@
         </script>
     @endif
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
-    <script src="{{ asset('vendor/select2/select2.min.js') }}" defer></script>
     <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
     <script>
         
         $(function(){
-            $('#chapter_type').select2();
             let art = $('#freeart-child').detach();
 
             $('#chapter_type').change(function(){

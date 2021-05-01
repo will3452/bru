@@ -1,5 +1,5 @@
 <div>
-    <h3 class="mt-4">Recommendation list</h3>
+    <h3 class="mt-4">Featured Listings</h3>
     <form action="">
         <select wire:model="option" id="" class="form-control">
             @foreach (\App\Remark::get() as $item)

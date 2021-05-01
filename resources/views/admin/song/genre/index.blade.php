@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('main-content')
-<a href="{{ url()->previous() }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
+<a href="{{ route('admin.home') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
 
     <div x-data="{showCreate:false}">
         <div class="d-flex justify-content-between align-items-center" >
@@ -34,16 +34,19 @@
     <table id="bookstable" class="table table-stripped table-bordered">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Delete</th>
             </tr>
         </thead>
         <tbody>
+            @php 
+            $count = 1;
+            @endphp 
             @foreach($songGenres as $genre)
             <tr>
                 <td>
-                    {{ $genre->id }}
+                    {{ $count++ }}
                 </td>
                 <td>
                     {{ $genre->name }}

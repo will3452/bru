@@ -6,7 +6,7 @@
     </div>
     <div id="role-app">
         <div class="mt-2 ">
-            <h3>Recommendation</h3>
+            <h3>Featured Lists</h3>
         </div>
         @livewire('admin.recommendation-create')
         @livewire('admin.recommendation-list')

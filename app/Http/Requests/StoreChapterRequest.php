@@ -53,9 +53,11 @@ class StoreChapterRequest extends FormRequest
             'sq'=>'',
             'type'=>'required',
             'content'=>'required',
+            'desc'=>'',
             'cpy'=>'',
             'cost'=>'',
             'mode'=>'',
+            'age_restriction'=>'',
         ];
     }
 }

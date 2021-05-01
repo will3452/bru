@@ -4,9 +4,6 @@
         <a href="{{ url()->previous() }}" class="btn btn-primary btn-sm "><i class="fa fa-angle-left"></i> Back</a>
     </div>
     <div id="role-app">
-        <div class="mt-2">
-            <h3>Recommendation Remarks</h3>
-        </div>
        @livewire('recommendation.create-remarks')
        @livewire('recommendation.list-remarks')
 
