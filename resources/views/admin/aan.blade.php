@@ -42,10 +42,13 @@
             </tr>
         </thead>
         <tbody>
+            @php 
+                $count = 1;
+            @endphp
             @foreach($aans as $aan)
             <tr>
                 <td>
-                    {{ $aan->id }}
+                    {{ $count++ }}
                 </td>
                 <td>
                     {{ $aan->admin->full_name }}
