@@ -58,6 +58,7 @@ class StoreChapterRequest extends FormRequest
             'cost'=>'',
             'mode'=>'',
             'age_restriction'=>'',
+            'foot_note'=>''
         ];
     }
 }

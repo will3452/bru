@@ -22,6 +22,15 @@
                             {{$item->recommendationable->author ?? $item->recommendationable->artist ?? $item->recommendationable->owner}}
                         </strong>
                     </div>
+                    <div>
+                        Duration: <strong>
+                            {{ $item->dateFormat($item->from_date) }} - {{ $item->dateFormat($item->to_date) }} / {{ $item->daysDurationCount() }} Day(s)
+                        </strong>
+                    </div>
+                    <div>
+                        Day(s) Left: <strong>{{ $item->daysDurationCount(now()) }}</strong>
+
+                    </div>
                 </div>
                 <div>
                     <form action="{{route('admin.recommendation.destroy', $item->id)}}" method="POST">

@@ -43,6 +43,20 @@
                     <div class="alert alert-warning">No Item Found.</div>
                     @endif
                 </div>
+                <div class="col-md-12">
+                    <label for="">Duration</label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            From
+                            <input type="date" class="form-control" name="from_date" required>
+                        </div>
+                        <div class="col-md-6">
+                            To
+                            <input type="date" class="form-control" name="to_date" required>
+                        </div>
+                    </div>
+                </div>
+                
                 
             </div>
             <div class="text-right form-group">

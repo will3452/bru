@@ -6,6 +6,7 @@ use App\Art;
 use App\Book;
 use App\Audio;
 use App\Thrailer;
+use Carbon\Carbon;
 use App\Recommendation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -36,18 +37,24 @@ class RecommendationController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'id'=>'required'
+        $validated = $this->validate($request,[
+            'id'=>'required',
+            'to_date'=>'required',
+            'from_date'=>'required'
         ], ['id.required'=>'item is required!']);
+        
+        $from = Carbon::parse($validated['from_date']);
+        $to = Carbon::parse($validated['to_date']);
+
         if($request->type == 'Book'){
-            Book::find($request->id)->recommendation()->create(['remark'=>$request->remark]);
+            Book::find($request->id)->recommendation()->create(['remark'=>$request->remark, 'from_date'=>$from, 'to_date'=>$to]);
         }else if($request->type == 'Art'){
-            Art::find($request->id)->recommendation()->create(['remark'=>$request->remark]);
+            Art::find($request->id)->recommendation()->create(['remark'=>$request->remark, 'from_date'=>$from, 'to_date'=>$to]);
         }else if($request->type == 'Audio'){
-            Audio::find($request->id)->recommendation()->create(['remark'=>$request->remark]);
+            Audio::find($request->id)->recommendation()->create(['remark'=>$request->remark, 'from_date'=>$from, 'to_date'=>$to]);
 
         }else if($request->type == 'Thrailer'){
-            Thrailer::find($request->id)->recommendation()->create(['remark'=>$request->remark]);
+            Thrailer::find($request->id)->recommendation()->create(['remark'=>$request->remark, 'from_date'=>$from, 'to_date'=>$to]);
         }
 
         return back()->withSuccess('Items Added.');
