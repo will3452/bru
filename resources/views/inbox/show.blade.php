@@ -70,7 +70,7 @@
              </div>
             @else
             <div class="card-footer">
-                <i>**** You cannot reply to this specific message. Should you need to, please contact us thru Email or <a href="/support-chat">Tech Support</a>.***</i>
+                <i>**** You cannot reply to this specific message. Should you need to, please contact us thru <a href="/support-chat">Email</a> or <a href="/support-chat">Tech Support</a>.***</i>
             </div>
             @endif
         </div>
