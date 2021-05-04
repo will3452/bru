@@ -80,15 +80,43 @@
                                         <div id="emailAlert"></div>
                                     </div>
 
-                                    <div class="row" id="password-app">
-                                        <div class="form-group col-md-6">
+                                    <div class="row" id="password-app" x-data="{
+                                        showPassword:false,
+                                        updateShowPassword(){
+                                            this.showPassword = !this.showPassword;
+                                            if(this.showPassword){
+                                                this.$refs.password.type = 'text';
+                                            }else {
+                                                this.$refs.password.type = 'password';
+                                            }
+                                        }
+                                    }">
+                                        <div class="form-group col-md-6" x-data="{
+                                            showPassword:false,
+                                            updateShowPassword(){
+                                                this.showPassword = !this.showPassword;
+                                                if(this.showPassword){
+                                                    this.$refs.password.type = 'text';
+                                                }else {
+                                                    this.$refs.password.type = 'password';
+                                                }
+                                            }
+                                        }">
                                             <label for="password">Password</label>
-                                            <input type="password" class="w-100 form-control rounded " v-model="fpassword" name="password" placeholder="{{ __('Password') }}" required>
+                                            <input type="password" x-ref="password" class="w-100 form-control rounded " v-model="fpassword" name="password" placeholder="{{ __('Password') }}" required>
+                                            <div class="mt-2">
+                                                <a href="#" class="btn btn-sm btn-secondary" x-on:click.prevent="updateShowPassword()" x-show="!showPassword">Show Password</a>
+                                                <a href="#" class="btn btn-sm btn-secondary" x-on:click.prevent="updateShowPassword()" x-show="showPassword">Hide Password</a>
+                                            </div>
                                         </div>
     
                                         <div class="form-group col-md-6">
                                             <label for="#">Confirm Password</label>
-                                            <input type="password" :class="{'is-invalid':passwordMatch()}" class="      w-100 form-control rounded" v-model="spassword" name="password_confirmation" placeholder="{{ __('Confirm Password') }}" required>
+                                            <input type="password" x-ref="password"  :class="{'is-invalid':passwordMatch()}" class="      w-100 form-control rounded" v-model="spassword" name="password_confirmation" placeholder="{{ __('Confirm Password') }}" required>
+                                            <div class="mt-2">
+                                                <a href="#" class="btn btn-sm btn-secondary" x-on:click.prevent="updateShowPassword()" x-show="!showPassword">Show Password</a>
+                                                <a href="#" class="btn btn-sm btn-secondary" x-on:click.prevent="updateShowPassword()" x-show="showPassword">Hide Password</a>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -347,6 +375,7 @@
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor\datepicker\DateTimePicker.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2-bootstrap.min.css') }}">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
     <style>
         .form-control {
             border:1px solid #aaa !important;

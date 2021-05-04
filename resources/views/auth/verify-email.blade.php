@@ -19,6 +19,7 @@
                                 @endif
 
                                 {{ __('Before proceeding, please check your email for a verification link.') }}
+                                <br>
                                 {{ __('If you did not receive the email') }}
                                 <form action="{{ route('verification.send') }}" method="POST" class="mt-2">
                                     @csrf

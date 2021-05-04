@@ -156,7 +156,7 @@ class RegisterController extends Controller
             'sex'=>$data['sex'],
             'birthdate'=>$data['birthdate'],
             'country'=>$data['country'],
-            'city'=>$data['city']
+            'city'=>ucwords($data['city'])
         ]);
 
         //interest
