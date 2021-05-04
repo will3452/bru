@@ -12,10 +12,10 @@ class Book extends Model
     protected $guarded = [];
 
     //route key binding modification
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
 
     //attributes
     public function getIspublicAttribute(){

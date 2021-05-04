@@ -85,7 +85,7 @@ class BookController extends Controller
         ]);
 
         $d = $book->update($validated);
-        return back()->withSuccess('Save Changed!');
+        return redirect(route('home'))->withSuccess('Save Changed!');
     }
 
     public function destroy(Book $book){

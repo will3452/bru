@@ -32,14 +32,14 @@
                     {{ $chapter->sq }}
                 </td>
                 <td>
-                    <a href="{{ route('books.chapters.show', ['book'=>$chapter->book, 'chapter'=>$chapter]) }}">
+                    <a style="text-transform: capitalize" href="{{ route('books.chapters.show', ['book'=>$chapter->book, 'chapter'=>$chapter]) }}">
                         {{ $chapter->title }} <i class="fa fa-link fa-xs"></i>
                     </a>
                 </td>
-                <td>
+                <td style="text-transform: capitalize">
                     {{ $chapter->type }}
                 </td>
-                <td>
+                <td style="text-transform: capitalize">
                     {{ $chapter->art ? 'yes':'no' }}
                 </td>
                 <td>

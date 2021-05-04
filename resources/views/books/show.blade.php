@@ -5,7 +5,9 @@
     <h1 class="h3 mb-4 text-gray-800">{{ $book->title }}</h1>
     <div class="d-flex justify-content-between mb-2 align-items-center">
         <a href="{{ route('books.list') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a> 
+        @if($book->chapters()->count() ==0))
         <a href="{{ route('books.chapters.create', $book) }}" class="btn btn-primary btn-sm"><i class="fa fa-plus-circle"></i> {{ $book->category != 'Series' ? 'Chapter':'Books' }}</a>
+        @endif
     </div>
     @if ($errors->any())
         <div class="alert alert-danger border-left-danger" role="alert">
@@ -92,7 +94,7 @@
                             <img src="{{  $chapter->art == null ? asset('img/noimage.png'):$chapter->art}}" alt="" class="avatar mr-2">
                             <div class="d-flex align-items-center">
                                 
-                                <span><strong> {{ $chapter->sq }}</strong> {{ $chapter->title }}</span>
+                                <span><strong> {{ $chapter->sq }}</strong> {{ $chapter->title != null ? $chapter->title : $chapter->mode }}</span>
                             </div>
                             {{-- <form action="{{ $book->category == 'Novel' ?  route('books.chapters.remove.novel',[$book, $chapter]) : route('books.chapters.remove',[$book, $chapter]) }}" method="POST">
                                 @csrf
@@ -108,9 +110,11 @@
                    </div>
                     @endif
                     <div class="text-center">
-                        <a href="{{ route('books.chapters.create', $book) }}?first=true" class="btn btn-outline-primary shadow" >
-                            Add new chapter 
-                        </a>
+                        @if ($book->chapters()->count() == 0)
+                            <a href="{{ route('books.chapters.create', $book) }}?first=true" class="btn btn-outline-primary shadow" >
+                                Add new chapter 
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -269,6 +273,7 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
+                                    <label for="">Click here to choose the date.</label>
                                     <input type="text" id="pdate" name="publish_date" required readonly class="form-control" data-field="date" value="{{ $book->publish_date }}">
                                     <div id="dbox"></div>
                                 </div>

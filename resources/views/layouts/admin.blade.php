@@ -13,7 +13,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
-    <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Styles -->
@@ -235,6 +235,15 @@
                     <i class="fa fa-bars"></i>
                 </button>
 
+                <!-- Topbar Search -->
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item mx-1">
+                        <a href="/" class="nav-link "><i class="fa fa-home"></i></a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a href="/" class="nav-link "><i class="fa fa-gem"></i></a>
+                    </li>
+                </ul>
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
 

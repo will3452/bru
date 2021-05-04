@@ -99,7 +99,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="#">Cost Type</label>
+                                <label for="#">Type of Crystal</label>
                                 <select name="cost_type" class="form-control" id="" disabled>
                                     <option value="purple">Purple</option>
                                     <option value="white" {{ $song->cost_type == 'white' ? 'selected':''}}>White</option>

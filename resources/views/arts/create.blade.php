@@ -65,6 +65,10 @@
             </select>
         </div>
         <div class="form-group">
+            <label for="">Credits</label>
+            <textarea name="credits" id=""></textarea>
+        </div>
+        <div class="form-group">
             <label for="#">Cost</label>
             <input type="number" name="cost" class="form-control" min="0" oninput="validate(this)" value="{{ old('cost') ?? 0 }}">
             <script>
@@ -117,6 +121,7 @@
 
             //rich editor
             CKEDITOR.replace('desc');
+            CKEDITOR.replace('credits');
         })
     </script>
 @endsection

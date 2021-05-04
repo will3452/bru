@@ -97,6 +97,10 @@
                             <textarea name="desc" id="" cols="30" rows="10" class="form-control">{{ old('description') ?? $art->description }}</textarea>
                         </div>
                         <div class="form-group">
+                            <label for="">Art Scene Credits</label>
+                            <textarea name="credits" id="" cols="30" rows="10" class="form-control">{{ old('credits') ?? $art->credits }}</textarea>
+                        </div>
+                        <div class="form-group">
                             <label for="">Artist</label>
                             <select name="artist" id="" class="form-control">
                                 @foreach(auth()->user()->pens as $pen)
@@ -347,6 +351,7 @@
 
             //rich editor
             CKEDITOR.replace('desc');
+            CKEDITOR.replace('credits');
         });
     </script>
 @endsection

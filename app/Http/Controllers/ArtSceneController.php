@@ -66,6 +66,7 @@ class ArtSceneController extends Controller
         $validated = request()->validate([
             'desc'=>'',
             'artist'=>'',
+            'credits'=>'',
             'genre'=>'',
             'lead_college'=>'',
         ]);
