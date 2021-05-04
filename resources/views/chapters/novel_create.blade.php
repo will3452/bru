@@ -124,36 +124,8 @@
 @endsection
 
 @section('top')
-<script src="{{ asset('vendor/ckeditor/ckeditor.js') }}" defer></script>
-<script>
-    $(function(){
-        CKEDITOR.replace('foot_note', {height:"50vh", toolbarGroups: [{
-          "name": "basicstyles",
-          "groups": ["basicstyles"]
-        },
-        {
-          "name": "links",
-          "groups": ["links"]
-        },
-        {
-          "name": "paragraph",
-          "groups": ["list", "blocks"]
-        },
-        {
-          "name": "document",
-          "groups": ["mode"]
-        },
-        {
-          "name": "insert",
-          "groups": ["insert"]
-        },
-        {
-          "name": "styles",
-          "groups": ["styles"]
-        }
-      ],})
-    })
-</script>
+
+
 @endsection
 
 @section('bottom')
@@ -176,12 +148,36 @@
         </script>
     @endif
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
-    
+    <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
     <script>
         
         $(function(){
             let art = $('#freeart-child').detach();
-
+            CKEDITOR.replace('foot_note', {height:"50vh", toolbarGroups: [{
+                "name": "basicstyles",
+                "groups": ["basicstyles"]
+                },
+                {
+                "name": "links",
+                "groups": ["links"]
+                },
+                {
+                "name": "paragraph",
+                "groups": ["list", "blocks"]
+                },
+                {
+                "name": "document",
+                "groups": ["mode"]
+                },
+                {
+                "name": "insert",
+                "groups": ["insert"]
+                },
+                {
+                "name": "styles",
+                "groups": ["styles"]
+                }
+            ],})
             $('#chapter_type').change(function(){
                 if($(this).val() == 'premium_with'){
                     $('#freeart').append(art);

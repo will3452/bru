@@ -109,38 +109,7 @@
        
 @endsection
 
-@section('top')
-<script src="{{ asset('vendor/ckeditor/ckeditor.js') }}" defer></script>
-<script>
-    $(function(){
-        CKEDITOR.replace('foot_note', {height:"50vh", toolbarGroups: [{
-          "name": "basicstyles",
-          "groups": ["basicstyles"]
-        },
-        {
-          "name": "links",
-          "groups": ["links"]
-        },
-        {
-          "name": "paragraph",
-          "groups": ["list", "blocks"]
-        },
-        {
-          "name": "document",
-          "groups": ["mode"]
-        },
-        {
-          "name": "insert",
-          "groups": ["insert"]
-        },
-        {
-          "name": "styles",
-          "groups": ["styles"]
-        }
-      ],})
-    })
-</script>
-@endsection
+
 
 @section('bottom')
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
@@ -152,6 +121,7 @@
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
         });
     </script>
+    <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
     <script>
         
         $(function(){
@@ -166,6 +136,32 @@
             });
 
             @if(request()->richtext == true)
+
+            CKEDITOR.replace('foot_note', {height:"50vh", toolbarGroups: [{
+                "name": "basicstyles",
+                "groups": ["basicstyles"]
+                },
+                {
+                "name": "links",
+                "groups": ["links"]
+                },
+                {
+                "name": "paragraph",
+                "groups": ["list", "blocks"]
+                },
+                {
+                "name": "document",
+                "groups": ["mode"]
+                },
+                {
+                "name": "insert",
+                "groups": ["insert"]
+                },
+                {
+                "name": "styles",
+                "groups": ["styles"]
+                }
+            ],})
             CKEDITOR.replace('chapter_content', {height:"50vh", toolbarGroups: [{
           "name": "basicstyles",
           "groups": ["basicstyles"]
