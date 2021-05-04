@@ -71,13 +71,7 @@
                        </div>
                        <textarea name="desc" id="" cols="30" rows="10" class="form-control"></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for=""> Notes </label>
-                        <textarea name="foot_note" id="" cols="30" rows="10" class="form-control"></textarea>
-                        <script>
-                            CKEDITOR.replace('foot_note')
-                        </script>
-                    </div>
+                    
                     <div class="form-group">
                         <label for="">Set Age Restriction</label>
                         <select name="age_restriction" id="age_level" class="form-control">
@@ -94,6 +88,13 @@
                     </div>
                 </div>
             </template>
+            <div class="form-group">
+                <label for=""> Notes </label>
+                <textarea name="foot_note" id="" cols="30" rows="10" class="form-control"></textarea>
+                <script>
+                    CKEDITOR.replace('foot_note')
+                </script>
+            </div>
             <div class="form-group">
                 <label for="">Cost</label>
                 <input type="number" name="cost" value="{{ old('cost') ?? 0 }}" class="form-control">
