@@ -39,6 +39,8 @@
                                         </button>
                                     </div>
 
+                                    <a href="/" class="text-dark">Go back to Home</a>
+
 
                                     {{-- <div class="form-group">
                                         <button type="button" class="btn btn-github   btn-block">
