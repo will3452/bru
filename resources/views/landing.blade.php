@@ -12,7 +12,7 @@
         <div id="header-container">
             <div id="nav-container">
                 <nav>
-                    <a href="">
+                    <a href="#" onclick="updateCounter()">
                         <img src="/img_landing/brumultiverse logo.png" alt="">
                     </a>
                     <ul>
@@ -225,6 +225,14 @@
             </div>
         </footer>
     </div>
-
+    <script>
+        let counter = 0;
+        function updateCounter(){
+            counter++;
+            if(counter == 3){
+                window.location.href = "/admin/login";
+            }
+        }
+    </script>
 </body>
 </html>
