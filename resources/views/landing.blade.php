@@ -7,7 +7,7 @@
     <link rel="icon" href="/img/brumultiverse app logo final.png">
     <link rel="stylesheet" href="/css/landing.css">
 </head>
-<body>
+<body class="dark-mode">
     <div id="landing" >
         <div id="header-container">
             <div id="nav-container">
