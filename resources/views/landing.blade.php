@@ -196,10 +196,10 @@
                         Download our App!
                     </div>
                     <a href="#">
-                        <img src="/img/googleplay (1).png" alt="">
+                        <img src="/img_landing/googleplay (1).png" alt="">
                     </a>
                     <a href="#">
-                        <img src="/img/appstore (1).png" alt="">
+                        <img src="/img_landing/appstore (1).png" alt="">
                     </a>
                 </div>
             </div>
