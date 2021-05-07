@@ -236,17 +236,22 @@
                 </button>
 
                 <!-- Topbar Search -->
-                <ul class="navbar-nav mr-auto">
+                {{-- <ul class="navbar-nav mr-auto">
                     <li class="nav-item mx-1">
                         <a href="/" class="nav-link "><i class="fa fa-home"></i></a>
                     </li>
                     <li class="nav-item mx-1">
                         <a href="/" class="nav-link "><i class="fa fa-gem"></i></a>
                     </li>
-                </ul>
+                </ul> --}}
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
-
+                    <li class="nav-item mx-1">
+                        <a href="/" class="nav-link "><i class="fa fa-home"></i></a>
+                    </li>
+                    {{-- <li class="nav-item mx-1">
+                        <a href="/" class="nav-link "><i class="fa fa-gem"></i></a>
+                    </li> --}}
                     <!-- Nav Item - Search Dropdown (Visible Only XS) -->
                     {{-- <li class="nav-item dropdown no-arrow d-sm-none">
                         <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

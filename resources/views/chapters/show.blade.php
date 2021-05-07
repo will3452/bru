@@ -26,6 +26,17 @@
                                 <input type="text" class="form-control" value="{{ $chapter->cost}}" disabled>
                             </div>
                         @endif
+
+                        @if (in_array($chapter->type, ['premium_with', 'premium']))
+                            <div class="form-group">
+                                <label for="">Description</label>
+                                <textarea name="desc" id="" cols="30" rows="10" class="form-control">{{ $chapter->desc }}</textarea>
+                            </div>
+                        @endif
+                        <div class="form-group">
+                            <label for="">Author's Notes </label>
+                            <textarea name="foot_note" id="" cols="30" rows="10" class="form-control">{{ $chapter->foot_note }}</textarea>
+                        </div>
                         
                         @if ($chapter->art)
                             <div class="form-group">
@@ -50,6 +61,7 @@
                             <a target="_blank" href="{{ $chapter->content }}" class="d-block text-secondary"><i class="fa fa-info-circle fa-sm"></i> View current content.</a>
                         </div>
                         @endif
+                        
                         <button class="mt-2 btn btn-block btn-primary">Save</button>
                     </form>
                     @else 
@@ -76,7 +88,7 @@
                 </div>
                 <div class="card-body">
                     <div>
-                        Readers
+                        Reads
                     </div>
                     <div>
                         Hearts
@@ -99,6 +111,7 @@
 <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
 <script>
      //rich editor
+     CKEDITOR.replace('foot_note')
      CKEDITOR.replace('nice',{height:"50vh", toolbarGroups: [{
           "name": "basicstyles",
           "groups": ["basicstyles"]

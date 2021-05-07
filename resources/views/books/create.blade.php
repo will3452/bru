@@ -43,6 +43,7 @@
                 <option value="Illustrated Novel ">Illustrated Novel</option>
                 <option value="Comic Book">Comic Book</option>
                 <option value="Anthology">Anthology</option>
+                <option value="Picture Book">Picture Book</option>
                 {{-- <option value="Series">Series</option> --}}
             </select>
         </div>

@@ -31,6 +31,7 @@
                                 CONTACT US
                             </a>
                         </li>
+                        @guest 
                         <li>
                             <a href="/please-input-aan">
                                 SIGN UP
@@ -41,6 +42,14 @@
                                 SIGN IN
                             </a>
                         </li>
+
+                        @else 
+                        <li>
+                            <a href="/home">
+                                DASHBOARD
+                            </a>
+                        </li>
+                        @endguest 
                     </ul>
                 </nav>
                 <div id="nav-bg"></div>

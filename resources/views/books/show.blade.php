@@ -91,11 +91,14 @@
                     <ul class="list-group mb-2">
                         @foreach($book->chapters()->limit(5)->get() as $key=>$chapter)
                         <li class="list-group-item d-flex align-items-center justify-content-between">
-                            <img src="{{  $chapter->art == null ? asset('img/noimage.png'):$chapter->art}}" alt="" class="avatar mr-2">
+                            
                             <div class="d-flex align-items-center">
-                                
-                                <span><strong> {{ $chapter->sq }}</strong> {{ $chapter->title != null ? $chapter->title : $chapter->mode }}</span>
+                                {{-- <span><strong> {{ $chapter->sq }}</strong> {{ $chapter->title != null ? $chapter->title : $chapter->mode }}</span> --}}
+                                <span>{{ $chapter->title != null ? $chapter->title : $chapter->mode }}</span>
                             </div>
+                            <span style="text-transform:capitalize">
+                                {{ $chapter->mode }}
+                            </span>
                             {{-- <form action="{{ $book->category == 'Novel' ?  route('books.chapters.remove.novel',[$book, $chapter]) : route('books.chapters.remove',[$book, $chapter]) }}" method="POST">
                                 @csrf
                             @method('delete')

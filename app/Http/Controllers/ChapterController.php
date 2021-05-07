@@ -102,6 +102,7 @@ class ChapterController extends Controller
                 $chapter->content = $chapterx;
             }
         }
+        $chapter->foot_note = request()->foot_note;
         $chapter->save();
         return back()->withSuccess('Done!');
     }

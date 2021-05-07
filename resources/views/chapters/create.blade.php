@@ -76,7 +76,7 @@
         </div>
     </template>
     <div class="form-group">
-        <label for=""> Notes </label>
+        <label for="">Author's Notes </label>
         <textarea name="foot_note" id="" cols="30" rows="10" class="form-control"></textarea>
     </div>
     <div class="form-group">
