@@ -38,8 +38,8 @@
                 <option value="0">
                     None
                 </option>
-                <option value="16">
-                    16 and up
+                <option value="15">
+                    15 and up
                 </option>
                 <option value="18" id="_18">
                     18 and up

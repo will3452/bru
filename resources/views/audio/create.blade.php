@@ -165,8 +165,8 @@
                     <option value="0"  @if(isset($book) && '0'== $book->age_restriction) selected @endif>
                         None
                     </option>
-                    <option value="16"  @if(isset($book) && '16'== $book->age_restriction) selected @endif>
-                        16 and up
+                    <option value="15"  @if(isset($book) && '16'== $book->age_restriction) selected @endif>
+                        15 and up
                     </option>
                     <option value="18" id="_18"  @if(isset($book) && '18"'== $book->age_restriction) selected @endif>
                         18 and up
