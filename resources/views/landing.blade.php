@@ -6,6 +6,7 @@
     <title>BRUMUTLTIVERSE</title>
     <link rel="icon" href="/img/brumultiverse app logo final.png">
     <link rel="stylesheet" href="/css/landing.css">
+    <link rel="shortcut icon" href="/images/brumultiverseapplogo.png" type="image/x-icon">
 </head>
 <body class="dark-mode">
     <div id="landing" >
