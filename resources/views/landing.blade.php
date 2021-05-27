@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>BRUMUTLTIVERSE</title>
+    <title>BRUMULTIVERSE</title>
     <link rel="icon" href="/img/brumultiverse app logo final.png">
     <link rel="stylesheet" href="/css/landing.css">
     <link rel="shortcut icon" href="/images/brumultiverseapplogo.png" type="image/x-icon">
