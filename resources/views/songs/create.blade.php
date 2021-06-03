@@ -166,6 +166,10 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="">Lyrics</label>
+            <textarea name="lyrics" id="" class="form-control" required></textarea>
+        </div>
+        <div class="form-group">
             <label for="">Copyright</label>
             <textarea name="copyright" class="form-control" placeholder="Enter copyright details here."></textarea>
         </div>
@@ -192,6 +196,7 @@
         CKEDITOR.replace('desc');
         CKEDITOR.replace('credits');
         CKEDITOR.replace('copyright');
+        CKEDITOR.replace('lyrics');
     </script>
 
 <script src="{{ asset('/vendor/plupload/js/plupload.full.min.js') }}"></script>

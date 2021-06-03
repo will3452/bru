@@ -176,7 +176,10 @@
                                 <label for="#">Credits </label>
                                 <textarea name="credits" class="form-control">{{ old('credits') ?? $song->credits }}</textarea>
                             </div>
-
+                            <div class="form-group">
+                                <label for="">Lyrics</label>
+                                <textarea name="lyrics" id="" class="form-control" required>{{ $song->lyrics }}</textarea>
+                            </div>
                             <div class="form-group">
                                 <label for="">Copyright</label>
                                 <textarea name="copyright" class="form-control" placeholder="Enter copyright details here.">{{ $song->copyright }}</textarea>
@@ -382,6 +385,7 @@
         CKEDITOR.replace('desc');
         CKEDITOR.replace('credits');
         CKEDITOR.replace('copyright');
+        CKEDITOR.replace('lyrics');
     </script>
 @endsection
 

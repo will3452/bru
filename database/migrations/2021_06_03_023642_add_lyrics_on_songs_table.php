@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnsOfTableArt extends Migration
+class AddLyricsOnSongsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddColumnsOfTableArt extends Migration
      */
     public function up()
     {
-        Schema::table('arts', function (Blueprint $table) {
-            $table->text('credits')->nullable();
+        Schema::table('songs', function(Blueprint $table){
+            $table->text('lyrics')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddColumnsOfTableArt extends Migration
      */
     public function down()
     {
-        Schema::table('arts', function (Blueprint $table) {
-            $table->dropColumn(['credits']);
+        Schema::table('songs', function(Blueprint $table){
+            $table->dropColumn('lyrics');
         });
     }
 }

@@ -59,6 +59,7 @@ class SongController extends Controller
             'cover'=>'',
             'file'=>'',
             'cpy'=>'',
+            'lyrics'=>'',
         ]);
         $validated['description'] = $validated['desc'];
         unset($validated['desc']);
@@ -108,6 +109,7 @@ class SongController extends Controller
             'thrailer_id'=>'',
             'cost_type'=>'required',
             'copyright'=>'',
+            'lyrics'=>''
         ]);
         $validated['description'] = $validated['desc'];
         unset($validated['desc']);
