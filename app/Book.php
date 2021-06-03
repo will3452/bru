@@ -40,10 +40,6 @@ class Book extends Model
         return $this->hasMany(self::class, 'series_id');
     }
 
-    public function series(){
-        return $this->belongsTo(self::class, 'series_id');
-    }
-
     public function chapters(){
         return $this->hasMany(Chapter::class);
     }

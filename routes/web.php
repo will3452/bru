@@ -239,10 +239,11 @@ Route::resource('audio', 'AudioController');
 //update content such as: languages, male, college, blurb etc..,
 Route::put('audio/update-some/{audio}','AudioController@updateSome')->name('audio.updatesome');
 
-Route::resource('songs', 'SongController');
-Route::resource('group', 'GroupController');
-Route::resource('group-member', 'GroupMemberController');
-Route::resource('inbox', 'InboxController');
+Route::resource('songs', 'SongController')->middleware('auth');
+Route::resource('group', 'GroupController')->middleware('auth');
+Route::resource('group-member', 'GroupMemberController')->middleware('auth');
+Route::resource('inbox', 'InboxController')->middleware('auth');
+Route::resource('podcast', 'PodcastController')->middleware('auth');
 
 //tickets 
 Route::prefix('tickets')->name('tickets.')->group(function(){

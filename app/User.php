@@ -108,6 +108,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Song::class);
     }
 
+    public function podcasts(){
+        return $this->hasMany(Podcast::class);
+    }
+
 
     public function createGroups(){
         return $this->hasMany(Group::class,'creator_id');
