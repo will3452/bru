@@ -22,7 +22,7 @@ Route::view('/', 'landing');
 
 //static website
 Route::view('/about', 'about');
-Route::view('/contact', 'contact');
+Route::view('/contact', 'contactus');
 Route::view('/bru', 'bru');
 
 Auth::routes();

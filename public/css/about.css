@@ -1,0 +1,36 @@
+
+#header-about {
+    display: flex;
+    justify-content: center;
+}
+#header-about>div{
+    background: url('/img_landing/Write with us!.png');
+    background-size: cover;
+    width:400px;
+    height:100px;
+}
+main {
+    margin-bottom:100px;
+}
+main section {
+    font-size: 18px;
+    color: white;
+    width: 70vw;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+#about-art {
+    background: url('/img_landing/contact us ART.jpg');
+    background-size: contain;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+#contact-art {
+    background: url('/img_landing/grandhall\ front\ final.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}

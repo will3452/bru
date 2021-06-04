@@ -1,28 +1,153 @@
-@extends('layouts.welcome')
-@section('art', \App\About::find(1)->art)
-@section('content')
-<div>
-    {!! \App\About::find(1)->content !!}
-</div>
-<div class="flex flex-wrap w-full my-12">
-    @foreach (\App\AboutAccount::get() as $about)
-        <div class="w-full md:w-1/4">
-            <div class="w-full bg-white-100 rounded-lg text-yellow-900">
-                <div class="flex justify-center">
-                    <img src="{{ $about->picture }}" alt="" class="block w-32 h-32 rounded-full mt-8 object-cover">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>About Us</title>
+    <link rel="stylesheet" href="/css/static.generic.css">
+    <link rel="stylesheet" href="/css/about.css">
+</head>
+<body>
+    <nav>
+        <a href="#" id="xx">
+            <img src="/img_landing/brumultiverse logo.png" alt="">
+        </a>
+        <ul>
+            <li > 
+                <a href="/">Home</a>
+            </li>
+            <li class="active">
+                <a href="/about">About Us</a>
+            </li>
+            <li>
+                <a href="/contact">Contact Us</a>
+            </li>
+            <li>
+                <a href="/please-input-aan">Sign Up</a>
+            </li>
+            <li>
+                <a href="/login">
+                    Sign In
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <header>
+        <div id="tagline">
+            <div class="white">
+                <div>
+                    ESCAPE
                 </div>
-                <div class="text-center">
-                    <h2 class="text-2xl font-bold">{{ $about->name }}</h2>
-                    <div class="text-sm text-gray-600">
-                        {{ $about->title }}
-                    </div>
+                <div>
+                    INTO
+                </div>
+                <div>
+                    THE
+                </div>
+                <div>
+                    NOW-KNOWN
                 </div>
             </div>
-            <div class="flex justify-center text-yellow-900 ">
-                <a href="{{ $about->fb_link }}" class="hover:text-gray-600 text-2xl"><i class="fa fa-facebook-square mx-1"></i></a>
-                <a href="{{ $about->ig_link }}" class="hover:text-gray-600 text-2xl"><i class="fa fa-instagram mx-1"></i></a>
+            <div class="violet">
+                <div>
+                    ESCAPE
+                </div>
+                <div>
+                    INTO
+                </div>
+                <div>
+                    THE
+                </div>
+                <div>
+                    NOW-KNOWN
+                </div>
+            </div>
+            <div class="blue">
+                <div>
+                    ESCAPE
+                </div>
+                <div>
+                    INTO
+                </div>
+                <div>
+                    THE
+                </div>
+                <div>
+                    NOW-KNOWN
+                </div>
             </div>
         </div>
-    @endforeach
-</div>
-@endsection
+    </header>
+
+
+    <main>
+        <section>
+            The brainchild of Khiara Laurea and Miel Salva, BRUMULTIVERSE is vast, having multifold dimensions and realms, and parallel realities and universes, characters that come to life in the dead of night, and names that echo whispered dreams and stirred feelings. It is an immense plane, where billions of stories, waiting to be told, exist. Some of the best ones have already been written, while others await their rightful storytellers. 
+
+        </section>
+        <div class="art" id="about-art"> 
+        </div>
+        <section>
+            Precisely because of that, BRUMULTIVERSE explores the infinite potentials and promises of human existence and circumstances we have yet to understand. It is ever expanding, built and rooted firmly in the joint musings, imaginations, beliefs, perceptions and conceptions of the Filipino creators and of authors and artists of all genres and from varying backgrounds around the globe.    
+
+        </section>
+        <section>
+            In 2021, BRUMULTIVERSE is launched and introduced through Realidad Dimension, one of six dimensions, for its first phase. Within this dimension is Tellurian Realm or the realm of the living and of reality. And here, on Earth, is a university, where all its mysteries unfold.
+
+        </section>
+        <section>
+            Please note, however, that while we recognize your awesome works and ideas, we only publish stories set within the BRUMULTIVERSE. 
+        </section>
+    </main>
+
+
+    <footer>
+        <div id="logo">
+        </div>
+        <div id="extra">
+            <p>We’d love for you to join our growing BRU family!</p>
+            <h3>BRUMULTIVERSE</h3>
+            <p>
+                Immerse yourself, experience and be part of each university story on e-books, audio books, short videos and songs from authors and artists around the globe!
+            </p>
+        </div>
+        <div id="download">
+            <div id="gplay"></div>
+            <div id="astore"></div>
+        </div>
+        <div id="qlinks">
+            <h3>Quick Links</h3>
+            <ul>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/">About</a>
+                </li>
+                <li>
+                    <a href="/">Contacts</a>
+                </li>
+                <li>
+                    <a href="/">Sign In</a>
+                </li>
+                <li>
+                    <a href="/">Sign Up</a>
+                </li>
+            </ul>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            const xx = document.querySelector('#xx');
+            let count = 0;
+            xx.addEventListener('click', function(){
+                count++;
+                if(count >= 3){
+                    window.location.href = '/admin/login';
+                }
+            })
+        })
+    </script>
+</body>
+</html>
