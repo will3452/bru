@@ -23,7 +23,7 @@ main #header-landing{
     height:600px;
     background: url('/img_landing/image 1.png');
     background-position: center;
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 .panel {
