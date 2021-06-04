@@ -30,7 +30,7 @@ main #header-landing{
     color: white !important;
     display: flex;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    align-items: center;
+    align-items: flex-end;
 }
 #vission, #goal, #core {
     margin-bottom: 50px;
@@ -80,7 +80,7 @@ main #header-landing{
     background:url('/img_landing/image 4.png');
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center right;
+    background-position: bottom right;
 }
 
 .panel-list {
