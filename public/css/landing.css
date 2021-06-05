@@ -32,7 +32,7 @@ main #header-landing{
     color: white !important;
     display: flex;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    align-items: flex-end;
+    align-items: center;
     margin:0px 100px;
 }
 #vission, #goal, #core {

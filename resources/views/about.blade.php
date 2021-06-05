@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>About Us</title>
+    <title>BRUMULTIVERSE | About</title>
     <link rel="stylesheet" href="/css/static.generic.css">
     <link rel="stylesheet" href="/css/about.css">
 </head>
