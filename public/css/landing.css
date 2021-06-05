@@ -2,12 +2,14 @@ main {
     margin-bottom:100px;
 }
 main section {
-    font-size: 18px;
+    font-size: 14px;
     color: white;
     width: 70vw;
     text-align: center;
     margin: auto;
     margin-bottom: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 2;
 }
 
 main #header-landing{
@@ -31,13 +33,14 @@ main #header-landing{
     display: flex;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     align-items: flex-end;
+    margin:0px 100px;
 }
 #vission, #goal, #core {
     margin-bottom: 50px;
 }
 .panel > *{
     width:50vw;
-    font-size: 18px;
+    font-size: 14px;
 }
 .is-left .panel-child-header, .is-left .panel-child-body{
     text-align: right;
@@ -55,11 +58,15 @@ main #header-landing{
     font-size: 40px;
     font-weight: 700;
     margin-bottom: 20px;
+    background-image: url('/img_landing/textbg.png');
+    background-repeat: repeat;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 
 .panel-image {
-    height: 300px;
+    height: 400px;
     background: red;
 }
 #vission .panel-image{
@@ -75,7 +82,17 @@ main #header-landing{
     background-repeat: no-repeat;
     background-position: center left;
 }
-
+#core ul {
+    width:300px;
+}
+#core .panel-child-header {
+    padding-left: 100px;
+    text-align: center;
+}
+.is-flex{
+    display: flex;
+    justify-content: center;
+}
 #core .panel-image{
     background:url('/img_landing/image 4.png');
     background-size: contain;

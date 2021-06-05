@@ -139,24 +139,26 @@
         <div id="core" class="panel">
             <div class=" is-left">
                 <div class="panel-child-header">CORE VALUES</div>
-                <div class="panel-list">
-                    <ul>
-                        <li>
-                            Excellence and Competence.
-                        </li>
-                        <li>
-                            Imagination and Creativity.
-                        </li>
-                        <li>
-                            Respect and Compassion.
-                        </li>
-                        <li>
-                            Community and Culture.
-                        </li>
-                        <li>
-                            Honor and Integrity.
-                        </li>
-                    </ul>
+                <div class="is-flex">
+                    <div class="panel-list">
+                        <ul>
+                            <li>
+                                Excellence and Competence.
+                            </li>
+                            <li>
+                                Imagination and Creativity.
+                            </li>
+                            <li>
+                                Respect and Compassion.
+                            </li>
+                            <li>
+                                Community and Culture.
+                            </li>
+                            <li>
+                                Honor and Integrity.
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class=" is-right">

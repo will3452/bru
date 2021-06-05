@@ -2,6 +2,8 @@
 #header-about {
     display: flex;
     justify-content: center;
+    margin-bottom: 25px;
+    
 }
 #header-about>div{
     background: url('/img_landing/Write with us!.png');
@@ -11,14 +13,18 @@
 }
 main {
     margin-bottom:100px;
+    position: relative;
+    top: -100px;
+    line-height: 2;
 }
 main section {
-    font-size: 18px;
+    font-size: 14px;
     color: white;
     width: 70vw;
     text-align: center;
     margin: auto;
     margin-bottom: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #about-art {
@@ -26,6 +32,7 @@ main section {
     background-size: contain;
     background-attachment: fixed;
     background-position: center;
+    background-repeat: no-repeat;
 }
 
 #contact-art {
@@ -33,4 +40,5 @@ main section {
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
+    background-repeat: no-repeat;
 }
