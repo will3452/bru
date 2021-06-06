@@ -76,6 +76,10 @@ main #header-landing{
     background-position: bottom right;
 }
 
+#goal {
+    margin-top: 200px;
+}
+
 #goal .panel-image{
     background:url('/img_landing/image 3.png');
     background-size: contain;
