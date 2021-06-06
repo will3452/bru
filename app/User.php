@@ -141,4 +141,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->inboxes()->whereNull('read_at')->get();
     }
 
+    public function series(){
+        return $this->hasMany(Series::class);
+    }
+
 }

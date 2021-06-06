@@ -2,7 +2,7 @@ main {
     margin-bottom:100px;
 }
 main section {
-    font-size: 14px;
+    font-size: 16px;
     color: white;
     width: 70vw;
     text-align: center;
@@ -32,15 +32,15 @@ main #header-landing{
     color: white !important;
     display: flex;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    align-items: center;
-    margin:0px 100px;
+    align-items: flex-end;
+    margin:0px 200px;
 }
 #vission, #goal, #core {
     margin-bottom: 50px;
 }
 .panel > *{
     width:50vw;
-    font-size: 14px;
+    font-size: 16px;
 }
 .is-left .panel-child-header, .is-left .panel-child-body{
     text-align: right;
@@ -73,14 +73,14 @@ main #header-landing{
     background:url('/img_landing/image 2.png');
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center right;
+    background-position: bottom right;
 }
 
 #goal .panel-image{
     background:url('/img_landing/image 3.png');
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center left;
+    background-position: bottom left;
 }
 #core ul {
     width:300px;

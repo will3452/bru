@@ -160,7 +160,7 @@ Route::post('/genre/checker', 'CheckerController@genreChecker')->name('genre.che
 
 
 //books 
-Route::prefix('books')->name('books.')->group(function(){
+Route::prefix('books')->name('books.')->middleware(['auth'])->group(function(){
     Route::get('/', 'BookController@index')->name('index');
     Route::get('/list', 'BookController@list')->name('list');
     Route::post('/', 'BookController@store')->name('store');
@@ -200,7 +200,7 @@ Route::prefix('books')->name('books.')->group(function(){
 });
 
 //arts
-Route::prefix('arts')->name('arts.')->group(function(){
+Route::prefix('arts')->name('arts.')->middleware(['auth'])->group(function(){
     Route::get('/create', 'ArtSceneController@create')->name('create');
     Route::get('/list', 'ArtSceneController@list')->name('list');
     Route::post('/', 'ArtSceneController@store')->name('store');
@@ -210,7 +210,7 @@ Route::prefix('arts')->name('arts.')->group(function(){
 });
 
 //trailer
-Route::prefix('trailers')->name('thrailers.')->group(function(){
+Route::prefix('trailers')->name('thrailers.')->middleware(['auth'])->group(function(){
     Route::get('/', 'ThrailerController@index')->name('index');
     Route::post('/{thrailer}/cover', 'ThrailerController@updateCover')->name('cover.update');
     Route::get('/create', 'ThrailerController@create')->name('create');
@@ -228,7 +228,7 @@ Route::post('/large-video-uploader','VideoUploader')->name('video.uploader');
 Route::post('/large-audio-uploader','VideoUploader')->name('audio.uploader');
 
 
-Route::prefix('events')->name('events.')->group(function(){
+Route::prefix('events')->name('events.')->middleware(['auth'])->group(function(){
     Route::get('/create', 'EventController@create')->name('create');
     Route::post('/', 'EventController@store')->name('store');
     Route::get('/', 'EventController@index')->name('index');
@@ -244,9 +244,10 @@ Route::resource('group', 'GroupController')->middleware('auth');
 Route::resource('group-member', 'GroupMemberController')->middleware('auth');
 Route::resource('inbox', 'InboxController')->middleware('auth');
 Route::resource('podcast', 'PodcastController')->middleware('auth');
+Route::resource('series', 'SeriesController')->middleware('auth');
 
 //tickets 
-Route::prefix('tickets')->name('tickets.')->group(function(){
+Route::prefix('tickets')->name('tickets.')->middleware('auth:admin')->group(function(){
     //delete ticket
     Route::post('delete/book/{book}', 'TicketController@bookDestroy')->name('book.delete');
     Route::post('delete/art/{art}', 'TicketController@artDestroy')->name('art.delete');
