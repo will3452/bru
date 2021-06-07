@@ -13,7 +13,7 @@ class PodcastController extends Controller
      */
     public function index()
     {
-        //
+        return "The page is under development";
     }
 
     /**
