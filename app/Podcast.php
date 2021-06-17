@@ -14,6 +14,10 @@ class Podcast extends Model
         return $this->belongsTo(User::class);
     }
 
-    
+
+     public function series()
+    {
+        return $this->morphToMany(Series::class, 'seriesable');
+    }
 
 }

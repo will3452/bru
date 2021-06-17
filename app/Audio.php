@@ -28,4 +28,9 @@ class Audio extends Model
     {
         return $this->morphMany(Ticket::class, 'ticketable');
     }
+
+    public function series()
+    {
+        return $this->morphToMany(Series::class, 'seriesable');
+    }
 }

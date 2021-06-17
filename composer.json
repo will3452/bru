@@ -19,6 +19,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
         "livewire/livewire": "^2.3",
+        "realrashid/sweet-alert": "^4.0",
         "wildbit/swiftmailer-postmark": "^3.3"
     },
     "require-dev": {

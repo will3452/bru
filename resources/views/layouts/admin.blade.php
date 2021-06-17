@@ -103,19 +103,21 @@
         }
     </style>
 </head>
-<div id="pp">
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="col-md-4 p-4 " style="background:url('/img/card-bg-custom.png');
-        background-size: cover;">
-            <div>
-                Please take time to read our <a href="#">Privacy Policy</a>. By continuing to browse this site and/or clicking I AGREE, you guarantee that you have read and have understood our Privacy Policy and that you consent to its terms. Thank you!
+
+<body id="page-top" class="sidebar-toggled">
+    @include('sweetalert::alert')
+    <div id="pp">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4 p-4 " style="background:url('/img/card-bg-custom.png');
+            background-size: cover;">
+                <div>
+                    Please take time to read our <a href="#">Privacy Policy</a>. By continuing to browse this site and/or clicking I AGREE, you guarantee that you have read and have understood our Privacy Policy and that you consent to its terms. Thank you!
+                </div>
+                <button class="btn btn-primary mt-5" onclick="ppAgree()">I AGREE</button>
             </div>
-            <button class="btn btn-primary mt-5" onclick="ppAgree()">I AGREE</button>
         </div>
     </div>
-</div>
-<body id="page-top" class="sidebar-toggled">
 
 <!-- Page Wrapper -->
 <div id="wrapper">

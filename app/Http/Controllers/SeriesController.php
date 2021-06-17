@@ -44,7 +44,8 @@ class SeriesController extends Controller
             'cpy'=>'required'
         ]);
         if(!in_array($data['type'], ['book', 'audio book', 'podcast', 'film'])){
-            return back()->withError('Invalid!');
+            toast('something is wrong', 'error');
+            return back();
         }
 
         //storing the  book cover
@@ -91,7 +92,34 @@ class SeriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $series = auth()->user()->series()->findOrFail($id);
+
+        $request->validate([
+            'work_id'=>'required',
+        ]);
+
+        if($series->type == 'book'){
+            $series->books()->toggle($request->work_id);
+        }
+
+        if($series->type == 'audio book'){
+            $series->audios()->toggle($request->work_id);
+        }
+
+        if($series->type == 'film'){
+            $series->films()->toggle($request->work_id);
+        }
+
+        if($series->type == 'podcast'){
+            $series->podcasts()->toggle($request->work_id);
+        }
+
+        toast('Done', 'success');
+
+        return back();
+
+        
+
     }
 
     /**

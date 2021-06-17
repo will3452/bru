@@ -35,10 +35,14 @@ class Book extends Model
     public function tags(){
         return $this->morphToMany(Tag::class, 'taggable');
     }
+
+    // DEPRECATED
     
     public function books(){
         return $this->hasMany(self::class, 'series_id');
     }
+
+    // DEPRECATED
 
     public function chapters(){
         return $this->hasMany(Chapter::class);
@@ -60,5 +64,14 @@ class Book extends Model
     public function tickets()
     {
         return $this->morphMany(Ticket::class, 'ticketable');
+    }
+
+    public function group(){
+        return $this->belongsTo(Group::class);
+    }
+
+    public function series()
+    {
+        return $this->morphToMany(Series::class, 'seriesable');
     }
 }

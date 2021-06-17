@@ -27,8 +27,9 @@ class CreateSeriesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('seriesable', function(Blueprint $table){
+        Schema::create('seriesables', function(Blueprint $table){
             $table->id();
+            $table->foreignId('series_id');
             $table->foreignId('seriesable_id');
             $table->string('seriesable_type');
         });
@@ -42,6 +43,6 @@ class CreateSeriesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('series');
-        Schema::dropIfExists('seriesable');
+        Schema::dropIfExists('seriesables');
     }
 }

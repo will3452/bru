@@ -3,7 +3,7 @@
     <h1 class="h3 mb-4 text-gray-800">{{ __('Create a Series') }}</h1>
     <a href="{{ route('books.index') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
     @include('partials.alert')
-    <form action="{{ route('series.store') }}" method="POST">
+    <form action="{{ route('series.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="form-group">
@@ -13,7 +13,7 @@
             <select name="type" id="" class="custom-select">
                 <option value="book">Books</option>
                 <option value="audio book">Audio Books</option>
-                <option value="films">Films</option>
+                <option value="film">Films</option>
                 <option value="podcast">Podcast</option>
             </select>
         </div>

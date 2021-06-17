@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('main-content')
+    @livewireStyles()
     <h1 class="h3 mb-4 text-gray-800">{{$series->title }}</h1>
     <div class="d-flex justify-content-between">
         <a href="{{ route('books.index') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
@@ -12,7 +13,77 @@
                     Add Work
                 </div>
                 <div class="card-body">
-                    @livewire('search-series')
+                    @livewire('search-series', ['series'=>$series])
+                </div>
+            </div>
+            <div class="card mt-2">
+                <div class="card-header">
+                    List of Work
+                </div>
+                <div class="card-body">
+                    @if ($series->type == 'book')
+                        @foreach ($series->books as $book)
+                        <li class="list-group-item d-flex justify-content-between">
+                            {{ $book->title }}
+                            <form action="{{ route('series.update', $series) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" name="work_id" value="{{ $book->id }}">
+                                 <button class="btn btn-danger btn-sm">
+                                     remove
+                                 </button>
+                            </form>
+                        </li>
+                        @endforeach
+                    @endif
+
+                    @if ($series->type == 'audio book')
+                        @foreach ($series->audios as $book)
+                        <li class="list-group-item d-flex justify-content-between">
+                            {{ $book->title }}
+                            <form action="{{ route('series.update', $series) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" name="work_id" value="{{ $book->id }}">
+                                 <button class="btn btn-danger btn-sm">
+                                     remove
+                                 </button>
+                            </form>
+                        </li>
+                        @endforeach
+                    @endif
+
+                    @if ($series->type == 'film')
+                        @foreach ($series->films as $book)
+                        <li class="list-group-item d-flex justify-content-between">
+                            {{ $book->title }}
+                            <form action="{{ route('series.update', $series) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" name="work_id" value="{{ $book->id }}">
+                                 <button class="btn btn-danger btn-sm">
+                                     remove
+                                 </button>
+                            </form>
+                        </li>
+                        @endforeach
+                    @endif
+
+                    @if ($series->type == 'podcast')
+                        @foreach ($series->podcasts as $book)
+                        <li class="list-group-item d-flex justify-content-between">
+                            {{ $book->title }}
+                            <form action="{{ route('series.update', $series) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" name="work_id" value="{{ $book->id }}">
+                                 <button class="btn btn-danger btn-sm">
+                                     remove
+                                 </button>
+                            </form>
+                        </li>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
@@ -43,13 +114,14 @@
                         </a>
                     </div>
                     <div class="mt-2">
-                        <a href="" class="btn btn-primary">Edit</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @livewireScripts()
 @endsection
+
 
 
 
