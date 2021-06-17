@@ -86,23 +86,20 @@
             Berkeley-Reagan University
         </div>
         <section>
-            Berkeley-Reagan University or BRU was founded on October 13 by a British teacher, named Henry Berkeley, and an American businessman, named William Reagan, who came to Taguig City, Philippines in 1951.
+            Founded on October 13, 1951 by Henry Berkeley and William Reagan, the Berkeley-Reagen University (BRU) in Taguig City, Philippines is one of the world's most prestigious universities. It specializes in Business, Sports, Arts, and Social Sciences, with over eight thousand enrolled students from around Southeast Asia. 
         </section>
         <section>
-            From offering only four courses in natural sciences and performing arts as Berkeley-Reagan Colleges, it has expanded, not only its land area, but also the curriculum it offered over the years. It earned its University status in 1986, as more than eight thousand students from around Southeast Asia flocked its grounds, making it one of the most prestigious international universities in the world. In 1989, BRU began accepting students from Pre-K to Senior High, which now comprises its Integrated School population.
+            Berkeley, who was a British teacher, and Reagan, an American businessman, started the school as Berkeley-Reagan Colleges, offering only four courses in the natural sciences and performing arts. BRC earned its University status in 1986, and three years later, opened the Integrated School to make way for Pre-K to Senior High students.
         </section>
         <section>
-            At present, BRU specializes in Business, Sports, Arts and Social Sciences. Its British-American-inspired buildings withstood the test of time, boasting their original architectural designs and structures to date, along with state-of-the art facilities.
+            Today, BRU is home to more than 7 thousand students, ensuring a quality and dynamic learning environment with its original British and American-inspired architectural designs and structures, along with state-of-the-art facilities.
         </section>
         <div class="art" id="landing-gate"></div>
         <div id="vission" class="panel">
             <div class=" is-left">
                 <div class="panel-child-header">VISION / MISSION</div>
                 <div class="panel-child-body">
-                    Berkeley-Reagan University is a premier university in
-                    business, arts and sciences that bridges knowledge and
-                    culture and develops globally-competitive and responsible
-                    professionals attuned to a sustainable world.
+                    Berkeley-Reagan University is a premier international university specializing in business, arts, and sciences that seeks to bridge knowledge and culture and develop globally competent and responsible professionals attuned to making a sustainable world.
                 </div>
             </div>
             <div class=" is-right">
@@ -118,19 +115,19 @@
                 <div class="panel-list">
                     <ul>
                         <li>
-                            Provide quality education through highly trained and competent educators and state-of-the-arts facilities.
+                            Provide quality education through highly trained and competent educators and state-of-the-art facilities
                         </li>
                         <li>
-                            Challenge the abilities of young individuals to promote resourcefulness and creativity through various activities inside and/or outside the campus.
+                            Promote openness, mutual respect, and collaboration in a multicultural environment
                         </li>
                         <li>
-                            Develop critical minds of students in addressing important issues and guide them into making sound judgment.
+                            Challenge the abilities of the students to promote resourcefulness and creativity
                         </li>
                         <li>
-                            Promote openness, mutual respect and collaboration in a multi-cultural and multi-racial environment.
+                            Develop critical thinking and sound judgment of young minds
                         </li>
                         <li>
-                            Maintain and preserve ecological balance through initiatives directed towards caring for Mother Earth.
+                            Help preserve environmental resources to maintain ecological balance
                         </li>
                     </ul>
                 </div>
@@ -143,19 +140,19 @@
                     <div class="panel-list">
                         <ul>
                             <li>
-                                Excellence and Competence.
+                                Excellence and Competence
                             </li>
                             <li>
-                                Imagination and Creativity.
+                                Imagination and Creativity
                             </li>
                             <li>
-                                Respect and Compassion.
+                                Respect and Compassion
                             </li>
                             <li>
-                                Community and Culture.
+                                Community and Culture
                             </li>
                             <li>
-                                Honor and Integrity.
+                                Honor and Integrity
                             </li>
                         </ul>
                     </div>
