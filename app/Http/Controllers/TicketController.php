@@ -7,6 +7,7 @@ use App\Book;
 use App\Song;
 use App\Audio;
 use App\Chapter;
+use App\Podcast;
 use App\Thrailer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -147,8 +148,8 @@ class TicketController extends Controller
             ]);
 
             return 1;
-        }
-        public function songUpdate(Song $song){
+    }
+    public function songUpdate(Song $song){
         if(!$this->correctPassword(request()->password)) return 2;
         $validated = request()->validate([
             'reason'=>'',
@@ -157,6 +158,30 @@ class TicketController extends Controller
         ]);
         $validated['user_id'] = auth()->user()->id;
         $song->tickets()->create($validated);
+        return 1;
+    }
+
+
+    // podcast
+    public function podcastDestroy(Podcast $podcast){
+        if(!$this->correctPassword(request()->password)) return 2;
+            $podcast->tickets()->create([
+                'reason'=>request()->reason,
+                'delete'=>now(),
+                'user_id'=>auth()->user()->id
+            ]);
+
+            return 1;
+    }
+    public function podcastUpdate(Podcast $podcast){
+        if(!$this->correctPassword(request()->password)) return 2;
+        $validated = request()->validate([
+            'reason'=>'',
+            'title'=>'',
+            'cost'=>''
+        ]);
+        $validated['user_id'] = auth()->user()->id;
+        $podcast->tickets()->create($validated);
         return 1;
     }
 

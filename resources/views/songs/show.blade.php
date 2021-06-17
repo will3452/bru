@@ -358,7 +358,6 @@
 
 @section('top')
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2.min.css') }}">
-    <script src="/js/app.js"></script>
     <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2-bootstrap.min.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine.js" integrity="sha512-nIwdJlD5/vHj23CbO2iHCXtsqzdTTx3e3uAmpTm4x2Y8xCIFyWu4cSIV8GaGe2UNVq86/1h9EgUZy7tn243qdA==" crossorigin="anonymous"></script>
@@ -387,5 +386,6 @@
         CKEDITOR.replace('copyright');
         CKEDITOR.replace('lyrics');
     </script>
+    <script src="/js/app.js"></script>
 @endsection
 

@@ -13,7 +13,8 @@ class PodcastController extends Controller
      */
     public function index()
     {
-        return "The page is under development";
+        $podcasts = auth()->user()->podcasts;
+        return view('podcast.index', compact('podcasts'));
     }
 
     /**
@@ -46,8 +47,7 @@ class PodcastController extends Controller
             'episode_type'=>'required',
             'file'=>'required',
             'cover'=>'required',
-            'hall_pass'=>'',
-            'purple_crystal'=>'',
+            'cost'=>'',
             'group_id'=>'',
             'episode_number',
             'series_id'=>'',
@@ -62,7 +62,9 @@ class PodcastController extends Controller
         $data['cover'] = '/storage/podcast_cover/'.$end_path;
 
         $podcast = auth()->user()->podcasts()->create($data);
-        dd($podcast);
+
+        toast('podcast created!', 'success');
+        return redirect(route('podcast.index'));
     }
 
     /**
@@ -73,7 +75,7 @@ class PodcastController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('podcast.show',  ['podcast'=>auth()->user()->podcasts()->findOrFail($id)]);
     }
 
     /**

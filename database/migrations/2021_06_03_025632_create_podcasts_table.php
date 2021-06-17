@@ -26,10 +26,9 @@ class CreatePodcastsTable extends Migration
             $table->text('credits');
             $table->text('cover');
             $table->text('episode_type');
-            $table->string('hall_pass')->nullable();
-            $table->string('purple_crystal')->nullable();
             $table->foreignId('series_id')->nullable();
             $table->string('episode_number')->nullable();
+            $table->string('cost')->nullable();
             $table->text('file')->nullable();
             $table->timestamp('cpy')->nullable();
             $table->timestamps();

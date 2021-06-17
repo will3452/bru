@@ -123,18 +123,10 @@
                 <option value="regular">Regular</option>
                 <option value="premium">Premium</option>
             </select>
-            <template x-if="!isPremium">
-                <div class="form-group mt-2">
-                    <label for="">Set Number of Hall Pass required to listen.</label>
-                    <input type="number" name="hall_pass" class="form-control" required>
-                </div>
-            </template>
-            <template x-if="isPremium">
-                <div class="form-group mt-2">
-                    <label for="">Purple Crystal</label>
-                    <input type="number" class="form-control" name="purple_crystal" required>
-                </div>
-            </template>
+            <div class="form-group mt-2">
+                <label for="" x-show="!isPremium">Set Number of Hall Pass required to listen.</label> <label for="" x-show="isPremium">Purple Crystal</label>
+                <input type="number" name="cost" class="form-control" required>
+            </div>
         </div>
 
         <div class="form-group">

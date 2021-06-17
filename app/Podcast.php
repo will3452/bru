@@ -20,4 +20,9 @@ class Podcast extends Model
         return $this->morphToMany(Series::class, 'seriesable');
     }
 
+    public function tickets()
+    {
+        return $this->morphMany(Ticket::class, 'ticketable');
+    }
+
 }
