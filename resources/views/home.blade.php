@@ -158,8 +158,3 @@
     </div>
     </div>
 @endsection
-
-@section('bottom')
-
-
-@endsection
