@@ -24,5 +24,5 @@ class Series extends Model
 
    public function podcasts(){
      return $this->morphedByMany(Podcast::class, 'seriesable');
-}
+     }
 }

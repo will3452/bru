@@ -28,7 +28,9 @@ class Group extends Model
         return $this->hasMany(Book::class);
     }
 
-    
+    public function series(){
+    return $this->hasMany(Series::class, 'group_id');
+    }
 
     //count of total works
     public function getNumberOfWorksAttribute(){
@@ -40,8 +42,6 @@ class Group extends Model
     public static function APPROVED(){
         return self::whereNotNull('approved')->get();
     }
-    
-
 
     public static function UNAPPROVED(){
         return self::whereNull('approved')->get();

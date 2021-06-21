@@ -1,6 +1,26 @@
 <div>
     <div>
         <div class="form-group">
+            <label for="">Type Of Work</label>
+            <select name="type_of_work" wire:model="type_of_work" id="tw" class="custom-select" >
+                <option value="solo">Solo</option>
+                <option value="collaboration">Collaboration</option>
+            </select>
+            @if ($type_of_work == 'collaboration')
+                <div class="form-group mt-3">
+                    <label for="">Select Group</label>
+                    <select name="group_id" id="group_id" wire:model="group_id" class="custom-select">
+                        <option value="" disabled selected>---</option>
+                        @foreach (auth()->user()->groups as $group)
+                            <option value="{{ $group->id }}">
+                                {{ $group->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            @endif
+        </div>
+        <div class="form-group">
             <label for="">
                 Is this part of a series or a stand-alone episode? 
             </label>
@@ -34,25 +54,7 @@
             </div>
         @endif
     </div>
-    <div class="form-group">
-        <label for="">Type Of Work</label>
-        <select name="type_of_work" wire:model="type_of_work" id="tw" class="custom-select" >
-            <option value="solo">Solo</option>
-            <option value="collaboration">Collaboration</option>
-        </select>
-        @if ($type_of_work == 'collaboration')
-            <div class="form-group mt-3">
-                <label for="">Select Group</label>
-                <select name="group_id" id="group_id" class="custom-select">
-                    @foreach (auth()->user()->groups as $group)
-                        <option value="{{ $group->id }}">
-                            {{ $group->name }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
-        @endif
-    </div>
+    
     <div class="form-group">
         <label for="">Host</label>
         @if ($type_of_work == 'collaboration')
