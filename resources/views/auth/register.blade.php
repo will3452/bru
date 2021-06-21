@@ -314,7 +314,8 @@
                                                     <i class="fa fa-thumbs-up"></i> TERMS AND CONDITIONS
                                                 </h5>
                                                 <p>
-                                                    <input type="checkbox" id="ck_box1">I have read and I agree with the <a href="#">Terms and Conditions</a>
+                                                    <input type="checkbox" id="ck_box1">I have read and I agree with the
+                                                    <a href="/terms-and-conditions" target="_blank">Terms and Conditions</a>
                                                 </p>
                                             </div>
                                             <div>
@@ -341,7 +342,7 @@
                                                 <i class="fa fa-lock"></i> DATA PRIVACY
                                             </h5>
                                             <p>
-                                                 <input type="checkbox" id="ck_box2">I have read and I agree with the <a href="#">Privacy Policy</a>
+                                                 <input type="checkbox" id="ck_box2">I have read and I agree with the <a target="_blank" href="/privacy-policy">Privacy Policy</a>
                                              </p>
                                            </div>
                                         </div>

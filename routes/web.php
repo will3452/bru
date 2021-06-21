@@ -24,6 +24,8 @@ Route::view('/', 'landing');
 Route::view('/about', 'about');
 Route::view('/contact', 'contactus');
 Route::view('/bru', 'bru');
+Route::view('/terms-and-conditions', 'terms_and_condition');
+Route::view('/privacy-policy', 'privacy_policy');
 
 Auth::routes();
 
