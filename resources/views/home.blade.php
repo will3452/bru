@@ -35,6 +35,20 @@
                 </div>
             </div>
         </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2 card-bg-custom">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2 text-truncate">
+                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-1"><a href="{{ route('series.index') }}" >Series</a></div>
+                        </div>
+                        <div class="col-auto" style="font-size:34px;">
+                            <i class="fa fa-layer-group"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         {{-- <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">

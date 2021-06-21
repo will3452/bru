@@ -13,7 +13,8 @@ class SeriesController extends Controller
      */
     public function index()
     {
-        //
+        $series = auth()->user()->series;
+        return view('series.index', compact('series'));
     }
 
     /**
@@ -117,8 +118,6 @@ class SeriesController extends Controller
         toast('Done', 'success');
 
         return back();
-
-        
 
     }
 

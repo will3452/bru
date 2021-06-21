@@ -14,7 +14,7 @@ class BookController extends Controller
         $this->middleware('auth');
     }
     public function index(){
-        return view('books.index');
+        return redirect()->route('home');
     }
 
     public function store(BookForms $request){

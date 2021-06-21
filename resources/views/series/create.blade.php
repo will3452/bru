@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('main-content')
     <h1 class="h3 mb-4 text-gray-800">{{ __('Create a Series') }}</h1>
-    <a href="{{ route('books.index') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
+    <a href="{{ route('series.index') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
     @include('partials.alert')
     <form action="{{ route('series.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
