@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Series;
 use Illuminate\Http\Request;
 
 class PodcastController extends Controller
@@ -51,7 +52,6 @@ class PodcastController extends Controller
             'group_id'=>'',
             'episode_number',
             'series_id'=>'',
-            
         ]);
         // dd($data);
         $data['cpy'] = now();
@@ -62,8 +62,12 @@ class PodcastController extends Controller
         $data['cover'] = '/storage/podcast_cover/'.$end_path;
 
         $podcast = auth()->user()->podcasts()->create($data);
+        if($request->has('series_id')){
+            Series::find($request->series_id)->podcasts()->attach($podcast->id);
+        }
 
         toast('podcast created!', 'success');
+        
         return redirect(route('podcast.index'));
     }
 

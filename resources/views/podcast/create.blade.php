@@ -10,79 +10,23 @@
             <label for="title">Episode Title</label>
             <input type="text" class="form-control" name="title" value="{{ old('title') }}" }}>
         </div>
-        <div x-data="{
-            isSeries:false,
-            updateisSeries(){
-                let partOf = document.getElementById('part_of');
-                this.isSeries = partOf.value == 'series';
-            }
-        }">
-            <div class="form-group">
-                <label for="">
-                    Is this part of a series or a stand-alone episode? 
-                </label>
-                <select name="part_of" id="part_of" class="custom-select" x-on:change="updateisSeries()">
-                    <option value="standalone">Stand-Alone</option>
-                    <option value="series">Series</option>
-                </select>
-            </div>
-            <template x-if="isSeries">
-                <div>
-                    <div class="form-group">
-                        <label for="">Series Title</label>
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="">Episode Number</label>
-                        <input type="number" name="episode_number" class="form-control">
-                    </div>
-                </div>
-            </template>
-        </div>
-        <div class="form-group" x-data="{
-            isGroup:false,
-            updatecollab(){
-                const tw = document.getElementById('tw');
-                this.isGroup = tw.value == 'collaboration';
-            }
-        }">
-            <label for="">Type Of Work</label>
-            <select name="type_of_work" id="tw" class="custom-select" x-on:change="updatecollab()">
-                <option value="solo">Solo</option>
-                <option value="collaboration">Collaboration</option>
-            </select>
-            <template x-if="isGroup">
-                <div class="form-group">
-                    <label for="">Select Group</label>
-                    <select name="group_id" id="group_id" class="custom-select">
-                        @foreach (auth()->user()->groups as $group)
-                            <option value="{{ $group->id }}">
-                                {{ $group->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-            </template>
-        </div>
-        <div class="form-group">
-            <label for="">Host</label>
-            <input type="text" name="host" class="form-control" required>
-        </div>
+        @livewire('podcast-create')
         <div class="form-group">
             <label for="">Description</label>
             <textarea name="desc" id="" class="form-control" required></textarea>
         </div>
         <div class="form-group">
             <label for="">Upload Audio Description</label>
+            <div class="alert alert-info mt-2">
+               Please note that this audio description will be for the PREVIEW of the episode. 
+            </div>
             <ul id="audio_filelist" class="list-group mb-2"></ul>
             <div id="audio_container">
                 <a id="des_browse" href="javascript:;" class="btn btn-sm btn-secondary"><i class="fa fa-folder fa-sm"></i> Browse</a>
                 <a id="des_start-upload" href="javascript:;" class="btn btn-sm btn-success"><i class="fa fa-play fa-sm"> </i> Start Upload</a>
             </div>
             <input type="hidden" name="audio_desc" id="audio_file" required>
-            <div class="alert alert-info mt-2">
-                **** NOTE that will appear on the website for the Scholar's Use: Please note that this audio description will be for the PREVIEW of the episode. 
-            </div>
+            
             <pre id="audio_console" class="text-danger"></pre>
              {{-- <input type="file" name="file" accept=".mp3,audio/*" class="d-block" required> --}}
              <div class="alert alert-warning">
@@ -123,7 +67,7 @@
                 <option value="regular">Regular</option>
                 <option value="premium">Premium</option>
             </select>
-            <div class="form-group mt-2">
+            <div class="form-group mt-4">
                 <label for="" x-show="!isPremium">Set Number of Hall Pass required to listen.</label> <label for="" x-show="isPremium">Purple Crystal</label>
                 <input type="number" name="cost" class="form-control" required>
             </div>
