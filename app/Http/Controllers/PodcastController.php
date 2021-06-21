@@ -52,6 +52,7 @@ class PodcastController extends Controller
             'group_id'=>'',
             'episode_number',
             'series_id'=>'',
+            'launch_date'=>''
         ]);
         // dd($data);
         $data['cpy'] = now();

@@ -67,12 +67,22 @@
                 <option value="regular">Regular</option>
                 <option value="premium">Premium</option>
             </select>
-            <div class="form-group mt-4">
-                <label for="" x-show="!isPremium">Set Number of Hall Pass required to listen.</label> <label for="" x-show="isPremium">Purple Crystal</label>
-                <input type="number" name="cost" class="form-control" required>
+            <div class="form-group mt-4" >
+                <label for="" x-show="!isPremium">Please select number of Hall Pass required to listen.</label>
+                <label for="" x-show="isPremium">Please select number of Purple Crystal required to listen.</label>
+                <div x-data="{
+                    check(){
+                        this.$refs.cost.value = this.$refs.cost.value < 0 ? '':this.$refs.cost.value;
+                    }
+                }">
+                <input type="number" x-ref="cost" name="cost" class="form-control" x-on:input="check()" required>
+                </div>
             </div>
         </div>
-
+        <div class="form-group">
+            <label for="">Launch Date</label>
+            <input type="date"  required name="launch_date" class="form-control">
+        </div>
         <div class="form-group">
             <label for="">Upload Podcast File</label>
             <ul id="filelist" class="list-group mb-2"></ul>
