@@ -1,6 +1,7 @@
 @extends('layouts.welcome')
 
 @section('content')
+@include('partials.cookies-alert')
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
     <div class="text-center">

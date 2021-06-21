@@ -22,7 +22,6 @@
     @yield('top')
     <!-- Favicon -->
     <link href="{{ asset('img/logo.png') }}" rel="icon" type="image/png">
-    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
     <style>
         :root {
             --blue:#322F46;
@@ -69,6 +68,7 @@
         }
     </style>
     <link href="/css/dark.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
     <style>
         /* .swal2-popup,.swal2-content, .swal2-footer,.swal2-actions, .swal2-actions>div {
@@ -112,7 +112,7 @@
             <div class="col-md-4 p-4 " style="background:url('/img/card-bg-custom.png');
             background-size: cover;">
                 <div>
-                    Please take time to read our <a href="#">Privacy Policy</a>. By continuing to browse this site and/or clicking I AGREE, you guarantee that you have read and have understood our Privacy Policy and that you consent to its terms. Thank you!
+                    Please take time to read our <a href="/privacy-policy" target="_blank">Privacy Policy</a>. By continuing to browse this site and/or clicking I AGREE, you guarantee that you have read and have understood our Privacy Policy and that you consent to its terms. Thank you!
                 </div>
                 <button class="btn btn-primary mt-5" onclick="ppAgree()">I AGREE</button>
             </div>
@@ -486,13 +486,12 @@
 <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 <script>
 
-        
     $('#pp, #pp > *').hide(100)
 
     if(Cookies.get('pp') == undefined){
        setTimeout(function(){
            $('#pp, #pp> *').show();
-       }, 3000);
+       }, 5000);
     }
     function ppAgree(){
        $('#pp').hide(500);
