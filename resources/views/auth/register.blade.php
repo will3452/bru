@@ -142,7 +142,7 @@
                                     
                                     @livewire('register.choose-picture')
                                     <div class="alert alert-danger mt-2">
-                                        <i class="fa fa-info-circle"></i> NOTE: This is your account profile picture and will not be shown to the public. This is only for reference of the Admin.  Please use your actual photo for this part. 
+                                        <i class="fa fa-info-circle"></i>NOTE: Please upload a photo of your face for your account profile picture. This is only for use within the system and will not be shown to the public.
                                     </div>
                                     <div class="alert alert-warning mt-2">
                                         <div>
@@ -334,7 +334,7 @@
                                                 <i class="fa fa-arrow-down"></i> COPYRIGHT CERTIFICATION
                                             </h5>
                                             <p class="text-justify">
-                                                <input type="checkbox" id="ck_box4"> This is to reaffirm my duty to ensure all materials that I upload on the BRUMULTIVERSE site and/or app are my property, and that I own the rights to them or I have obtained approval in writing to use them, as stated in my contact with BRUMULTIVERSE.
+                                                <input type="checkbox" id="ck_box4"> This is to reaffirm my duty to ensure all materials under my name and account in the BRUMULTIVERSE site and/or app are my property, and that I own the rights to them or I have obtained approval in writing to use them, as stated in my contract with BRUMULTIVERSE.
                                             </p>
                                         </div>
                                         <div>
@@ -342,7 +342,7 @@
                                                 <i class="fa fa-lock"></i> DATA PRIVACY
                                             </h5>
                                             <p>
-                                                 <input type="checkbox" id="ck_box2">I have read and I agree with the <a target="_blank" href="/privacy-policy">Privacy Policy</a>
+                                                 <input type="checkbox" id="ck_box2"> I have read and I agree with the <a target="_blank" href="/privacy-policy"> Privacy Policy</a>
                                              </p>
                                            </div>
                                         </div>

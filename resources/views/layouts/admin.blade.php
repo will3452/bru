@@ -112,7 +112,7 @@
             <div class="col-md-4 p-4 " style="background:url('/img/card-bg-custom.png');
             background-size: cover;">
                 <div>
-                    Please take time to read our <a href="/privacy-policy" target="_blank">Privacy Policy</a>. By continuing to browse this site and/or clicking I AGREE, you guarantee that you have read and have understood our Privacy Policy and that you consent to its terms. Thank you!
+                    Please read our <a href="/privacy-policy" target="_blank">Privacy Policy</a> first. By continuing to browse this site and/or clicking I AGREE, you guarantee that you have read and understood our Privacy Policy and that you consent to its terms.
                 </div>
                 <button class="btn btn-primary mt-5" onclick="ppAgree()">I AGREE</button>
             </div>

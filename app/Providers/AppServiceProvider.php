@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
         Blade::directive('copyright_disclaimer', function () {
-            return Script::where('name', 'copyright_disclaimer')->get()[0]->message;
+            return 'I certify that I own the copyright and have obtained written approval for use of all the materials under my name and account, and hold BRUMULTIVERSE free of liabilities should any copyright infringement occurs.';
         });
     }
 }

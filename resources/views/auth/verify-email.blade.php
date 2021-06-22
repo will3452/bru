@@ -20,13 +20,13 @@
 
                                 {{ __('Before proceeding, please check your email for a verification link.') }}
                                 <br>
-                                {{ __('If you did not receive the email') }}
+                                {{-- {{ __('If you did not receive the email') }} --}}
                                 <form action="{{ route('verification.send') }}" method="POST" class="mt-2">
                                     @csrf
-                                    <button class="btn btn-primary">{{ __('click here to request another') }}</button>
+                                    <button class="btn btn-primary">{{ __('Click here to request another if you did not receive the email.') }}</button>
                                 </form>
                                 <div class=" mt-2">
-                                    NOTE: Please check your SPAM or JUNK folder. 
+                                    NOTE: Make sure to check your SPAM or JUNK folder before sending another request.
                                 </div>
                             </div>
                         </div>

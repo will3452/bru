@@ -22,7 +22,7 @@
         </div>
         <div class="form-group">
             <label for="">
-                Is this part of a series or a stand-alone episode? 
+                Is this a stand-alone episode or is it part of a series? 
             </label>
             <select name="part_of" wire:model="part_of" id="part_of" class="custom-select" x-on:change="updateisSeries()" required>
                 <option value="" disabled selected>---</option>

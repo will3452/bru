@@ -179,7 +179,7 @@
                <script>
                    swal.fire({
                        iconHtml:`<i class="fa fa-check"></i>`,
-                       text:'You\'re all set! Here\'s your profile page. Please create your pen names to begin uploading your masterpieces. You may have 3 pen names. Once used on any uploaded work, they become permanent. Have fun!',
+                       text:'You\'re all set! Here\'s your profile page. Create one to three pen names to begin uploading your masterpieces. Once used on any uploaded work, pen names become permanent. Welcome!',
                        confirmButtonText:'OK',
                    })
                </script>
@@ -190,7 +190,7 @@
                         <div class="card-body">
                             <h6 class="heading-small text-muted mb-4">Pen Names</h6>
                             <div class="alert alert-warning">
-                                <i class="fa fa-warning"></i> Please note that your pen names, when used on a book, will be permanent. 
+                                <i class="fa fa-warning"></i> Please note that your pen names become permanent when used on an uploaded material.
                             </div>
                             <ul class="list-unstyled" >
                                 @foreach(auth()->user()->pens as $pen)
