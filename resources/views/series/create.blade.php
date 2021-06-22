@@ -46,7 +46,7 @@
             <label for="">
                 Upload Series Cover
             </label>
-            <input type="file" name="cover" class="d-block" required>
+            <input type="file" name="cover" class="d-block" accept="image/*" required>
             <div class="alert alert-warning mt-2">
                 <div>
                     <strong>Required*</strong>

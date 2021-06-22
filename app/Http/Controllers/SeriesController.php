@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class SeriesController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -69,7 +73,7 @@ class SeriesController extends Controller
      */
     public function show($id)
     {
-        $series = auth()->user()->series()->findOrFail($id);
+        $series = Series::findOrFail($id);
         return view('series.show', compact('series'));
     }
 

@@ -35,4 +35,9 @@ class Art extends Model
         return self::get();
     }
 
+    public function collections()
+    {
+        return $this->morphToMany(Collection::class, 'collectionable');
+    }
+
 }

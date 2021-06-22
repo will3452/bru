@@ -247,6 +247,7 @@ Route::resource('group-member', 'GroupMemberController')->middleware('auth');
 Route::resource('inbox', 'InboxController')->middleware('auth');
 Route::resource('podcast', 'PodcastController')->middleware('auth');
 Route::resource('series', 'SeriesController')->middleware('auth');
+Route::resource('collections', 'CollectionController')->middleware('auth');
 
 //tickets 
 Route::prefix('tickets')->name('tickets.')->middleware('auth')->group(function(){

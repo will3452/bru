@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('main-content')
-    <h1 class="h3 mb-4 text-gray-800">{{ __('List of Songs') }}</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ __('List of Series') }}</h1>
     <div class="d-flex justify-content-between">
         <a href="{{ route('books.index') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
         <a href="{{ route('series.create') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-plus"></i> Add New Series</a>
@@ -23,19 +23,7 @@
                     <div class="mt-1">
 
                         {{-- 'book', 'audio book', 'podcast', 'film' --}}
-                        Number of Works:
-                        @if ($book->type == 'book')
-                            {{ $book->books()->count() }}
-                        @endif
-                        @if ($book->type == 'audio book')
-                            {{ $book->audios()->count() }}
-                        @endif
-                        @if ($book->type == 'podcast')
-                            {{ $book->podcasts()->count() }}
-                        @endif
-                        @if ($book->type == 'film')
-                            {{ $book->films()->count() }}
-                        @endif
+                        Number of Works: {{ $book->totalNumberOfWork() }}
                     </div>
                     <div class="mt-1">
                         Ratings: ---

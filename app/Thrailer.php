@@ -38,5 +38,10 @@ class Thrailer extends Model
     {
         return $this->morphToMany(Series::class, 'seriesable');
     }
+
+    public function collections()
+    {
+        return $this->morphToMany(Collection::class, 'collectionable');
+    }
     
 }
