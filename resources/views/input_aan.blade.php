@@ -17,6 +17,7 @@
                                 Submit
                             </button>
                         </div>
+                        
                         <div class="d-flex justify-content-between">
                             <div>
                                 <a href="#" @click.prevent="ihavenoaan">I have no AAN.</a>
@@ -24,6 +25,9 @@
                             <div>
                                 <a href="{{ route('please-contact', ['msg'=>'Please contact BRUMULTIVERSE ADMIN for your AAN.']) }}">I forgot my AAN.</a>
                             </div>
+                        </div>
+                        <div class="from-group text-center mt-4">
+                            <a href="/" class="text-white">Back to BRUMULTIVERSE</a>
                         </div>
                     </form>
                     <div class="mt-5" v-if="no_aan">

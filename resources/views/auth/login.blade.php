@@ -8,7 +8,7 @@
                 <div class="card-body p-0">
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="p-5">
+                            <div class="pt-5 pl-5 pr-5 pb-3">
                                 <div class="text-center">
                                     <h1 class="h4 text-white mb-4">{{ __('Welcome Back! Login now') }}</h1>
                                 </div>
@@ -46,6 +46,7 @@
                                             {{ __('Login') }}
                                         </button>
                                     </div>
+                                    
 
 
                                     {{-- <div class="form-group">
@@ -81,7 +82,11 @@
                                         <a class="small" href="{{ route('input.aan') }}">{{ __('Create an Account!') }}</a>
                                     </div>
                                 @endif
+                                <div class="from-group text-center mt-4">
+                                    <a href="/" class="text-white">Back to BRUMULTIVERSE</a>
+                                </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
