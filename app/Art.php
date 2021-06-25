@@ -40,4 +40,9 @@ class Art extends Model
         return $this->morphToMany(Collection::class, 'collectionable');
     }
 
+    public function albums()
+    {
+        return $this->morphToMany(Album::class, 'albumable');
+    }
+
 }

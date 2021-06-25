@@ -149,4 +149,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Collection::class);
     }
 
+    public function albums(){
+        return $this->hasMany(Album::class);
+    }
+
 }
