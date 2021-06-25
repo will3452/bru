@@ -342,7 +342,7 @@
                                                 <i class="fa fa-lock"></i> DATA PRIVACY
                                             </h5>
                                             <p>
-                                                 <input type="checkbox" id="ck_box2"> I have read and I agree with the <a target="_blank" href="/privacy-policy"> Privacy Policy</a>
+                                                 <input type="checkbox" id="ck_box2"> I have read and I agree with the <a href="#" onclick="$('#pp').show();"> Privacy Policy</a>
                                              </p>
                                            </div>
                                         </div>
@@ -367,8 +367,16 @@
         </div>
     </div>
 </div>
+<div id="pp" style="background:white; padding:50px; position:fixed;width:70%;height:80vh;right:15%;z-index:9999; overflow:scroll; top:10vh;color:#000 ">
+    @include('privacy_policy')
 
+    <div class="text-right">
+        <button class="btn btn-primary mt-5" onclick="$('#pp').hide()">close</button>
+    </div>
+</div>
 @endsection
+
+
 
 @section('top')
     @livewireStyles
