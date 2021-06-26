@@ -54,7 +54,7 @@ class AdminController extends Controller
         $newAdmin->password = Hash::make($request->password);
         $newAdmin->save();
         $newAdmin->roles()->attach([1,12]);
-        return 'admin created!';
+        return redirect(route('admin.admins.index'));
 
     }
 
