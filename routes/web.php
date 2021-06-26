@@ -269,9 +269,18 @@ Route::prefix('tickets')->name('tickets.')->middleware('auth')->group(function()
     Route::post('edit/audio/{audio}', 'TicketController@audioUpdate')->name('audio.update');
     Route::post('edit/song/{song}', 'TicketController@songUpdate')->name('song.update');
     Route::post('edit/podcast/{podcast}', 'TicketController@podcastUpdate')->name('podcast.update');
-    
 
 });
+
+// images
+
+Route::prefix('admin/images')->name('admin.images.')->middleware('auth:admin')->group(function(){
+    Route::get('/', 'Admin\ImageManagementController@index')->name('menu');
+    Route::delete('/marquee-announcement/{id}', 'Admin\ImageManagementController@removeAnnouncement')->name('announcement.remove');
+    Route::get('/marquee-announcement', 'Admin\ImageManagementController@announcementInMarquee')->name('announcement');
+    Route::post('/marquee-announcement', 'Admin\ImageManagementController@storeAnnouncementInMarquee')->name('announcement.store');
+});
+// end of images
 
 //please contact route
 Route::get('please-contact','PleaseContactController')->name('please-contact');
