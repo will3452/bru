@@ -279,6 +279,10 @@ Route::prefix('admin/images')->name('admin.images.')->middleware('auth:admin')->
     Route::delete('/marquee-announcement/{id}', 'Admin\ImageManagementController@removeAnnouncement')->name('announcement.remove');
     Route::get('/marquee-announcement', 'Admin\ImageManagementController@announcementInMarquee')->name('announcement');
     Route::post('/marquee-announcement', 'Admin\ImageManagementController@storeAnnouncementInMarquee')->name('announcement.store');
+
+    Route::delete('/banners/{id}', 'Admin\ImageManagementController@removeBanner')->name('banner.remove');
+    Route::get('/banners', 'Admin\ImageManagementController@banner')->name('banner');
+    Route::post('/banners', 'Admin\ImageManagementController@storeBanner');
 });
 // end of images
 

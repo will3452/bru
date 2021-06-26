@@ -7,7 +7,7 @@
     </div>
     <div>
         <a href="{{ route('admin.images.announcement') }}">Announcement</a> | 
-        <a href="">Banners in sliders</a> | 
+        <a href="{{ route('admin.images.banner') }}">Banners in sliders</a> | 
         <a href="">Preloaders</a> | 
         <a href="">Newspapers</a> | 
         <a href="">Bulletin</a>
