@@ -302,3 +302,7 @@ Route::post('autofill-aduio-book', 'autoFillController')->name('auto.fill');
 
 //support chat //customer support 
 Route::view('support-chat', 'support_chat');
+
+
+//api help
+Route::view('api-docs', 'api_doc');
