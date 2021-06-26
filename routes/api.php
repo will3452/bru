@@ -14,6 +14,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+
+Route::prefix('v1')->group(function(){
+    
+    // proctected via sanctum
+    Route::middleware('auth:sanctum')->group(function(){
+        Route::get('/test', function(){
+            return response(['message'=>'you are authenticated'], 201);
+        });
+        Route::post('/logout', 'ApiAuthController@logout');
+    });
+
+    // public
+    Route::post('/register', 'ApiAuthController@register');
+    Route::post('/login', 'ApiAuthController@login');
+    
+
 });
