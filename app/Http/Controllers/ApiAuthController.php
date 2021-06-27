@@ -41,7 +41,8 @@ class ApiAuthController extends Controller
             'club'=>'required',
             'country'=>'required',
             'city'=>'',
-            'birthdate'=>'required'
+            'birthdate'=>'required',
+            'bruname'=>''
         ]);
         
 
@@ -51,6 +52,7 @@ class ApiAuthController extends Controller
             'email'=>$request->email, 
             'password'=>\Hash::make($request->password),
             'role'=>'student',
+            'bruname'=>$request->bruname
         ]);
 
         $user->bio()->create([
