@@ -1,6 +1,7 @@
 <?php
 
 use App\Testing;
+use App\TestingUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -44,7 +45,7 @@ Route::prefix('v1')->group(function(){
             'password'=>$request->password,
         ]);
         if($user){
-            return 'result=200';
+            return 'result="200"';
         }else return 'result=404';
     });
     
