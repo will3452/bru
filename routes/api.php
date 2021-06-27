@@ -40,7 +40,7 @@ Route::prefix('v1')->group(function(){
         ]);
 
         // 
-        $testing = Testing::create($request->myname);
+        $testing = Testing::create(['myname'=>$request->name]);
         return response(['result'=>$testing], 201);
     });
     
