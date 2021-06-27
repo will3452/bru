@@ -40,9 +40,10 @@ class ApiAuthController extends Controller
             'course'=>'required',
             'club'=>'required',
             'country'=>'required',
-            'city'=>'required',
+            'city'=>'',
             'birthdate'=>'required'
         ]);
+        
 
         $user = User::create([
             'last_name'=>$request->last_name,
@@ -57,7 +58,7 @@ class ApiAuthController extends Controller
             'sex'=>$request->sex,
             'birthdate'=>$request->birthdate,
             'country'=>$request->country,
-            'city'=>$request->city
+            'city'=>''
         ]);
 
         $user->interests()->create([
@@ -79,7 +80,10 @@ class ApiAuthController extends Controller
            'token'=>$token
        ];
 
-       return response($response, 201);
+    //    return response($response, 201);
+        if($user){
+            return 'result=200&token='.$token;
+        }
     }
 
     public function logout(){
