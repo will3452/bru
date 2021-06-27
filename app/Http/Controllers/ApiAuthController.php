@@ -15,17 +15,19 @@ class ApiAuthController extends Controller
 
         $user = User::where('email', $fields['email'])->first();
         if(!$user || !\Hash::check($fields['password'], $user->password)){
-            return responce([
-                'message'=>'Bad Creds',
-            ], 401);
+            // return responce([
+            //     'message'=>'Bad Creds',
+            // ], 401);
+            return 'result=404';
         }
         $token = $user->createToken('myapptoken')->plainTextToken;
-        $response = [
-            'user'=>$user,
-            'token'=>$token
-        ];
-
-        return $response;
+        // $response = [
+        //     'user'=>$user,
+        //     'token'=>$token
+        // ];
+        if($user){
+            return 'result=200&token='.$token;
+        }
     }
 
     public function register(Request $request){
