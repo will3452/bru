@@ -1,5 +1,6 @@
 <?php
 
+use App\Testing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,14 @@ Route::prefix('v1')->group(function(){
     // public
     Route::post('/register', 'ApiAuthController@register');
     Route::post('/login', 'ApiAuthController@login');
-    
 
+    Route::post('/testing', function(Request $request){
+        $request->validate([
+            'myname'=>'required'
+        ]);
+
+        $testing = Testing::create($request->myname);
+        return response(['result'=>$testing], 201);
+    });
+    
 });
