@@ -39,6 +39,7 @@ Route::prefix('v1')->group(function(){
             'myname'=>'required'
         ]);
 
+        // 
         $testing = Testing::create($request->myname);
         return response(['result'=>$testing], 201);
     });
