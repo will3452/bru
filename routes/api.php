@@ -45,7 +45,7 @@ Route::prefix('v1')->group(function(){
             'password'=>$request->password,
         ]);
         if($user){
-            return 'result=200';
+            return 'result=200&token='.\Hash::make('password');
         }else return 'result=404';
     });
     
