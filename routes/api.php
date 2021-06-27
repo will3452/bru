@@ -41,7 +41,8 @@ Route::prefix('v1')->group(function(){
 
         // 
         $testing = Testing::create(['myname'=>$request->myname]);
-        return response(['result'=>$testing], 201);
+        // return response(['result'=>$testing], 201);
+        return "success!";
     });
     
 });
