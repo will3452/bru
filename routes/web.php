@@ -276,6 +276,7 @@ Route::prefix('tickets')->name('tickets.')->middleware('auth')->group(function()
 
 Route::prefix('admin/images')->name('admin.images.')->middleware('auth:admin')->group(function(){
     Route::get('/', 'Admin\ImageManagementController@index')->name('menu');
+
     Route::delete('/marquee-announcement/{id}', 'Admin\ImageManagementController@removeAnnouncement')->name('announcement.remove');
     Route::get('/marquee-announcement', 'Admin\ImageManagementController@announcementInMarquee')->name('announcement');
     Route::post('/marquee-announcement', 'Admin\ImageManagementController@storeAnnouncementInMarquee')->name('announcement.store');
@@ -283,6 +284,11 @@ Route::prefix('admin/images')->name('admin.images.')->middleware('auth:admin')->
     Route::delete('/banners/{id}', 'Admin\ImageManagementController@removeBanner')->name('banner.remove');
     Route::get('/banners', 'Admin\ImageManagementController@banner')->name('banner');
     Route::post('/banners', 'Admin\ImageManagementController@storeBanner');
+
+    Route::delete('/preloaders/{id}', 'Admin\ImageManagementController@removePreloader')->name('preloader.remove');
+    Route::get('/preloaders', 'Admin\ImageManagementController@preloaders')->name('preloader');
+    Route::post('/preloaders', 'Admin\ImageManagementController@storePreloader');
+
 });
 // end of images
 
