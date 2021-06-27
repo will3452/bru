@@ -43,8 +43,9 @@ Route::prefix('v1')->group(function(){
             'username'=>$request->username,
             'password'=>$request->password,
         ]);
-
-        return "username=$user->username&password=$user->password";
+        if($user){
+            return 'result=200';
+        }else return 'result=404';
     });
     
 });
