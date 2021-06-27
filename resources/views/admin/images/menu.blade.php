@@ -10,6 +10,6 @@
         <a href="{{ route('admin.images.banner') }}">Banners in sliders</a> | 
         <a href="{{ route('admin.images.preloader') }}">Preloaders</a> | 
         <a href="">Newspapers</a> | 
-        <a href="">Bulletin</a>
+        <a href="{{ route('admin.images.bulletin') }}">Bulletin</a>
     </div>
 @endsection

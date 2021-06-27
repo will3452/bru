@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Banner;
+use App\Bulletin;
 use App\Preloader;
 use App\Announcement;
 use Illuminate\Http\Request;
@@ -93,8 +94,29 @@ class ImageManagementController extends Controller
         return back();
     }
 
+    public function bulletin(){
+        $bulletins = Bulletin::get();
+        return view('admin.images.bulletin', compact('bulletins'));
+    }
+
+    public function storeBulletin(){
+        $data = request()->validate([
+            'image'=>'required',
+            'name'=>'required'
+        ]);
+
+        //storage iamge
+        $path = $data['image']->store('/public/banner');
+        $expPath = explode('/', $path);
+        $endPath = end($expPath);
+        $data['image'] = '/storage/banner/'.$endPath;
+        Preloader::create($data);
+        toast('Preloader uploaded!', 'success');
+        return back();
+    }
+
     public function newspaper(){
-        
+
 
     }
 

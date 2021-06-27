@@ -289,6 +289,9 @@ Route::prefix('admin/images')->name('admin.images.')->middleware('auth:admin')->
     Route::get('/preloaders', 'Admin\ImageManagementController@preloaders')->name('preloader');
     Route::post('/preloaders', 'Admin\ImageManagementController@storePreloader');
 
+    Route::get('/bulletin', 'Admin\ImageManagementController@bulletin')->name('bulletin');
+    Route::post('/bulletin', 'Admin\ImageManagementController@storeBulletin');
+
 });
 // end of images
 
