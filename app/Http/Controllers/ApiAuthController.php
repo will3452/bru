@@ -10,7 +10,7 @@ class ApiAuthController extends Controller
     public function login(){
         $fields = request()->validate([
             'email'=>'required',
-            'password'=>'required|min:8'
+            'password'=>'required'
         ]);
 
         $user = User::where('email', $fields['email'])->first();
