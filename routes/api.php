@@ -36,7 +36,7 @@ Route::prefix('v1')->group(function(){
     Route::post('/login', 'ApiAuthController@login');
 
     Route::post('/login-test',  function(Request $request){
-        $requets->validate([
+        $request->validate([
             'username'=>'required',
             'password'=>'required'
         ]);
