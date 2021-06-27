@@ -30,19 +30,21 @@ Route::prefix('v1')->group(function(){
         Route::post('/logout', 'ApiAuthController@logout');
     });
 
-    // public
+// public
     Route::post('/register', 'ApiAuthController@register');
     Route::post('/login', 'ApiAuthController@login');
 
-    Route::post('/testing', function(Request $request){
-        $request->validate([
-            'myname'=>'required'
+    Route::post('/login-test',  function(Request $request){
+        $requets->validate([
+            'username'=>'required',
+            'password'=>'required'
+        ]);
+        $user = TestingUser::create([
+            'username'=>$request->username,
+            'password'=>$request->password,
         ]);
 
-        // 
-        $testing = Testing::create(['myname'=>$request->myname]);
-        // return response(['result'=>$testing], 201);
-        return "result=$testing->myname hahahaha";
+        return "username=$user->username&password=$user->password";
     });
     
 });
