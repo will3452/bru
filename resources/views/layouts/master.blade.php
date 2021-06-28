@@ -193,10 +193,10 @@
             </li>
         @endif
         
-        <hr class="sidebar-divider">
+        {{-- <hr class="sidebar-divider">
         <div class="sidebar-heading">
             {{ __('Genres') }}
-        </div>
+        </div> --}}
         
         @if (auth()->user()->allowed('genre'))
             <li class="nav-item {{ Nav::isRoute('admin.songsgenre.*') }}">
@@ -216,11 +216,11 @@
             </li>
         @endif
 
-        <hr class="sidebar-divider">
+        {{-- <hr class="sidebar-divider">
         <div class="sidebar-heading">
             {{ __('MISC') }}
         </div>
-        
+         --}}
         
         @if (auth()->user()->allowed('character'))
             <li class="nav-item {{ Nav::isRoute('admin.characters.*') }}">
@@ -281,13 +281,13 @@
                 {{ __('Settings') }}
             </div>
 
-            <!-- Nav Item - Profile -->
+            {{-- <!-- Nav Item - Profile -->
             <li class="nav-item {{ Nav::isRoute('admin.about.*') }}">
                 <a class="nav-link" href="{{ route('admin.about.index') }}">
                     <i class="fa fa-info-circle text-white" style="font-size:20px;"></i>
                     <span>{{ __('About') }}</span>
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item {{ Nav::isRoute('admin.profile') }}">
                 <a class="nav-link" href="{{ route('admin.profile') }}">
                     <img src="{{ asset('img/icons/profile.png') }}" alt="" class="icon">
