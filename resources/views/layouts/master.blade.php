@@ -273,13 +273,13 @@
         
 
         @if (auth()->user()->allowed('profile'))
-            <!-- Divider -->
+            {{-- <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
             <div class="sidebar-heading">
                 {{ __('Settings') }}
-            </div>
+            </div> --}}
 
             {{-- <!-- Nav Item - Profile -->
             <li class="nav-item {{ Nav::isRoute('admin.about.*') }}">
