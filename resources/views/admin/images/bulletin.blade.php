@@ -61,7 +61,7 @@
                         {{ $item->created_at->format('m/d/Y') }}
                     </td>
                     <td>
-                        <form action="{{ route('admin.images.preloader.remove', $item->id) }}" method="POST">
+                        <form action="{{ route('admin.images.bulletin.remove', $item->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger btn-sm" id="a{{ $item->id }}">Remove</button>
@@ -96,7 +96,7 @@
             $('#announcement').DataTable( {
         dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'excel', 'pdf','colvis'
+            // 'copy', 'csv', 'excel', 'pdf','colvis'
         ],
     });
         $('button').addClass('.btn')

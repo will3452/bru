@@ -86,7 +86,7 @@
             $('#announcement').DataTable( {
         dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'excel', 'pdf','colvis'
+            // 'copy', 'csv', 'excel', 'pdf','colvis'
         ],
     });
         $('button').addClass('.btn')

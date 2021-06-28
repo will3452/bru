@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Banner;
 use App\Bulletin;
+use App\Newspaper;
 use App\Preloader;
 use App\Announcement;
 use Illuminate\Http\Request;
@@ -110,20 +111,77 @@ class ImageManagementController extends Controller
         $expPath = explode('/', $path);
         $endPath = end($expPath);
         $data['image'] = '/storage/banner/'.$endPath;
-        Preloader::create($data);
-        toast('Preloader uploaded!', 'success');
+        Bulletin::create($data);
+        toast('Bulletin uploaded!', 'success');
+        return back();
+    }
+
+
+    public function removeBulletin($id){
+        $data = Bulletin::findOrFail($id);
+        $data->delete();
+        toast('Bulletin removed', 'success');
         return back();
     }
 
     public function newspaper(){
-
-
+        $newspapers = Newspaper::get();
+        return view('admin.images.newspaper', compact('newspapers'));
     }
 
     public function storeNewspaper(){
+        $data = request()->validate([
+            'name'=>'required'
+        ]);
+
+        Newspaper::create($data);
+        toast('Newspaper added!', 'success');
+        return back();
+    }
+
+    public function showNewspaper($id){
+        $newspaper = Newspaper::findOrFail($id);
+        return view('admin.images.show_newspaper', compact('newspaper'));
+    }
+
+    public function removeNewspaper(){
+        $newspaper = Newspaper::findOrFail(request()->id);
+        foreach($newspaper->pages as $page){
+            $page->delete();
+        }
+        $newspaper->delete();
+        toast('Newspaper removed!', 'success');
+        return back();
+    }
+
+    public function storePageNewspaper($id){
+        // dd($id);
+        $newspaper = Newspaper::findOrFail($id);
+        $data = request()->validate([
+            'content'=>'required'
+        ]);
+
+        //storage image
+        $path = $data['content']->store('/public/newspaper');
+        $expPath = explode('/', $path);
+        $endPath = end($expPath);
+        $data['content'] = '/storage/newspaper/'.$endPath;
+        $newspaper->pages()->create($data);
+        toast('Page added!', 'success');
+        return back();
 
     }
 
+    public function removePageNewspaper($id){
+        $newspaper = Newspaper::findOrFail($id);
+        $data = request()->validate([
+            'page_id'=>'required'
+        ]);
+
+        $newspaper->pages()->findOrFail($data['page_id'])->delete();
+        toast('Page removed!', 'success');
+        return back();
+    }
 
     
 }

@@ -99,6 +99,9 @@
                     <span>{{ __('Dashboard') }}</span></a>
             </li>
         @endif
+        <!-- Divider -->
+       
+
         @if (auth()->user()->allowed('admin'))
             
             <!-- Nav Item - Dashboard -->
@@ -106,6 +109,15 @@
                 <a class="nav-link" href="{{ route('admin.tickets.index') }}">
                     <i class="fa fa-sticky-note text-white" style="font-size:24px"></i>
                     <span>{{ __('tickets') }}</span></a>
+            </li>
+        @endif
+
+        @if (auth()->user()->allowed('admin'))
+            <li class="nav-item active">
+                <a class="nav-link" href="{{ route('admin.images.menu') }}">
+                    <i class="fas fa-fw fa-images" style="font-size:1.5em"></i>
+                    <span>Images</span>
+                </a>
             </li>
         @endif
         

@@ -289,8 +289,16 @@ Route::prefix('admin/images')->name('admin.images.')->middleware('auth:admin')->
     Route::get('/preloaders', 'Admin\ImageManagementController@preloaders')->name('preloader');
     Route::post('/preloaders', 'Admin\ImageManagementController@storePreloader');
 
+    Route::delete('/bulletin/{id}', 'Admin\ImageManagementController@removeBulletin')->name('bulletin.remove');
     Route::get('/bulletin', 'Admin\ImageManagementController@bulletin')->name('bulletin');
     Route::post('/bulletin', 'Admin\ImageManagementController@storeBulletin');
+
+    Route::delete('/newspaper/{id}/page', 'Admin\ImageManagementController@removePageNewspaper')->name('newspaper.page.remove');
+    Route::delete('/newspaper/{id}', 'Admin\ImageManagementController@removeNewspaper')->name('newspaper.remove');
+    Route::get('/newspaper/{id}', 'Admin\ImageManagementController@showNewspaper')->name('newspaper.show');
+    Route::post('/newspaper/{id}', 'Admin\ImageManagementController@storePageNewspaper')->name('newspaper.page');
+    Route::get('/newspaper', 'Admin\ImageManagementController@newspaper')->name('newspaper');
+    Route::post('/newspaper', 'Admin\ImageManagementController@storeNewspaper');
 
 });
 // end of images
