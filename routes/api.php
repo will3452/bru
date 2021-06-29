@@ -35,18 +35,18 @@ Route::prefix('v1')->group(function(){
     Route::post('/register', 'ApiAuthController@register');
     Route::post('/login', 'ApiAuthController@login');
 
-    Route::post('/login-test',  function(Request $request){
-        $request->validate([
-            'username'=>'required',
-            'password'=>'required'
-        ]);
-        $user = TestingUser::create([
-            'username'=>$request->username,
-            'password'=>$request->password,
-        ]);
-        if($user){
-            return 'result=200&token='.\Hash::make('password');
-        }else return 'result=404';
+    Route::get('/testing-json',  function(Request $request){
+        return response([
+            'name'=>'testing',
+            'path'=>url('/artwork.png')
+        ], 201);
     });
+
+    Route::get('/testing-image',  function(Request $request){
+        return url('/artwork.png');
+    });
+
+
+
     
 });
