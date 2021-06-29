@@ -157,12 +157,7 @@
             </a>
         </li> --}}
 
-        {{-- <li class="nav-item {{ Nav::isRoute('events.*') }}">
-            <a class="nav-link" href="{{ route('events.index') }}">
-                <img src="{{ asset('img/icons/event.png') }}" alt="" class="icon">
-                <span>{{ __('My Event') }}</span>
-            </a>
-        </li> --}}
+        
         <!-- Divider -->
         {{-- <hr class="sidebar-divider"> --}}
 
@@ -176,6 +171,12 @@
             <a class="nav-link" href="{{ route('inbox.index') }}">
                 <i class="fa fa-inbox text-white" style="font-size:1.7em !important;"></i>
                 <span>{{ __('Inbox') }}</span>
+            </a>
+        </li>
+        <li class="nav-item {{ Nav::isRoute('events.*') }}">
+            <a class="nav-link" href="{{ route('events.index') }}">
+                <img src="{{ asset('img/icons/event.png') }}" alt="" class="icon">
+                <span>{{ __('My Event') }}</span>
             </a>
         </li>
 

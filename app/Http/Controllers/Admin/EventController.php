@@ -43,7 +43,25 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $dayAway = ((int)Setting::find(1)->event_day_away) - 1;
+        $validated = $this->validate($request, [
+            "name" => "required",
+            "date" => "required|date_format:Y-m-d|after:".date(now()->addDays($dayAway)),
+            "cost" => "required",
+            "gem" => "required",
+            "type" => "required",
+            "hosted_by" => ""
+        ], $messages = [
+            'after' => 'Event should at least be '.($dayAway+1).' days away.'
+        ]);
+
+        $validated['hosted_by'] = 'Admin';
+        $validated['status'] = now();
+        $validated['remark'] = 'approved';
+
+        auth()->guard('admin')->user()->events()->create($validated);
+        toast('Event was Created!', 'success');
+        return back();
     }
 
     /**
@@ -54,7 +72,8 @@ class EventController extends Controller
      */
     public function show($id)
     {
-        //
+        $event = Event::findOrFail($id);
+        return view('admin.events.show', compact('event'));
     }
 
     /**
@@ -77,7 +96,15 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $event = Event::findORFail($id);
+        $data = request()->validate([
+            'q'=>'required'
+        ]);
+        $data['q'] == 'cancelled' ? $event->remark = "cancelled" : $event->remark = "approved";
+        $data['q'] != 'cancelled' ? $event->status = now() : $event->status = null;
+        $event->save();
+        toast('Event Updated', 'success');
+        return back();
     }
 
     /**

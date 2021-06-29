@@ -77,4 +77,8 @@ class Admin extends Authenticatable
     public function getUnreadMessagesAttribute(){
         return $this->inboxes()->whereNull('read_at')->get();
     }
+
+    public function events(){
+        return $this->morphMany(Event::class, 'eventable');
+    }
 }

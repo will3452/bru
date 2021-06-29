@@ -18,7 +18,7 @@
                     Event Type
                 </th>
                 <th>
-                    Event Gem & Cost
+                    Event Crytals & Cost
                 </th>
                 <th>
                     Status

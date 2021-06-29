@@ -41,14 +41,14 @@
                 <i class="fa fa-info mr-2"></i>
                 <div>
                     <ul>
-                        <li>Students shall be required to pay GEMS to participate in your event.</li>
-                        <li>Please select whether entry cost is WHITE GEMS or PURPLE GEMS.</li>
-                        <li>Please set how many GEMS will you be requiring from the students.</li>
+                        <li>Students shall be required to pay CRYSTAL to participate in your event.</li>
+                        <li>Please select whether entry cost is WHITE CRYSTAL or PURPLE CRYSTAL.</li>
+                        <li>Please set how many CRYSTAL will you be requiring from the students.</li>
                     </ul>
                 </div>
         </div>
         <div class="form-group">
-            <label for="">Gem Type</label>
+            <label for="">Crystal Type</label>
             <select name="gem" id="" class="custom-select">
                 <option value="purple">PURPLE</option>
                 <option value="white">WHITE</option>

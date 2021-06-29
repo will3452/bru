@@ -41,7 +41,7 @@
                     Event Type
                 </th>
                 <th>
-                    Event Gem & Cost
+                    Event Crystal & Cost
                 </th>
                 <th>
                     Status
@@ -55,7 +55,7 @@
             @foreach($events as $event)
             <tr>
                 <td>
-                    {{ $event->name }}
+                    <a href="{{ route('admin.events.show',  $event) }}">{{ $event->name }}</a>
                 </td>
                 <td>
                     {{ $event->eventable->full_name }}
@@ -71,14 +71,24 @@
                 </td>
                 <td>
                     <div class="text-muted">
-                        -----
+                        {{ $event->remark }}
                     </div>
                 </td>
                 <td>
-                    <button onclick="alert('under development')" class="btn btn-sm btn-primary mr-4">
-                        Details
+                    <form id="cancel{{ $event->id }}" action="{{ route('admin.events.update', $event) }}" method="POST">
+                        <input type="hidden" name="q" value="cancelled">
+                        @csrf
+                        @method('PUT')
+                    </form>
+                    <form id="approve{{ $event->id }}" action="{{ route('admin.events.update', $event) }}" method="POST">
+                        <input type="hidden" name="q" value="approved">
+                        @csrf
+                        @method('PUT')
+                    </form>
+                    <button onclick="toApprove({{ $event->id }})" class="btn btn-sm btn-success">
+                        Approve
                     </button>
-                    <button onclick="alert('under development')" class="btn btn-sm btn-danger">
+                    <button onclick="toCancel({{ $event->id }})" class="btn btn-sm btn-danger">
                         Cancel
                     </button>
                 </td>
@@ -117,5 +127,13 @@
         $('button').addClass('.btn')
         })
         
+    </script>
+    <script>
+        function toCancel(id){
+            confirm('are you sure, you want to cancel the event?') ? $('#cancel'+id).submit() : alert('ok');
+        }
+        function toApprove(id){
+            confirm('are you sure, you want to approve the event?') ? $('#approve'+id).submit() : alert('ok');
+        }
     </script>
 @endsection
