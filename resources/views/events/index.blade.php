@@ -2,7 +2,6 @@
 @section('main-content')
     <h1 class="h3 mb-4 text-gray-800">{{ __('List of your events') }}</h1>
     <div class="d-flex justify-content-between mb-2">
-        <a href="{{ route('home') }}" class="btn btn-primary btn-sm"><i class="fa fa-angle-left"></i> Go to Dashboard</a>
         <a href="{{ route('events.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus fa-sm"></i> Create new event</a>
     </div>
     <table id="artstable" class="table table-stripped table-bordered">
@@ -46,7 +45,7 @@
                 </td>
                 <td>
                     <div class="text-muted">
-                        {{ $event->staus == null ? 'Not Approved' : 'Approved' }}
+                       {{ $event->remark }}
                     </div>
                 </td>
                 <td>
