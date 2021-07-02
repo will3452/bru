@@ -4,6 +4,7 @@ namespace App;
 
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -152,6 +153,26 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function albums(){
         return $this->hasMany(Album::class);
+    }
+
+    public function sharedSeries(){
+        //books, audio books, film, podcasts 
+       $shared_series =collect();
+       $id = $this->id;
+
+       $no_series = Series::where('user_id', '!=', $this->id)->get();
+
+       foreach($no_series as $s){
+           if(
+               $s->books()->where('user_id',$id)->get()||
+               $s->audios()->where('user_id', $id)->get() || 
+               $s->films()->where('user_id', $id)->get() || 
+               $s->podcasts()->where('user_id', $id)
+               ){
+                   $shared_series->push($s);
+               }
+       }
+       return $shared_series->all();
     }
 
 }
