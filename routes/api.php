@@ -1,5 +1,6 @@
 <?php
 
+use App\Book;
 use App\User;
 use App\Testing;
 use App\TestingUser;
@@ -30,11 +31,19 @@ Route::prefix('v1')->group(function(){
         //     return response(['message'=>'you are authenticated'], 201);
         // });
         Route::post('/logout', 'ApiAuthController@logout');
+
+        // Route::get('/books', function(){
+        //     return Book::limit(10)->get();
+        // });
     });
 
 // public
     Route::post('/register', 'ApiAuthController@register');
     Route::post('/login', 'ApiAuthController@login');
+    
+    Route::get('/books', function(){
+        return Book::limit(10)->get();
+    });
 
     Route::get('/testing-json',  function(Request $request){
         return User::get();
