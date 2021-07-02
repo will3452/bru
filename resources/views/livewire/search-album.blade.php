@@ -7,7 +7,9 @@
        <ul class="list-group">
         @foreach ($works as $work)
            <li class="list-group-item d-flex justify-content-between">
-               {{ $work->title }}
+                <div>
+                    {{ $work->title }} by {{ $work->artist }}
+                </div>
                <form action="{{ route('albums.update', $album->id) }}" method="POST">
                 @csrf
                 @method('PUT')
