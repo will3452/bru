@@ -24,7 +24,9 @@
                     @if ($series->type == 'book')
                         @foreach ($series->books as $book)
                         <li class="list-group-item d-flex justify-content-between">
-                            {{ $book->title }}
+                            <div>
+                                {{ $book->title }} by {{ $book->author }}
+                            </div>
                             <form action="{{ route('series.update', $series) }}" method="POST">
                                 @csrf
                                 @method('PUT')
@@ -40,7 +42,9 @@
                     @if ($series->type == 'audio book')
                         @foreach ($series->audios as $book)
                         <li class="list-group-item d-flex justify-content-between">
-                            {{ $book->title }}
+                            <div>
+                                {{ $book->title }} by {{ $book->author }}
+                            </div>
                             <form action="{{ route('series.update', $series) }}" method="POST">
                                 @csrf
                                 @method('PUT')
@@ -56,7 +60,9 @@
                     @if ($series->type == 'film')
                         @foreach ($series->films as $book)
                         <li class="list-group-item d-flex justify-content-between">
-                            {{ $book->title }}
+                            <div>
+                                {{ $book->title }} by {{ $book->author }}
+                            </div>
                             <form action="{{ route('series.update', $series) }}" method="POST">
                                 @csrf
                                 @method('PUT')
@@ -72,7 +78,9 @@
                     @if ($series->type == 'podcast')
                         @foreach ($series->podcasts as $book)
                         <li class="list-group-item d-flex justify-content-between">
-                            {{ $book->title }}
+                            <div>
+                                {{ $book->title }} by {{ $book->host }}
+                            </div>
                             <form action="{{ route('series.update', $series) }}" method="POST">
                                 @csrf
                                 @method('PUT')
