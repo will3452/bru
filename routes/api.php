@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use App\Testing;
 use App\TestingUser;
 use Illuminate\Http\Request;
@@ -25,9 +26,9 @@ Route::prefix('v1')->group(function(){
     
     // proctected via sanctum
     Route::middleware('auth:sanctum')->group(function(){
-        Route::get('/test', function(){
-            return response(['message'=>'you are authenticated'], 201);
-        });
+        // Route::get('/test', function(){
+        //     return response(['message'=>'you are authenticated'], 201);
+        // });
         Route::post('/logout', 'ApiAuthController@logout');
     });
 
@@ -36,10 +37,7 @@ Route::prefix('v1')->group(function(){
     Route::post('/login', 'ApiAuthController@login');
 
     Route::get('/testing-json',  function(Request $request){
-        return response([
-            'name'=>'testing',
-            'path'=>url('/artwork.png')
-        ], 201);
+        return User::get();
     });
 
     Route::get('/testing-image',  function(Request $request){
