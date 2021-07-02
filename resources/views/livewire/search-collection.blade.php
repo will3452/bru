@@ -7,9 +7,9 @@
        <ul class="list-group">
         @foreach ($books as $work)
            <li class="list-group-item d-flex justify-content-between">
-               <div>
-                {{ $work->title }} (Book)
-               </div>
+            <div>
+                {{ $work->title }} by {{ $work->author }} (Book)
+            </div>
                <form action="{{ route('collections.update', $collection->id) }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -32,9 +32,9 @@
 
         @foreach ($audios as $work)
            <li class="list-group-item d-flex justify-content-between">
-               <div>
-                {{ $work->title }} (Audio Book)
-               </div>
+            <div>
+                {{ $work->title }} by {{ $work->author }} (Audio Book)
+            </div>
                <form action="{{ route('collections.update', $collection->id) }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -57,9 +57,9 @@
 
         @foreach ($arts as $work)
            <li class="list-group-item d-flex justify-content-between">
-               <div>
-                {{ $work->title }} (Art Scence)
-               </div>
+            <div>
+                {{ $work->title }} by {{ $work->artist }} (Art Scene)
+            </div>
                <form action="{{ route('collections.update', $collection->id) }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -81,9 +81,9 @@
         @endforeach
         @foreach ($podcasts as $work)
            <li class="list-group-item d-flex justify-content-between">
-               <div>
-                {{ $work->title }} (Podcast)
-               </div>
+                <div>
+                    {{ $work->title }} by {{ $work->host }} (Podcast)
+                </div>
                <form action="{{ route('collections.update', $collection->id) }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -106,9 +106,9 @@
 
         @foreach ($songs as $work)
            <li class="list-group-item d-flex justify-content-between">
-               <div>
-                {{ $work->title }} (Song)
-               </div>
+                <div>
+                    {{ $work->title }} by {{ $work->artist }} (Song)
+                </div>
                <form action="{{ route('collections.update', $collection->id) }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -132,7 +132,9 @@
         @foreach ($films as $work)
            <li class="list-group-item d-flex justify-content-between">
                <div>
-                {{ $work->title }} (Film)
+                <div>
+                    {{ $work->title }} by {{ $work->author }} (Film)
+                </div>
                </div>
                <form action="{{ route('collections.update', $collection->id) }}" method="POST">
                 @csrf

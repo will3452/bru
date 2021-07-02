@@ -25,7 +25,7 @@
                         @foreach ($collection->books as $book)
                             <li class="list-group-item d-flex justify-content-between">
                                 <div>
-                                    {{ $book->title }} (Book)
+                                    {{ $book->title }} by {{ $book->author }} (Book)
                                 </div>
                                 <form action="{{ route('collections.update', $collection) }}" method="POST">
                                     @csrf
@@ -44,7 +44,7 @@
                         @foreach ($collection->arts as $book)
                             <li class="list-group-item d-flex justify-content-between">
                                 <div>
-                                    {{ $book->title }} (Art)
+                                    {{ $book->title }} by {{ $book->artist }} (Art Scene)
                                 </div>
                                 <form action="{{ route('collections.update', $collection) }}" method="POST">
                                     @csrf
@@ -63,7 +63,7 @@
                         @foreach ($collection->films as $book)
                             <li class="list-group-item d-flex justify-content-between">
                                 <div>
-                                    {{ $book->title }} (Film)
+                                    {{ $book->title }} by {{ $book->author }} (Film)
                                 </div>
                                 <form action="{{ route('collections.update', $collection) }}" method="POST">
                                     @csrf
@@ -82,7 +82,7 @@
                         @foreach ($collection->audios as $book)
                             <li class="list-group-item d-flex justify-content-between">
                                 <div>
-                                    {{ $book->title }} (Audio Book)
+                                    {{ $book->title }} by {{ $book->author }} (Audio Book)
                                 </div>
                                 <form action="{{ route('collections.update', $collection) }}" method="POST">
                                     @csrf
@@ -101,7 +101,7 @@
                         @foreach ($collection->songs as $book)
                             <li class="list-group-item d-flex justify-content-between">
                                 <div>
-                                    {{ $book->title }} (Song)
+                                    {{ $book->title }} by {{ $book->artist }} (Song)
                                 </div>
                                 <form action="{{ route('collections.update', $collection) }}" method="POST">
                                     @csrf
@@ -120,7 +120,7 @@
                         @foreach ($collection->podcasts as $book)
                             <li class="list-group-item d-flex justify-content-between">
                                 <div>
-                                    {{ $book->title }} (Podcast)
+                                    {{ $book->title }} by {{ $book->host }} (Podcast)
                                 </div>
                                 <form action="{{ route('collections.update', $collection) }}" method="POST">
                                     @csrf
