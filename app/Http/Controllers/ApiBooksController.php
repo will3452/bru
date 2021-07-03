@@ -16,4 +16,15 @@ class ApiBooksController extends Controller
 
         return response($books, 200);
     }
+
+    public function show($id){
+        $book = Book::find($id);
+
+        if(!$book){
+            return response([
+                'message'=>'not found',
+            ])
+        }
+
+    }
 }

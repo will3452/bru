@@ -25,7 +25,7 @@ class ApiAuthController extends Controller
         $response = [
             'user'=>$user,
             'token'=>$token,
-            'status'=>200
+            'result'=>200
         ];
         // if($user){
         //     return 'result=200&token='.$token;
@@ -84,7 +84,8 @@ class ApiAuthController extends Controller
        $token = $user->createToken('myapptoken')->plainTextToken;
        $response = [
            'user'=>$user,
-           'token'=>$token
+           'token'=>$token,
+           
        ];
 
        return response($response, 201);
