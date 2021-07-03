@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Avatar;
 use Illuminate\Http\Request;
 
 class ApiAvatarController extends Controller
@@ -35,8 +36,9 @@ class ApiAvatarController extends Controller
             'outfit'=>'',
             'shoes'=>''
         ]);
-
-        auth()->user()->avatar()->create($data);
+        // return auth()->user();
+        $data['user_id'] = auth()->user()->id;
+        Avatar::create($data);
         return response([
             'message'=>'avatar saved!',
             'result'=>200
