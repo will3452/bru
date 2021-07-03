@@ -12,12 +12,13 @@ class ApiVIPUpdateController extends Controller
             'q'=>'required'
         ]);
 
-        if(request()->q != 'promo'){
+        if(request()->q != 'vip'){
             $user->vip = now();
             $user->save();
+            return response([
+                'message'=>'VIP saved!'
+            ], 200);
         }
-        return response([
-            'message'=>'VIP saved!'
-        ], 200);
+        
     }
 }
