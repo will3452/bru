@@ -35,11 +35,18 @@ class ApiAvatarController extends Controller
             'outfit'=>'',
             'shoes'=>''
         ]);
-        
+
         auth()->user()->avatar()->create($data);
         return response([
             'message'=>'avatar saved!',
             'result'=>200
         ]);
+    }
+
+    public function show(){
+        return response([
+            'avatar'=>auth()->user()->avatar ?? [],
+            'result'=>200
+        ], 200);
     }
 }

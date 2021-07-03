@@ -36,7 +36,10 @@ Route::prefix('v1')->group(function(){
 
         Route::get('/books', 'ApiBooksController@index');
         Route::get('/books/{id}', 'ApiBooksController@show');
+
+
         Route::post('/avatar', 'ApiAvatarController@store');
+        Route::get('/avatar', 'ApiAvatarController@show');
     });
 
 // public
