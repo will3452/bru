@@ -22,6 +22,9 @@ class ApiAuthController extends Controller
             // return 'result=404';
         }
         $token = $user->createToken('myapptoken')->plainTextToken;
+        $user->with('bio');
+        $user->with('interests');
+        
         $response = [
             'user'=>$user,
             'token'=>$token,
@@ -82,6 +85,8 @@ class ApiAuthController extends Controller
         ]);
 
        $token = $user->createToken('myapptoken')->plainTextToken;
+       $user->with('bio');
+       $user->with('interests');
        $response = [
            'user'=>$user,
            'token'=>$token,
