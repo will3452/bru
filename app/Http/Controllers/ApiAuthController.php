@@ -92,7 +92,7 @@ class ApiAuthController extends Controller
            'bio'=>$user->bio,
            'intererts'=>$user->interests,
            'token'=>$token,
-           
+           'result'=>200
        ];
 
        return response($response, 201);
