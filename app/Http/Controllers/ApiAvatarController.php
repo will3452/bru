@@ -46,8 +46,9 @@ class ApiAvatarController extends Controller
     }
 
     public function show(){
+        $avatar = Avatar::where('user_id',auth()->user()->id)->first();
         return response([
-            'avatar'=>auth()->user()->avatar ?? [],
+            'avatar'=>$avatar ?? [],
             'result'=>200
         ], 200);
     }
