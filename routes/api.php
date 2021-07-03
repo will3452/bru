@@ -32,18 +32,16 @@ Route::prefix('v1')->group(function(){
         // });
         Route::post('/logout', 'ApiAuthController@logout');
 
-        // Route::get('/books', function(){
-        //     return Book::limit(10)->get();
-        // });
+        Route::post('/vip-update', 'ApiVIPUpdateController@update');
+
+
     });
 
 // public
     Route::post('/register', 'ApiAuthController@register');
     Route::post('/login', 'ApiAuthController@login');
     
-    Route::get('/books', function(){
-        return Book::limit(10)->get();
-    });
+    
 
     Route::get('/testing-json',  function(Request $request){
         return User::get();
