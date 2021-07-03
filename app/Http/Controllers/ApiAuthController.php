@@ -17,8 +17,8 @@ class ApiAuthController extends Controller
         if(!$user || !\Hash::check($fields['password'], $user->password)){
             return response([
                 'message'=>'Bad Creds',
-                'result'=>401
-            ], 401);
+                'result'=>500
+            ],200);
             // return 'result=404';
         }
         $token = $user->createToken('myapptoken')->plainTextToken;
