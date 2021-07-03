@@ -37,7 +37,7 @@ class ApiAvatarController extends Controller
             'shoes'=>''
         ]);
         // return auth()->user();
-        $data['user_id'] = auth()->user()->id;
+        $data['user_id'] = request()->user_id;
         Avatar::create($data);
         return response([
             'message'=>'avatar saved!',
