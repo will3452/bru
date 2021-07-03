@@ -17,7 +17,7 @@ class ApiAuthController extends Controller
         if(!$user || !\Hash::check($fields['password'], $user->password)){
             return response([
                 'message'=>'Bad Creds',
-                'status'=>401
+                'result'=>401
             ], 401);
             // return 'result=404';
         }
