@@ -38,7 +38,6 @@ Route::prefix('v1')->group(function(){
 
         Route::post('/avatar', 'ApiAvatarController@store');
         Route::get('/avatar', 'ApiAvatarController@show');
-       
     });
 
     // public
