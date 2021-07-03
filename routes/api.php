@@ -34,7 +34,7 @@ Route::prefix('v1')->group(function(){
 
         Route::post('/vip-update', 'ApiVIPUpdateController@update');
 
-
+        Route:get('/books', 'ApiBooksController@index');
     });
 
 // public
