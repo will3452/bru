@@ -42,7 +42,7 @@ class ApiAvatarController extends Controller
         return response([
             'message'=>'avatar saved!',
             'result'=>200
-        ]);
+        ],200);
     }
 
     public function show(){
