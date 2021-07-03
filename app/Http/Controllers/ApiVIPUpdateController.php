@@ -12,7 +12,7 @@ class ApiVIPUpdateController extends Controller
             'q'=>'required'
         ]);
 
-        if(request()->q != 'vip'){
+        if(request()->q == 'vip'){
             $user->vip = now();
             $user->save();
             return response([
