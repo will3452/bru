@@ -29,20 +29,20 @@ class CreateAvatarsTable extends Migration
 // shoes
         Schema::create('avatars', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->string('skin')->default('0');
-            $table->string('head')->default('0');
-            $table->string('faceshape')->default('0');
-            $table->string('facehair')->default('0');
-            $table->string('hair')->default('0');
-            $table->string('eyes')->default('0');
-            $table->string('eyebrows')->default('0');
-            $table->string('nose')->default('0');
-            $table->string('lips')->default('0');
-            $table->string('pe')->default('0');
-            $table->string('accesories')->default('0');
-            $table->string('outfit')->default('0');
-            $table->string('shoes')->default('0');
+            $table->foreignId('user_id')->nullable();
+            $table->string('skin')->nullable();
+            $table->string('head')->nullable();
+            $table->string('faceshape')->nullable();
+            $table->string('facehair')->nullable();
+            $table->string('hair')->nullable();
+            $table->string('eyes')->nullable();
+            $table->string('eyebrows')->nullable();
+            $table->string('nose')->nullable();
+            $table->string('lips')->nullable();
+            $table->string('pe')->nullable();
+            $table->string('accesories')->nullable();
+            $table->string('outfit')->nullable();
+            $table->string('shoes')->nullable();
             $table->timestamps();
         });
     }
