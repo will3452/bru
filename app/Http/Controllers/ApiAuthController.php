@@ -51,7 +51,7 @@ class ApiAuthController extends Controller
             'country'=>'required',
             'city'=>'',
             'birthdate'=>'required',
-            'bruname'=>''
+            'bruname'=>'required'
         ]);
         
 
