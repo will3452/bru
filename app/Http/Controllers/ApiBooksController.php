@@ -22,9 +22,11 @@ class ApiBooksController extends Controller
 
         if(!$book){
             return response([
-                'message'=>'not found',
-            ])
+                'message'=>'not found'
+            ]);
         }
+
+        return response($book, 200);
 
     }
 }
