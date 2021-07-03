@@ -97,6 +97,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Thrailer::class);
     }
 
+    public function avatar(){
+        return $this->belongsTo(Avatar::class);
+    }
+
 
     public function events(){
         return $this->morphMany(Event::class, 'eventable');
@@ -174,5 +178,7 @@ class User extends Authenticatable implements MustVerifyEmail
        }
        return $shared_series->all();
     }
+
+    
 
 }
