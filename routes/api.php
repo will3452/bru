@@ -31,18 +31,16 @@ Route::prefix('v1')->group(function(){
         //     return response(['message'=>'you are authenticated'], 201);
         // });
         Route::post('/logout', 'ApiAuthController@logout');
-
         Route::post('/vip-update', 'ApiVIPUpdateController@update');
 
         Route::get('/books', 'ApiBooksController@index');
         Route::get('/books/{id}', 'ApiBooksController@show');
 
-
         Route::post('/avatar', 'ApiAvatarController@store');
         Route::get('/avatar', 'ApiAvatarController@show');
     });
 
-// public
+    // public
     Route::post('/register', 'ApiAuthController@register');
     Route::post('/login', 'ApiAuthController@login');
     
