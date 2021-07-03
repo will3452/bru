@@ -40,7 +40,7 @@ class ApiAvatarController extends Controller
         $data['user_id'] = auth()->user()->id;
         Avatar::create($data);
         return response([
-            'message'=>'avatar saved!',
+            'message'=>request()->all(),
             'result'=>200
         ],200);
     }
