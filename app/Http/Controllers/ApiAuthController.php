@@ -27,7 +27,7 @@ class ApiAuthController extends Controller
         $response = [
             'user'=>$user,
             'bio'=>$user->bio,
-            'intererts'=>$user->interests,
+            'interests'=>$user->interests,
             'token'=>$token,
             'result'=>200
         ];
