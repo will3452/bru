@@ -38,6 +38,8 @@ Route::prefix('v1')->group(function(){
 
         Route::post('/avatar', 'ApiAvatarController@store');
         Route::get('/avatar', 'ApiAvatarController@show');
+
+        Route::get('/newspaper', 'ApiNewspaperController@index');
     });
 
     // public
