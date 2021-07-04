@@ -24,11 +24,13 @@ class ApiAuthController extends Controller
         }
         $token = $user->createToken('myapptoken')->plainTextToken;
         $avatar = Avatar::where('user_id', $user->id)->first();
+        $college = $user->interests()->where('type', 'college')->first()->name;
         $response = [
             'user'=>$user,
             'avatar'=>$avatar,
             'bio'=>$user->bio,
             'interests'=>$user->interests,
+            'college'=>$college,
             'token'=>$token,
             'result'=>200
         ];
