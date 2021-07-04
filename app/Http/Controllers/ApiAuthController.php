@@ -23,7 +23,7 @@ class ApiAuthController extends Controller
             // return 'result=404';
         }
         $token = $user->createToken('myapptoken')->plainTextToken;
-        $avatar = Avatar::where('user_id', $user->id)->get();
+        $avatar = Avatar::where('user_id', $user->id)->first();
         $response = [
             'user'=>$user,
             'avatar'=>$avatar,
