@@ -40,11 +40,16 @@ Route::prefix('v1')->group(function(){
         Route::get('/avatar', 'ApiAvatarController@show');
 
         Route::get('/newspaper', 'ApiNewspaperController@index');
+
     });
 
     // public
     Route::post('/register', 'ApiAuthController@register');
     Route::post('/login', 'ApiAuthController@login');
+
+    // preloader
+    Route::get('/preloader', 'ApiPreloaderController@random');
+
 
     
     
