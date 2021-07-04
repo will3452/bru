@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Newspaper;
 use Illuminate\Http\Request;
 
 class ApiNewspaperController extends Controller
 {
-    public function newspaper(){
+    public function index(){
         $newspaper = Newspaper::with('pages')->get();
         return response([
             'newspaper'=>$newspaper,
