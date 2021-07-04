@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Avatar;
 use Illuminate\Http\Request;
 
 class ApiAuthController extends Controller
@@ -22,10 +23,10 @@ class ApiAuthController extends Controller
             // return 'result=404';
         }
         $token = $user->createToken('myapptoken')->plainTextToken;
-        
+        $avatar = Avatar::where('user_id', $user->id)->get();
         $response = [
             'user'=>$user,
-            'avatar'=>$user->avatar,
+            'avatar'=>$avatar,
             'bio'=>$user->bio,
             'interests'=>$user->interests,
             'token'=>$token,
