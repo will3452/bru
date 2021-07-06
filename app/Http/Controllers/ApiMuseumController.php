@@ -26,6 +26,25 @@ class ApiMuseumController extends Controller
     }
 
 
+    public function show($id){
+        $art = Art::find($id);
+        
+        $userid = $art->user_id;
+
+        $user = User::find($userid);
+        
+        $other = $user->arts;
+
+        return response([
+            'author'=>$user,
+            'art'=>$art,
+            'other_works'=>$other,
+            'result'=>200
+        ], 200);
+
+    }
+
+
     public function summary(){
         $a = Art::where('genre', 'Teen and Young Adult')->count();
         $b = Art::where('genre', 'New Adult')->count();
