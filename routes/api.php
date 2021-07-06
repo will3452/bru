@@ -4,8 +4,10 @@ use App\Book;
 use App\User;
 use App\Testing;
 use App\TestingUser;
+use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Luigel\Paymongo\Facades\Paymongo;
 use App\Http\Controllers\API\PaymongoWebhookController;
 
 /*
@@ -71,5 +73,28 @@ Route::prefix('v1')->group(function(){
 });
 
 Route::middleware('paymongo.signature')->group(function () {
-    Route::post('webhook/paymongo', 'API\PaymongoWebhookController@index');
+    Route::post('webhook/paymongo', function(Request $request){
+        
+        $data = Arr::get($request->all(), 'data.attributes');
+
+        if ($data['type'] !== 'source.chargeable') {
+            return response()->noContent();
+        }
+
+        $source = Arr::get($data, 'data');
+        $sourceData = $source['attributes'];
+
+        if ($sourceData['status'] === 'chargeable') {
+            $payment = Paymongo::payment()->create([
+                'amount' => $sourceData['amount'] / 100,
+                'currency' => $sourceData['currency'],
+                'description' => $sourceData['type'].' test from src ' . $source['id'],
+                'source' => [
+                    'id' => $source['id'],
+                    'type' => $source['type'],
+                ]
+            ]);
+        }
+        return response()->noContent();
+    });
 });
