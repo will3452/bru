@@ -33,13 +33,13 @@ class AdminSeeder extends Seeder
         ]);
 
         DB::table('genres')->insert([
-            ['name'=>'Teen & Young Adult'],
+            ['name'=>'Teen and Young Adult'],
             ['name'=>'New Adult'],
             ['name'=>'Romance'],
-            ['name'=>'Detective & Thrillers'],
+            ['name'=>'Detective and Mystery'],
             ['name'=>'Action'],
             ['name'=>'Historical'],
-            ['name'=>'Horror'],
+            ['name'=>'Thriller and Horror'],
             ['name'=>'LGBTQIA+'],
             ['name'=>'Poetry'],
         ]);

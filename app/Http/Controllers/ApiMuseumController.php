@@ -12,6 +12,7 @@ class ApiMuseumController extends Controller
         request()->validate([
             'genre'=>'required'
         ]);
+        
         if(request()->has('_limit')){
             $arts = Art::where('genre', request()->genre)->limit(request()->_limit)->get();
         }else {
@@ -19,6 +20,7 @@ class ApiMuseumController extends Controller
         }
         return response([
             'art_scenes'=>$arts,
+            'length'=>count($arts),
             'result'=>200
         ], 200);
     }
