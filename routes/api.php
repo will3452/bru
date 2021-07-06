@@ -36,8 +36,15 @@ Route::prefix('v1')->group(function(){
         Route::post('/logout', 'ApiAuthController@logout');
         Route::post('/vip-update', 'ApiVIPUpdateController@update');
 
+        // bookshelves
         Route::get('/books', 'ApiBooksController@index');
         Route::get('/books/{id}', 'ApiBooksController@show');
+        // Route::get('/audio-books', ); 
+        
+        
+       
+
+
 
         Route::post('/avatar', 'ApiAvatarController@store');
         Route::post('/avatar/update', 'ApiAvatarController@update');
@@ -53,6 +60,9 @@ Route::prefix('v1')->group(function(){
 
     // preloader
     Route::get('/preloader', 'ApiPreloaderController@random');
+
+     // museum
+     Route::get('/museum', 'ApiMuseumController@index');
 
 
     
