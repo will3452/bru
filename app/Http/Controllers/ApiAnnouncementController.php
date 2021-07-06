@@ -11,7 +11,7 @@ class ApiAnnouncementController extends Controller
         $announcements = Announcement::latest()->get();
         return response([
             'announcements'=>$announcements,
-            'size'=>count(announcement),
+            'size'=>count($announcements),
             'result'=>200
         ], 200);
     }
