@@ -28,7 +28,7 @@ class ApiMuseumController extends Controller
 
 
     public function show($id){
-        return $id;
+        // return $id;
         $art = Art::find($id);
         
         $userid = $art->user_id;
