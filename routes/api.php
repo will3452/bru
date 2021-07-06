@@ -87,7 +87,7 @@ Route::post('webhook/paymongo', function(Request $request){
         $payment = Paymongo::payment()->create([
             'amount' => $sourceData['amount'] / 100,
             'currency' => $sourceData['currency'],
-            'description' => $sourceData['type'].' test from src ' . $source['id']. ', address : '.$sourceData['email'],
+            'description' => $sourceData['type'].' test from src ' . $source['id']. ', email : '.$sourceData['billing']['email'],
             'source' => [
                 'id' => $source['id'],
                 'type' => $source['type'],
