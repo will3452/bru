@@ -71,5 +71,5 @@ Route::prefix('v1')->group(function(){
 });
 
 Route::middleware('paymongo.signature')->group(function () {
-    Route::post('webhook/paymongo', 'Api\PaymongoWebhookController@index');
+    Route::post('webhook/paymongo', 'API\PaymongoWebhookController@index');
 });
