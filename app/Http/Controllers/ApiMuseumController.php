@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Art;
+use App\User;
 use Illuminate\Http\Request;
 
 class ApiMuseumController extends Controller
@@ -27,6 +28,7 @@ class ApiMuseumController extends Controller
 
 
     public function show($id){
+        return $id;
         $art = Art::find($id);
         
         $userid = $art->user_id;
