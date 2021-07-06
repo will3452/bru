@@ -15,7 +15,7 @@ class PaymentController extends Controller
             'type'=>'required'
         ]);
 
-        $user = User::find($data['id']);
+        $user = User::find($data['user_id']);
 
         $source = Paymongo::source()->create([
             'type' => $data['type'],
