@@ -26,7 +26,6 @@ class PaymentController extends Controller
                 'failed' => route('payment.failed')
             ],
             'billing'=>[
-                'address'=>$user->bio->city.', '.$user->bio->country,
                 'name'=>$user->full_name,
                 'email'=>$user->email
             ]
