@@ -41,7 +41,8 @@ Route::prefix('v1')->group(function(){
         Route::get('/books/{id}', 'ApiBooksController@show');
         // Route::get('/audio-books', ); 
         
-        
+        // museum
+        Route::get('/museum', 'ApiMuseumController@index');
        
 
 
@@ -61,8 +62,7 @@ Route::prefix('v1')->group(function(){
     // preloader
     Route::get('/preloader', 'ApiPreloaderController@random');
 
-     // museum
-     Route::get('/museum', 'ApiMuseumController@index');
+     
 
 
     
