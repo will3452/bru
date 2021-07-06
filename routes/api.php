@@ -49,9 +49,10 @@ Route::prefix('v1')->group(function(){
 
         // announcement 
         Route::get('/announcement', 'ApiAnnouncementController@index');
+
+        // banner
+        Route::get('/banner', 'ApiBannerController@index');
        
-
-
 
         Route::post('/avatar', 'ApiAvatarController@store');
         Route::post('/avatar/update', 'ApiAvatarController@update');
