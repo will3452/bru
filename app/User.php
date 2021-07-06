@@ -159,6 +159,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Album::class);
     }
 
+    public function royalties(){
+        return $this->hasMany(Royalty::class, 'user_id');
+    }
+
     public function sharedSeries(){
         //books, audio books, film, podcasts 
        $shared_series =collect();

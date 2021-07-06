@@ -56,13 +56,13 @@ Route::prefix('v1')->group(function(){
     
     
 
-    Route::get('/testing-json',  function(Request $request){
-        return User::get();
-    });
+    // Route::get('/testing-json',  function(Request $request){
+    //     return User::get();
+    // });
 
-    Route::get('/testing-image',  function(Request $request){
-        return url('/artwork.png');
-    });
+    // Route::get('/testing-image',  function(Request $request){
+    //     return url('/artwork.png');
+    // });
 
 
 
