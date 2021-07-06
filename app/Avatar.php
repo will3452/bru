@@ -10,4 +10,8 @@ class Avatar extends Model
     use HasFactory;
     protected $guarded = [];
     
+
+    public function user(){
+        return $this->belongsToMany(User::class);
+    }
 }
