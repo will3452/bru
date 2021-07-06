@@ -52,4 +52,28 @@ class ApiAvatarController extends Controller
             'result'=>200
         ], 200);
     }
+
+    public function update(){
+        $avatar = Avatar::where('user_id', auth()->user()->id)->first();
+        $data = request()->validate([
+            'skin'=>'',
+            'head'=>'',
+            'faceshape'=>'',
+            'facehair'=>'',
+            'hair'=>'',
+            'eyes'=>'',
+            'eyebrows'=>'',
+            'nose'=>'',
+            'lips'=>'',
+            'pe'=>'',
+            'accesories'=>'',
+            'outfit'=>'',
+            'shoes'=>''
+        ]);
+        $avatar->update($data);
+        return response([
+            'message'=>request()->all(),
+            'result'=>200
+        ],200);
+    }
 }

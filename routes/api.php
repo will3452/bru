@@ -37,6 +37,7 @@ Route::prefix('v1')->group(function(){
         Route::get('/books/{id}', 'ApiBooksController@show');
 
         Route::post('/avatar', 'ApiAvatarController@store');
+        Route::post('/avatar/update', 'ApiAvatarController@update');
         Route::get('/avatar', 'ApiAvatarController@show');
 
         Route::get('/newspaper', 'ApiNewspaperController@index');
