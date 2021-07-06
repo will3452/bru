@@ -20,7 +20,7 @@ class ApiMuseumController extends Controller
         }
         return response([
             'art_scenes'=>$arts,
-            'length'=>count($arts),
+            'size'=>count($arts),
             'result'=>200
         ], 200);
     }
