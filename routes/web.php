@@ -321,5 +321,10 @@ Route::post('autofill-aduio-book', 'autoFillController')->name('auto.fill');
 Route::view('support-chat', 'support_chat');
 
 
-//api help
-Route::view('api-docs', 'api_doc');
+
+
+//payment
+
+Route::get('payment-gcash', 'PaymentController@gcash')->name('payment.gcash');
+Route::get('payment-success', 'PaymentController@success')->name('payment.success');
+Route::get('payment-failed', 'PaymentController@success')->name('payment.failed');
