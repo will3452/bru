@@ -72,29 +72,28 @@ Route::prefix('v1')->group(function(){
     
 });
 
-Route::middleware('paymongo.signature')->group(function () {
-    Route::post('webhook/paymongo', function(Request $request){
+Route::post('webhook/paymongo', function(Request $request){
         
-        $data = Arr::get($request->all(), 'data.attributes');
+    $data = Arr::get($request->all(), 'data.attributes');
 
-        if ($data['type'] !== 'source.chargeable') {
-            return response()->noContent();
-        }
-
-        $source = Arr::get($data, 'data');
-        $sourceData = $source['attributes'];
-
-        if ($sourceData['status'] === 'chargeable') {
-            $payment = Paymongo::payment()->create([
-                'amount' => $sourceData['amount'] / 100,
-                'currency' => $sourceData['currency'],
-                'description' => $sourceData['type'].' test from src ' . $source['id'],
-                'source' => [
-                    'id' => $source['id'],
-                    'type' => $source['type'],
-                ]
-            ]);
-        }
+    if ($data['type'] !== 'source.chargeable') {
         return response()->noContent();
-    });
+    }
+
+    $source = Arr::get($data, 'data');
+    $sourceData = $source['attributes'];
+
+    if ($sourceData['status'] === 'chargeable') {
+        $payment = Paymongo::payment()->create([
+            'amount' => $sourceData['amount'] / 100,
+            'currency' => $sourceData['currency'],
+            'description' => $sourceData['type'].' test from src ' . $source['id'],
+            'source' => [
+                'id' => $source['id'],
+                'type' => $source['type'],
+            ]
+        ]);
+    }
+    return response()->noContent();
 });
+// payment-gcash?user_id=1&amount=164
