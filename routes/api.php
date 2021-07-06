@@ -69,6 +69,10 @@ Route::prefix('v1')->group(function(){
     // preloader
     Route::get('/preloader', 'ApiPreloaderController@random');
 
+    // summary
+    Route::get('/museum-summary', 'ApiMuseumController@summary');
+
+
      
 
 

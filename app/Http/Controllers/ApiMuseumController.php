@@ -24,4 +24,28 @@ class ApiMuseumController extends Controller
             'result'=>200
         ], 200);
     }
+
+
+    public function summary(){
+        $a = Art::where('genre', 'Teen and Young Adult')->count();
+        $b = Art::where('genre', 'New Adult')->count();
+        $c = Art::where('genre', 'Romance')->count();
+        $d = Art::where('genre', 'Detective and Mystery')->count();
+        $e = Art::where('genre', 'Action')->count();
+        $f = Art::where('genre', 'Historical')->count();
+        $g = Art::where('genre', 'Thriller and Horror')->count();
+        $h = Art::where('genre', 'LGBTQIA+')->count();
+        // $a = Art::where('genre', 'Poetry+')->count();
+        return response([
+            'teen_and_young_adult'=>$a,
+            'new_adult'=>$b,
+            'romance'=>$c,
+            'detective_and_mystery'=>$d,
+            'action'=>$e,
+            'historical'=>$f,
+            'thriller_and_horror'=>$g,
+            'lgbtqia+'=>$h,
+            'result'=>200
+        ],200);
+    }
 }
