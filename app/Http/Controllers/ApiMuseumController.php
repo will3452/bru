@@ -44,7 +44,7 @@ class ApiMuseumController extends Controller
             'action'=>$e,
             'historical'=>$f,
             'thriller_and_horror'=>$g,
-            'lgbtqia+'=>$h,
+            'lgbtqia'=>$h,
             'result'=>200
         ],200);
     }
