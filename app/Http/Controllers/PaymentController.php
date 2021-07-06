@@ -14,6 +14,8 @@ class PaymentController extends Controller
             'type'=>'required'
         ]);
 
+        $user = User::find($data['id']);
+
         $source = Paymongo::source()->create([
             'type' => $data['type'],
             'amount' => $data['amount'],
@@ -21,6 +23,11 @@ class PaymentController extends Controller
             'redirect' => [
                 'success' => route('payment.success'),
                 'failed' => route('payment.failed')
+            ],
+            'billing'=>[
+                'address'=>$user->bio->city.', '.$user->bio->country,
+                'name'=>$user->full_name,
+                'email'=>$user->email
             ]
         ]);
 
