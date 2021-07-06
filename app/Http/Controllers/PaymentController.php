@@ -7,14 +7,15 @@ use Luigel\Paymongo\Facades\Paymongo;
 
 class PaymentController extends Controller
 {
-    public function gcash(){
+    public function pay(){
         $data = request()->validate([
             'amount'=>'required',
-            'user_id'=>'required'
+            'user_id'=>'required',
+            'type'=>'required'
         ]);
 
-        $gcashSource = Paymongo::source()->create([
-            'type' => 'gcash',
+        $source = Paymongo::source()->create([
+            'type' => $data['type'],
             'amount' => $data['amount'],
             'currency' => 'PHP',
             'redirect' => [
@@ -23,7 +24,7 @@ class PaymentController extends Controller
             ]
         ]);
 
-        return redirect($gcashSource->getRedirect()['checkout_url']);
+        return redirect($source->getRedirect()['checkout_url']);
     }
 
 

@@ -96,4 +96,4 @@ Route::post('webhook/paymongo', function(Request $request){
     }
     return response()->noContent();
 });
-// payment-gcash?user_id=1&amount=164
+// payment-pay?user_id=1&amount=164&type=gcash
