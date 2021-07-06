@@ -47,6 +47,7 @@ Route::prefix('v1')->group(function(){
 
         // library
         Route::get('/library', 'ApiLibraryController@index');
+        Route::get('/library-sumarry', 'ApiLibraryController@summary');
 
         // announcement 
         Route::get('/announcement', 'ApiAnnouncementController@index');
