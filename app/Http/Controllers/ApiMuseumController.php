@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class ApiMuseumController extends Controller
 {
     public function index(){
+        // return request()->all();
         request()->validate([
             'genre'=>'required'
         ]);
