@@ -160,7 +160,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function royalties(){
-        return $this->hasMany(Royalty::class, 'user_id');
+        return $this->hasOne(Royalty::class, 'user_id');
     }
 
     public function sharedSeries(){

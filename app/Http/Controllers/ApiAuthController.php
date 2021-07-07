@@ -32,9 +32,11 @@ class ApiAuthController extends Controller
             'purple_crystal'=>0
         ];
 
-        if(count($user->royalties)){
-            $royalties = $user->royalties;
+        if($user->royalties()->count() == 0){
+            $royalties = $user->royalties()->create($royalties);
         }
+
+        $royalties = $user->royalties;
 
         $response = [
             'user'=>$user,
@@ -110,9 +112,7 @@ class ApiAuthController extends Controller
             'purple_crystal'=>0
         ];
 
-        if(count($user->royalties)){
-            $royalties = $user->royalties;
-        }
+       $user->royalties()->create($royalties);
        $response = [
            'user'=>$user,
            'bio'=>$user->bio,
