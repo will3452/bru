@@ -25,8 +25,19 @@ class ApiAuthController extends Controller
         $token = $user->createToken('myapptoken')->plainTextToken;
         $avatar = Avatar::where('user_id', $user->id)->first();
         $college = $user->interests()->where('type', 'college')->first()->name;
+        $royalties = [
+            'hall_pass'=>0,
+            'white_crystal'=>0,
+            'silver_ticket'=>0,
+            'purple_crystal'=>0
+        ];
+
+        if($user->royalties != null){
+            $royalties = $user->royalties;
+        }
         $response = [
             'user'=>$user,
+            'royalties'=>$royalties,
             'avatar'=>$avatar,
             'bio'=>$user->bio,
             'interests'=>$user->interests,
@@ -91,10 +102,20 @@ class ApiAuthController extends Controller
         ]);
 
        $token = $user->createToken('myapptoken')->plainTextToken;
-       
+       $royalties = [
+            'hall_pass'=>0,
+            'white_crystal'=>0,
+            'silver_ticket'=>0,
+            'purple_crystal'=>0
+        ];
+
+        if($user->royalties != null){
+            $royalties = $user->royalties;
+        }
        $response = [
            'user'=>$user,
            'bio'=>$user->bio,
+           'royalties'=>$royalties,
            'intererts'=>$user->interests,
            'token'=>$token,
            'result'=>200
