@@ -47,6 +47,7 @@ Route::prefix('v1')->group(function(){
         Route::get('/museum-summary', 'ApiMuseumController@summary');
 
         // library
+        Route::get('/library/{id}', 'ApiLibraryController@show');
         Route::get('/library', 'ApiLibraryController@index');
         Route::get('/library-summary', 'ApiLibraryController@summary');
 

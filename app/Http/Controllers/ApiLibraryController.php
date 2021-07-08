@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\User;
 use Illuminate\Http\Request;
 
 class ApiLibraryController extends Controller
@@ -23,6 +24,25 @@ class ApiLibraryController extends Controller
             'size'=>count($books),
             'result'=>200
         ], 200);
+    }
+
+    public function show($id){
+        // return $id;
+        $book = Book::find($id);
+        
+        $userid = $book->user_id;
+
+        $user = User::find($userid);
+        
+        $other = $user->books;
+
+        return response([
+            'author'=>$user,
+            'book'=>$book,
+            'other_works'=>$other,
+            'result'=>200
+        ], 200);
+
     }
 
     public function summary(){
