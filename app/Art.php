@@ -45,4 +45,8 @@ class Art extends Model
         return $this->morphToMany(Album::class, 'albumable');
     }
 
+    public function boxes(){
+        return $this->morphToMany(Box::class, 'boxable');
+    }
+
 }

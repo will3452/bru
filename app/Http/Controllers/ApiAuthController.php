@@ -104,6 +104,8 @@ class ApiAuthController extends Controller
             'name'=>$request->club
         ]);
 
+        $user->box()->create();//create box for her/his collection
+
        $token = $user->createToken('myapptoken')->plainTextToken;
        $royalties = [
             'hall_pass'=>0,

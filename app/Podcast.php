@@ -30,4 +30,8 @@ class Podcast extends Model
         return $this->morphToMany(Collection::class, 'collectionable');
     }
 
+    public function boxes(){
+        return $this->morphToMany(Box::class, 'boxable');
+    }
+
 }

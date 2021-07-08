@@ -187,6 +187,8 @@ class RegisterController extends Controller
             'description'=>end($i3)
         ]);
 
+        $user->box()->create();
+
         return $user;
 
     }
