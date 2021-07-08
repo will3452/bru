@@ -50,6 +50,11 @@ Route::prefix('v1')->group(function(){
         Route::get('/library', 'ApiLibraryController@index');
         Route::get('/library-summary', 'ApiLibraryController@summary');
 
+        //my-collections
+        Route::get('/my-collections', 'ApiBoxController@list');
+        Route::post('/add-to-my-collection', 'ApiBoxController@add');// add to collection or box 
+
+
         // announcement 
         Route::get('/announcement', 'ApiAnnouncementController@index');
 
