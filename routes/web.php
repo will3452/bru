@@ -72,7 +72,10 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::get('/bin', 'Admin\BinController@index')->name('bin.index');
     Route::put('/bin/{id}', 'Admin\BinController@restore')->name('bin.restore');
 
-    
+    //merch store
+    Route::post('/store', 'Admin\ProductController@store')->name('product.store');
+    Route::get('/store', 'Admin\ProductController@index')->name('product.index');
+    Route::get('/store/create', 'Admin\ProductController@create')->name('product.add');
 
     //AAN
     Route::post('/aan', 'Admin\AANController@store')->name('aan.store');
@@ -299,7 +302,6 @@ Route::prefix('admin/images')->name('admin.images.')->middleware('auth:admin')->
     Route::post('/newspaper/{id}', 'Admin\ImageManagementController@storePageNewspaper')->name('newspaper.page');
     Route::get('/newspaper', 'Admin\ImageManagementController@newspaper')->name('newspaper');
     Route::post('/newspaper', 'Admin\ImageManagementController@storeNewspaper');
-
 });
 // end of images
 
