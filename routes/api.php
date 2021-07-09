@@ -67,6 +67,15 @@ Route::prefix('v1')->group(function(){
         Route::post('/avatar/update', 'ApiAvatarController@update');
         Route::get('/avatar', 'ApiAvatarController@show');
 
+        // purchase
+        Route::post('/purchase', function(){
+            //work id, 
+            //work art 
+            return response([
+                'result'=>200
+            ], 200);
+        });
+
         Route::get('/newspaper', 'ApiNewspaperController@index');
 
     });
