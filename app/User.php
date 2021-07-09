@@ -192,12 +192,6 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function isArtIsInTheBox($id){
-        $art = $this->box()->arts()->find($id);
-
-        if($art){
-            return true;
-        }
-
         return false;
     }
 
