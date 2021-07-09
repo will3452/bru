@@ -41,7 +41,7 @@ class ApiMuseumController extends Controller
             'author'=>$user,
             'art'=>$art,
             'other_works'=>$other,
-            'is_in_collection'=>$user->isArtIsInTheBox($id),
+            'is_in_collection'=>auth()->user()->isArtIsInTheBox($id),
             'result'=>200
         ], 200);
 
