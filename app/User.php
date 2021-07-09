@@ -192,7 +192,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function isArtIsInTheBox($id){
-        return false;
+        return false; // tesing
     }
 
     
