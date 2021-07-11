@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Art;
+use App\Book;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -24,6 +25,21 @@ class ApiPurchaseController extends Controller
         return false;
     }
 
+    public function library(User $user, $work_id){
+        $book = Book::find($work_id);
+        $purple = $user->royalties->purple_crystal;
+        if((int)$book->cost < (int)$purple){
+            $newbal = (int)$purple - (int)$book->cost;
+            //process
+            $user->royalties->update(['purple_crystal'=> $newbal]);
+
+            //add to collection
+            $user->box->books()->attach($work_id);
+            return true;
+        }
+        return false;
+    }
+
     public function purchaseWork(Request $request){
         $data = $request->validate([
             'work_type'=>'required',
@@ -37,13 +53,14 @@ class ApiPurchaseController extends Controller
         //museum 
         if($data['work_type'] == 'art'){
             $status = $this->museum($user, $data['work_id']);
+        }else if($data['work_type'] == 'book'){
+            $status = $this->library($user, $data['work_id']);
         }
 
 
         return response([
             'new_balance'=>$user->royalties,
             'status'=>$status,
-            'collection_in_museum'=>$user->box->arts,
             'result'=>200
         ], 200);
     }
