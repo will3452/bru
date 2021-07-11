@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ApiBoxController extends Controller
 {
-    public function getWork(){
+    public function getWork(Request $request){
         $data = $request->validate([
             'work_type'=>'required'
         ]);
