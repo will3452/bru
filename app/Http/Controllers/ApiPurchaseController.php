@@ -16,6 +16,9 @@ class ApiPurchaseController extends Controller
             $newbal = (int)$purple - (int)$art->cost;
             //process
             $user->royalties->update(['purple_crystal'=> $newbal]);
+
+            //add to collection
+            $user->box->arts()->attach($data['work_id']);
             return true;
         }
         return false;
@@ -38,7 +41,9 @@ class ApiPurchaseController extends Controller
 
 
         return response([
+            'new_balance'=>$user->royalties,
             'status'=>$status,
+            'collection_in_museum'=>$user->box->arts,
             'result'=>200
         ], 200);
     }
