@@ -36,13 +36,13 @@ class Book extends Model
         return $this->morphToMany(Tag::class, 'taggable');
     }
 
-    // DEPRECATED
+    //start of  DEPRECATED
     
     public function books(){
         return $this->hasMany(self::class, 'series_id');
     }
 
-    // DEPRECATED
+    // end of  DEPRECATED
 
     public function chapters(){
         return $this->hasMany(Chapter::class);

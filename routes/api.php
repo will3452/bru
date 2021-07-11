@@ -70,7 +70,12 @@ Route::prefix('v1')->group(function(){
         // purchase
         Route::post('/purchase', 'ApiPurchaseController@purchaseWork');
 
+        //newspaper
         Route::get('/newspaper', 'ApiNewspaperController@index');
+
+
+        //books
+        Route::get('/book-chapter/{id}', 'ApiBookPreviewController@show');
 
     });
 
