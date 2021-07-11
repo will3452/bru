@@ -43,6 +43,8 @@ class ApiBoxController extends Controller
                 'songs'=>$user->box->songs,
                 'films'=>$user->box->films
             ],
+            'book_size'=>count($user->box->books),
+            'audio_size'=>count($user->box->audios),
             'result'=>200
         ], 200);
     }
