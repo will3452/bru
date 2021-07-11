@@ -8,6 +8,25 @@ use Illuminate\Http\Request;
 
 class ApiBoxController extends Controller
 {
+    public function getWork(){
+        $data = $request->validate([
+            'work_type'=>'required'
+        ]);
+        $user = User::find(auth()->user()->id);
+        $work = [];
+        if($data['work_type'] == 'book'){
+            $work = $user->box->books;
+        }else if($data['work_type' == 'audio']){
+            $work = $user->box->audios;
+        }
+        return response([
+            'work'=>$work,
+            'size'=>count($work),
+            'result'=>200
+        ], 200);
+
+
+    }
     public function list(){
         $user = User::find(auth()->user()->id);
         

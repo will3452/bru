@@ -53,6 +53,7 @@ Route::prefix('v1')->group(function(){
 
         //my-collections
         Route::get('/my-collections', 'ApiBoxController@list');
+        Route::get('/get-work-on-my-collections', 'ApiBoxController@getWork');
         Route::post('/add-to-my-collection', 'ApiBoxController@add');// add to collection or box 
 
 
