@@ -18,7 +18,7 @@ class ApiPurchaseController extends Controller
             $user->royalties->update(['purple_crystal'=> $newbal]);
 
             //add to collection
-            $user->box->arts()->attach($data['work_id']);
+            $user->box->arts()->attach($work_id);
             return true;
         }
         return false;
