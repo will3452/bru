@@ -33,7 +33,7 @@ class ApiPurchaseController extends Controller
 
         //museum 
         if($data['work_type'] == 'art'){
-            $status = $this->museum($user, $work_id);
+            $status = $this->museum($user, $data['work_id']);
         }
 
 
