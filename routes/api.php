@@ -68,13 +68,7 @@ Route::prefix('v1')->group(function(){
         Route::get('/avatar', 'ApiAvatarController@show');
 
         // purchase
-        Route::post('/purchase', function(){
-            //work id, 
-            //work art 
-            return response([
-                'result'=>200
-            ], 200);
-        });
+        Route::post('/purchase', 'ApiPurchaseController@purchaseWork');
 
         Route::get('/newspaper', 'ApiNewspaperController@index');
 
