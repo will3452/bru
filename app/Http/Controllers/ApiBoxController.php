@@ -16,7 +16,7 @@ class ApiBoxController extends Controller
         $work = [];
         if($data['work_type'] == 'book'){
             $work = $user->box->books;
-        }else if($data['work_type' == 'audio']){
+        }else if($data['work_type'] == 'audio'){
             $work = $user->box->audios;
         }
         return response([
