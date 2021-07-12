@@ -65,7 +65,7 @@
         liEls[index].scrollIntoView({ behavior: "smooth" });
       };
       let counter = 0;
-      setInterval(show, 7000, ++counter);
+      setInterval(show, 7000, ++counter); //testing
     </script>
   </body>
 </html>
