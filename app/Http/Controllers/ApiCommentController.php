@@ -24,7 +24,7 @@ class ApiCommentController extends Controller
         $comments = [];
 
         if($request->work_type == 'chapter'){
-            $comments = Chapter::find($request->work_id)->comments()->latest()->limit(3)->get();
+            $comments = Chapter::find($request->work_id)->comments()->latest()->limit(3)->get() ?? [];
         }
 
         return response([
