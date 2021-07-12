@@ -35,8 +35,8 @@ class ApiCommentController extends Controller
     }
 
     public function storeChapterComment($data){
+        $chapter = Chapter::find($data['work_id']);
         $data = $this->sanitize($data);
-        $chapter = Chapter::find($id);
 
         $comment = $chapter->comments()->create($data);
 
