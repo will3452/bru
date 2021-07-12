@@ -74,7 +74,6 @@ Route::prefix('v1')->group(function(){
         //newspaper
         Route::get('/newspaper', 'ApiNewspaperController@index');
 
-
         //books
         Route::get('/book-chapter/{id}', 'ApiBookPreviewController@show');
 

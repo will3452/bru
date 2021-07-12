@@ -330,3 +330,6 @@ Route::view('support-chat', 'support_chat');
 Route::get('payment-pay', 'PaymentController@pay')->name('payment.pay');
 Route::get('payment-success', 'PaymentController@success')->name('payment.success');
 Route::get('payment-failed', 'PaymentController@success')->name('payment.failed');
+
+// banner 
+Route::view('/banner-for-mobile', 'banner');
