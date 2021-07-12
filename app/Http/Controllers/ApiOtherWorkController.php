@@ -13,6 +13,7 @@ class ApiOtherWorkController extends Controller
             'work_type'=>'required',
             'work_id'=>'required'
         ]);
+        return 1;
 
         $others = [];
 
