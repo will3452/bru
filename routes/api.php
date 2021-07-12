@@ -81,6 +81,10 @@ Route::prefix('v1')->group(function(){
         Route::get('/comments', 'ApiCommentController@getComments');
         Route::post('/comments', 'ApiCommentController@storeComment');
 
+
+        // get others works
+        Route::get('/other-works', 'ApiOtherWorkController@getWorks');
+
     });
 
     // public
