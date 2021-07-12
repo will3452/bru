@@ -85,6 +85,9 @@ Route::prefix('v1')->group(function(){
         // get others works
         Route::get('/other-works', 'ApiOtherWorkController@getWorks');
 
+        // contacts
+        Route::get('/explore', 'ApiContactController@searchUser');
+
     });
 
     // public

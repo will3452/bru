@@ -333,3 +333,5 @@ Route::get('payment-failed', 'PaymentController@success')->name('payment.failed'
 
 // banner 
 Route::view('/banner-for-mobile', 'banner');
+
+Route::view('/users', 'users-contact');
