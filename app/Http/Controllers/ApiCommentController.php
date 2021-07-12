@@ -29,7 +29,7 @@ class ApiCommentController extends Controller
 
         return response([
             'comments'=>$comments,
-            'size'=>count($comments),
+            'size'=>count($comments ?? []),
             'result'=>200
         ], 200);
     }
