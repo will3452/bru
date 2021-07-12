@@ -86,4 +86,9 @@ class ArtSceneController extends Controller
         $art->delete();
         return redirect()->route('arts.list')->withSuccess('Done');
     }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }

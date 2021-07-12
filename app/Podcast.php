@@ -34,4 +34,9 @@ class Podcast extends Model
         return $this->morphToMany(Box::class, 'boxable');
     }
 
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
 }

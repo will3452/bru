@@ -36,7 +36,11 @@ class Chapter extends Model
     {
         return $this->morphMany(Ticket::class, 'ticketable');
     }
-    
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 
     
 }

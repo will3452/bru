@@ -78,6 +78,10 @@ Route::prefix('v1')->group(function(){
         //books
         Route::get('/book-chapter/{id}', 'ApiBookPreviewController@show');
 
+        // comments
+        Route::get('/comments', 'ApiCommentController@getComments');
+        Route::post('/comments', 'ApiCommentController@storeComment');
+
     });
 
     // public
