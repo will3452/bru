@@ -5,9 +5,7 @@
     <h1 class="h3 mb-4 text-gray-800">{{ $book->title }}</h1>
     <div class="d-flex justify-content-between mb-2 align-items-center">
         <a href="{{ route('books.list') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a> 
-        @if($book->chapters()->count() ==0))
         <a href="{{ route('books.chapters.create', $book) }}" class="btn btn-primary btn-sm"><i class="fa fa-plus-circle"></i> {{ $book->category != 'Series' ? 'Chapter':'Books' }}</a>
-        @endif
     </div>
     @if ($errors->any())
         <div class="alert alert-danger border-left-danger" role="alert">
