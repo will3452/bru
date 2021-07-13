@@ -50,7 +50,7 @@
     @if($event->type == 'Quiz Game')
         <div class="card shadow">
             <div class="card-header">
-                Quiz game
+                Quiz game ({{ $event->game->questions()->count() }} / 10)
             </div>
             <div class="card-body">
                 

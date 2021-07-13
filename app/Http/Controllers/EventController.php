@@ -65,6 +65,12 @@ class EventController extends Controller
     {
         // abort(401);
         $event = Event::findOrFail($id);
+        if(!$event->game()->count()){
+            $event->game()->create([
+                'prizes'=>'Art Scene',
+                'other_prize'=>request()->has('other_prize') ? request()->other_prize : null
+            ]);
+        }
         return view('events.show', compact('event'));
     }
 
@@ -126,7 +132,7 @@ class EventController extends Controller
                 'other_prize'=>request()->has('other_prize') ? request()->other_prize : null
             ]);
         }else {
-            $event->game()->update([
+            $event->game()->create([
                 'prizes'=>implode(', ', $data['prize']),
                 'other_prize'=>request()->has('other_prize') ? request()->other_prize : null
             ]);
