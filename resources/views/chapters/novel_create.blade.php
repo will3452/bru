@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('main-content')
+    @include('partials.gallery')
     <h1 class="h3 mb-4 text-gray-800">{{ __('Create Chapter') }}</h1>
     <a href="{{ route('books.show', $book) }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
     @include('partials.alert')
