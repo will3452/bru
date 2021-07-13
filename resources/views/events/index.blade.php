@@ -49,9 +49,10 @@
                     </div>
                 </td>
                 <td>
-                    <button onclick="alert('under development')" class="btn btn-sm btn-danger">
+                    <a href="{{ route('events.show', $event) }}" class="btn btn-sm btn-primary">show</a>
+                    {{-- <button onclick="alert('under development')" class="btn btn-sm btn-danger">
                         Cancel
-                    </button>
+                    </button> --}}
                 </td>
             </tr>
             @endforeach
