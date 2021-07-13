@@ -237,8 +237,11 @@ Route::prefix('events')->name('events.')->middleware(['auth'])->group(function()
     Route::get('/create', 'EventController@create')->name('create');
     Route::post('/', 'EventController@store')->name('store');
     Route::get('/', 'EventController@index')->name('index');
-    Route::get('/{id}', 'EventController@show')->name('show');
+    Route::get('/{event}', 'EventController@show')->name('show');
+    Route::put('/update-price/{event}', 'EventController@updatePrizes')->name('update.prizes');
 });
+
+Route::post('questions', 'QuestionController@create')->name('question.create');
 
 Route::resource('audio', 'AudioController');
 //update content such as: languages, male, college, blurb etc..,

@@ -9,29 +9,30 @@
         </div>
         {{-- {{ $event }} --}}
         <div class="card-body">
-           <form action="">
+           <form action="{{ route('events.update.prizes', $event) }}" method="POST">
+            @csrf
+            @method('PUT')
             <div class="card-text">
                 Please check all items you wish to give the students as prizes.
             </div>
             <ul class="list-unstyled">
                 <li>
-                    <input type="checkbox" name="prize[]" value="Art Scene"> Art Scene
+                    <input type="checkbox" name="prize[]" {{ $event->isInPrice('Art Scene') ? 'checked':'' }} value="Art Scene"> Art Scene
                 </li>
                 <li>
-                    <input type="checkbox" name="prize[]" value="Hall Pass to own book"> Hall Pass to own book
+                    <input type="checkbox" name="prize[]" {{ $event->isInPrice('Hall Pass to own book') ? 'checked':'' }} value="Hall Pass to own book"> Hall Pass to own book
                 </li>
                 <li>
-                    <input type="checkbox" name="prize[]" value="Access to own spin-off"> Access to own spin-off
+                    <input type="checkbox" name="prize[]" {{ $event->isInPrice('Access to own spin-off') ? 'checked':'' }} value="Access to own spin-off"> Access to own spin-off
                 </li>
                 <li>
-                    <input type="checkbox" name="prize[]" value="White Gem"> White Gem
+                    <input type="checkbox" name="prize[]" {{ $event->isInPrice('White Crystal') ? 'checked':'' }} value="White Crystal"> White Crystal
                 </li>
-                <li>
-                    <input type="checkbox" id="other_prize"> Physical prizes at the cost of the Author. Please specify details and guidelines here.
-                </li>
-                <div class="d-none" id="other">
-                    <textarea name="prize[]" class="form-control" cols="30" rows="5" placeholder="Aa"></textarea>
+                <div id="other">
+                    Others.
+                    <textarea name="other_prize" class="form-control" cols="30" rows="5" placeholder="Physical prizes at the cost of the Author. Please specify details and guidelines here.">{{ $event->game->other_prize }}</textarea>
                 </div>
+                
             </ul>
             <div class="form-group">
                 <button class="btn-primary btn">
@@ -49,45 +50,93 @@
     @if($event->type == 'Quiz Game')
         <div class="card shadow">
             <div class="card-header">
-                Setup Quiz Game
+                Quiz game
             </div>
             <div class="card-body">
-                <form action="">
-                    @for($i = 0; $i < 10; $i++)
-                        
-                        <div class="card card-shadow card-body my-2">
-                            <div class="form-group">
-                                <label for="">
-                                    <strong>Question # {{ $i+1 }}</strong>
-                                </label>
-                                <input type="text" name="question[]" class="form-control" required placeholder="Enter question {{ $i+1 }} here.">
+                
+                   <!-- Button trigger modal -->
+                        @if ($event->game->questions()->count() != 10)
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                Add New Question
+                            </button>
+                        @endif
+
+                       @foreach ($event->game->questions()->latest()->get() as $item)
+                           <div class="card mt-2">
+                               <div class="card-header">
+                                   {{ $item->question }}
+                               </div>
+                               <div class="card-body">
+                                   <div>
+                                       <strong>Answers : </strong>
+                                       @foreach ($item->array_answer as $a)
+                                           <span class="mr-2 {{ $item->correct_answer == $a ? 'text-success':''}}">{{ $a }}</span>
+                                       @endforeach
+                                   </div>
+                                   <div>
+                                       <strong>Prize(s) : </strong>
+                                       {{ $item->qty }} {{ $item->prize }}
+                                   </div>
+                               </div>
+                           </div>
+                       @endforeach
+
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Create new Question</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                            <div class="form-group">
-                                <label for="">
-                                    <strong>Correct Answer # {{ $i+1 }}</strong>
-                                </label>
-                                <input type="text" name="answer[]" class="form-control" required placeholder="Enter Answer {{ $i+1 }} here.">
+                            <div class="modal-body">
+                                <form action="{{ route('question.create') }}" method="POST">
+                                    @csrf 
+                                    <input type="hidden" name="event_id" value="{{ $event->id }}">
+                                    <div class="form-group">
+                                        <label for="">
+                                            <strong>Question</strong>
+                                        </label>
+                                        <input type="text" name="question" class="form-control" required placeholder="Enter question here." >
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">
+                                            <strong>Correct Answer </strong>
+                                        </label>
+                                        <input type="text" name="correct_answer" class="form-control" required placeholder="Enter Answer  here." >
+                                        
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">
+                                            <strong>
+                                                Answer Choices
+                                            </strong>
+                                        </label>
+                                        <input type="text" name="answers" class="form-control" required placeholder="Enter 3 Choices here separated by two asterisk (**), include the correct answer above."
+                                        >
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-4">
+                                            <input type="number" name="qty" value="1" placeholder="qty" class="form-control">
+                                        </div>
+                                        <div class="col">
+                                            <select name="prize" id="" class="custom-select">
+                                                <option value="Hall passes" selected >Hall Passes</option>
+                                                <option value="White Crystal">White Crystal</option>
+                                                <option value="Art Scene">Art Scene</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary">Create</button>
+                            </form>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-md-4">
-                                    <input type="number" name="price_qty[]" placeholder="qty" class="form-control">
-                                </div>
-                                <div class="col">
-                                    <select name="prize[]" id="" class="custom-select">
-                                        <option value="Hall passes">Hall Passes</option>
-                                        <option value="White Gem">White Gem</option>
-                                        <option value="Art Scene">Art Scene</option>
-                                    </select>
-                                </div>
                             </div>
                         </div>
-                    @endfor
-                    <div class="form-group">
-                        <button class="btn btn-primary">
-                            Submit
-                        </button>
-                    </div>
-                </form>
+                        </div>
+                        
+                    
+                
             </div>
         </div>
     @elseif($event->type == 'Slots Machine')
@@ -167,16 +216,5 @@
 @section('bottom')
     <script src="{{ asset('js/app.js') }}">
     </script>
-    <script>
-        $(function(){
-            alert('this page is not yet working');
-            $('#other_prize').click(function(){
-                if($(this).prop('checked') == true) {
-                    $('#other').removeClass('d-none');
-                }else {
-                    $('#other').addClass('d-none');
-                }
-            })
-        })
-    </script>
+   
 @endsection

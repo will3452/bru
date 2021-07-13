@@ -114,4 +114,27 @@ class EventController extends Controller
 
         return back()->with('message', 'item deleted successfully');
     }
+
+    public function updatePrizes(Event $event){
+        $data = request()->validate([
+            'prize'=>'required',
+            'other_prize'=>''
+        ]);
+        if($event->game){
+            $event->game()->update([
+                'prizes'=>implode(', ', $data['prize']),
+                'other_prize'=>request()->has('other_prize') ? request()->other_prize : null
+            ]);
+        }else {
+            $event->game()->update([
+                'prizes'=>implode(', ', $data['prize']),
+                'other_prize'=>request()->has('other_prize') ? request()->other_prize : null
+            ]);
+        }
+        
+        toast('prizes updated!', 'success');
+        return back();
+
+    }
+
 }

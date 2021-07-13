@@ -24,5 +24,14 @@ class Event extends Model
         return $this->hasMany(Book::class);
     }
 
+    public function game(){
+        return $this->hasOne(Game::class);
+    }
+
+    public function isInPrice($str){
+        $prizes = explode(', ', $this->game->prizes);
+        return in_array($str, $prizes);
+    }
+
 
 }
