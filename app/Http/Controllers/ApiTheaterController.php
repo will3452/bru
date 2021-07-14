@@ -44,6 +44,18 @@ class ApiTheaterController extends Controller
             'other_works'=>$other,
             'result'=>200
         ], 200);
+    }
 
+    public function summary(){
+        $a = Thrailer::where('category', 'animation')->count();
+        $b = Thrailer::where('category', 'film')->count();
+        $c = Thrailer::where('category', 'trailer')->count();
+
+        return response([
+            'trailer'=>$c, 
+            'animation'=>$a,
+            'film'=>$b, 
+            'result'=>200
+        ], 200);
     }
 }

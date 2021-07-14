@@ -53,6 +53,7 @@ Route::prefix('v1')->group(function(){
 
         Route::get('/theater/{id}', 'ApiTheaterController@show');
         Route::get('/theater', 'ApiTheaterController@index');
+        Route::get('/theater-summary', 'ApiTheaterController@summary');
 
         //my-collections
         Route::get('/my-collections', 'ApiBoxController@list');
