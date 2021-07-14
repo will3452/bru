@@ -60,6 +60,10 @@ Route::prefix('v1')->group(function(){
         Route::get('/get-work-on-my-collections', 'ApiBoxController@getWork');
         Route::post('/add-to-my-collection', 'ApiBoxController@add');// add to collection or box 
 
+        // media stations
+        Route::get('/media-audio/{id}', 'ApiMediaStationController@audioBookShow');
+        Route::get('/media-audio', 'ApiMediaStationController@audioBookIndex');
+        Route::get('/media-audiobook-summary', 'ApiMediaStationController@audioBookSummary');
 
         // announcement 
         Route::get('/announcement', 'ApiAnnouncementController@index');
