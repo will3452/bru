@@ -108,7 +108,7 @@ class ApiMediaStationController extends Controller
     public function podcastSummary(){
         $a = Podcast::where('part_of', 'standalone')->count();
         return response([
-            'part_of'=>$a,
+            'standalone'=>$a,
             'result'=>200
         ],200);
     }
