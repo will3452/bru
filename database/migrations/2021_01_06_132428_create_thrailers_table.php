@@ -28,7 +28,7 @@ class CreateThrailersTable extends Migration
             $table->foreignId('book_id')->nullable();
             $table->foreignId('event_id')->nullable();
             $table->foreignId('thrailer_id')->nullable();
-            $table->string('desc')->nullable();
+            $table->text('desc')->nullable();
             $table->foreignId('group_id')->nullable();
             $table->string('category')->nullable();
             $table->string('credit')->nullable();
