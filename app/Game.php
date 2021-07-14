@@ -18,5 +18,9 @@ class Game extends Model
         return $this->hasMany(Question::class);
     }
 
+    public function slot(){
+        return $this->hasOne(Slot::class);
+    }
+
 
 }

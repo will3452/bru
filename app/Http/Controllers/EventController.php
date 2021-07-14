@@ -140,7 +140,12 @@ class EventController extends Controller
         
         toast('prizes updated!', 'success');
         return back();
+    }
 
+    public function updateBanner(){
+        $data = request()->validate([
+            //to be continue
+        ]);
     }
 
 }

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Event extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'date', 'hosted_by', 'type', 'cost', 'gem'];
+    protected $guarded = [];
 
     //format date
     public function date_format($string){

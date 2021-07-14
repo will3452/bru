@@ -140,7 +140,10 @@
             </div>
         </div>
     @elseif($event->type == 'Slots Machine')
-        <div class="card shadow">
+        {{-- @if (!$event->game->slot) --}}
+        @if (true)
+
+            <div class="card shadow">
             <div class="card-header">
                 Setup Slots Machine
             </div>
@@ -150,68 +153,83 @@
                         <label for="#">
                             Set the number of tries your participant is allowed to spin the images upon entry.
                         </label>
-                        <input type="number" name="attempt" class="form-control" value="3">
+                        <div class="input-group">
+                            <input type="number" name="attempt" class="form-control" value="3">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary">
+                                    Set
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label for="">Set prizes for the following combinations.</label>
-                        <div class="mb-2 d-flex">
-                            <div class="">
-                                <div class="text-lg badge badge-primary">
+                        <label for="">Setted prizes for the following combinations.</label>
+                        <div class="mb-2 ">
+                            <div class="d-flex">
+                                <div class="">
                                     B + R + U
                                 </div>
-                                =
-                            </div>
-                            <div class="col-8">
-                                <select name="prize[]" id="" class="custom-select">
-                                    <option value="" selected disabled>Major Prize</option>
-                                    <option value="Hall passes">Hall Passes</option>
-                                    <option value="White Gem">White Gem</option>
-                                    <option value="Art Scene">Art Scene</option>
-                                </select>
+                               <div>
+                                    = 3 Purple Crytals.
+                               </div>
                             </div>
                         </div>
-                        <div class="mb-2 d-flex">
-                            <div class="">
-                                <div class="text-lg badge badge-primary">
+                        <div class="mb-2 ">
+                            <div class="d-flex">
+                                <div class="">
                                     B + B +B or R + R+ R or U + U + U
                                 </div>
-                                =
-                            </div>
-                            <div class="col-8">
-                                <select name="semi_major_prize" id="" class="custom-select">
-                                    <option value="" selected disabled>Semi-Major Prize</option>
-                                    <option value="Hall passes">Hall Passes</option>
-                                    <option value="White Gem">White Gem</option>
-                                    <option value="Art Scene">Art Scene</option>
-                                </select>
+                                <div>
+                                     = 2 Hall Passes & 1 Purple Crystal.
+                                </div>
                             </div>
                         </div>
-                        <div class="mb-2 d-flex">
-                            <div class="">
+                        <div class="mb-2 ">
+                            <div class="d-flex">
                                 <div class="">
                                     First 2 letters are the same. =
                                 </div>
+                                <div>
+                                    1 Hall Pass
+                                </div>
                             </div>
-                            <div class="col-8">
-                                <select name="minor_prize" id="" class="custom-select">
-                                    <option value="" selected disabled>Minor Prize</option>
-                                    <option value="Hall passes">Hall Passes</option>
-                                    <option value="White Gem">White Gem</option>
-                                    <option value="Art Scene">Art Scene</option>
-                                </select>
-                            </div>
+                           
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary">
-                            Submit
-                        </button>
                     </div>
                 </form>
             </div>
         </div>
+
+        @else 
+
+        @endif
     @endif
     {{-- end of mini games --}}
+
+    {{-- event banner --}}
+    <div class="card mt-2">
+        <div class="card-header">
+            Event Banner
+        </div>
+        <div class="card-body">
+            <form action="">
+                <div class="form-group">
+                    <label for="">What event title should we write on your banner?</label>
+                    <input type="text" class="form-control" name="banner_title">
+                </div>
+                <div class="form-group">
+                    <label for="">Upload banner</label>
+                    <input type="file" accept="image/*" class="d-block" name="banner_image">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary">
+                        Upload banner
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    {{-- end of event banner --}}
 @endsection
 @section('bottom')
     <script src="{{ asset('js/app.js') }}">

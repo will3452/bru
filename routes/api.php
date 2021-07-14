@@ -51,6 +51,9 @@ Route::prefix('v1')->group(function(){
         Route::get('/library', 'ApiLibraryController@index');
         Route::get('/library-summary', 'ApiLibraryController@summary');
 
+        Route::get('/theater/{id}', 'ApiTheaterController@show');
+        Route::get('/theater', 'ApiTheaterController@index');
+
         //my-collections
         Route::get('/my-collections', 'ApiBoxController@list');
         Route::get('/get-work-on-my-collections', 'ApiBoxController@getWork');
