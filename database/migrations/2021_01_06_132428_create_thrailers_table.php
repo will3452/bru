@@ -30,7 +30,7 @@ class CreateThrailersTable extends Migration
             $table->foreignId('thrailer_id')->nullable();
             $table->text('desc')->nullable();
             $table->foreignId('group_id')->nullable();
-            $table->string('category')->nullable();
+            $table->text('category')->nullable();
             $table->string('credit')->nullable();
             $table->string('age_restriction')->nullable();
             $table->string('language')->nullable();
