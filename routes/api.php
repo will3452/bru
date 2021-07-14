@@ -61,9 +61,13 @@ Route::prefix('v1')->group(function(){
         Route::post('/add-to-my-collection', 'ApiBoxController@add');// add to collection or box 
 
         // media stations
-        Route::get('/media-audio/{id}', 'ApiMediaStationController@audioBookShow');
+        Route::get('/media-audio/{id}', 'ApiMediaStationController@audioBookShow'); //audiobook
         Route::get('/media-audio', 'ApiMediaStationController@audioBookIndex');
         Route::get('/media-audiobook-summary', 'ApiMediaStationController@audioBookSummary');
+        
+        Route::get('/media-podcast/{id}', 'ApiMediaStationController@podcastShow'); //audiobook
+        Route::get('/media-podcast', 'ApiMediaStationController@podcastIndex');
+        Route::get('/media-podcast-summary', 'ApiMediaStationController@podcastSummary');
 
         // announcement 
         Route::get('/announcement', 'ApiAnnouncementController@index');

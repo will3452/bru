@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Audio;
+use App\Podcast;
 use Illuminate\Http\Request;
 
 class ApiMediaStationController extends Controller
@@ -64,6 +65,50 @@ class ApiMediaStationController extends Controller
             'thriller_and_horror'=>$g,
             'lgbtqia'=>$h,
             'poetry'=>$i,
+            'result'=>200
+        ],200);
+    }
+
+    public function podcastIndex(){
+        request()->validate([
+            'part_of'=>'required'
+        ]);
+
+        if(request()->has('_limit')){
+            $books = Podcast::where('part_of', request()->part_of)->limit(request()->_limit)->get();
+        }else {
+            $books = Podcast::where('part_of', request()->part_of)->get();
+        }
+        return response([
+            'podcasts'=>$books,
+            'size'=>count($books),
+            'result'=>200
+        ], 200);
+    }
+
+     public function podcastShow($id){
+        // return $id;
+        $book = Podcast::find($id);
+        
+        $userid = $book->user_id;
+
+        $user = Podcast::find($userid);
+        
+        $other = $user->podcasts;
+
+        return response([
+            'author'=>$user,
+            'book'=>$book,
+            'other_works'=>$other,
+            'result'=>200
+        ], 200);
+    }
+
+
+    public function podcastSummary(){
+        $a = Podcast::where('part_of', 'standalone')->count();
+        return response([
+            'part_of'=>$a,
             'result'=>200
         ],200);
     }
