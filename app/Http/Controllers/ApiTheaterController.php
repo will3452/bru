@@ -45,6 +45,7 @@ class ApiTheaterController extends Controller
             'author'=>$user,
             'work'=>$work,
             'other_works'=>$other,
+            'is_in_collection'=>auth()->user()->isFilmIsInTheBox($id),
             'result'=>200
         ], 200);
     }
@@ -99,7 +100,7 @@ class ApiTheaterController extends Controller
             'author'=>$user,
             'work'=>$work,
             'other_works'=>$other,
-            'is_in_collection'=>auth()->user()->isFilmIsInTheBox($id),
+            'is_in_collection'=>auth()->user()->isSongIsInTheBox($id),
             'result'=>200
         ], 200);
     }
