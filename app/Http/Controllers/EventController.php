@@ -160,4 +160,19 @@ class EventController extends Controller
         return back();
     }
 
+    public function updateSlot(Event $event){
+        $data = request()->validate([
+            'number_of_tries'=>'required'
+        ]);
+        // return $event;
+
+        if(!$event->game->slot()->count()){
+        $event->game->slot()->create($data);
+        }else {
+        $event->game->slot()->update($data);
+        }
+        toast('Slot machine updated', 'success');
+        return back();
+    }
+
 }

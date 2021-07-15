@@ -148,13 +148,15 @@
                 Setup Slots Machine
             </div>
             <div class="card-body">
-                <form action="#">
+                <form action="{{ route('events.update.slot', $event) }}" method="POST">
+                    @method('PUT')
+                    @csrf
                     <div class="form-group">
                         <label for="#">
                             Set the number of tries your participant is allowed to spin the images upon entry.
                         </label>
                         <div class="input-group">
-                            <input type="number" name="attempt" class="form-control" value="3">
+                            <input type="number" class="form-control" value="{{ $event->game->slot->number_of_tries ?? 0}}" name="number_of_tries" required>
                             <div class="input-group-append">
                                 <button class="btn btn-primary">
                                     Set
@@ -212,14 +214,19 @@
             Event Banner
         </div>
         <div class="card-body">
-            <form action="">
+            <form action="{{ route('events.update.banner', $event) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
                 <div class="form-group">
                     <label for="">What event title should we write on your banner?</label>
-                    <input type="text" class="form-control" name="banner_title">
+                    <input type="text" class="form-control" name="banner_title" value="{{ $event->banner_title ?? '' }}" required>
                 </div>
                 <div class="form-group">
                     <label for="">Upload banner</label>
-                    <input type="file" accept="image/*" class="d-block" name="banner_image">
+                    <input type="file" accept="image/*" class="d-block" name="banner_image" required>
+                    @if ($event->banner_image)
+                        <a href="{{ url($event->banner_image) }}" target="_blank">show current banner</a>
+                    @endif
                 </div>
                 <div class="form-group">
                     <button class="btn btn-primary">
