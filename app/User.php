@@ -256,7 +256,6 @@ class User extends Authenticatable implements MustVerifyEmail
         if($this->box == null ){
             $this->box()->create([]);
         }
-
         $box = $this->box->audios()->find($id);
 
         if($box){
