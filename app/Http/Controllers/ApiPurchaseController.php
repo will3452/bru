@@ -13,7 +13,7 @@ class ApiPurchaseController extends Controller
     public function museum(User $user, $work_id){
         $art = Art::find($work_id);
         $purple = $user->royalties->purple_crystal;
-        if((int)$art->cost < (int)$purple){
+        if((int)$art->cost <= (int)$purple){
             $newbal = (int)$purple - (int)$art->cost;
             //process
             $user->royalties->update(['purple_crystal'=> $newbal]);
@@ -28,7 +28,7 @@ class ApiPurchaseController extends Controller
     public function library(User $user, $work_id){
         $book = Book::find($work_id);
         $purple = $user->royalties->purple_crystal;
-        if((int)$book->cost < (int)$purple){
+        if((int)$book->cost <= (int)$purple){
             $newbal = (int)$purple - (int)$book->cost;
             //process
             $user->royalties->update(['purple_crystal'=> $newbal]);
@@ -36,6 +36,32 @@ class ApiPurchaseController extends Controller
             //add to collection
             $user->box->books()->attach($work_id);
             return true;
+        }
+        return false;
+    }
+
+    public function film(User $user, $work_id){
+        $film = Thrailer::find($work_id);
+        if($film->gem == 'White'){
+            $bal = $user->royalties->white_crystal;
+            if((int)$film->cost <= (int)$bal){
+                $newbal = (int)$bal - (int)$film->cost;
+
+                $user->royalties->update(['white_crystal'=>$newbal]);
+
+                $user->box->films()->attach($work_id);
+                return true;
+            }
+        }else {
+            $bal = $user->royalties->purple_crystal;
+            if((int)$film->cost <= (int)$bal){
+                $newbal = (int)$bal - (int)$film->cost;
+
+                $user->royalties->update(['purple_crystal'=>$newbal]);
+
+                $user->box->films()->attach($work_id);
+                return true;
+            }
         }
         return false;
     }
@@ -50,11 +76,12 @@ class ApiPurchaseController extends Controller
         
         $status = false;
 
-        //museum 
         if($data['work_type'] == 'art'){
             $status = $this->museum($user, $data['work_id']);
         }else if($data['work_type'] == 'book'){
             $status = $this->library($user, $data['work_id']);
+        }else if($data['work_type'] == 'film'){
+            $status = $this->film($user, $data['work_id']);
         }
 
 
