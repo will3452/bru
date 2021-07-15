@@ -40,6 +40,7 @@ class ApiLibraryController extends Controller
             'author'=>$user,
             'book'=>$book,
             'other_works'=>$other,
+            'is_in_collection'=>auth()->user()->isBookIsInTheBox($id),
             'result'=>200
         ], 200);
 
