@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Art;
 use App\Book;
 use App\User;
+use App\Thrailer;
 use Illuminate\Http\Request;
 
 class ApiPurchaseController extends Controller
