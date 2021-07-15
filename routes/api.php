@@ -50,11 +50,19 @@ Route::prefix('v1')->group(function(){
         Route::get('/library/{id}', 'ApiLibraryController@show');
         Route::get('/library', 'ApiLibraryController@index');
         Route::get('/library-summary', 'ApiLibraryController@summary');
+        
+
+        // theater and songs
 
         Route::get('/theater/{id}', 'ApiTheaterController@show');
         Route::get('/theater', 'ApiTheaterController@index');
         Route::get('/theater-summary', 'ApiTheaterController@summary');
 
+        Route::get('/orc/{id}', 'ApiTheaterController@orcShow');
+        Route::get('/orc', 'ApiTheaterController@orcIndex');
+        // Route::get('/orc-summary', 'ApiTheaterController@Orcsummary');
+        
+        
         //my-collections
         Route::get('/my-collections', 'ApiBoxController@list');
         Route::get('/get-work-on-my-collections', 'ApiBoxController@getWork');
