@@ -142,10 +142,22 @@ class EventController extends Controller
         return back();
     }
 
-    public function updateBanner(){
+
+    public function updateBanner(Event $event){
+        
         $data = request()->validate([
-            //to be continue
+            'banner_image'=>'required',
+            'banner_title'=>'required'
         ]);
+
+        $path = $data['banner_image']->store('/public/event_banner');
+        $arrpath = explode('/', $path);
+        $endPath = end($arrpath);
+
+        $data['banner_image'] = '/storage/event_banner/'.$endPath;
+        $event->update($data);
+        toast('banner updated', 'success');
+        return back();
     }
 
 }
