@@ -148,7 +148,7 @@ class ApiPurchaseController extends Controller
         if($data['work_type'] == 'podcast'){
             $status = $this->podcast($user, $data['work_id']);
         }if($data['work_type'] == 'song'){
-            $status = $this->podcast($user, $data['work_id']);
+            $status = $this->song($user, $data['work_id']);
         }
 
 
