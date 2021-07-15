@@ -99,6 +99,32 @@ class ApiPurchaseController extends Controller
         return false;
     }
 
+    public function song(User $user, $work_id){
+        $song = Song::find($work_id);
+        if($song->cost_type != 'purple'){
+            $bal = $user->royalties->white_crystal;
+            if((int)$song->cost <= (int)$bal){
+                $newbal = (int)$bal - (int)$song->cost;
+
+                $user->royalties->update(['white_crystal'=>$newbal]);
+
+                $user->box->songs()->attach($work_id);
+                return true;
+            }
+        }else {
+            $bal = $user->royalties->purple_crystal;
+            if((int)$song->cost <= (int)$bal){
+                $newbal = (int)$bal - (int)$song->cost;
+
+                $user->royalties->update(['purple_crystal'=>$newbal]);
+
+                $user->box->songs()->attach($work_id);
+                return true;
+            }
+        }
+        return false;
+    }
+
     public function purchaseWork(Request $request){
         $data = $request->validate([
             'work_type'=>'required',
@@ -119,6 +145,8 @@ class ApiPurchaseController extends Controller
             $status = $this->audio($user, $data['work_id']);
         }
         if($data['work_type'] == 'podcast'){
+            $status = $this->podcast($user, $data['work_id']);
+        }if($data['work_type'] == 'song'){
             $status = $this->podcast($user, $data['work_id']);
         }
 
