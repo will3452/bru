@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Art;
 use App\Book;
 use App\User;
+use App\Audio;
+use App\Podcast;
 use App\Thrailer;
 use Illuminate\Http\Request;
 
@@ -36,6 +38,36 @@ class ApiPurchaseController extends Controller
 
             //add to collection
             $user->box->books()->attach($work_id);
+            return true;
+        }
+        return false;
+    }
+
+    public function audio(User $user, $work_id){
+        $book = Audio::find($work_id);
+        $purple = $user->royalties->purple_crystal;
+        if((int)$book->cost <= (int)$purple){
+            $newbal = (int)$purple - (int)$book->cost;
+            //process
+            $user->royalties->update(['purple_crystal'=> $newbal]);
+
+            //add to collection
+            $user->box->audios()->attach($work_id);
+            return true;
+        }
+        return false;
+    }
+
+    public function podcast(User $user, $work_id){
+        $book = Podcast::find($work_id);
+        $purple = $user->royalties->purple_crystal;
+        if((int)$book->cost <= (int)$purple){
+            $newbal = (int)$purple - (int)$book->cost;
+            //process
+            $user->royalties->update(['purple_crystal'=> $newbal]);
+
+            //add to collection
+            $user->box->podcasts()->attach($work_id);
             return true;
         }
         return false;
@@ -83,6 +115,11 @@ class ApiPurchaseController extends Controller
             $status = $this->library($user, $data['work_id']);
         }else if($data['work_type'] == 'film'){
             $status = $this->film($user, $data['work_id']);
+        }if($data['work_type'] == 'audio'){
+            $status = $this->audio($user, $data['work_id']);
+        }
+        if($data['work_type'] == 'podcast'){
+            $status = $this->podcast($user, $data['work_id']);
         }
 
 

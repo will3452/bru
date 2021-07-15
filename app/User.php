@@ -251,6 +251,36 @@ class User extends Authenticatable implements MustVerifyEmail
         return false; 
     }
 
+    public function isAudioIsInTheBox($id){
+
+        if($this->box == null ){
+            $this->box()->create([]);
+        }
+
+        $box = $this->box->audios()->find($id);
+
+        if($box){
+            return true;
+        }
+        
+        return false; 
+    }
+
+    public function isPodcastIsInTheBox($id){
+
+        if($this->box == null ){
+            $this->box()->create([]);
+        }
+
+        $box = $this->box->podcasts()->find($id);
+
+        if($box){
+            return true;
+        }
+        
+        return false; 
+    }
+
     public function comments(){
         return $this->hasMany(Comment::class, 'user_id');
     }
