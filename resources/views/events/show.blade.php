@@ -140,8 +140,8 @@
             </div>
         </div>
     @elseif($event->type == 'Slots Machine')
-        {{-- @if (!$event->game->slot) --}}
-        @if (true)
+        @if (!$event->game->slot)
+        {{-- @if (true) --}}
 
             <div class="card shadow">
             <div class="card-header">
