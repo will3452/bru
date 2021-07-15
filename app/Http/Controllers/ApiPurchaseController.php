@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Art;
 use App\Book;
+use App\Song;
 use App\User;
 use App\Audio;
 use App\Podcast;
