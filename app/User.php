@@ -280,6 +280,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return false; 
     }
 
+    public function markets(){
+        return $this->hasMany(Market::class);
+    }
+    
     public function comments(){
         return $this->hasMany(Comment::class, 'user_id');
     }

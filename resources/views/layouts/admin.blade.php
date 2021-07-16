@@ -180,6 +180,13 @@
             </a>
         </li>
 
+        <li class="nav-item ">
+            <a class="nav-link" href="{{ route('marketing.index') }}">
+                <i class="fa fa-store" style="font-size:24px;color:white"></i>
+                <span>{{ __('Marketing') }}</span>
+            </a>
+        </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider">
 

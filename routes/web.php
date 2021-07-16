@@ -227,6 +227,12 @@ Route::prefix('trailers')->name('thrailers.')->middleware(['auth'])->group(funct
     
 });
 
+Route::prefix('marketing')->name('marketing.')->middleware('auth')->group(function(){
+    //marketing here
+    Route::get('/create', 'MarketingController@createMarketing')->name('create');
+    Route::get('/', 'MarketingController@index')->name('index');
+    
+});
 
 //large video files handler 
 Route::post('/large-video-uploader','VideoUploader')->name('video.uploader');
@@ -340,3 +346,5 @@ Route::get('payment-failed', 'PaymentController@success')->name('payment.failed'
 Route::view('/banner-for-mobile', 'banner');
 
 Route::view('/users', 'users-contact');
+
+Route::view('/banner-maker', 'banner_editor')->middleware('auth');

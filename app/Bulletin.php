@@ -10,4 +10,7 @@ class Bulletin extends Model
     use HasFactory;
     protected $guarded = [];
     
+    public function market(){
+        return $this->belongsTo(Market::class, 'market_id');
+    }
 }
