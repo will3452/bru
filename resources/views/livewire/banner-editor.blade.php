@@ -40,7 +40,7 @@
                         <div class="col-md-5" style="height:60vh;overflow-y:auto;">
                             <div class="card">
                                 <div class="card-header">
-                                    Upload Book Cover
+                                    Upload Book Cover 
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
