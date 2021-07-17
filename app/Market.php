@@ -30,4 +30,12 @@ class Market extends Model
     public function message_blasts(){
         return $this->hasMany(MessageBlast::class, 'market_id');
     }
+
+    public function preloader(){
+        return $this->hasOne(Preloader::class, 'market_id');
+    }
+
+    public function newspaper(){
+        return $this->hasOne(Newspaper::class, 'market_id');
+    }
 }

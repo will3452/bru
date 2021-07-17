@@ -79,9 +79,40 @@ class MarketingController extends Controller
                     'image'=>$image
                 ]);
             }
-
-            return $market->message_blasts;
         }
+
+        if($data['category'] == 'loading_image'){
+            $image = request()->image->store('/public/li');
+            $imageArr = explode('/', $image);
+            $imageEnd = end($imageArr);
+            $image = '/storage/li/'.$imageEnd;
+            $market->preloader()->create([
+                'image'=>$image
+            ]);
+        }
+
+
+        if($data['category'] == 'newspaper'){
+
+            $image = request()->image->store('/public/newspaper');
+            $imageArr = explode('/', $image);
+            $imageEnd = end($imageArr);
+            $image = '/storage/newspaper/'.$imageEnd;
+
+           
+
+            $newspaper = $market->newspaper()->create([
+                'name'=>request()->name
+            ]);
+
+            $newspaper->pages()->create([
+                'content'=>$image, 
+                'text_content'=>request()->newspaper_content
+            ]);
+
+        }
+
+        
 
         
 

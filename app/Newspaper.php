@@ -13,4 +13,8 @@ class Newspaper extends Model
     public function pages(){
         return $this->hasMany(Newspage::class, 'newspaper_id');
     }
+
+    public function market(){
+        return $this->belongsTo(Market::class, 'market_id');
+    }
 }
