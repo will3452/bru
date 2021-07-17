@@ -13,11 +13,11 @@
                     grid-template-columns:1fr 1fr 1fr 1fr;
                     ">
                     @for ($i = 1; $i <= 11; $i++)
-                        <img id='bg{{ $i }}' src="/banner/{{ $i }}.jpg" class="img-fluid simg" style="cursor:pointer;" onclick="(function(e){
+                        <a href="#canvas"><img id='bg{{ $i }}' src="/banner/{{ $i }}.jpg" class="img-fluid simg" style="cursor:pointer;" onclick="(function(e){
                             selectBackground('bg{{ $i }}');
                             $('.simg').removeClass('activeBg')
                             $('#bg{{ $i }}').addClass('activeBg');
-                        })()">
+                        })()"></a>
                     @endfor
                     </div>
                 </div>

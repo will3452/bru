@@ -23,6 +23,9 @@
     <!-- Favicon -->
     <link href="{{ asset('img/logo.png') }}" rel="icon" type="image/png">
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         :root {
             --blue:#322F46;
         }
