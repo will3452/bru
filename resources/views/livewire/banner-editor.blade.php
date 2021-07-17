@@ -1,4 +1,7 @@
 <div>
+    <div class="alert alert-warning">
+        Please note that banners created thru this site are solely for BRUMULTIVERSE App's purposes. Do not download and use outside of the App and this site.
+    </div>
     <div class="card">
                 <div class="card-header">
                     Choose from among these default banner backgrounds.
