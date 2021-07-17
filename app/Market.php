@@ -22,4 +22,12 @@ class Market extends Model
     public function announcement(){
         return $this->hasOne(Announcement::class, 'market_id');
     }
+
+    public function banner(){
+        return $this->hasOne(Banner::class, 'market_id');
+    }
+
+    public function message_blasts(){
+        return $this->hasMany(MessageBlast::class, 'market_id');
+    }
 }
