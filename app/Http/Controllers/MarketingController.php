@@ -131,7 +131,7 @@ class MarketingController extends Controller
             return redirect(route('home'));
         }
 
-        return request()->all();
+        return redirect(route('marketing.show', $market));
     }
 
     public function createPDF($id) {
