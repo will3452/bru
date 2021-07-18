@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 
 class MarketingController extends Controller
@@ -10,9 +10,17 @@ class MarketingController extends Controller
         return view('marketing.create');
     }
 
-    public function index(){    
-        return 'Under maintenance';
+    public function index(){
+        $markets = auth()->user()->markets;
+        return view('marketing.index', compact('markets'));
     }
+
+    public function show($id){
+        $market = auth()->user()->markets()->findOrFail($id);
+        return view('marketing.show', compact('market'));
+    }
+
+  
 
     public function store(){
         // return request()->all();
@@ -124,5 +132,22 @@ class MarketingController extends Controller
         }
 
         return request()->all();
+    }
+
+    public function createPDF($id) {
+      // retreive all records from db
+      $market = auth()->user()->markets()->findOrFail($id);
+      $data = [
+          'category'=>$market->category,
+          'duration'=>$market->day_duration.' day(s)',
+          'cost'=>$market->cost,
+          'schedule'=>$market->schedule,
+          'title'=>'Annex',
+          'id'=>$market->unique_id
+      ];
+      $pdf = PDF::loadView('marketing.pdf', $data);
+
+      // download PDF file with download method
+      return $pdf->download('pdf_file.pdf');
     }
 }

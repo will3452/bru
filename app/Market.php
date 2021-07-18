@@ -2,14 +2,30 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Market extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
+
+    public function getUniqueIdAttribute(){
+        return Str::padLeft($this->id, 7, '0');
+    }
+
+    public function getDayDurationAttribute(){
+        return explode('-',$this->duration)[0];
+    }
+    public function getCostAttribute(){
+        return explode('-',$this->duration)[1];
+    }
+    public function getStringCategoryAttribute(){
+        $arr = explode('_', $this->category);
+        return implode(' ', $arr);
+    }
 
     public function user(){
         return $this->belongsTo(User::class);
