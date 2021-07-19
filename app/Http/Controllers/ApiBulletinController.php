@@ -8,11 +8,17 @@ use Illuminate\Http\Request;
 class ApiBulletinController extends Controller
 {
     public function index(){
-        return Bulletin::get();
+        return  response([
+            'bulletins'=>Bulletin::get(),
+            'result'=>200
+        ], 200);
     }
 
 
     public function show($id){
-        return Bulletin::findOrFail($id);
+        return response([
+            'bulletin'=>Bulletin::findOrFail($id),
+            'result'=>200
+        ], 200);
     }
 }
