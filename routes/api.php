@@ -108,6 +108,11 @@ Route::prefix('v1')->group(function(){
         // contacts
         Route::get('/explore', 'ApiContactController@searchUser');
 
+        // bulletin
+        Route::get('/bulletin', 'ApiBulletinController@index');
+        Route::get('/bulletin/{id}', 'ApiBulletinController@show');
+
+
     });
 
     // public
