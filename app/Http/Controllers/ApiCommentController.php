@@ -28,7 +28,6 @@ class ApiCommentController extends Controller
         }
         
         return response([
-            'hearts'=>12,
             'comments'=>$comments,
             'size'=>count($comments ?? []),
             'result'=>200

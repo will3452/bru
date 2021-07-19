@@ -11,6 +11,7 @@ class ApiBookPreviewController extends Controller
         $book = Book::find($id);
         $chapters = $book->chapters()->paginate(1);
         return response([
+            'hearts'=>12,
             'chapters'=>$chapters, 
             'result'=>200
         ],200);
