@@ -24,9 +24,9 @@ class ApiCommentController extends Controller
         $comments = [];
 
         if($request->work_type == 'chapter'){
-            $comments = Chapter::find($request->work_id) ? Chapter::find($request->work_id)->comments()->latest()->get():null;
+            $comments = Chapter::find($request->work_id) ? Chapter::find($request->work_id)->comments()->with('user')->latest()->get():null;
         }
-
+        
         return response([
             'comments'=>$comments,
             'size'=>count($comments ?? []),
