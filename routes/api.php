@@ -101,7 +101,7 @@ Route::prefix('v1')->group(function(){
         Route::get('/comments', 'ApiCommentController@getComments');
         Route::post('/comments', 'ApiCommentController@storeComment');
 
-        Route::get('/likes', 'ApiLikeController@storeLike');
+        Route::post('/likes', 'ApiLikeController@storeLike');
 
 
         // get others works
