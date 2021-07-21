@@ -19,11 +19,11 @@
             <select name="duration" id="" wire:model="duration" class="custom-select">
                 <option value="" selected disabled>-----</option>
             @if ($category == 1)
-                <option value="3-90">3 days - 90.00</option>
+                <option value="3-100">3 days - 100.00</option>
                 <option value="7-180">7 days - 180.00</option>
                 <option value="30-750">30 days - 750.00</option>
             @elseif($category == 2)
-                <option value="3-60">3 days - 60.00</option>
+                {{-- <option value="3-60">3 days - 60.00</option> --}}
                 <option value="7-180">7 days - 120.00</option>
                 <option value="30-750">30 days - 510.00</option>
             @elseif($category == 3)
@@ -35,12 +35,12 @@
                 <option value="7-600">7 days - 600.00</option>
                 <option value="30-300">30 days - 2400.00</option>
             @elseif($category == 5)
-                <option value="1-90">Once -  90.00</option>
+                <option value="1-100">Once -  100.00</option>
                 <option value="3-420">Daily for 3 Days - 420.00</option>
             @elseif($category == 6)
-                <option value="3-300">3 days - 90.00</option>
-                <option value="7-600">7 days - 180.00</option>
-                <option value="30-300">30 days - 750.00</option>
+                <option value="3-300">3 days - 100.00</option>
+                <option value="7-180">7 days - 180.00</option>
+                <option value="30-750">30 days - 750.00</option>
             @endif
 
             </select>

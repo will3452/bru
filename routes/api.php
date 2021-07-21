@@ -101,6 +101,8 @@ Route::prefix('v1')->group(function(){
         Route::get('/comments', 'ApiCommentController@getComments');
         Route::post('/comments', 'ApiCommentController@storeComment');
 
+        Route::get('/likes', 'ApiLikeController@storeLike');
+
 
         // get others works
         Route::get('/other-works', 'ApiOtherWorkController@getWorks');

@@ -14,7 +14,6 @@ class ApiCommentController extends Controller
         return $data;
     }
 
-
     public function getComments(Request $request){
         $request->validate([
             'work_type'=>'required',
@@ -22,13 +21,17 @@ class ApiCommentController extends Controller
         ]);
 
         $comments = [];
+        $hearts = 0;
 
         if($request->work_type == 'chapter'){
-            $comments = Chapter::find($request->work_id) ? Chapter::find($request->work_id)->comments()->with('user')->latest()->get():null;
+            if(Chapter::find($request->work_id)){
+                    $comments = Chapter::find($request->work_id)->comments()->with('user')->latest()->get();
+                    $hearts = Chapter::find($request->work_id)->likes()->count();
+            }
         }
         
         return response([
-            'hearts'=>12, //dummy
+            'hearts'=> $hearts,
             'comments'=>$comments,
             'size'=>count($comments ?? []),
             'result'=>200
@@ -58,7 +61,6 @@ class ApiCommentController extends Controller
         if($request->work_type == 'chapter'){
             $comment = $this->storeChapterComment($data);
         }
-
 
         return response([
             'comment'=>$comment, 
