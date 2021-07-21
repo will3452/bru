@@ -15,9 +15,14 @@ class ApiLikeController extends Controller
     public function storeChapterLike($data){
         $chapter = Chapter::find($data['work_id']);
         $data = $this->sanitize($data);
+        $like = null;
 
-        $like = $chapter->likes()->toggle($data);
-
+        if($chapter->likes()->where('user_id', auth()->user()->id)->count()){
+            $chapter->likes()->where('user_id', auth()->user()->id)->delete();
+        }
+        else 
+        $like = $chapter->likes()->create(['user_id'=>auth()->user()->id]);
+        
         return $like;
     }
 
