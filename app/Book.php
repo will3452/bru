@@ -88,4 +88,8 @@ class Book extends Model
     {
         return $this->morphMany(Comment::class, 'commentable');
     }
+
+    public function quotes(){
+        return $this->hasMany(Quote::class, 'book_id');
+    }
 }

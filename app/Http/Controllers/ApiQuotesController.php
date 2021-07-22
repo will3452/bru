@@ -28,7 +28,7 @@ class ApiQuotesController extends Controller
     }
 
     public function allQuotes(){
-        $quotes = Quote::where('user_id', auth()->user()->id)->get();
+        $quotes = Quote::with('book')->where('user_id', auth()->user()->id)->get();
         return response([
             'quotes'=>$quotes,
             'size'=>count($quotes ?? []),
