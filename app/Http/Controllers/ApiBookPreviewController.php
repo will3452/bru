@@ -13,6 +13,7 @@ class ApiBookPreviewController extends Controller
         return response([
             'chapters'=>$chapters,
             'book_title'=>$book->title,
+            'book_author'=>$book->author,
             'result'=>200
         ],200);
     }
