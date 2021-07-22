@@ -114,6 +114,11 @@ Route::prefix('v1')->group(function(){
         Route::get('/bulletin', 'ApiBulletinController@index');
         Route::get('/bulletin/{id}', 'ApiBulletinController@show');
 
+        // quotes
+        Route::get('/quotes/{id}', 'ApiQuotesController@getQuote');
+        Route::post('/quotes', 'ApiQuotesController@extractImage');
+        Route::get('/quotes', 'ApiQuotesController@allQuotes');
+
 
     });
 
