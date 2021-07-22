@@ -12,6 +12,7 @@ class ApiBookPreviewController extends Controller
         $chapters = $book->chapters()->paginate(1);
         return response([
             'chapters'=>$chapters,
+            'book_title'=>$book->title,
             'result'=>200
         ],200);
     }
