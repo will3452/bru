@@ -49,6 +49,49 @@ class ApiBoxController extends Controller
         ], 200);
     }
 
+    public function remove(Request $request){
+        $data = $request->validate([
+            'work_id'=>'required',
+            'work_type'=>'required'
+        ]);
+
+        $user = User::find(auth()->user()->id);
+
+        switch($data['work_type']){
+            case 'book': 
+                $user->box->books()->detach($data['work_id']);
+            break;
+            case 'audio': 
+                $user->box->audios()->detach($data['work_id']);
+            break;
+            case 'podcast': 
+                $user->box->podcasts()->detach($data['work_id']);
+            break;
+            case 'art': 
+                $user->box->arts()->detach($data['work_id']);
+            break;
+            case 'song': 
+                $user->box->songs()->detach($data['work_id']);
+            break;
+            case 'film': 
+                $user->box()->films()->detach($data['work_id']);
+            break;
+        }
+
+         return response([
+            'collection'=>[
+                'books'=>$user->box->books,
+                'audio_books'=>$user->box->audios, 
+                'podcasts'=>$user->box->podcasts,
+                'arts'=>$user->box->arts,
+                'songs'=>$user->box->songs,
+                'films'=>$user->box->films
+            ],
+            'result'=>200
+        ], 200);
+
+    }
+
     public function add(Request $request){
         $data = $request->validate([
             'work_id'=>'required',
