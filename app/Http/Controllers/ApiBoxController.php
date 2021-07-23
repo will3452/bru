@@ -14,13 +14,21 @@ class ApiBoxController extends Controller
         ]);
         $user = User::find(auth()->user()->id);
         $work = [];
+        
         if($data['work_type'] == 'book'){
             $work = $user->box->books;
         }else if($data['work_type'] == 'audio'){
             $work = $user->box->audios;
         }else if($data['work_type'] == 'art'){
             $work = $user->box->arts;
+        }else if($data['work_type'] == 'song'){
+            $work = $user->box->songs;
+        }else if($data['work_type'] == 'audio'){
+            $work = $user->box->audios;
+        }else if($data['work_type'] == 'podcast'){
+            $work = $user->box->podcasts;
         }
+
         return response([
             'work'=>$work,
             'size'=>count($work),
