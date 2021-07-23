@@ -41,6 +41,7 @@ class ApiOtherWorkController extends Controller
             $others = $author->podcasts()->where('id', '!=', $book->id)->get();
         }else if($request->work_type == 'film'){
             $book = Thrailer::find($request->work_id);
+            return 1;
             $author = $book->user;
             $others = $author->thrailers()->where('id', '!=', $book->id)->get();
         }else if($request->work_type == 'song'){
