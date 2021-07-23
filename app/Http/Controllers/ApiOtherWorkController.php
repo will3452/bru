@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Art;
 use App\Book;
+use App\Song;
+use App\Audio;
+use App\Podcast;
+use App\Thrailer;
 use Illuminate\Http\Request;
 
 class ApiOtherWorkController extends Controller
@@ -27,6 +31,22 @@ class ApiOtherWorkController extends Controller
             $book = Book::find($request->work_id);
             $author = $book->user;
             $others = $author->books()->where('id', '!=', $book->id)->get();
+        }else if($request->work_type == 'audio'){
+            $book = Audio::find($request->work_id);
+            $author = $book->user;
+            $others = $author->audio()->where('id', '!=', $book->id)->get();
+        }else if($request->work_type == 'podcast'){
+            $book = Podcast::find($request->work_id);
+            $author = $book->user;
+            $others = $author->podcasts()->where('id', '!=', $book->id)->get();
+        }else if($request->work_type == 'film'){
+            $book = Thrailer::find($request->work_id);
+            $author = $book->user;
+            $others = $author->thrailers()->where('id', '!=', $book->id)->get();
+        }else if($request->work_type == 'song'){
+            $book = Song::find($request->work_id);
+            $author = $book->user;
+            $others = $author->songs()->where('id', '!=', $book->id)->get();
         }
 
         return response([
