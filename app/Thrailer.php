@@ -12,7 +12,7 @@ class Thrailer extends Model
     protected $guarded = [];
     
     public function user(){
-        return $this->belongsToMany(User::class, 'user_id');
+        return $this->belongsToMany(User::class);
     }
 
 
