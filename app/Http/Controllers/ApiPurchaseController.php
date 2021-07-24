@@ -171,6 +171,7 @@ class ApiPurchaseController extends Controller
         $status = false;
 
         if($user->work_type == 'film'){
+            return 'goest here!';
             //always white interms of preview
             $film = Thrailer::find($data['work_id']);
             $bal = $user->royalties->white_crystal;
