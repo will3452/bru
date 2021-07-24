@@ -66,6 +66,7 @@ class ThrailerController extends Controller
             'language'=>'required',
             'cover'=>'',
             'cpy'=>'',
+            'preview_cost'=>''
         ]);
         //just set to null
 
@@ -106,7 +107,7 @@ class ThrailerController extends Controller
             'code' => $code,
             'event_id' => $event_id,
             'preview'=> $request->preview,
-            'preview_cost'=> $preview_cost,
+            'preview_cost'=> $request->preview_cost,
             'cover'=> $cover,
             'group_id'=> $request->group_id,
             'genre'=>$genre,
