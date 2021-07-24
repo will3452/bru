@@ -29,14 +29,14 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="alert alert-warning">
-                Describe the event to lure the users in. 
-            </div>
+            
             <label for="">
                 Event Description
             </label>
             <textarea name="desc" id="" cols="30" rows="5" required class="form-control"></textarea>
-            
+            <div class="alert alert-warning">
+                Describe the event to lure the users in. 
+            </div>
         </div>
         <div class="form-group">
             <label for="">Type</label>
