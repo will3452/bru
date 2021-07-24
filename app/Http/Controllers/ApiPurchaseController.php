@@ -171,7 +171,7 @@ class ApiPurchaseController extends Controller
         $status = false;
 
         if($request->work_type == 'film'){
-            //always white interms of previews
+            //always white interms of preview
             $film = Thrailer::find($data['work_id']);
             $bal = $user->royalties->white_crystal;
             if((int)$film->preview_cost <= (int)$bal){
