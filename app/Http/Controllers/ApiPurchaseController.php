@@ -159,5 +159,35 @@ class ApiPurchaseController extends Controller
         ], 200);
     }
 
+
+    public function previewWork(Request $request){
+        $data = $request->validate([
+            'work_type'=>'required',
+            'work_id'=>'required'
+        ]);
+
+        $user = User::find(auth()->user()->id);
+        
+        $status = false;
+
+        if($user->work_type == 'film'){
+            //always white interms of preview
+            $film = Thrailer::find($data['work_id']);
+            $bal = $user->royalties->white_crystal;
+            if((int)$film->preview_cost <= (int)$bal){
+                $newbal = (int)$bal - (int)$film->preview_cost;
+                $user->royalties->update(['white_crystal'=>$newbal]);
+                $staus = true;
+            }
+        }
+
+
+        return response([
+            'new_balance'=>$user->royalties,
+            'status'=>$status,
+            'result'=>200
+        ], 200);
+    }
+
     
 }
