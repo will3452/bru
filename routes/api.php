@@ -122,6 +122,7 @@ Route::prefix('v1')->group(function(){
 
         //playlist under collections of songs, audio, and podcasts
         Route::get('/playlists', 'ApiPlaylistController@index');
+        Route::get('/playlists-mixed', 'ApiPlaylistController@mixIndex');
         Route::post('/playlists', 'ApiPlaylistController@togglePlaylist');
 
     });

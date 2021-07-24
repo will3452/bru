@@ -29,6 +29,32 @@ class ApiPlaylistController extends Controller
         
     }
 
+
+    public function mixIndex(){
+        
+        $user = User::find(auth()->user()->id);
+
+        if($user->playlist()->count() == 0){
+            $user->playlist()->create();
+        }
+        $pl = $user->playlist;
+        $songs = $pl->songs;
+        $audios = $pl->audios;
+        $podcasts = $pl->podcasts;
+
+        $works = [];
+        array_push($works, $songs);
+        array_push($works, $audios);
+        array_push($works, $podcasts);
+
+        return response([
+            'works'=>$work,
+            'result'=>200
+        ],200);
+        
+    }
+    
+
     public function togglePlaylist(Request $request){
 
         $request->validate([
