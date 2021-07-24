@@ -91,7 +91,7 @@ Route::prefix('v1')->group(function(){
 
         // purchase
         Route::post('/purchase', 'ApiPurchaseController@purchaseWork');
-        Route::post('/purchase-preview', 'ApiPurchaseController@previewWork');
+        Route::post('/purchase-preview', 'ApiPurchaseController@previewWork');//test
 
         //newspaper
         Route::get('/newspaper', 'ApiNewspaperController@index');
