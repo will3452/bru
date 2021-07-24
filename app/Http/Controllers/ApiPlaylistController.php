@@ -48,7 +48,7 @@ class ApiPlaylistController extends Controller
         array_push($works, $podcasts);
 
         return response([
-            'works'=>$work,
+            'works'=>$works,
             'result'=>200
         ],200);
         
