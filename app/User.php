@@ -292,6 +292,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Quote::class);
     }
 
+    public function playlist(){
+        return $this->hasOne(Playlist::class);
+    }
     
 
 }

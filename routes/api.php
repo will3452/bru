@@ -120,6 +120,9 @@ Route::prefix('v1')->group(function(){
         Route::post('/quotes', 'ApiQuotesController@extractImage');
         Route::get('/quotes', 'ApiQuotesController@allQuotes');
 
+        //playlist under collections of songs, audio, and podcasts
+        Route::get('/playlists', 'ApiPlaylistController@index');
+        Route::post('/playlists', 'ApiPlaylistController@togglePlaylist');
 
     });
 

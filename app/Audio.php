@@ -47,4 +47,8 @@ class Audio extends Model
     {
         return $this->morphMany(Comment::class, 'commentable');
     }
+    public function playlists()
+    {
+        return $this->morphToMany(Playlist::class, 'playlistable');
+    }
 }
