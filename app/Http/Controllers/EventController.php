@@ -45,6 +45,7 @@ class EventController extends Controller
             "cost" => "required",
             "gem" => "required",
             "type" => "required",
+            'desc'=>'required',
             "hosted_by" => "required"
         ], $messages = [
             'after' => 'Event should at least be '.($dayAway+1).' days away.'
@@ -52,7 +53,7 @@ class EventController extends Controller
 
        auth()->user()->events()->create($validated);
 
-        return back()->with('success', 'item stored successfully');
+        return back()->with('success', 'event stored successfully');
     }
 
     /**
