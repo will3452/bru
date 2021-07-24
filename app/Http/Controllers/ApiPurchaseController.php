@@ -177,7 +177,7 @@ class ApiPurchaseController extends Controller
             if((int)$film->preview_cost <= (int)$bal){
                 $newbal = (int)$bal - (int)$film->preview_cost;
                 $user->royalties->update(['white_crystal'=>$newbal]);
-                $staus = true;
+                $status = true;
             }
         }
 
