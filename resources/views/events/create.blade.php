@@ -34,7 +34,7 @@
                 Event Description
             </label>
             <textarea name="desc" id="" cols="30" rows="5" required class="form-control"></textarea>
-            <div class="alert alert-warning">
+            <div class="alert alert-warning mt-2">
                 Describe the event to lure the users in. 
             </div>
         </div>
