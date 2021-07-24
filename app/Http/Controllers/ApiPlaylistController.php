@@ -37,6 +37,7 @@ class ApiPlaylistController extends Controller
         if($user->playlist()->count() == 0){
             $user->playlist()->create();
         }
+        
         $pl = $user->playlist;
         $songs = $pl->songs;
         $audios = $pl->audios;
