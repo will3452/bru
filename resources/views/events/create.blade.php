@@ -66,9 +66,7 @@
         </div>
         <div class="form-group">
             <label for="">Entry Cost</label>
-            
             <input type="text" name="cost" class="form-control" required>
-            
         </div>
         <div class="form-group">
             <button class="btn btn-block btn-primary">Create</button>
