@@ -37,16 +37,22 @@ class ApiPlaylistController extends Controller
         if($user->playlist()->count() == 0){
             $user->playlist()->create();
         }
-        
+
         $pl = $user->playlist;
         $songs = $pl->songs;
         $audios = $pl->audios;
         $podcasts = $pl->podcasts;
 
         $works = [];
-        array_push($works, $songs);
-        array_push($works, $audios);
-        array_push($works, $podcasts);
+        foreach($songs as $song){
+            array_push($works, $song);
+        }
+        foreach($audios as $song){
+            array_push($works, $song);
+        }
+        foreach($podcasts as $song){
+            array_push($works, $song);
+        }
 
         return response([
             'works'=>$works,
