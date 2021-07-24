@@ -174,7 +174,6 @@ class ApiPurchaseController extends Controller
             //always white interms of previews
             $film = Thrailer::find($data['work_id']);
             $bal = $user->royalties->white_crystal;
-            return $film->preview_cost;
             if((int)$film->preview_cost <= (int)$bal){
                 $newbal = (int)$bal - (int)$film->preview_cost;
                 $user->royalties->update(['white_crystal'=>$newbal]);
