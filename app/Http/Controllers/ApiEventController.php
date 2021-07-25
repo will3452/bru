@@ -54,7 +54,6 @@ class ApiEventController extends Controller
            'score'=>'required'
        ]);
 
-       return $data['ids'];
        $perfect = false;
 
        $royalty = Royalty::find(auth()->user()->id);
