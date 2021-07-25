@@ -57,6 +57,7 @@ class ApiEventController extends Controller
        $ids = explode(',',$data['ids']);
 
        $perfect = false;//fix me up
+       $prizes = [];
 
        $royalty = Royalty::where('user_id', auth()->user()->id)->first();
        for($i = 0; $i < $data['score']; $i++){
@@ -64,9 +65,11 @@ class ApiEventController extends Controller
            if($q->prize == 'Hall passes'){
                $newval = (int)$royalty->hall_pass + (int)$q->qty;
                $royalty->update(['hall_pass'=>$newval]);
+               array_push($prizes, $q->qty." hall pass(es)");
            }else if($q->prize == 'White Crystal'){
                $newval = (int)$royalty->white_crystal + (int)$q->qty;
                $royalty->update(['white_crystal'=>$newval]);
+               array_push($prizes, $q->qty." white crystal(s)");
            }else {
                //if art scene
            }
@@ -84,7 +87,8 @@ class ApiEventController extends Controller
        return response([
            'new_balance'=>User::find(auth()->user()->id)->royalties,
            'result'=>200,
-           'perfect'=>$perfect
+           'perfect'=>$perfect,
+           'prices'=>$prizes
        ], 200);
 
     }
