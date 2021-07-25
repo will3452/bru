@@ -23,6 +23,7 @@ class ApiEventController extends Controller
         
         //data 
         $questions = null;
+        $puzzle = null;
 
         // if quiz game
         if($event->type == 'Quiz Game'){
@@ -30,6 +31,8 @@ class ApiEventController extends Controller
             foreach($questions as $question){
                 $question->array_answer = $question->array_answer;
             }
+        }else if($event->type == 'Puzzle Game'){
+            $puzzle = $event->game->puzzle;
         }
 
         
@@ -37,6 +40,7 @@ class ApiEventController extends Controller
             'event'=>$event, 
             'game'=>$game,
             'questions'=>$questions,
+            'puzzle'=>$puzzle,
             'result'=>200
         ], 200);
     }
