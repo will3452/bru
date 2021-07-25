@@ -60,9 +60,11 @@ class ApiEventController extends Controller
        for($i = 0; $i < $data['score']; $i++){
            $q = Question::find($data['ids'][$i]);
            if($q->prize == 'Hall passes'){
-               $royalty->update(['hall_pass'=>$royalty->hall_pass + $q->qty]);
+               $newval = (int)$royalty->hall_pass + (int)$q->qty;
+               $royalty->update(['hall_pass'=>$newval]);
            }else if($q->prize == 'White Crystal'){
-               $royalty->update(['white_crystal'=>$royalty->white_crystal + $q->qty]);
+               $newval = (int)$royalty->white_crystal + (int)$q->qty;
+               $royalty->update(['white_crystal'=>$newval]);
            }else {
                //if art scene
            }
