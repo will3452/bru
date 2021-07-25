@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('main-content')
-<script src="https://www.google.com/recaptcha/api.js"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-5">
@@ -41,24 +41,15 @@
                                             <label class="custom-control-label" for="remember">{{ __('Remember Me') }}</label>
                                         </div>
                                     </div>
-
                                     <div class="form-group">
-                                        <button type="button"
-                                        class="btn btn-primary   btn-block g-recaptcha" 
-                                        data-sitekey="6LexBb0bAAAAAHaRAerXiFmsuT6M_UpNM9C1hp_G" 
-                                        data-callback='onSubmit' 
-                                        data-action='submit'>
+                                        <div class="g-recaptcha" style="width: 100% !important;" data-sitekey="6LeeCr0bAAAAAKmgqtrX1JwrnTVQcGx1OEQ-0WeE"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit"
+                                        class="btn btn-primary   btn-block">
                                             {{ __('Login') }}
                                         </button>
                                     </div>
-
-                                    <script>
-                                        function onSubmit(token) {
-                                            document.getElementById("login").submit();
-                                        }
-                                    </script>
-                                    
-
 
                                     {{-- <div class="form-group">
                                         <button type="button" class="btn btn-github   btn-block">
