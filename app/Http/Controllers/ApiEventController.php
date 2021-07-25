@@ -54,6 +54,7 @@ class ApiEventController extends Controller
            'score'=>'required'
        ]);
 
+       return $data['ids'];
        $perfect = false;
 
        $nloop = $data['score'] - 1;
