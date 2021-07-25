@@ -82,7 +82,7 @@ class ApiEventController extends Controller
             if($eventCost <= $userMoney){
                 $newMoney = $userMoney - $eventCost;
                 $user->royalties()->update(['purple_crystal'=>$newMoney]);
-                // $user->royalties->purple_crystal =  $newMoney;
+                // $user->royalties->purple_crystal =  $newMoney;//
                 $new_balance = $user->royalties;
                 $status = true;
             }
