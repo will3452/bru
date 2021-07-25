@@ -17,6 +17,7 @@ class ApiEventController extends Controller
 
     public function show($id){
         $event = Event::find($id);
+        $event->with('game');
         return response([
             'event'=>$event, 
             'result'=>200
