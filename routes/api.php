@@ -126,6 +126,9 @@ Route::prefix('v1')->group(function(){
         Route::get('/playlists-mixed', 'ApiPlaylistController@mixIndex');
         Route::post('/playlists', 'ApiPlaylistController@togglePlaylist');
 
+        // events
+        Route::get('/events', 'ApiEventController@index');
+        Route::get('/events/{id}', 'ApiEventController@show');
     });
 
     // public
