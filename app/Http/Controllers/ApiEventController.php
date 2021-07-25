@@ -73,13 +73,15 @@ class ApiEventController extends Controller
         $user = User::find(auth()->user()->id);
         $event = Event::find($data['event_id']);
         $status = false;
+        $new_balance = $user->royalties;
         if($event->gem == 'purple'){
             $eventCost = (int)$event->cost;
             $userMoney = (int)$user->royalties->purple_crystal;
             if($eventCost <= $userMoney){
                 $newMoney = $userMoney - $eventCost;
-                // $user->royalties()->update(['purple_crystal'=>$newMoney]);
-                $user->royalties->purple_crystal =  $newMoney;
+                $user->royalties()->update(['purple_crystal'=>$newMoney]);
+                // $user->royalties->purple_crystal =  $newMoney;
+                $new_balance = $user->royalties;
                 $status = true;
             }
         }else {
@@ -87,8 +89,8 @@ class ApiEventController extends Controller
             $userMoney = (int)$user->royalties->white_crystal;
             if($eventCost <= $userMoney){
                 $newMoney = $userMoney - $eventCost;
-                // $user->royalties()->update(['white_crystal'=>$newMoney]);
-                 $user->royalties->white_crystal =  $newMoney;
+                $user->royalties()->update(['white_crystal'=>$newMoney]);
+                //  $user->royalties->white_crystal =  $newMoney;
                 
                 $status = true;
             }
@@ -96,7 +98,7 @@ class ApiEventController extends Controller
 
         return response([
             'status'=>$status,
-            'new_balance'=>$user->royalties,
+            'new_balance'=>$new_balance,
             'result'=>200
         ], 200);
     }
