@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Event;
 use App\Question;
 use Illuminate\Http\Request;
@@ -58,7 +59,38 @@ class ApiEventController extends Controller
             'result'=>200,
             'correct'=>true
         ], 200);
-        
 
+    }
+
+    public function deductCost(){
+        $data = request()->validate([
+            'event_id'=>'required'           
+        ]);
+        $user = User::find(auth()->user()->id);
+        $event = Event::find($data['event_id']);
+        $status = false;
+        if($event->gem == 'purple'){
+            $eventCost = (int)$event->cost;
+            $userMoney = (int)$user->royalties->purple_crystal;
+            if($eventCost <= $userMoney){
+                $newMoney = $userMoney - $eventCost;
+                $user->royalties()->update(['purple_crystal'=>$newMoney]);
+                $status = true;
+            }
+        }else {
+            $eventCost = (int)$event->cost;
+            $userMoney = (int)$user->royalties->white_crystal;
+            if($eventCost <= $userMoney){
+                $newMoney = $userMoney - $eventCost;
+                $user->royalties()->update(['white_crystal'=>$newMoney]);
+                $status = true;
+            }
+        }
+
+        return response([
+            'status'=>$status,
+            'new_balance'=>$user->royalties,
+            'result'=>200
+        ], 200);
     }
 }

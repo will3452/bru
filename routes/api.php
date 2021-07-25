@@ -129,9 +129,11 @@ Route::prefix('v1')->group(function(){
         // events
         Route::get('/events', 'ApiEventController@index');
         Route::get('/events/{id}', 'ApiEventController@show');
+        Route::post('/deduct-cost', 'ApiEventController@deductCost');
 
         // quiz games
         Route::post('/games/quiz', 'ApiEventController@checkAnswer');
+
     });
 
     // public
