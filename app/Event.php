@@ -33,5 +33,9 @@ class Event extends Model
         return in_array($str, $prizes);
     }
 
+    public function winners(){
+        return $this->hasMany(Winner::class);
+    }
+
 
 }

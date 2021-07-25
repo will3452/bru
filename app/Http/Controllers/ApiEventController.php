@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Event;
+use App\Winner;
 use App\Royalty;
 use App\Question;
 use Illuminate\Http\Request;
@@ -47,25 +48,44 @@ class ApiEventController extends Controller
     }
 
     public function checkAnswer(){
-        $data = request()->validate([
-            'question_id'=>'required',
-            'answer'=>'required'
-        ]);
+       $data = request()->validate([
+           'event_id'=>'required',
+           'ids'=>'required',
+           'score'=>'required'
+       ]);
 
-        $question = Question::find($data['question_id']);
-        if($question->correct_answer == $data['answer']){
-           return response([
-                'result'=>200,
-                'correct'=>true
-            ], 200);
-        }
+       $perfect = false;
 
-        return response([
-            'result'=>200,
-            'correct'=>true
-        ], 200);
+       $nloop = $data['score'] - 1;
+       $royalty = Royalty::find(auth()->user()->id);
+       for($i = 0; $i < $nloop; $i++){
+           $q = Question::find($data['ids'][$i]);
+           if($q->prize == 'Hall passes'){
+               $royalty->update(['hall_pass'=>$royalty->hall_pass + $q->qty]);
+           }else if($q->prize == 'White Crystal'){
+               $royalty->update(['white_crystal'=>$royalty->white_crystal + $q->qty]);
+           }else {
+               //if art scene
+           }
+       }
+       
+       if($score == count($data['ids'])){
+           Winner::create([
+               'event_id'=>$data['event_id'],
+               'user_id'=>auth()->user()->id,
+               'prize'=>'Jackpot'
+           ]);
+       }
+
+       return response([
+           'new_balance'=>User::find(auth()->user()->id)->royalties,
+           'result'=>200,
+           'perfect'=>$perfect
+       ], 200);
 
     }
+
+    
 
     public function deductCost(){
         $data = request()->validate([

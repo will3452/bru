@@ -295,6 +295,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function playlist(){
         return $this->hasOne(Playlist::class);
     }
+
+    public function winners(){
+        return $this->hasMany(Winner::class);
+    }
     
 
 }
