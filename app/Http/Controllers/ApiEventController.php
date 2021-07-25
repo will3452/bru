@@ -56,7 +56,7 @@ class ApiEventController extends Controller
 
        $perfect = false;//fix me up
 
-       $royalty = Royalty::find(auth()->user()->id);
+       $royalty = Royalty::where('user_id', auth()->user()->id)->first();
        for($i = 0; $i < $data['score']; $i++){
            $q = Question::find($data['ids'][$i]);
            if($q->prize == 'Hall passes'){
