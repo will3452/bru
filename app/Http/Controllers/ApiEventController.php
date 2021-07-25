@@ -76,14 +76,14 @@ class ApiEventController extends Controller
         $cbal = Royalty::where('user_id', auth()->user()->id)->first();
 
         if($event->gem == 'purple'){
-            if((int)$event->cost <= (int)$cbal->royalties->purple_crystal){
-                $newbal = (int)$cbal->royalties->purple_crystal - (int)$event->cost;
+            if((int)$event->cost <= (int)$cbal->purple_crystal){
+                $newbal = (int)$cbal->purple_crystal - (int)$event->cost;
                 $cbal->update(['purple_crystal'=>$newbal]);
                 $status = true;
             }
         }else {
-            if((int)$event->cost <= (int)$cbal->royalties->white_crystal){
-                $newbal = (int)$cbal->royalties->white_crystal - (int)$event->cost;
+            if((int)$event->cost <= (int)$cbal->white_crystal){
+                $newbal = (int)$cbal->white_crystal - (int)$event->cost;
                 $cbal->update(['white_crystal'=>$newbal]);
                 $status = true;
             }
