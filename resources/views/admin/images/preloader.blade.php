@@ -5,6 +5,11 @@
     <div class="d-flex justify-content-between align-items-center">
         <h1 class="h3 mb-4 text-gray-800">Preloader</h1>
     </div>
+    <div class="mb-2">
+        <a href="{{ route('admin.images.menu') }}" class="btn btn-primary btn-sm">
+            Back
+        </a>
+    </div>
     <div>
         <form action="{{ route('admin.images.preloader') }}" method="POST" enctype="multipart/form-data">
             @csrf

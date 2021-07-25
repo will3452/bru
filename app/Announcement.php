@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Announcement extends Model
 {
     use HasFactory;
-
+//this is marquee
     protected $guarded = [];
     
     public function market(){

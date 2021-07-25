@@ -3,7 +3,12 @@
 @section('main-content')
     <!-- Page Heading -->
     <div class="d-flex justify-content-between align-items-center">
-        <h1 class="h3 mb-4 text-gray-800">Announcements</h1>
+        <h1 class="h3 mb-4 text-gray-800">Marquee</h1>
+    </div>
+    <div class="mb-2">
+        <a href="{{ route('admin.images.menu') }}" class="btn btn-primary btn-sm">
+            Back
+        </a>
     </div>
     <div>
         <form action="{{ route('admin.images.announcement.store') }}" method="POST">
