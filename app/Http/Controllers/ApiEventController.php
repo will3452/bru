@@ -76,35 +76,45 @@ class ApiEventController extends Controller
         $status = false;
         $new_balance = $user->royalties;
         if($event->gem == 'purple'){
-            $eventCost = (int)$event->cost;
+            $eventCost = $event->cost;
             $royalties = Royalty::where('user_id', $user->id)->first();
-            $userMoney = (int)$royalties->purple_crystal;
-            if($eventCost <= $userMoney){
-                $newMoney = $userMoney - $eventCost;
+            $userMoney = $royalties->purple_crystal;
+            if((int)$eventCost <= (int)$userMoney){
+                $newMoney = (int)$userMoney - (int)$eventCost;
                 // $royalties->update(['purple_crystal'=>$newMoney]);
                 $royalties->purple_crystal =  $newMoney;
                 $royalties->save();
                 $new_balance = $user->royalties;
                 $status = true;
+                return response([
+                        'status'=>$status,
+                        'new_balance'=>$new_balance,
+                        'result'=>200
+                    ], 200);
             }
         }else {
-            $eventCost = (int)$event->cost;
+            $eventCost = $event->cost;
             $royalties = Royalty::where('user_id', $user->id)->first();
-            $userMoney = (int)$royalties->white_crystal;
-            if($eventCost <= $userMoney){
-                $newMoney = $userMoney - $eventCost;
+            $userMoney = $royalties->white_crystal;
+            if((int)$eventCost <= (int)$userMoney){
+                $newMoney = (int)$userMoney - (int)$eventCost;
                 // $royalties->update(['white_crystal'=>$newMoney]);
                  $royalties->white_crystal =  $newMoney;
                  $royalties->save();
                 $new_balance = $user->royalties;
                 $status = true;
+                return response([
+                        'status'=>$status,
+                        'new_balance'=>$new_balance,
+                        'result'=>200
+                    ], 200);
             }
         }
-
         return response([
             'status'=>$status,
             'new_balance'=>$new_balance,
             'result'=>200
         ], 200);
+        
     }
 }
