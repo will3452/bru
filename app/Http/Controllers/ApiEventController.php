@@ -71,50 +71,28 @@ class ApiEventController extends Controller
         $data = request()->validate([
             'event_id'=>'required'           
         ]);
-        $user = User::find(auth()->user()->id);
         $event = Event::find($data['event_id']);
         $status = false;
-        $new_balance = $user->royalties;
+        $cbal = Royalty::where('user_id', auth()->user()->id)->first();
+
         if($event->gem == 'purple'){
-            $eventCost = $event->cost;
-            $royalties = Royalty::where('user_id', $user->id)->first();
-            $userMoney = $royalties->purple_crystal;
-            if((int)$eventCost <= (int)$userMoney){
-                $newMoney = (int)$userMoney - (int)$eventCost;
-                // $royalties->update(['purple_crystal'=>$newMoney]);
-                $royalties->purple_crystal =  $newMoney;
-                $royalties->save();
-                $new_balance = $user->royalties;
+            if((int)$event->cost <= (int)$cbal->royalties->purple_crystal){
+                $newbal = (int)$cbal->royalties->purple_crystal - (int)$event->cost;
+                $cbal->update(['purple_crystal'=>$newbal]);
                 $status = true;
-                return response([
-                        'status'=>$status,
-                        'new_balance'=>$new_balance,
-                        'result'=>200
-                    ], 200);
             }
         }else {
-            $eventCost = $event->cost;
-            $royalties = Royalty::where('user_id', $user->id)->first();
-            $userMoney = $royalties->white_crystal;
-            if((int)$eventCost <= (int)$userMoney){
-                $newMoney = (int)$userMoney - (int)$eventCost;
-                // $royalties->update(['white_crystal'=>$newMoney]);
-                 $royalties->white_crystal =  $newMoney;
-                 $royalties->save();
-                $new_balance = $user->royalties;
+            if((int)$event->cost <= (int)$cbal->royalties->white_crystal){
+                $newbal = (int)$cbal->royalties->white_crystal - (int)$event->cost;
+                $cbal->update(['white_crystal'=>$newbal]);
                 $status = true;
-                return response([
-                        'status'=>$status,
-                        'new_balance'=>$new_balance,
-                        'result'=>200
-                    ], 200);
             }
         }
+        
         return response([
             'status'=>$status,
-            'new_balance'=>$new_balance,
+            'new_balance'=>$cbal,
             'result'=>200
         ], 200);
-        
     }
 }
