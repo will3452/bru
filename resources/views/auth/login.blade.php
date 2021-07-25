@@ -1,7 +1,6 @@
 @extends('layouts.auth')
 
 @section('main-content')
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-5">
@@ -26,7 +25,6 @@
 
                                 <form method="POST" action="{{ route('login') }}" id="login" class="user">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
                                     <div class="form-group">
                                         <input type="email" class="form-control  " name="email" placeholder="{{ __('E-Mail Address') }}" value="{{ old('email') }}" required autofocus>
                                     </div>
@@ -40,9 +38,6 @@
                                             <input type="checkbox" class="custom-control-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                             <label class="custom-control-label" for="remember">{{ __('Remember Me') }}</label>
                                         </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="g-recaptcha" style="width: 100% !important;" data-sitekey="6LeeCr0bAAAAAKmgqtrX1JwrnTVQcGx1OEQ-0WeE"></div>
                                     </div>
                                     <div class="form-group">
                                         <button type="submit"
