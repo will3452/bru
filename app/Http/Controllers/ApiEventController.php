@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Event;
+use App\Royalty;
 use App\Question;
 use Illuminate\Http\Request;
 
@@ -76,7 +77,7 @@ class ApiEventController extends Controller
         $new_balance = $user->royalties;
         if($event->gem == 'purple'){
             $eventCost = (int)$event->cost;
-            $royalties = Royalties::where('user_id', $user->id)->first();
+            $royalties = Royalty::where('user_id', $user->id)->first();
             $userMoney = (int)$royalties->purple_crystal;
             if($eventCost <= $userMoney){
                 $newMoney = $userMoney - $eventCost;
@@ -87,7 +88,7 @@ class ApiEventController extends Controller
             }
         }else {
             $eventCost = (int)$event->cost;
-            $royalties = Royalties::where('user_id', $user->id)->first();
+            $royalties = Royalty::where('user_id', $user->id)->first();
             $userMoney = (int)$royalties->white_crystal;
             if($eventCost <= $userMoney){
                 $newMoney = $userMoney - $eventCost;
