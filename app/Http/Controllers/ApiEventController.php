@@ -53,12 +53,14 @@ class ApiEventController extends Controller
            'ids'=>'required',
            'score'=>'required'
        ]);
+       
+       $ids = explode(',',$data['ids']);
 
        $perfect = false;//fix me up
 
        $royalty = Royalty::where('user_id', auth()->user()->id)->first();
        for($i = 0; $i < $data['score']; $i++){
-           $q = Question::find($data['ids'][$i]);
+           $q = Question::find($ids[$i]);
            if($q->prize == 'Hall passes'){
                $newval = (int)$royalty->hall_pass + (int)$q->qty;
                $royalty->update(['hall_pass'=>$newval]);
