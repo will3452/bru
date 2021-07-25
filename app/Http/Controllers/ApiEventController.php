@@ -81,8 +81,9 @@ class ApiEventController extends Controller
             $userMoney = (int)$royalties->purple_crystal;
             if($eventCost <= $userMoney){
                 $newMoney = $userMoney - $eventCost;
-                $royalties->update(['purple_crystal'=>$newMoney]);
-                // $user->royalties->purple_crystal =  $newMoney;//
+                // $royalties->update(['purple_crystal'=>$newMoney]);
+                $royalties->purple_crystal =  $newMoney;
+                $royalties->save();
                 $new_balance = $user->royalties;
                 $status = true;
             }
@@ -92,8 +93,9 @@ class ApiEventController extends Controller
             $userMoney = (int)$royalties->white_crystal;
             if($eventCost <= $userMoney){
                 $newMoney = $userMoney - $eventCost;
-                $royalties->update(['white_crystal'=>$newMoney]);
-                //  $user->royalties->white_crystal =  $newMoney;
+                // $royalties->update(['white_crystal'=>$newMoney]);
+                 $royalties->white_crystal =  $newMoney;
+                 $royalties->save();
                 $new_balance = $user->royalties;
                 $status = true;
             }
