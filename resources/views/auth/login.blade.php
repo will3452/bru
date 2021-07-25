@@ -1,6 +1,7 @@
 @extends('layouts.auth')
 
 @section('main-content')
+<script src="https://www.google.com/recaptcha/api.js"></script>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-5">
@@ -23,7 +24,7 @@
                                     </div>
                                 @endif
 
-                                <form method="POST" action="{{ route('login') }}" class="user">
+                                <form method="POST" action="{{ route('login') }}" id="login" class="user">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                     <div class="form-group">
@@ -42,10 +43,20 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-primary   btn-block">
+                                        <button type="button"
+                                        class="btn btn-primary   btn-block g-recaptcha" 
+                                        data-sitekey="6LexBb0bAAAAAHaRAerXiFmsuT6M_UpNM9C1hp_G" 
+                                        data-callback='onSubmit' 
+                                        data-action='submit'>
                                             {{ __('Login') }}
                                         </button>
                                     </div>
+
+                                    <script>
+                                        function onSubmit(token) {
+                                            document.getElementById("login").submit();
+                                        }
+                                    </script>
                                     
 
 
