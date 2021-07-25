@@ -1,5 +1,14 @@
 <form action="{{ route('marketing.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
+    <div class="form-group">
+        <label for="">Attach to Event</label>
+        <select name="event_id" id="" class="custom-select">
+            @foreach ($events as $item)
+                <option value="" disabled selected>---</option>
+                <option value="{{ $item->id }}">{{ $item->name }}</option>
+            @endforeach
+        </select>
+    </div>
     <div>
         <script src="/vendor/jquery/jquery.min.js"></script>
         <script src="/vendor/ckeditor/ckeditor.js"></script>

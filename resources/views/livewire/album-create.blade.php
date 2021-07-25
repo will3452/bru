@@ -21,15 +21,17 @@
     </div>
 
     @if ($type == 'song')
-       <div class="form-group">
-            <label for="">
-                Do you have a Band ?
-            </label>
-            <select  required class="custom-select" wire:model="hasBand">
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
-       </div>
+       @if ($type_of_work =='collaboration')
+           <div class="form-group">
+                <label for="">
+                    Do you have a Band ?
+                </label>
+                <select  required class="custom-select" wire:model="hasBand">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+       @endif
 
        @if ($hasBand == 'yes')
            

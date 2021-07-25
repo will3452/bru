@@ -27,7 +27,8 @@ class MarketingController extends Controller
         $data  = request()->validate([
             'duration'=>'required',
             'category'=>'required',
-            'schedule'=>'required'
+            'schedule'=>'required',
+            'event_id'=>''
         ]);
 
         $market = auth()->user()->markets()->create($data);
