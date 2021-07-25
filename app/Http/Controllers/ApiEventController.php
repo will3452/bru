@@ -69,7 +69,7 @@ class ApiEventController extends Controller
            }
        }
        
-       if($score == count($data['ids'])){
+       if($data['score'] == count($data['ids'])){
            Winner::create([
                'event_id'=>$data['event_id'],
                'user_id'=>auth()->user()->id,
