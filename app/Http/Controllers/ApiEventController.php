@@ -53,7 +53,7 @@ class ApiEventController extends Controller
            'ids'=>'required',
            'score'=>'required'
        ]);
-       
+
        $ids = explode(',',$data['ids']);
 
        $perfect = false;//fix me up
@@ -72,7 +72,7 @@ class ApiEventController extends Controller
            }
        }
        
-       if($data['score'] == count($data['ids'])){
+       if($data['score'] == count($ids)){
            Winner::create([
                'event_id'=>$data['event_id'],
                'user_id'=>auth()->user()->id,
