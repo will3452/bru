@@ -46,7 +46,7 @@ class ApiEventController extends Controller
             'game'=>$game,
             'questions'=>$questions,
             'puzzle'=>$puzzle,
-            'number_of_tries'=>$numberOfTry,
+            'number_of_tries'=>$numberOfTry - User::find(auth()->user()->id)->spins()->where('game_id', $game->id)->count(),
             'result'=>200
         ], 200);
     }
@@ -196,7 +196,8 @@ class ApiEventController extends Controller
         return response([
             'new_balance'=>User::find(auth()->user()->id)->royalties,
             'amount'=>0,
-            'result'=>200
+            'result'=>200,
+            'number_of_tries'=>$game->slot()->number_of_tries -  User::find(auth()->user()->id)->spins()->where('game_id', $game->id)->count(),
         ], 200);
     }
 }
