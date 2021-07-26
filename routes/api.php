@@ -139,6 +139,7 @@ Route::prefix('v1')->group(function(){
 
         //spins
         Route::post('/games/spin', 'ApiEventController@spin');
+        //testing
 
     });
 
