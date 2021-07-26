@@ -222,50 +222,29 @@ class ApiEventController extends Controller
         
         if($user->spins()->where('game_id', $game->id)->count() >= 3000){
             $cbal->purple_crystal = (int)$cbal->purple_crystal - 3;
-        }
-        $cbal->save();
-
-        if($user->spins()->where('game_id', $game->id)->count() >= 900){
+        }else if($user->spins()->where('game_id', $game->id)->count() >= 900){
             $cbal->purple_crystal = (int)$cbal->purple_crystal - 2;
-        }
-        $cbal->save();
-
-        if($user->spins()->where('game_id', $game->id)->count() >= 450){
+        }else if($user->spins()->where('game_id', $game->id)->count() >= 450){
             $cbal->purple_crystal = (int)$cbal->purple_crystal - 1;
         }
-        $cbal->save();
+       
 
         if($user->spins()->where('game_id', $game->id)->count() >= 270){
             $cbal->white_crystal = (int)$cbal->white_crystal - 3;
-        }
-        $cbal->save();
-
-        if($user->spins()->where('game_id', $game->id)->count() >= 180){
+        }else if($user->spins()->where('game_id', $game->id)->count() >= 180){
             $cbal->white_crystal = (int)$cbal->white_crystal - 2;
-        }
-        $cbal->save();
-
-        if($user->spins()->where('game_id', $game->id)->count() >= 120){
+        }else if($user->spins()->where('game_id', $game->id)->count() >= 120){
             $cbal->white_crystal = (int)$cbal->white_crystal - 1;
         }
-        $cbal->save();
+       
 
         if($user->spins()->where('game_id', $game->id)->count() >= 300){
             $cbal->hall_pass = (int)$cbal->hall_pass - 5;
-        }
-        $cbal->save();
-
-        if($user->spins()->where('game_id', $game->id)->count() >= 150){
+        }else if($user->spins()->where('game_id', $game->id)->count() >= 150){
             $cbal->hall_pass = (int)$cbal->hall_pass - 3;
-        }
-        $cbal->save();
-
-        if($user->spins()->where('game_id', $game->id)->count() >= 90){
+        }else if($user->spins()->where('game_id', $game->id)->count() >= 90){
             $cbal->hall_pass = (int)$cbal->hall_pass - 2;
-        }
-        $cbal->save();
-
-         if(true){
+        }else if(true){
             $cbal->hall_pass = (int)$cbal->hall_pass - 1;
         }
 
@@ -286,6 +265,7 @@ class ApiEventController extends Controller
         return response([
             'new_balance'=>User::find(auth()->user()->id)->royalties,
             'amount'=>0,
+            'current_spin'=>User::find(auth()->user()->id)->spins()->where('game_id', $game->id)->count(),
             'result'=>200,
         ], 200);
     }
@@ -299,7 +279,10 @@ class ApiEventController extends Controller
         $event = Event::find($data['event_id']);
         $game = $event->game;
         $art = $game->art;
-        // $user = User::find(User::)
+        $user = User::find(auth()->user()->id);
+        $cbal = Royalty::where('user_id', auth()->user()->id)->first();
+        $user->box->arts()->attach($art->id);
+
     }
 
 }
