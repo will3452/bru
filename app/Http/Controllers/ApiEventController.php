@@ -162,7 +162,7 @@ class ApiEventController extends Controller
             $q = (int)$data['bet'] * 1; //white gem
             $cwhite = (int)$royalty->white_crystal;
             $royalty->update(['white_crystal'=> $cwhite + $q ]);
-        }else if($data['level_price'] == 4){
+        }else if($data['level_prize'] == 4){
             $p = (int)$data['bet']  * 2; // hall passes
             $chall = (int)$royalty->hall_pass;
             $royalty->update(['hall_pass'=>$chall + $p ]);
