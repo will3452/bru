@@ -137,7 +137,7 @@ class ApiEventController extends Controller
         ]);
 
         $user = User::find(auth()->user()->id);
-        $event = Event::find($data['event']);
+        $event = Event::find($data['event_id']);
         $game = $event->game;
         $royalty = $user->royalties;
         //deduct spins
