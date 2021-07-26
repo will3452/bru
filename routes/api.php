@@ -140,8 +140,10 @@ Route::prefix('v1')->group(function(){
         //spins
         Route::post('/games/spin', 'ApiEventController@spin');
         
-        //backend
+        //puzzle
         Route::post('/games/solve', 'ApiEventController@solve');
+
+        Route::get('/latest-log', 'ApiDailyLogController@getLatestLog');
 
     });
 
