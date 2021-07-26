@@ -128,6 +128,24 @@ class ApiEventController extends Controller
         ], 200);
     }
 
+    public function deductCostNow($id, $bet){
+        $event = Event::find($id);
+        $status = false;
+        $cbal = Royalty::where('user_id', auth()->user()->id)->first();
+
+        if($event->gem == 'purple'){
+            if((int)$event->cost <= (int)$cbal->purple_crystal){
+                $newbal = (int)$cbal->purple_crystal - ((int)$event->cost * (int)$bet);
+                $cbal->update(['purple_crystal'=>$newbal]);
+            }
+        }else {
+            if((int)$event->cost <= (int)$cbal->white_crystal){
+                $newbal = (int)$cbal->white_crystal - ((int)$event->cost * (int)$bet);
+                $cbal->update(['white_crystal'=>$newbal]);
+            }
+        }
+    }
+
     public function bet(){
 
         $data = request()->validate([
@@ -135,7 +153,9 @@ class ApiEventController extends Controller
             'bet'=>'required',
             'level_prize'=>'required'
         ]);
-        //convert to numeric
+
+        //deduct now
+        $this->deductCostNow($data['event_id'], $data['bet']);
 
         $user = User::find(auth()->user()->id);
         $event = Event::find($data['event_id']);
