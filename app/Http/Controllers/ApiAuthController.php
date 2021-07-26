@@ -4,10 +4,18 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Avatar;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ApiAuthController extends Controller
 {
+    public function dayLogCreate(User $user){
+        if(!$user->daylogs()->where('created_at', Carbon::today())->count()){
+            $day = ($user->daylogs()->count() % 7 ) + 1;
+            $user->daylogs()->create(['day'=>$day]);
+        }
+    }
+
     public function login(){
         $fields = request()->validate([
             'email'=>'required',
@@ -38,6 +46,9 @@ class ApiAuthController extends Controller
 
         $royalties = $user->royalties;
 
+        //user
+        $this->dayLogCreate($user);
+        
         $response = [
             'user'=>$user,
             'royalties'=>$royalties,
@@ -51,6 +62,7 @@ class ApiAuthController extends Controller
         // if($user){
         //     return 'result=200&token='.$token;
         // }
+
         return response($response, 200);
     }
 

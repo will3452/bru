@@ -303,6 +303,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function spins(){
         return $this->hasMany(Spin::class);
     }
+
+    public function daylogs(){
+        return $this->hasMany(DayLog::class);
+    }
     
 
 }
