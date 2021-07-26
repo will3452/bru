@@ -22,5 +22,9 @@ class Game extends Model
         return $this->hasOne(Slot::class);
     }
 
+    public function spins(){
+        return $this->belongsTo(Spin::class);
+    }
+
 
 }

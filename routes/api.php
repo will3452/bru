@@ -134,6 +134,9 @@ Route::prefix('v1')->group(function(){
         // quiz games
         Route::post('/games/quiz', 'ApiEventController@checkAnswer');
 
+        //slot machine
+        Route::post('/games/bet', 'ApiEventController@bet');
+
     });
 
     // public

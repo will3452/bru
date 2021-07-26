@@ -127,4 +127,53 @@ class ApiEventController extends Controller
             'result'=>200
         ], 200);
     }
+
+    public function bet(){
+
+        $data = request()->validate([
+            'event_id'=>'required',
+            'bet'=>'required',
+            'level_prize'=>'required'
+        ]);
+
+        $user = User::find(auth()->user()->id);
+        $event = Event::find($data['event']);
+        $game = $event->game;
+        $royalty = $user->royalties;
+        //deduct spins
+        $user->spins()->create([
+            'game_id'=>$game->id
+        ]);
+
+        if($data['level_prize'] == 1){
+            $p = (int)$data['bet'] * 3;
+            $cbal = (int)$royalty->purple_crystal;
+            $royalty->update(['purple_crystal'=> $cbal + $p ]);
+        }else if($data['level_prize'] == 2){
+            $p = (int)$data['bet']  * 2; // hall passes
+            $q = (int)$data['bet'] * 1; //white gem
+            $chall = (int)$royalty->hall_pass;
+            $cwhite = (int)$royalty->white_crystal;
+            $royalty->update(['white_crystal'=> $cwhite + $q, 'hall_pass'=>$chall + $p ]);
+        }else if($data['level_prize'] == 3){
+            $q = (int)$data['bet'] * 1; //white gem
+            $cwhite = (int)$royalty->white_crystal;
+            $royalty->update(['white_crystal'=> $cwhite + $q ]);
+        }else if($data['level_price'] == 4){
+            $p = (int)$data['bet']  * 2; // hall passes
+            $chall = (int)$royalty->hall_pass;
+            $royalty->update(['hall_pass'=>$chall + $p ]);
+        }
+
+        $game->counter = $game->counter + 1;
+
+        $game->save();
+
+
+        return response([
+            'new_balance'=>User::find(auth()->user()->id)->royalties,
+            'amount'=>0,
+            'result'=>200
+        ], 200);
+    }
 }

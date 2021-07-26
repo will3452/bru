@@ -299,6 +299,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function winners(){
         return $this->hasMany(Winner::class);
     }
+
+    public function spins(){
+        return $this->belongsTo(Spin::class);
+    }
     
 
 }
