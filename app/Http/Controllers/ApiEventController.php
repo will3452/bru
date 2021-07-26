@@ -47,6 +47,7 @@ class ApiEventController extends Controller
             'questions'=>$questions,
             'puzzle'=>$puzzle,
             'number_of_tries'=>$numberOfTry - User::find(auth()->user()->id)->spins()->where('game_id', $game->id)->count(),
+            'current_spin'=>User::find(auth()->user()->id)->spins()->where('game_id', $game->id)->count(),
             'result'=>200
         ], 200);
     }
