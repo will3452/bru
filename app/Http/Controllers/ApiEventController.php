@@ -135,6 +135,8 @@ class ApiEventController extends Controller
             'bet'=>'required',
             'level_prize'=>'required'
         ]);
+        //convert to numeric
+        $data['level_prize'] = (int)$data['level_prize'];
 
         $user = User::find(auth()->user()->id);
         $event = Event::find($data['event_id']);
