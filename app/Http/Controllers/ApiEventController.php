@@ -128,10 +128,9 @@ class ApiEventController extends Controller
         ], 200);
     }
 
-    public function deductCostNow($id, $bet){
+    public function deductCostNow($id, $bet, $uid){
         $event = Event::find($id);
-        $status = false;
-        $cbal = Royalty::where('user_id', auth()->user()->id)->first();
+        $cbal = Royalty::where('user_id', $uid)->first();
 
         if($event->gem == 'purple'){
             if((int)$event->cost <= (int)$cbal->purple_crystal){
@@ -154,13 +153,15 @@ class ApiEventController extends Controller
             'level_prize'=>'required'
         ]);
 
-        //deduct now
-        $this->deductCostNow($data['event_id'], $data['bet']);
+        
 
         $user = User::find(auth()->user()->id);
         $event = Event::find($data['event_id']);
         $game = $event->game;
         $royalty = $user->royalties;
+
+        //deduct now
+        $this->deductCostNow($data['event_id'], $data['bet'], auth()->user()->id);
 
         //deduct spins
         $user->spins()->create([
