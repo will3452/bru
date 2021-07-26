@@ -10,7 +10,7 @@ class DayLog extends Model
     use HasFactory;
     protected $guarded = [];
     
-    public function user(){
+    public function user(){//test
         return $this->belongsTo(User::class);
     }
 }
