@@ -197,7 +197,7 @@ class ApiEventController extends Controller
             'new_balance'=>User::find(auth()->user()->id)->royalties,
             'amount'=>0,
             'result'=>200,
-            'number_of_tries'=>$game->slot()->number_of_tries -  User::find(auth()->user()->id)->spins()->where('game_id', $game->id)->count(),
+            'number_of_tries'=>$game->slot->number_of_tries -  User::find(auth()->user()->id)->spins()->where('game_id', $game->id)->count(),
         ], 200);
     }
 }
