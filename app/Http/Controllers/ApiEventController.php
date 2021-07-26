@@ -163,7 +163,7 @@ class ApiEventController extends Controller
             $cwhite = (int)$royalty->white_crystal;
             $royalty->update(['white_crystal'=> $cwhite + $q ]);
         }else if($data['level_prize'] == 4){
-            $p = (int)$data['bet']  * 2; // hall passes
+            $p = (int)$data['bet']  * 2; // hall passess
             $chall = (int)$royalty->hall_pass;
             $royalty->update(['hall_pass'=>$chall + $p ]);
         }
