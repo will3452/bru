@@ -26,5 +26,9 @@ class Game extends Model
         return $this->hasMany(Spin::class);
     }
 
+    public function art(){
+        return $this->belongsTo(Art::class);
+    }
+
 
 }

@@ -49,4 +49,8 @@ class Art extends Model
         return $this->morphToMany(Box::class, 'boxable');
     }
 
+    public function games(){
+        return $this->hasMany(Game::class);
+    }
+
 }
