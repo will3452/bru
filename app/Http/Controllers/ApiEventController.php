@@ -140,6 +140,7 @@ class ApiEventController extends Controller
         $event = Event::find($data['event_id']);
         $game = $event->game;
         $royalty = $user->royalties;
+
         //deduct spins
         $user->spins()->create([
             'game_id'=>$game->id
@@ -166,7 +167,7 @@ class ApiEventController extends Controller
         }
 
         $game->counter = $game->counter + 1;
-
+        //deduct spin
         $game->save();
 
 
