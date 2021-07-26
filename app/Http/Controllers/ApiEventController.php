@@ -26,6 +26,7 @@ class ApiEventController extends Controller
         //data 
         $questions = null;
         $puzzle = null;
+        $numberOfTry = 0;
 
         // if quiz game
         if($event->type == 'Quiz Game'){
@@ -35,6 +36,8 @@ class ApiEventController extends Controller
             }
         }else if($event->type == 'Puzzle Game'){
             $puzzle = $event->game->puzzle;
+        }else if($event->type == 'Slots Machine'){
+            $numberOfTry = $game->slot->number_of_tries;
         }
 
         
@@ -43,6 +46,7 @@ class ApiEventController extends Controller
             'game'=>$game,
             'questions'=>$questions,
             'puzzle'=>$puzzle,
+            'number_of_tries'=>$numberOfTry,
             'result'=>200
         ], 200);
     }
