@@ -144,6 +144,7 @@ Route::prefix('v1')->group(function(){
         Route::post('/games/solve', 'ApiEventController@solve');
 
         Route::get('/latest-log', 'ApiDailyLogController@getLatestLog');
+        Route::post('/get-log', 'ApiDailyLogController@storeLog');
 
     });
 

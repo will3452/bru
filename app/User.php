@@ -307,6 +307,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function daylogs(){
         return $this->hasMany(DayLog::class);
     }
+
+    public function logChecked(){
+        return $this->hasMany(DateClicked::class);
+    }
     
 
 }

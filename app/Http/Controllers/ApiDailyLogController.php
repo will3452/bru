@@ -15,4 +15,21 @@ class ApiDailyLogController extends Controller
             'result'=>200
         ],200);
     }
+
+    public function storeLog(){
+        $data = request()->validate([
+            'day'=>'required'
+        ]);
+        $user = User::find(auth()->user()->id);
+        if($user->logChecked()->count() > 7){
+            foreach($user->logChecked as $log){
+                $log->delete();
+            }
+        }
+        $user->logChecked()->create($data);
+        return response([
+            'logs'=>$ser->logChecked,
+            'result'=>200
+        ], 200);
+    }
 }
