@@ -282,6 +282,12 @@ class ApiEventController extends Controller
             $cbal->update(['purple_crystal'=>$newHall]);
         }
 
+
+        return response([
+            'new_balance'=>User::find(auth()->user()->id)->royalties,
+            'amount'=>0,
+            'result'=>200,
+        ], 200);
         
 
 
