@@ -316,10 +316,77 @@ class ApiEventController extends Controller
         $cbal = Royalty::where('user_id', auth()->user()->id)->first();
 
         $user->box->arts()->attach($art->id);
+        $qty = 0;
+        $prize = "";
+
+        if($data['sec']<=45){
+            //must be dynamic
+            $qty = 10;
+            $prize = "purple_crystal";
+
+            if($prize == "hall_pass"){
+                $cbal->update(['hall_pass'=>$cbal->hall_pass + $qty]);
+            }else if($prize == "white_crystal"){
+                $cbal->update(['white_crystal'=>$cbal->white_crystal + $qty]);
+            }else if($prize == "purple_crystal"){
+                $cbal->update(['purple_crystal'=>$cbal->purple_crystal + $qty]);
+            }else if($prize == "silver_ticket"){
+                $cbal->update(['silver_ticket'=>$cbal->silver_ticket + $qty]);
+            }
+
+        }else if($data['sec']<=90){
+            //must be dynamic
+            $qty = 5;
+            $prize = "purple_crystal";
+
+            if($prize == "hall_pass"){
+                $cbal->update(['hall_pass'=>$cbal->hall_pass + $qty]);
+            }else if($prize == "white_crystal"){
+                $cbal->update(['white_crystal'=>$cbal->white_crystal + $qty]);
+            }else if($prize == "purple_crystal"){
+                $cbal->update(['purple_crystal'=>$cbal->purple_crystal + $qty]);
+            }else if($prize == "silver_ticket"){
+                $cbal->update(['silver_ticket'=>$cbal->silver_ticket + $qty]);
+            }
+
+        }
+        else if($data['sec']<=120){
+            //must be dynamic
+            $qty = 5;
+            $prize = "hall_pass";
+
+            if($prize == "hall_pass"){
+                $cbal->update(['hall_pass'=>$cbal->hall_pass + $qty]);
+            }else if($prize == "white_crystal"){
+                $cbal->update(['white_crystal'=>$cbal->white_crystal + $qty]);
+            }else if($prize == "purple_crystal"){
+                $cbal->update(['purple_crystal'=>$cbal->purple_crystal + $qty]);
+            }else if($prize == "silver_ticket"){
+                $cbal->update(['silver_ticket'=>$cbal->silver_ticket + $qty]);
+            }
+
+        }else{
+            //must be dynamic
+            $qty = 1;
+            $prize = "hall_pass";
+
+            if($prize == "hall_pass"){
+                $cbal->update(['hall_pass'=>$cbal->hall_pass + $qty]);
+            }else if($prize == "white_crystal"){
+                $cbal->update(['white_crystal'=>$cbal->white_crystal + $qty]);
+            }else if($prize == "purple_crystal"){
+                $cbal->update(['purple_crystal'=>$cbal->purple_crystal + $qty]);
+            }else if($prize == "silver_ticket"){
+                $cbal->update(['silver_ticket'=>$cbal->silver_ticket + $qty]);
+            }
+
+        }
 
         return response([
              'new_balance'=>User::find(auth()->user()->id)->royalties,
              'result'=>200,
+             'qty'=>$qty,
+             'prize'=>$prize
         ], 200);
 
     }
