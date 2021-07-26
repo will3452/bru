@@ -147,21 +147,21 @@ class ApiEventController extends Controller
             'game_id'=>$game->id
         ]);
 
-        if($data['level_prize'] == "1"){
+        if($data['level_prize'] == "1" || $data['level_prize'] == 1){
             $p = (int)$data['bet'] * 3;
             $cbal = (int)$royalty->purple_crystal;
             $royalty->update(['purple_crystal'=> $cbal + $p ]);
-        }else if($data['level_prize'] == "2"){
+        }else if($data['level_prize'] == "2" || $data['level_prize'] == 2){
             $p = (int)$data['bet']  * 2; // hall passes
             $q = (int)$data['bet'] * 1; //white gem
             $chall = (int)$royalty->hall_pass;
             $cwhite = (int)$royalty->white_crystal;
             $royalty->update(['white_crystal'=> $cwhite + $q, 'hall_pass'=>$chall + $p ]);
-        }else if($data['level_prize'] == "3"){
+        }else if($data['level_prize'] == "3" || $data['level_prize'] == 3){
             $q = (int)$data['bet'] * 1; //white gem
             $cwhite = (int)$royalty->white_crystal;
             $royalty->update(['white_crystal'=> $cwhite + $q ]);
-        }else if($data['level_prize'] == "4"){
+        }else if($data['level_prize'] == "4" || $data['level_prize'] == 4){
             $p = (int)$data['bet']  * 2; // hall passess
             $chall = (int)$royalty->hall_pass;
             $royalty->update(['hall_pass'=>$chall + $p ]);
