@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class ApiAuthController extends Controller
 {
     public function dayLogCreate(User $user){
-        if(!$user->daylogs()->where('created_at', Carbon::today())->get()->count()){
+        if(!$user->daylogs()->whereDate('created_at', Carbon::today())->get()->count()){
             $day = ($user->daylogs()->count() % 7 ) + 1;
             $user->daylogs()->create(['day'=>$day]);
         }
