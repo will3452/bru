@@ -11,6 +11,7 @@ class ApiDailyLogController extends Controller
         
         $user = User::find(auth()->user()->id);
         return response([
+            'clicked_log'=>$user->logChecked,
             'log'=>$user->daylogs()->latest()->first(),
             'result'=>200
         ],200);
