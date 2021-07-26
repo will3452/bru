@@ -35,7 +35,7 @@ class ApiEventController extends Controller
                 $question->array_answer = $question->array_answer;
             }
         }else if($event->type == 'Puzzle Game'){
-            $puzzle = $event->game->puzzle;
+            $puzzle = $event->game->art;
         }else if($event->type == 'Slots Machine'){
             $numberOfTry = $game->slot->number_of_tries;
         }
@@ -291,7 +291,7 @@ class ApiEventController extends Controller
     }
 
     public function solve(){
-        
+
     }
 
 }
