@@ -28,7 +28,8 @@ class ApiDailyLogController extends Controller
         }
         $user->logChecked()->create($data);
         return response([
-            'logs'=>$user->logChecked,
+            'clicked_log'=>$user->logChecked,
+            'log'=>$user->daylogs()->latest()->first(),
             'result'=>200
         ], 200);
     }
