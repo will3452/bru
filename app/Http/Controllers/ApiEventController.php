@@ -314,8 +314,8 @@ class ApiEventController extends Controller
         $user = User::find(auth()->user()->id);
 
         $cbal = Royalty::where('user_id', auth()->user()->id)->first();
-        
-        $this->deductCostNow($data['event_id'], 1, auth()->user()->id);
+
+        // $this->deductCostNow($data['event_id'], 1, auth()->user()->id);
 
         $user->box->arts()->attach($art->id);
         $qty = 0;
