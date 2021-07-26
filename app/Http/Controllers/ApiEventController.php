@@ -288,9 +288,5 @@ class ApiEventController extends Controller
             'amount'=>0,
             'result'=>200,
         ], 200);
-        
-
-
-        
     }
 }
