@@ -301,7 +301,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function spins(){
-        return $this->belongsTo(Spin::class);
+        return $this->hasMany(Spin::class);
     }
     
 

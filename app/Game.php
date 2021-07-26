@@ -23,7 +23,7 @@ class Game extends Model
     }
 
     public function spins(){
-        return $this->belongsTo(Spin::class);
+        return $this->hasMany(Spin::class);
     }
 
 
