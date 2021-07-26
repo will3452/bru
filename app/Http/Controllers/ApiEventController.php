@@ -220,47 +220,47 @@ class ApiEventController extends Controller
             'game_id'=>$game->id
         ]);
         
-        if($user->spins()->where('game_id')->count() >= 3000){
+        if($user->spins()->where('game_id', $game->id)->count() >= 3000){
             $cbal->purple_crystal = (int)$cbal->purple_crystal - 3;
         }
         $cbal->save();
 
-        if($user->spins()->where('game_id')->count() >= 900){
+        if($user->spins()->where('game_id', $game->id)->count() >= 900){
             $cbal->purple_crystal = (int)$cbal->purple_crystal - 2;
         }
         $cbal->save();
 
-        if($user->spins()->where('game_id')->count() >= 450){
+        if($user->spins()->where('game_id', $game->id)->count() >= 450){
             $cbal->purple_crystal = (int)$cbal->purple_crystal - 1;
         }
         $cbal->save();
 
-        if($user->spins()->where('game_id')->count() >= 270){
+        if($user->spins()->where('game_id', $game->id)->count() >= 270){
             $cbal->white_crystal = (int)$cbal->white_crystal - 3;
         }
         $cbal->save();
 
-        if($user->spins()->where('game_id')->count() >= 180){
+        if($user->spins()->where('game_id', $game->id)->count() >= 180){
             $cbal->white_crystal = (int)$cbal->white_crystal - 2;
         }
         $cbal->save();
 
-        if($user->spins()->where('game_id')->count() >= 120){
+        if($user->spins()->where('game_id', $game->id)->count() >= 120){
             $cbal->white_crystal = (int)$cbal->white_crystal - 1;
         }
         $cbal->save();
 
-        if($user->spins()->where('game_id')->count() >= 300){
+        if($user->spins()->where('game_id', $game->id)->count() >= 300){
             $cbal->hall_pass = (int)$cbal->hall_pass - 5;
         }
         $cbal->save();
 
-        if($user->spins()->where('game_id')->count() >= 150){
+        if($user->spins()->where('game_id', $game->id)->count() >= 150){
             $cbal->hall_pass = (int)$cbal->hall_pass - 3;
         }
         $cbal->save();
 
-        if($user->spins()->where('game_id')->count() >= 90){
+        if($user->spins()->where('game_id', $game->id)->count() >= 90){
             $cbal->hall_pass = (int)$cbal->hall_pass - 2;
         }
         $cbal->save();
@@ -291,7 +291,15 @@ class ApiEventController extends Controller
     }
 
     public function solve(){
+        $data = request()->validate([
+            'sec'=>'required',
+            'event_id'=>'required',
+        ]);
 
+        $event = Event::find($data['event_id']);
+        $game = $event->game;
+        $art = $game->art;
+        // $user = User::find(User::)
     }
 
 }
