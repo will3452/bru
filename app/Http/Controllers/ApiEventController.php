@@ -312,8 +312,15 @@ class ApiEventController extends Controller
         $game = $event->game;
         $art = $game->art;
         $user = User::find(auth()->user()->id);
+
         $cbal = Royalty::where('user_id', auth()->user()->id)->first();
+
         $user->box->arts()->attach($art->id);
+
+        return response([
+             'new_balance'=>User::find(auth()->user()->id)->royalties,
+             'result'=>200,
+        ], 200);
 
     }
 
