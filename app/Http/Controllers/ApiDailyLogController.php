@@ -28,7 +28,7 @@ class ApiDailyLogController extends Controller
         }
         $user->logChecked()->create($data);
         return response([
-            'logs'=>$ser->logChecked,
+            'logs'=>$user->logChecked,
             'result'=>200
         ], 200);
     }
