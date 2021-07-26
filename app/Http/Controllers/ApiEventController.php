@@ -289,4 +289,9 @@ class ApiEventController extends Controller
             'result'=>200,
         ], 200);
     }
+
+    public function solve(){
+        
+    }
+
 }
