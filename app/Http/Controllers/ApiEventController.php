@@ -200,4 +200,91 @@ class ApiEventController extends Controller
             'number_of_tries'=>$game->slot->number_of_tries -  User::find(auth()->user()->id)->spins()->where('game_id', $game->id)->count(),
         ], 200);
     }
+
+    public function spin(){
+        $data = request()->validate([
+            'qty'=>'required',
+            'prize'=>'required',
+            'event_id'=>'required'
+        ]);
+
+        //deduct now
+        $this->deductCostNow($data['event_id'], 1, auth()->user()->id);
+
+        $event = Event::find($data['event_id']);
+        $game = $event->game;
+        $user = User::find(auth()->user()->id);
+        $cbal = Royalty::where('user_id', $user->id)->first();
+
+        $user->spins()->create([
+            'game_id'=>$game->id
+        ]);
+        
+        if($user->spins()->where('game_id')->count() >= 3000){
+            $cbal->purple_crystal = (int)$cbal->purple_crystal - 3;
+        }
+        $cbal->save();
+
+        if($user->spins()->where('game_id')->count() >= 900){
+            $cbal->purple_crystal = (int)$cbal->purple_crystal - 2;
+        }
+        $cbal->save();
+
+        if($user->spins()->where('game_id')->count() >= 450){
+            $cbal->purple_crystal = (int)$cbal->purple_crystal - 1;
+        }
+        $cbal->save();
+
+        if($user->spins()->where('game_id')->count() >= 270){
+            $cbal->white_crystal = (int)$cbal->white_crystal - 3;
+        }
+        $cbal->save();
+
+        if($user->spins()->where('game_id')->count() >= 180){
+            $cbal->white_crystal = (int)$cbal->white_crystal - 2;
+        }
+        $cbal->save();
+
+        if($user->spins()->where('game_id')->count() >= 120){
+            $cbal->white_crystal = (int)$cbal->white_crystal - 1;
+        }
+        $cbal->save();
+
+        if($user->spins()->where('game_id')->count() >= 300){
+            $cbal->hall_pass = (int)$cbal->hall_pass - 5;
+        }
+        $cbal->save();
+
+        if($user->spins()->where('game_id')->count() >= 150){
+            $cbal->hall_pass = (int)$cbal->hall_pass - 3;
+        }
+        $cbal->save();
+
+        if($user->spins()->where('game_id')->count() >= 90){
+            $cbal->hall_pass = (int)$cbal->hall_pass - 2;
+        }
+        $cbal->save();
+
+         if(true){
+            $cbal->hall_pass = (int)$cbal->hall_pass - 1;
+        }
+
+        $cbal->save();
+
+        if($data['prize'] == 'hall pass'){
+            $newHall = (int)$cbal->hall_pass + (int)$data['qty'];
+            $cbal->update(['hall_pass'=>$newHall]);
+        }else if($data['prize'] == 'white crystal'){
+            $newHall = (int)$cbal->white_crystal + (int)$data['qty'];
+            $cbal->update(['white_crystal'=>$newHall]);
+        }else if($data['prize'] == 'purple crystal'){
+            $newHall = (int)$cbal->purple_crystal + (int)$data['qty'];
+            $cbal->update(['purple_crystal'=>$newHall]);
+        }
+
+        
+
+
+        
+    }
 }

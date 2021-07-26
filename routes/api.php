@@ -137,6 +137,9 @@ Route::prefix('v1')->group(function(){
         //slot machine
         Route::post('/games/bet', 'ApiEventController@bet');
 
+        //spins
+        Route::post('/games/spin', 'ApiEventController@spin');
+
     });
 
     // public
