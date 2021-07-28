@@ -290,7 +290,6 @@ Route::prefix('tickets')->name('tickets.')->middleware('auth')->group(function()
 });
 
 // images
-
 Route::prefix('admin/images')->name('admin.images.')->middleware('auth:admin')->group(function(){
     Route::get('/', 'Admin\ImageManagementController@index')->name('menu');
 
@@ -331,16 +330,14 @@ Route::post('password-confirm', function(){ //to check the password
     return Hash::check($ipassword, auth()->guard('admin')->user()->password);
 })->name('password-confirm');
 
+
+//
 Route::post('autofill-aduio-book', 'autoFillController')->name('auto.fill');
 
 //support chat //customer support 
 Route::view('support-chat', 'support_chat');
 
-
-
-
 //payment
-
 Route::get('payment-pay', 'PaymentController@pay')->name('payment.pay');
 Route::get('payment-success', 'PaymentController@success')->name('payment.success');
 Route::get('payment-failed', 'PaymentController@success')->name('payment.failed');
