@@ -22,8 +22,8 @@ class ApiCommentController extends Controller
 
     public function storeArtComment($data){
         $art = Art::find($data['work_id']);
-        $data = $this->sanitize($data);
         $art->stars()->create(['value'=>$data['stars']]);
+        $data = $this->sanitize($data);
 
         $comment = $art->comments()->create($data);
 
@@ -32,8 +32,8 @@ class ApiCommentController extends Controller
 
     public function storeAudioComment($data){
         $work = Audio::find($data['work_id']);
-        $data = $this->sanitize($data);
         $work->stars()->create(['value'=>$data['stars']]);
+        $data = $this->sanitize($data);
         $comment = $work->comments()->create($data);
 
         return $comment;
@@ -41,8 +41,8 @@ class ApiCommentController extends Controller
 
     public function storeSongComment($data){
         $work = Song::find($data['work_id']);
-        $data = $this->sanitize($data);
         $work->stars()->create(['value'=>$data['stars']]);
+        $data = $this->sanitize($data);
 
         $comment = $work->comments()->create($data);
 
@@ -51,8 +51,8 @@ class ApiCommentController extends Controller
 
     public function storePodcastComment($data){
         $work = Podcast::find($data['work_id']);
-        $data = $this->sanitize($data);
         $work->stars()->create(['value'=>$data['stars']]);
+        $data = $this->sanitize($data);
 
         $comment = $work->comments()->create($data);
 
@@ -61,8 +61,8 @@ class ApiCommentController extends Controller
 
     public function storeFilmComment($data){
         $work = Thrailer::find($data['work_id']);
-        $data = $this->sanitize($data);
         $work->stars()->create(['value'=>$data['stars']]);
+        $data = $this->sanitize($data);
 
         $comment = $work->comments()->create($data);
 
@@ -134,8 +134,8 @@ class ApiCommentController extends Controller
 
     public function storeChapterComment($data){
         $chapter = Chapter::find($data['work_id']);
-        $data = $this->sanitize($data);
         $chapter->stars()->create(['value'=>$data['stars']]);
+        $data = $this->sanitize($data);
 
         $comment = $chapter->comments()->create($data);
 
