@@ -93,31 +93,31 @@ class ApiCommentController extends Controller
                     $stars = (int)Book::find($request->work_id)->stars()->avg('value');
             }
         }if($request->work_type == 'audio'){
-            if(Book::find($request->work_id)){
+            if(Audio::find($request->work_id)){
                     $comments = Audio::find($request->work_id)->comments()->with('user')->latest()->get();
                     $hearts = Audio::find($request->work_id)->likes()->count();
                     $stars = (int)Audio::find($request->work_id)->stars()->avg('value');
             }
         }if($request->work_type == 'film'){
-            if(Book::find($request->work_id)){
+            if(Thrailer::find($request->work_id)){
                     $comments = Thrailer::find($request->work_id)->comments()->with('user')->latest()->get();
                     $hearts = Thrailer::find($request->work_id)->likes()->count();
                     $stars = (int)Thrailer::find($request->work_id)->stars()->avg('value');
             }
         }if($request->work_type == 'podcast'){
-            if(Book::find($request->work_id)){
+            if(Podcast::find($request->work_id)){
                     $comments = Podcast::find($request->work_id)->comments()->with('user')->latest()->get();
                     $hearts = Podcast::find($request->work_id)->likes()->count();
                     $stars = (int)Podcast::find($request->work_id)->stars()->avg('value');
             }
         }if($request->work_type == 'song'){
-            if(Book::find($request->work_id)){
+            if(Song::find($request->work_id)){
                     $comments = Song::find($request->work_id)->comments()->with('user')->latest()->get();
                     $hearts = Song::find($request->work_id)->likes()->count();
                     $stars = (int)Song::find($request->work_id)->stars()->avg('value');
             }
         }if($request->work_type == 'art'){
-            if(Book::find($request->work_id)){
+            if(Art::find($request->work_id)){
                     $comments = Art::find($request->work_id)->comments()->with('user')->latest()->get();
                     $hearts = Art::find($request->work_id)->likes()->count();
                     $stars = (int)Art::find($request->work_id)->stars()->avg('value');
