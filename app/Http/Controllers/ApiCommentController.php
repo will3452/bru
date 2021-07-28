@@ -17,6 +17,7 @@ class ApiCommentController extends Controller
     public function sanitize($data){
         unset($data['work_type']);
         unset($data['work_id']);
+        unset($data['stars']);
         return $data;
     }
 
