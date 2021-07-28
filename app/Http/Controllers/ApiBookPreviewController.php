@@ -43,12 +43,17 @@ class ApiBookPreviewController extends Controller
     public function postFeedback($id){
         $book = Book::find($id);
         $data = request()->validate([
-            'message'=>'required'
+            'message1'=>'required',
+            'message2'=>'required'
         ]);
         $user = User::find(auth()->user()->id);
         $book->comments()->create([
             'user_id'=>$user->id, 
-            'message'=>$data['message']
+            'message'=>$data['message1']
+        ]);
+        $book->comments()->create([
+            'user_id'=>$user->id, 
+            'message'=>$data['message2']
         ]);
         return response([
             'result'=>200
