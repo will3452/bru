@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Book;
 use App\Chapter;
 use Illuminate\Http\Request;
 
@@ -27,6 +28,11 @@ class ApiCommentController extends Controller
             if(Chapter::find($request->work_id)){
                     $comments = Chapter::find($request->work_id)->comments()->with('user')->latest()->get();
                     $hearts = Chapter::find($request->work_id)->likes()->count();
+            }
+        }if($request->work_type == 'book'){
+            if(Book::find($request->work_id)){
+                    $comments = Book::find($request->work_id)->comments()->with('user')->latest()->get();
+                    $hearts = Book::find($request->work_id)->likes()->count();
             }
         }
         
