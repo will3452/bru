@@ -125,6 +125,8 @@ class ApiAuthController extends Controller
             'silver_ticket'=>0,
             'purple_crystal'=>0
         ];
+        
+        $royalties = $user->royalties;
 
        $user->royalties()->create($royalties);
        $response = [
