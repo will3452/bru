@@ -55,5 +55,9 @@ class Thrailer extends Model
      public function likes(){
         return $this->morphMany(Like::class, 'likeable');
     }
+
+    public function stars(){
+        return $this->morphMany(Star::class, 'starable');
+    }
     
 }

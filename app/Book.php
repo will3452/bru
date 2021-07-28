@@ -88,9 +88,12 @@ class Book extends Model
     {
         return $this->morphMany(Comment::class, 'commentable');
     }
-    
-     public function likes(){
+
+    public function likes(){
         return $this->morphMany(Like::class, 'likeable');
+    }
+    public function stars(){
+        return $this->morphMany(Star::class, 'starable');
     }
 
     public function quotes(){

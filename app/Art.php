@@ -44,6 +44,11 @@ class Art extends Model
         return $this->morphMany(Like::class, 'likeable');
     }
 
+    public function stars(){
+        return $this->morphMany(Star::class, 'starable');
+    }
+    
+
     public function collections()
     {
         return $this->morphToMany(Collection::class, 'collectionable');

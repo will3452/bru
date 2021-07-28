@@ -51,7 +51,10 @@ class Audio extends Model
      public function likes(){
         return $this->morphMany(Like::class, 'likeable');
     }
-    
+    public function stars(){
+        return $this->morphMany(Star::class, 'starable');
+    }
+
     public function playlists()
     {
         return $this->morphToMany(Playlist::class, 'playlistable');

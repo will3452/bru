@@ -47,5 +47,8 @@ class Podcast extends Model
     {
         return $this->morphToMany(Playlist::class, 'playlistable');
     }
+    public function stars(){
+        return $this->morphMany(Star::class, 'starable');
+    }
 
 }

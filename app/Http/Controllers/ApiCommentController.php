@@ -23,6 +23,7 @@ class ApiCommentController extends Controller
     public function storeArtComment($data){
         $art = Art::find($data['work_id']);
         $data = $this->sanitize($data);
+        $art->stars()->create(['value'=>$data['stars']]);
 
         $comment = $art->comments()->create($data);
 
@@ -32,7 +33,7 @@ class ApiCommentController extends Controller
     public function storeAudioComment($data){
         $work = Audio::find($data['work_id']);
         $data = $this->sanitize($data);
-
+        $work->stars()->create(['value'=>$data['stars']]);
         $comment = $work->comments()->create($data);
 
         return $comment;
@@ -41,6 +42,7 @@ class ApiCommentController extends Controller
     public function storeSongComment($data){
         $work = Song::find($data['work_id']);
         $data = $this->sanitize($data);
+        $work->stars()->create(['value'=>$data['stars']]);
 
         $comment = $work->comments()->create($data);
 
@@ -50,6 +52,7 @@ class ApiCommentController extends Controller
     public function storePodcastComment($data){
         $work = Podcast::find($data['work_id']);
         $data = $this->sanitize($data);
+        $work->stars()->create(['value'=>$data['stars']]);
 
         $comment = $work->comments()->create($data);
 
@@ -59,6 +62,7 @@ class ApiCommentController extends Controller
     public function storeFilmComment($data){
         $work = Thrailer::find($data['work_id']);
         $data = $this->sanitize($data);
+        $work->stars()->create(['value'=>$data['stars']]);
 
         $comment = $work->comments()->create($data);
 
@@ -73,47 +77,56 @@ class ApiCommentController extends Controller
 
         $comments = [];
         $hearts = 0;
+        $stars = 0;
 
         if($request->work_type == 'chapter'){
             if(Chapter::find($request->work_id)){
                     $comments = Chapter::find($request->work_id)->comments()->with('user')->latest()->get();
                     $hearts = Chapter::find($request->work_id)->likes()->count();
+                    $stars = abs(Chapter::find($request->work_id)->stars()->avg('value'));
             }
         }if($request->work_type == 'book'){
             if(Book::find($request->work_id)){
                     $comments = Book::find($request->work_id)->comments()->with('user')->latest()->get();
                     $hearts = Book::find($request->work_id)->likes()->count();
+                    $stars = abs(Book::find($request->work_id)->stars()->avg('value'));
             }
         }if($request->work_type == 'audio'){
             if(Book::find($request->work_id)){
                     $comments = Audio::find($request->work_id)->comments()->with('user')->latest()->get();
                     $hearts = Audio::find($request->work_id)->likes()->count();
+                    $stars = abs(Audio::find($request->work_id)->stars()->avg('value'));
             }
         }if($request->work_type == 'film'){
             if(Book::find($request->work_id)){
                     $comments = Thrailer::find($request->work_id)->comments()->with('user')->latest()->get();
                     $hearts = Thrailer::find($request->work_id)->likes()->count();
+                    $stars = abs(Thrailer::find($request->work_id)->stars()->avg('value'));
             }
         }if($request->work_type == 'podcast'){
             if(Book::find($request->work_id)){
                     $comments = Podcast::find($request->work_id)->comments()->with('user')->latest()->get();
                     $hearts = Podcast::find($request->work_id)->likes()->count();
+                    $stars = abs(Podcast::find($request->work_id)->stars()->avg('value'));
             }
         }if($request->work_type == 'song'){
             if(Book::find($request->work_id)){
                     $comments = Song::find($request->work_id)->comments()->with('user')->latest()->get();
                     $hearts = Song::find($request->work_id)->likes()->count();
+                    $stars = abs(Song::find($request->work_id)->stars()->avg('value'));
             }
         }if($request->work_type == 'art'){
             if(Book::find($request->work_id)){
                     $comments = Art::find($request->work_id)->comments()->with('user')->latest()->get();
                     $hearts = Art::find($request->work_id)->likes()->count();
+                    $stars = abs(Art::find($request->work_id)->stars()->avg('value'));
             }
         }
         
         return response([
             'hearts'=> $hearts,
             'comments'=>$comments,
+            'stars'=>$stars,
             'size'=>count($comments ?? []),
             'result'=>200
         ], 200);
@@ -122,6 +135,7 @@ class ApiCommentController extends Controller
     public function storeChapterComment($data){
         $chapter = Chapter::find($data['work_id']);
         $data = $this->sanitize($data);
+        $chapter->stars()->create(['value'=>$data['stars']]);
 
         $comment = $chapter->comments()->create($data);
 
@@ -133,6 +147,7 @@ class ApiCommentController extends Controller
             'work_type'=>'required',
             'work_id'=>'required',
             'message'=>'required',
+            'stars'=>'',
             'reply_to'=>''
         ]);
 
