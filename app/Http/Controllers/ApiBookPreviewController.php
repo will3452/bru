@@ -44,17 +44,21 @@ class ApiBookPreviewController extends Controller
         $book = Book::find($id);
         $data = request()->validate([
             'message1'=>'required',
-            'message2'=>'required'
+            'message2'=>'required',
+            'stars'=>''
         ]);
+
         $user = User::find(auth()->user()->id);
         $book->comments()->create([
             'user_id'=>$user->id, 
             'message'=>$data['message1']
         ]);
+
         $book->comments()->create([
             'user_id'=>$user->id, 
             'message'=>$data['message2']
         ]);
+        $book->stars()->create(['value'=>$data['stars']]);
         return response([
             'result'=>200
         ], 200);
