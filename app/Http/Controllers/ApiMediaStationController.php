@@ -82,7 +82,7 @@ class ApiMediaStationController extends Controller
             $books = Podcast::where('part_of', request()->part_of)->get();
         }
         return response([
-            'podcasts'=>$books
+            'podcasts'=>$books,
             'size'=>count($books),
             'result'=>200
         ], 200);
