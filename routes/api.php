@@ -98,6 +98,7 @@ Route::prefix('v1')->group(function(){
 
         //books
         Route::get('/book-chapter/{id}', 'ApiBookPreviewController@show');
+        Route::get('/get-book-questions/{id}', 'ApiBookPreviewController@getQuestionFeedbacks');
 
         // comments
         Route::get('/comments', 'ApiCommentController@getComments');
@@ -145,6 +146,7 @@ Route::prefix('v1')->group(function(){
 
         Route::get('/latest-log', 'ApiDailyLogController@getLatestLog');
         Route::post('/get-log', 'ApiDailyLogController@storeLog');
+
 
     });
 

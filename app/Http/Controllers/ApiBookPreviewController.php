@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\User;
 use Illuminate\Http\Request;
 
 class ApiBookPreviewController extends Controller
@@ -20,7 +21,7 @@ class ApiBookPreviewController extends Controller
                 'result'=>200
             ],200);
         }
-        
+
         $chapters = $book->chapters()->paginate(1);
         return response([
             'chapters'=>$chapters,
@@ -28,5 +29,14 @@ class ApiBookPreviewController extends Controller
             'book_author'=>$book->author,
             'result'=>200
         ],200);
+    }
+
+    public function getQuestionFeedbacks($id){
+        $book = Book::find($id);
+        return response([
+            'review_question_1'=>$book->review_question_1,
+            'review_question_2'=>$book->review_question_2,
+            'result'=>200
+        ], 200);
     }
 }
