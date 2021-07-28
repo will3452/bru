@@ -38,6 +38,7 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+        return 'this is under maintenance';
         $dayAway = ((int)Setting::find(1)->event_day_away) - 1;
         $validated = $this->validate($request, [
             "name" => "required",

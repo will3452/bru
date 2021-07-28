@@ -5,6 +5,16 @@
         <input type="text" class="form-control" name="name" required>
     </div>
     <div class="form-group">
+        
+        <label for="">
+            Event Description
+        </label>
+        <textarea name="desc" id="" cols="30" rows="5" required class="form-control"></textarea>
+        <div class="alert alert-warning mt-2">
+            Describe the event to lure the users in. 
+        </div>
+    </div>
+    <div class="form-group">
         <label for="">Hosted By</label>
         <select name="hosted_by" id="" class="custom-select select2">
             @foreach(auth()->user()->pens as $pen)
@@ -151,46 +161,73 @@
         </div>
     </div>
     <div class="form-group">
-        
         <label for="">
-            Event Description
+            Do you wish to create a MINI-GAME for your Event? 
         </label>
-        <textarea name="desc" id="" cols="30" rows="5" required class="form-control"></textarea>
-        <div class="alert alert-warning mt-2">
-            Describe the event to lure the users in. 
+         <div class="d-flex">
+            <div class="mr-4">
+                <input type="radio" value="yes" wire:model="hasgame">
+                Yes
+            </div>
+            <div class="mr-4">
+                <input type="radio" value="no" wire:model="hasgame">
+                No
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        <label for="">Type</label>
-        <select name="type" id="" class="select2 custom-select">
-            <option value="Quiz Game">Quiz Game</option>
-            <option value="Slots Machine">Slots Machine</option>
-            <option value="Wheel">Wheel</option>
-            <option value="Puzzle Game">Puzzle Game</option>
-        </select>
-    </div>
-    <div class="alert alert-warning d-flex">
-            <i class="fa fa-info mr-2"></i>
-            <div>
-                <ul>
-                    <li>Students shall be required to pay CRYSTAL to participate in your event.</li>
-                    <li>Please select whether entry cost is WHITE CRYSTAL or PURPLE CRYSTAL.</li>
-                    <li>Please set how many CRYSTAL will you be requiring from the students.</li>
-                </ul>
+    
+    @if ($hasgame == 'yes')
+        <div class="form-group">
+            <label for="">Type of Game</label>
+            <div class="d-flex">
+                <div class="mr-4">
+                    <input type="radio" value="Quiz Game" wire:model="type" name="type">
+                    Quiz Game
+                </div>
+                <div class="mr-4">
+                    <input type="radio" value="Slots Machine" wire:model="type" name="type">
+                    Slots Machine
+                </div>
+                <div class="mr-4">
+                    <input type="radio" value="Wheel" wire:model="type" name="type">
+                    Wheel
+                </div>
+                <div class="mr-4">
+                    <input type="radio" value="Puzzle Game" wire:model="type" name="type">
+                    Puzzle Game
+                </div>
             </div>
-    </div>
-    <div class="form-group">
-        <label for="">Crystal Type</label>
-        <select name="gem" id="" class="custom-select">
-            <option value="purple">PURPLE</option>
-            <option value="white">WHITE</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="">Entry Cost</label>
-        <input type="text" name="cost" class="form-control" required>
-    </div>
-    <div class="form-group">
-        <button class="btn btn-block btn-primary">Create</button>
-    </div>
+        </div>
+        <div class="alert alert-warning d-flex">
+                <i class="fa fa-info mr-2"></i>
+                <div>
+                    <ul>
+                        <li>Students shall be required to pay CRYSTAL to participate in your event.</li>
+                        <li>Please select whether entry cost is WHITE CRYSTAL or PURPLE CRYSTAL.</li>
+                        <li>Please set how many CRYSTAL will you be requiring from the students.</li>
+                    </ul>
+                </div>
+        </div>
+        <div class="form-group">
+            <label for="">Crystal Type</label>
+            <select name="gem" id="" class="custom-select">
+                <option value="purple">PURPLE</option>
+                <option value="white">WHITE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="">Entry Cost</label>
+            <input type="text" name="cost" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-block btn-primary">Create Event and setup Game now?</button>
+        </div>
+    @endif
+
+    @if ($hasgame == 'no')
+        <div class="form-group">
+            <button class="btn btn-block btn-primary">Create Event</button>
+        </div>
+    @endif
+    
 </form>

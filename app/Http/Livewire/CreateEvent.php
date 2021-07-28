@@ -12,6 +12,8 @@ class CreateEvent extends Component
     public $works = [];
     public $grouptype = 'series';
     public $groups = [];
+    public $hasgame = 'no';
+    public $type = 'Quiz Game';
 
     public function mount(){
         $this->works = auth()->user()->books()->whereNotNull('publish_date')->get();

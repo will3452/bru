@@ -2,7 +2,7 @@
 @section('main-content')
     <div class="d-flex align-items-center justify-content-between">
         <h1 class="h3 mb-4 text-gray-800">{{ __('Marketing') }}</h1>
-        <a href="{{ route('marketing.create') }}" class="btn btn-primary btn-sm">Create</a>
+        <a href="{{ route('marketing.create') }}" class="btn btn-primary btn-sm">Create New</a>
     </div>
     <table id="marketable" class="table">
         <thead>

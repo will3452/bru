@@ -86,7 +86,7 @@
             </div>
             <div class="form-group">
                 <label for="">
-                    Upload image banner for bulletin post
+                    Upload image for the actual bulletin post.
                 </label>
                 <input type="file" accept="image/*" class="d-block" name="image_post" required>
                 <div class="alert alert-warning mt-2">
@@ -139,7 +139,7 @@
                 </div>
             @else 
                 <label for="">It's okay. Let's make one right now. </label>
-                <a href="/banner-maker" target="_blank">go to banner maker</a>
+                <a href="/banner-maker" target="_blank">Go to the Banner Maker</a>
             @endif
         @endif
 
