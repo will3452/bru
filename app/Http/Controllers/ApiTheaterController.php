@@ -45,6 +45,7 @@ class ApiTheaterController extends Controller
             'author'=>$user,
             'work'=>$work,
             'other_works'=>$other,
+            'stars'=>abs($work->stars()->avg('value')) ?? 0,
             'is_in_collection'=>auth()->user()->isFilmIsInTheBox($id),
             'result'=>200
         ], 200);
@@ -99,6 +100,7 @@ class ApiTheaterController extends Controller
         return response([
             'author'=>$user,
             'work'=>$work,
+            'stars'=>abs($work->stars()->avg('value')) ?? 0,
             'other_works'=>$other,
             'is_in_collection'=>auth()->user()->isSongIsInTheBox($id),
             'result'=>200
