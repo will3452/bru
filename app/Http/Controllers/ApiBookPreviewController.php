@@ -58,7 +58,7 @@ class ApiBookPreviewController extends Controller
             'user_id'=>$user->id, 
             'message'=>$data['message2']
         ]);
-        $book->stars()->create(['value'=>$data['stars']]);
+        $book->stars()->create(['value'=>$data['stars'], 'user_id'=>auth()->user()->id]);
         return response([
             'result'=>200
         ], 200);

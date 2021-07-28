@@ -22,7 +22,7 @@ class ApiCommentController extends Controller
 
     public function storeArtComment($data){
         $art = Art::find($data['work_id']);
-        $art->stars()->create(['value'=>$data['stars']]);
+        $art->stars()->create(['value'=>$data['stars'], 'user_id'=>auth()->user()->id]);
         $data = $this->sanitize($data);
 
         $comment = $art->comments()->create($data);
@@ -32,7 +32,7 @@ class ApiCommentController extends Controller
 
     public function storeAudioComment($data){
         $work = Audio::find($data['work_id']);
-        $work->stars()->create(['value'=>$data['stars']]);
+        $work->stars()->create(['value'=>$data['stars'],'user_id'=>auth()->user()->id]);
         $data = $this->sanitize($data);
         $comment = $work->comments()->create($data);
 
@@ -41,7 +41,7 @@ class ApiCommentController extends Controller
 
     public function storeSongComment($data){
         $work = Song::find($data['work_id']);
-        $work->stars()->create(['value'=>$data['stars']]);
+        $work->stars()->create(['value'=>$data['stars'],'user_id'=>auth()->user()->id]);
         $data = $this->sanitize($data);
 
         $comment = $work->comments()->create($data);
@@ -51,7 +51,7 @@ class ApiCommentController extends Controller
 
     public function storePodcastComment($data){
         $work = Podcast::find($data['work_id']);
-        $work->stars()->create(['value'=>$data['stars']]);
+        $work->stars()->create(['value'=>$data['stars'],'user_id'=>auth()->user()->id]);
         $data = $this->sanitize($data);
 
         $comment = $work->comments()->create($data);
@@ -61,9 +61,9 @@ class ApiCommentController extends Controller
 
     public function storeFilmComment($data){
         $work = Thrailer::find($data['work_id']);
-        $work->stars()->create(['value'=>$data['stars']]);
+        $work->stars()->create(['value'=>$data['stars'],'user_id'=>auth()->user()->id]);
         $data = $this->sanitize($data);
-
+        
         $comment = $work->comments()->create($data);
 
         return $comment;
@@ -134,7 +134,7 @@ class ApiCommentController extends Controller
 
     public function storeChapterComment($data){
         $chapter = Chapter::find($data['work_id']);
-        $chapter->stars()->create(['value'=>$data['stars']]);
+        $chapter->stars()->create(['value'=>$data['stars'], 'users_id'=>auth()->user()->id]);
         $data = $this->sanitize($data);
 
         $comment = $chapter->comments()->create($data);
