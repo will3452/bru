@@ -18,7 +18,7 @@ class CreateStarsTable extends Migration
             $table->foreignId('user_id');
             // $table->foreignId('reply_to')->nullable();
             // $table->text('message');
-            $table->int('value')->default(0);
+            $table->integer('value')->default(0);
             $table->string('starable_type');
             $table->foreignId('starable_id');
             $table->timestamps();
