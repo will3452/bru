@@ -39,6 +39,7 @@ class ApiMediaStationController extends Controller
         return response([
             'author'=>$user,
             'book'=>$book,
+            'stars'=>abs($book->stars()->avg('value')) ?? 0,
             'other_works'=>$other,
             'is_in_collection'=>auth()->user()->isAudioIsInTheBox($id),
             'result'=>200

@@ -41,6 +41,7 @@ class ApiMuseumController extends Controller
             'author'=>$user,
             'art'=>$art,
             'other_works'=>$other,
+            'stars'=>abs($art->stars()->avg('value')) ?? 0,
             'other_works_size'=>count($other ?? []),
             'is_in_collection'=>auth()->user()->isArtIsInTheBox($id),
             'result'=>200
