@@ -39,4 +39,21 @@ class ApiBookPreviewController extends Controller
             'result'=>200
         ], 200);
     }
+
+    public function postFeedback($id){
+        $book = Book::find($id);
+        $data = request()->validate([
+            'message'=>'required'
+        ]);
+        $user = User::find(auth()->user()->id);
+        $book->comments()->create([
+            'user_id'=>$user->id, 
+            'message'=>$data['message']
+        ]);
+        return response([
+            'result'=>200
+        ], 200);
+    }
+
+    
 }
