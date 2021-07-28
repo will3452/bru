@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Art;
 use App\Book;
+use App\Song;
+use App\Audio;
 use App\Chapter;
+use App\Podcast;
+use App\Thrailer;
 use Illuminate\Http\Request;
 
 class ApiCommentController extends Controller
@@ -13,6 +18,51 @@ class ApiCommentController extends Controller
         unset($data['work_type']);
         unset($data['work_id']);
         return $data;
+    }
+
+    public function storeArtComment($data){
+        $art = Art::find($data['work_id']);
+        $data = $this->sanitize($data);
+
+        $comment = $art->comments()->create($data);
+
+        return $comment;
+    }
+
+    public function storeAudioComment($data){
+        $work = Audio::find($data['work_id']);
+        $data = $this->sanitize($data);
+
+        $comment = $work->comments()->create($data);
+
+        return $comment;
+    }
+
+    public function storeSongComment($data){
+        $work = Song::find($data['work_id']);
+        $data = $this->sanitize($data);
+
+        $comment = $work->comments()->create($data);
+
+        return $comment;
+    }
+
+    public function storePodcastComment($data){
+        $work = Podcast::find($data['work_id']);
+        $data = $this->sanitize($data);
+
+        $comment = $work->comments()->create($data);
+
+        return $comment;
+    }
+
+    public function storeFilmComment($data){
+        $work = Thrailer::find($data['work_id']);
+        $data = $this->sanitize($data);
+
+        $comment = $work->comments()->create($data);
+
+        return $comment;
     }
 
     public function getComments(Request $request){
@@ -33,6 +83,31 @@ class ApiCommentController extends Controller
             if(Book::find($request->work_id)){
                     $comments = Book::find($request->work_id)->comments()->with('user')->latest()->get();
                     $hearts = Book::find($request->work_id)->likes()->count();
+            }
+        }if($request->work_type == 'audio'){
+            if(Book::find($request->work_id)){
+                    $comments = Audio::find($request->work_id)->comments()->with('user')->latest()->get();
+                    $hearts = Audio::find($request->work_id)->likes()->count();
+            }
+        }if($request->work_type == 'film'){
+            if(Book::find($request->work_id)){
+                    $comments = Thrailer::find($request->work_id)->comments()->with('user')->latest()->get();
+                    $hearts = Thrailer::find($request->work_id)->likes()->count();
+            }
+        }if($request->work_type == 'podcast'){
+            if(Book::find($request->work_id)){
+                    $comments = Podcast::find($request->work_id)->comments()->with('user')->latest()->get();
+                    $hearts = Podcast::find($request->work_id)->likes()->count();
+            }
+        }if($request->work_type == 'song'){
+            if(Book::find($request->work_id)){
+                    $comments = Song::find($request->work_id)->comments()->with('user')->latest()->get();
+                    $hearts = Song::find($request->work_id)->likes()->count();
+            }
+        }if($request->work_type == 'art'){
+            if(Book::find($request->work_id)){
+                    $comments = Art::find($request->work_id)->comments()->with('user')->latest()->get();
+                    $hearts = Art::find($request->work_id)->likes()->count();
             }
         }
         
@@ -66,6 +141,16 @@ class ApiCommentController extends Controller
         $comment = null;
         if($request->work_type == 'chapter'){
             $comment = $this->storeChapterComment($data);
+        }else if($request->work_type == 'art'){
+            $comment = $this->storeArtComment($data);
+        }else if($request->work_type == 'audio'){
+            $comment = $this->storeAudioComment($data);
+        }else if($request->work_type == 'song'){
+            $comment = $this->storeSongComment($data);
+        }else if($request->work_type == 'podcast'){
+            $comment = $this->storePodcastComment($data);
+        }else if($request->work_type == 'film'){
+            $comment = $this->storeFilmComment($data);
         }
 
         return response([

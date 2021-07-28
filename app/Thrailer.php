@@ -47,5 +47,13 @@ class Thrailer extends Model
     public function boxes(){
         return $this->morphToMany(Box::class, 'boxable');
     }
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+    
+     public function likes(){
+        return $this->morphMany(Like::class, 'likeable');
+    }
     
 }

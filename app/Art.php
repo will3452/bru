@@ -35,6 +35,15 @@ class Art extends Model
         return self::get();
     }
 
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+    
+     public function likes(){
+        return $this->morphMany(Like::class, 'likeable');
+    }
+
     public function collections()
     {
         return $this->morphToMany(Collection::class, 'collectionable');
