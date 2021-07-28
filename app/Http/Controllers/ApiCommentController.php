@@ -84,43 +84,43 @@ class ApiCommentController extends Controller
             if(Chapter::find($request->work_id)){
                     $comments = Chapter::find($request->work_id)->comments()->with('user')->latest()->get();
                     $hearts = Chapter::find($request->work_id)->likes()->count();
-                    $stars = abs(Chapter::find($request->work_id)->stars()->avg('value'));
+                    $stars = (int)Chapter::find($request->work_id)->stars()->avg('value');
             }
         }if($request->work_type == 'book'){
             if(Book::find($request->work_id)){
                     $comments = Book::find($request->work_id)->comments()->with('user')->latest()->get();
                     $hearts = Book::find($request->work_id)->likes()->count();
-                    $stars = abs(Book::find($request->work_id)->stars()->avg('value'));
+                    $stars = (int)Book::find($request->work_id)->stars()->avg('value');
             }
         }if($request->work_type == 'audio'){
             if(Book::find($request->work_id)){
                     $comments = Audio::find($request->work_id)->comments()->with('user')->latest()->get();
                     $hearts = Audio::find($request->work_id)->likes()->count();
-                    $stars = abs(Audio::find($request->work_id)->stars()->avg('value'));
+                    $stars = (int)Audio::find($request->work_id)->stars()->avg('value');
             }
         }if($request->work_type == 'film'){
             if(Book::find($request->work_id)){
                     $comments = Thrailer::find($request->work_id)->comments()->with('user')->latest()->get();
                     $hearts = Thrailer::find($request->work_id)->likes()->count();
-                    $stars = abs(Thrailer::find($request->work_id)->stars()->avg('value'));
+                    $stars = (int)Thrailer::find($request->work_id)->stars()->avg('value');
             }
         }if($request->work_type == 'podcast'){
             if(Book::find($request->work_id)){
                     $comments = Podcast::find($request->work_id)->comments()->with('user')->latest()->get();
                     $hearts = Podcast::find($request->work_id)->likes()->count();
-                    $stars = abs(Podcast::find($request->work_id)->stars()->avg('value'));
+                    $stars = (int)Podcast::find($request->work_id)->stars()->avg('value');
             }
         }if($request->work_type == 'song'){
             if(Book::find($request->work_id)){
                     $comments = Song::find($request->work_id)->comments()->with('user')->latest()->get();
                     $hearts = Song::find($request->work_id)->likes()->count();
-                    $stars = abs(Song::find($request->work_id)->stars()->avg('value'));
+                    $stars = (int)Song::find($request->work_id)->stars()->avg('value');
             }
         }if($request->work_type == 'art'){
             if(Book::find($request->work_id)){
                     $comments = Art::find($request->work_id)->comments()->with('user')->latest()->get();
                     $hearts = Art::find($request->work_id)->likes()->count();
-                    $stars = abs(Art::find($request->work_id)->stars()->avg('value'));
+                    $stars = (int)Art::find($request->work_id)->stars()->avg('value');
             }
         }
         
