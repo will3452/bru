@@ -135,7 +135,9 @@ class ApiCommentController extends Controller
 
     public function storeChapterComment($data){
         $chapter = Chapter::find($data['work_id']);
-        $chapter->stars()->create(['value'=>$data['stars'], 'users_id'=>auth()->user()->id]);
+        if($data['stars'] != -1){
+            $chapter->stars()->create(['value'=>$data['stars'], 'users_id'=>auth()->user()->id]);
+        }
         $data = $this->sanitize($data);
 
         $comment = $chapter->comments()->create($data);
@@ -151,6 +153,10 @@ class ApiCommentController extends Controller
             'stars'=>'',
             'reply_to'=>''
         ]);
+
+        if(!isset($request->stars)){
+            $data['stars'] = -1;
+        }
 
         $userId = auth()->user()->id;
         $data['user_id'] = $userId;
