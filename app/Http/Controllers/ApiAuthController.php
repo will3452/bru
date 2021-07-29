@@ -126,7 +126,8 @@ class ApiAuthController extends Controller
             'purple_crystal'=>0
         ];
         
-        $royalties = $user->royalties;
+        //user
+        $this->dayLogCreate($user);
 
        $user->royalties()->create($royalties);
        $response = [
