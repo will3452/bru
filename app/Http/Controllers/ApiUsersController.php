@@ -14,7 +14,7 @@ class ApiUsersController extends Controller
         foreach($users as $u){
             $u->has_requests = $u->hasFriendRequestFrom($user);
             $u->was_followed = $u->isFollowedBy($user);
-            $u->was_friend = $u->isFriendWith($friend);
+            $u->was_friend = $u->isFriendWith($user);
         }
         return response([
             'users'=>$users,
@@ -114,7 +114,7 @@ class ApiUsersController extends Controller
         foreach($users as $u){
             $u->has_requests = $u->hasFriendRequestFrom($user);
             $u->was_followed = $u->isFollowedBy($user);
-            $u->was_friend = $u->isFriendWith($friend);
+            $u->was_friend = $u->isFriendWith($user);
         }
 
         return response([
