@@ -83,9 +83,13 @@ class ApiUsersController extends Controller
 
     public function friendRequests(){
         $user = User::find(auth()->user()->id);
-        $pending = $user->getFriendRequests();
+        $pendings = $user->getFriendRequests();
+        foreach($pendings as $req){
+            $sender = User::find($req->sender_id);
+            $req->sender = $sender;
+        }
         return response([
-            'requests'=>$pending,
+            'requests'=>$pendings,
             'result'=>200,
         ],200);
     }
