@@ -10,7 +10,9 @@ class ApiUsersController extends Controller
     public function getUsers(){
         $user = User::find(auth()->user()->id);
         $friends = $user->getFriends()->pluck('id')->all();
-        $users = User::where('id','!=', $user->id)->whereNotIn('id',$friends)->orderBy('role', 'ASC')->get();
+        $follows = $user->followings()->get()->pluck('id');
+        $merge = $follows->merge($friends);
+        $users = User::where('id','!=', $user->id)->whereNotIn('id',$merge)->orderBy('role', 'ASC')->get();
 
         return response([
             'users'=>$users,
@@ -87,7 +89,7 @@ class ApiUsersController extends Controller
         $user = User::find(auth()->user()->id);
         
         $pendings = $user->getFriendRequests();
-        
+
         foreach($pendings as $req){
             $sender = User::find($req->sender_id);
             $req->sender = $sender;
