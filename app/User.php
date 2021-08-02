@@ -323,8 +323,8 @@ class User extends Authenticatable implements MustVerifyEmail
         //Auth::user()->friends()->detach([2]); // Remove user_id = 2
     }
 
-    public function getAfriendsAttribute(){
-       $usersid =  \DB::table('friend_user')->where(['friend_id'=>$this->id, 'status'=>'accepted'])->get()->pluck('user_id');
+    public function getAllFriendsAttribute(){
+       $usersid =  \DB::table('friend_user')->where(['friend_id'=>$this->id, 'status'=>'accepted'])->orWhere(['user_id'=>$this->id, 'status'=>'accepted'])->get()->pluck('user_id');
        return self::whereIn('id', $usersid)->get();
     }
     

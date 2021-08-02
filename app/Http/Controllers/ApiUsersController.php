@@ -52,10 +52,8 @@ class ApiUsersController extends Controller
 
     public function allFriends(){
         $user = User::find(auth()->user()->id);
-        $friends = $user->friends()->wherePivot('status', '!=', 'pending')->get();
-        $merged = $friends->merge($user->afriends);
         return response([
-            'friends'=>$merged,
+            'friends'=>$user->all_friends,
             'result'=>200
         ], 200);
     }
