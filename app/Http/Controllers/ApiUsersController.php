@@ -9,11 +9,11 @@ class ApiUsersController extends Controller
 {
     public function getUsers(){
         $user = User::find(auth()->user()->id);
-        $friends = $user->getFriends()->pluck('id')->all();
-        $follows = $user->followings()->get()->pluck('id');
-        $merge = $follows->merge($friends);
-        $users = User::where('id','!=', $user->id)->whereNotIn('id',$merge)->orderBy('role', 'ASC')->get();
-
+        // $friends = $user->getFriends()->pluck('id')->all();
+        $users = User::where('id','!=', $user->id)->get();
+        foreach($users as $u){
+            $u->has_requests = $u->hasFriendRequestFrom($user);
+        }
         return response([
             'users'=>$users,
             'result'=>200
