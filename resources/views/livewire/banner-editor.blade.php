@@ -117,7 +117,13 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <input type="text" id="penname" value="PEN NAME" class="form-control" placeholder="Type your Pen Name here." oninput="init()" style="width:100%">
+                                        <select name="" id="" id="penname" value="PEN NAME" class="form-control"  onchange="init()" style="width:100%">
+                                            <option value="">----</option>
+                                            @foreach (auth()->user()->pens as $item)
+                                                <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        {{-- <input type="text" id="penname" value="PEN NAME" class="form-control" placeholder="Type your Pen Name here."> --}}
                                     </div>
                                     <div class="row">
                                         <div class="col-12">
