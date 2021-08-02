@@ -117,7 +117,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <select name="" id="" id="penname" value="PEN NAME" class="form-control"  onchange="init()" style="width:100%">
+                                        <select name="" id="" id="penname"  class="custom-select"  onchange="init()" style="width:100%">
                                             <option value="">----</option>
                                             @foreach (auth()->user()->pens as $item)
                                                 <option value="{{ $item->name }}">{{ $item->name }}</option>
