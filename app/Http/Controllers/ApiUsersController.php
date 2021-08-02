@@ -31,8 +31,8 @@ class ApiUsersController extends Controller
             'user_id'=>'required'
         ]);
         $user = User::find(auth()->user()->id);
-        $recipient = User::find(request()->user_id);
-        $user->befriend($recipient);
+        $r = User::find(request()->user_id);
+        $user->befriend($r);
         return response([
             'result'=>200,
         ],200);
@@ -85,7 +85,9 @@ class ApiUsersController extends Controller
 
     public function friendRequests(){
         $user = User::find(auth()->user()->id);
+        
         $pendings = $user->getFriendRequests();
+        
         foreach($pendings as $req){
             $sender = User::find($req->sender_id);
             $req->sender = $sender;
