@@ -25,19 +25,69 @@ class ApiUsersController extends Controller
     }
 
     public function addFriend(){
-        
+        request()->validate([
+            'user_id'=>'required'
+        ]);
+        $user = User::find(auth()->user()->id);
+        $recipient = User::find(request()->user_id);
+        $user->befriend($recipient);
+        return response([
+            'result'=>200,
+        ],200);
     }
 
     public function acceptFriend(){
-        
+        request()->validate([
+            'user_id'=>'required'
+        ]);
+        $user = User::find(auth()->user()->id);
+        $sender = User::find(request()->user_id);
+        $user->acceptFriendRequest($sender);
+        return response([
+            'result'=>200,
+        ],200);
+    }
+
+    public function denyFriend(){
+        request()->validate([
+            'user_id'=>'required'
+        ]);
+        $user = User::find(auth()->user()->id);
+        $sender = User::find(request()->user_id);
+        $user->denyFriendRequest($sender);
+        return response([
+            'result'=>200,
+        ],200);
+    }
+
+    public function unFriend(){
+        request()->validate([
+            'user_id'=>'required'
+        ]);
+        $user = User::find(auth()->user()->id);
+        $friend = User::find(request()->user_id);
+        $user->unfriend($friend);
+        return response([
+            'result'=>200,
+        ],200);
     }
 
     public function allFriends(){
-        
+        $user = User::find(auth()->user()->id);
+        $friends = $user->getFriends();
+        return response([
+            'friends'=>$friends,
+            'result'=>200
+        ], 200);
     }
 
     public function friendRequests(){
-        
+        $user = User::find(auth()->user()->id);
+        $pending = $user->getFriendRequests();
+        return response([
+            'pending'=>$pending,
+            'result'=>200
+        ], 200);
     }
 
 }

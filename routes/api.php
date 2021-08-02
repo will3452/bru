@@ -153,10 +153,12 @@ Route::prefix('v1')->group(function(){
         Route::get('/users/{id}', 'ApiUsersController@showUser');
 
         //add friend users 
-        // Route::post('/add-friend', 'ApiUsersController@addFriend');
-        // Route::get('/all-friends', 'ApiUsersController@allFriends');
-        // Route::post('/accept-friend', 'ApiUsersController@acceptFriend');
-        // Route::get('/requests-friend', 'ApiUsersController@friendRequests');
+        Route::post('/add-friend', 'ApiUsersController@addFriend');
+        Route::get('/all-friends', 'ApiUsersController@allFriends');
+        Route::post('/accept-friend', 'ApiUsersController@acceptFriend');
+        Route::post('/decline-friend', 'ApiUsersController@denyFriend');
+        Route::post('/un-friend', 'ApiUsersController@unFriend');
+        Route::get('/requests-friend', 'ApiUsersController@friendRequests');
 
 
         Route::post('/follow', );
