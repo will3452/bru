@@ -148,6 +148,16 @@ Route::prefix('v1')->group(function(){
         Route::get('/latest-log', 'ApiDailyLogController@getLatestLog');
         Route::post('/get-log', 'ApiDailyLogController@storeLog');
 
+        // users 
+        Route::get('/users', 'ApiUsersController@getUsers');
+        Route::get('/users/{id}', 'ApiUsersController@showUser');
+
+        //add friend users 
+        Route::post('/add-friend', 'ApiUsersController@addFriend');
+        Route::get('/all-friends', 'ApiUsersController@allFriends');
+        Route::post('/accept-friend', 'ApiUsersController@acceptFriend');
+        Route::get('/requests-friend', 'ApiUsersController@friendRequests');
+
 
     });
 

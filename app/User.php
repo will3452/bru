@@ -315,6 +315,18 @@ class User extends Authenticatable implements MustVerifyEmail
     public function logChecked(){
         return $this->hasMany(DateClicked::class);
     }
+
+    public function friends(){
+        return $this->belongsToMany(User::class, 'friend_user', 'user_id', 'friend_id')->withPivot('status');
+        // Auth::user()->friends()->attach([2,3,4]);  -- add friend
+        //Auth::user()->friends (or Auth::user()->friends()->get()) -- get all friends
+        //Auth::user()->friends()->detach([2]); // Remove user_id = 2
+    }
+
+    public function getAfriendsAttribute(){
+       $usersid =  \DB::table('friend_user')->where(['friend_id'=>$this->id, 'status'=>'accepted'])->get()->pluck('user_id');
+       return self::whereIn('id', $usersid)->get();
+    }
     
 
 }
