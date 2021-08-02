@@ -160,8 +160,10 @@ Route::prefix('v1')->group(function(){
         Route::post('/un-friend', 'ApiUsersController@unFriend');
         Route::get('/requests-friend', 'ApiUsersController@friendRequests');
 
+        // follow controller
+        Route::post('/follow', 'ApiUsersController@toggleFollow');
+        Route::get('/followers', 'ApiUsersController@getFollowers');
 
-        Route::post('/follow', );
     });
 
     // public

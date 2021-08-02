@@ -85,9 +85,29 @@ class ApiUsersController extends Controller
         $user = User::find(auth()->user()->id);
         $pending = $user->getFriendRequests();
         return response([
-            'pending'=>$pending,
-            'result'=>200
-        ], 200);
+            'result'=>200,
+        ],200);
+    }
+
+    public function toggleFollow(){
+        request()->validate([
+            'user_id'=>'required'
+        ]);
+        $user = User::find(auth()->user()->id);
+        $targets = User::find(request()->user_id);
+        $user->toggleFollow(request()->user_id);
+        return response([
+            'result'=>200,
+        ],200);
+    }
+
+    public function getFollowers(){
+        $user = User::find(auth()->user()->id);
+        $followers = $user->followers()->get();
+        return response([
+            'followers'=>$followers,
+            'result'=>200,
+        ],200);
     }
 
 }
