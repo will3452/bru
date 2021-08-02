@@ -10,7 +10,7 @@ class ApiUsersController extends Controller
     public function getUsers(){
         $user = User::find(auth()->user()->id);
         $friends = $user->getFriends()->pluck('id')->all();
-        $users = User::where('id','!=', $user->id)->whereNotIn('id',$friends)->get();
+        $users = User::where('id','!=', $user->id)->whereNotIn('id',$friends)->orderBy('role', 'ASC')->get();
 
         return response([
             'users'=>$users,
