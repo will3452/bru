@@ -119,8 +119,8 @@
                                     <div class="form-group">
                                         <select name="" id="penname"  class="custom-select"  onchange="init()" style="width:100%">
                                             <option value="">----</option>
-                                            @foreach (auth()->user()->pens as $item)
-                                                <option value="{{ $item->name }}">{{ $item->name }}</option>
+                                            @foreach (auth()->user()->pens as $item) 
+                                                <option value="{{ $item->name }}">{{ $item->name }}</option> 
                                             @endforeach
                                         </select>
                                         {{-- <input type="text" id="penname" value="PEN NAME" class="form-control" placeholder="Type your Pen Name here."> --}}
