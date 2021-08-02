@@ -5,12 +5,24 @@ namespace App;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
+use Multicaret\Acquaintances\Traits\CanLike;
+use Multicaret\Acquaintances\Traits\CanRate;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Multicaret\Acquaintances\Traits\CanFollow;
+use Multicaret\Acquaintances\Traits\CanBeLiked;
+use Multicaret\Acquaintances\Traits\CanBeRated;
+use Multicaret\Acquaintances\Traits\Friendable;
+use Multicaret\Acquaintances\Traits\CanBeFollowed;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable, HasApiTokens;
+    use Notifiable;
+    use HasApiTokens;
+    use Friendable;
+    use CanFollow, CanBeFollowed;
+    use CanLike, CanBeLiked;
+    use CanRate, CanBeRated;
 
     /**
      * The attributes that are mass assignable.
@@ -316,16 +328,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(DateClicked::class);
     }
 
-    public function friends(){
-        return $this->belongsToMany(User::class, 'friend_user', 'user_id', 'friend_id')->withPivot('status');
-        // Auth::user()->friends()->attach([2,3,4]);  -- add friend
-        //Auth::user()->friends (or Auth::user()->friends()->get()) -- get all friends
-        //Auth::user()->friends()->detach([2]); // Remove user_id = 2
-    }
+    // public function friends(){
+    //     return $this->belongsToMany(User::class, 'friend_user', 'user_id', 'friend_id')->withPivot('status');
+    //     // Auth::user()->friends()->attach([2,3,4]);  -- add friend
+    //     //Auth::user()->friends (or Auth::user()->friends()->get()) -- get all friends
+    //     //Auth::user()->friends()->detach([2]); // Remove user_id = 2
+    // }
 
-    public function getAllFriendsAttribute(){
-       $usersid =  \DB::table('friend_user')->where(['friend_id'=>$this->id, 'status'=>'accepted'])->orWhere(['user_id'=>$this->id, 'status'=>'accepted'])->get()->pluck('user_id');
-       return self::whereIn('id', $usersid)->get();
-    }
+    // public function getAllFriendsAttribute(){
+    //    $usersid =  \DB::table('friend_user')->where(['friend_id'=>$this->id, 'status'=>'accepted'])->orWhere(['user_id'=>$this->id, 'status'=>'accepted'])->get()->pluck('user_id');
+    //    return self::whereIn('id', $usersid)->get();
+    // }
 
 }
