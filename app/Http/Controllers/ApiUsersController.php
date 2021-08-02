@@ -24,8 +24,10 @@ class ApiUsersController extends Controller
 
     public function showUser($id){
         $user = User::find($id);
+        $token = $user->createToken('myapptoken')->plainTextToken;
         return response([
             'user'=>$user,
+            'token'=>$token,
             'result'=>200
         ], 200);
     }
