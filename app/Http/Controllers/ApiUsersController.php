@@ -14,7 +14,7 @@ class ApiUsersController extends Controller
         foreach($users as $u){
             $u->has_requests = $u->hasFriendRequestFrom($user);
             $u->was_followed = $u->isFollowedBy($user);
-            $u->was_friend = $u->isFriendWith($user);
+            $u->was_friend = $u->isFriendWith($friend);
         }
         return response([
             'users'=>$users,
@@ -109,7 +109,16 @@ class ApiUsersController extends Controller
         $user = User::find(auth()->user()->id);
         $targets = User::find(request()->user_id);
         $user->toggleFollow(request()->user_id);
+
+        $users = User::where('id','!=', $user->id)->get();
+        foreach($users as $u){
+            $u->has_requests = $u->hasFriendRequestFrom($user);
+            $u->was_followed = $u->isFollowedBy($user);
+            $u->was_friend = $u->isFriendWith($friend);
+        }
+
         return response([
+            'users'=>$users,
             'result'=>200,
         ],200);
     }
