@@ -13,6 +13,7 @@ class ApiUsersController extends Controller
         $users = User::where('id','!=', $user->id)->get();
         foreach($users as $u){
             $u->has_requests = $u->hasFriendRequestFrom($user);
+            $u->was_followed = $u->isFollowedBy($user);
         }
         return response([
             'users'=>$users,
