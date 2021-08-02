@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 class ApiUsersController extends Controller
 {
     public function getUsers(){
-        $users = User::get();
+        $user = User::find(auth()->user()->id);
+        $friends = $user->getFriends()->pluck('id')->all();
+        $users = User::where('id','!=', $user->id)->whereNotIn('id',$friends)->get();
 
         return response([
             'users'=>$users,
