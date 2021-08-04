@@ -82,9 +82,10 @@ class ApiMessageController extends Controller
     {
 
         $user = User::find(auth()->user()->id);
-        $message = $user->inboxes()->find($id);
+        $message = Message::find($id);
         if (request()->type == 'inbox') {
-            $message->update(['read_at' => now()]);
+            $message->read_at = now();
+            $message->save();
         }
         return response([
             'message' => $message,
