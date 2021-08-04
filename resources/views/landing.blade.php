@@ -1,4 +1,4 @@
-@extends('layouts.static')
+@extends('layouts.static-2')
 @section('content')
 <nav>
     <a href="#" id="xx">
@@ -74,86 +74,23 @@
 
 
 <main>
-    <div id="header-landing">
-        Berkeley-Reagan University
+    <section>
+        The brainchild of Khiara Laurea and Miel Salva, BRUMULTIVERSE is vast, having multifold dimensions and realms, and parallel realities and universes, characters that come to life in the dead of night, and names that echo whispered dreams and stirred feelings. It is an immense plane, where billions of stories, waiting to be told, exist. Some of the best ones have already been written, while others await their rightful storytellers. 
+
+    </section>
+    <div class="art" id="about-art"> 
     </div>
     <section>
-        Founded on October 13, 1951 by Henry Berkeley and William Reagan, the Berkeley-Reagen University (BRU) in Taguig City, Philippines is one of the world's most prestigious universities. It specializes in Business, Sports, Arts, and Social Sciences, with over eight thousand enrolled students from around Southeast Asia. 
+        Precisely because of that, BRUMULTIVERSE explores the infinite potentials and promises of human existence and circumstances we have yet to understand. It is ever expanding, built and rooted firmly in the joint musings, imaginations, beliefs, perceptions and conceptions of the Filipino creators and of authors and artists of all genres and from varying backgrounds around the globe.    
+
     </section>
     <section>
-        Berkeley, who was a British teacher, and Reagan, an American businessman, started the school as Berkeley-Reagan Colleges, offering only four courses in the natural sciences and performing arts. BRC earned its University status in 1986, and three years later, opened the Integrated School to make way for Pre-K to Senior High students.
+        In 2021, BRUMULTIVERSE is launched and introduced through Realidad Dimension, one of six dimensions, for its first phase. Within this dimension is Tellurian Realm or the realm of the living and of reality. And here, on Earth, is a university, where all its mysteries unfold.
+
     </section>
     <section>
-        Today, BRU is home to more than 7 thousand students, ensuring a quality and dynamic learning environment with its original British and American-inspired architectural designs and structures, along with state-of-the-art facilities.
+        Please note, however, that while we recognize your awesome works and ideas, we only publish stories set within the BRUMULTIVERSE. 
     </section>
-    <div class="art" id="landing-gate"></div>
-    <div id="vission" class="panel">
-        <div class=" is-left">
-            <div class="panel-child-header">VISION / MISSION</div>
-            <div class="panel-child-body">
-                Berkeley-Reagan University is a premier international university specializing in business, arts, and sciences that seeks to bridge knowledge and culture and develop globally competent and responsible professionals attuned to making a sustainable world.
-            </div>
-        </div>
-        <div class=" is-right">
-            <div class="panel-image"></div>
-        </div>
-    </div>
-    <div id="goal" class="panel">
-        <div class=" is-left">
-            <div class="panel-image"></div>
-        </div>
-        <div class=" is-right">
-            <div class="panel-child-header">GOALS</div>
-            <div class="panel-list">
-                <ul>
-                    <li>
-                        Provide quality education through highly trained and competent educators and state-of-the-art facilities
-                    </li>
-                    <li>
-                        Promote openness, mutual respect, and collaboration in a multicultural environment
-                    </li>
-                    <li>
-                        Challenge the abilities of the students to promote resourcefulness and creativity
-                    </li>
-                    <li>
-                        Develop critical thinking and sound judgment of young minds
-                    </li>
-                    <li>
-                        Help preserve environmental resources to maintain ecological balance
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div id="core" class="panel">
-        <div class=" is-left">
-            <div class="panel-child-header">CORE VALUES</div>
-            <div class="is-flex">
-                <div class="panel-list">
-                    <ul>
-                        <li>
-                            Excellence and Competence
-                        </li>
-                        <li>
-                            Imagination and Creativity
-                        </li>
-                        <li>
-                            Respect and Compassion
-                        </li>
-                        <li>
-                            Community and Culture
-                        </li>
-                        <li>
-                            Honor and Integrity
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class=" is-right">
-            <div class="panel-image"></div>
-        </div>
-    </div>
 </main>
 
 
@@ -193,5 +130,3 @@
     </div>
 </footer>
 @endsection
-    
-    
