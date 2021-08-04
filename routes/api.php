@@ -1,14 +1,9 @@
 <?php
 
-use App\Book;
-use App\User;
-use App\Testing;
-use App\TestingUser;
-use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use Luigel\Paymongo\Facades\Paymongo;
-use App\Http\Controllers\API\PaymongoWebhookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,17 +14,16 @@ use App\Http\Controllers\API\PaymongoWebhookController;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
 
+Route::prefix('v1')->group(function () {
 
-Route::prefix('v1')->group(function(){
-    
     // proctected via sanctum
-    Route::middleware('auth:sanctum')->group(function(){
+    Route::middleware('auth:sanctum')->group(function () {
         // Route::get('/test', function(){
         //     return response(['message'=>'you are authenticated'], 201);
         // });
@@ -39,8 +33,8 @@ Route::prefix('v1')->group(function(){
         // bookshelves
         Route::get('/books', 'ApiBooksController@index');
         Route::get('/books/{id}', 'ApiBooksController@show');
-        // Route::get('/audio-books', ); 
-        
+        // Route::get('/audio-books', );
+
         // museum
         Route::get('/museum/{id}', 'ApiMuseumController@show');
         Route::get('/museum', 'ApiMuseumController@index');
@@ -50,7 +44,6 @@ Route::prefix('v1')->group(function(){
         Route::get('/library/{id}', 'ApiLibraryController@show');
         Route::get('/library', 'ApiLibraryController@index');
         Route::get('/library-summary', 'ApiLibraryController@summary');
-        
 
         // theater and songs
 
@@ -61,29 +54,27 @@ Route::prefix('v1')->group(function(){
         Route::get('/orc/{id}', 'ApiTheaterController@orcShow');
         Route::get('/orc', 'ApiTheaterController@orcIndex');
         // Route::get('/orc-summary', 'ApiTheaterController@Orcsummary');
-        
-        
+
         //my-collections
         Route::get('/my-collections', 'ApiBoxController@list');
         Route::get('/get-work-on-my-collections', 'ApiBoxController@getWork');
-        Route::post('/add-to-my-collection', 'ApiBoxController@add');// add to collection or box 
-        Route::post('/remove-to-my-collection', 'ApiBoxController@remove');// add to collection or box 
+        Route::post('/add-to-my-collection', 'ApiBoxController@add'); // add to collection or box
+        Route::post('/remove-to-my-collection', 'ApiBoxController@remove'); // add to collection or box
 
         // media stations
         Route::get('/media-audio/{id}', 'ApiMediaStationController@audioBookShow'); //audiobook
         Route::get('/media-audio', 'ApiMediaStationController@audioBookIndex');
         Route::get('/media-audiobook-summary', 'ApiMediaStationController@audioBookSummary');
-        
+
         Route::get('/media-podcast/{id}', 'ApiMediaStationController@podcastShow'); //audiobook
         Route::get('/media-podcast', 'ApiMediaStationController@podcastIndex');
         Route::get('/media-podcast-summary', 'ApiMediaStationController@podcastSummary');
 
-        // announcement 
+        // announcement
         Route::get('/announcement', 'ApiAnnouncementController@index');
 
         // banner
         Route::get('/banner', 'ApiBannerController@index');
-       
 
         Route::post('/avatar', 'ApiAvatarController@store');
         Route::post('/avatar/update', 'ApiAvatarController@update');
@@ -91,7 +82,7 @@ Route::prefix('v1')->group(function(){
 
         // purchase
         Route::post('/purchase', 'ApiPurchaseController@purchaseWork');
-        Route::post('/purchase-preview', 'ApiPurchaseController@previewWork');//test
+        Route::post('/purchase-preview', 'ApiPurchaseController@previewWork'); //test
 
         //newspaper
         Route::get('/newspaper', 'ApiNewspaperController@index');
@@ -106,7 +97,6 @@ Route::prefix('v1')->group(function(){
         Route::post('/comments', 'ApiCommentController@storeComment');
 
         Route::post('/likes', 'ApiLikeController@storeLike');
-
 
         // get others works
         Route::get('/other-works', 'ApiOtherWorkController@getWorks');
@@ -141,18 +131,18 @@ Route::prefix('v1')->group(function(){
 
         //spins
         Route::post('/games/spin', 'ApiEventController@spin');
-        
+
         //puzzle
         Route::post('/games/solve', 'ApiEventController@solve');
 
         Route::get('/latest-log', 'ApiDailyLogController@getLatestLog');
         Route::post('/get-log', 'ApiDailyLogController@storeLog');
 
-        // users 
+        // users
         Route::get('/users', 'ApiUsersController@getUsers');
         Route::get('/users/{id}', 'ApiUsersController@showUser');
 
-        //add friend users 
+        //add friend users
         Route::post('/add-friend', 'ApiUsersController@addFriend');
         Route::get('/all-friends', 'ApiUsersController@allFriends');
         Route::post('/accept-friend', 'ApiUsersController@acceptFriend');
@@ -164,6 +154,11 @@ Route::prefix('v1')->group(function(){
         Route::post('/follow', 'ApiUsersController@toggleFollow');
         Route::get('/followers', 'ApiUsersController@getFollowers');
 
+        // messages
+        Route::post('/send-message', 'ApiMessageController@sendMessage');
+        Route::get('/get-messages', 'ApiMessageController@getInbox');
+        Route::get('/get-message/{id}', 'ApiMessageController@readMessage');
+
     });
 
     // public
@@ -173,16 +168,6 @@ Route::prefix('v1')->group(function(){
     // preloader
     Route::get('/preloader', 'ApiPreloaderController@random');
 
-    
-
-
-     
-
-
-    
-    
-    
-
     // Route::get('/testing-json',  function(Request $request){
     //     return User::get();
     // });
@@ -191,13 +176,10 @@ Route::prefix('v1')->group(function(){
     //     return url('/artwork.png');
     // });
 
-
-
-    
 });
 
-Route::post('webhook/paymongo', function(Request $request){
-        
+Route::post('webhook/paymongo', function (Request $request) {
+
     $data = Arr::get($request->all(), 'data.attributes');
 
     if ($data['type'] !== 'source.chargeable') {
@@ -211,11 +193,11 @@ Route::post('webhook/paymongo', function(Request $request){
         $payment = Paymongo::payment()->create([
             'amount' => $sourceData['amount'] / 100,
             'currency' => $sourceData['currency'],
-            'description' => $sourceData['type'].' test from src ' . $source['id']. ', email : '.$sourceData['billing']['email'],
+            'description' => $sourceData['type'] . ' test from src ' . $source['id'] . ', email : ' . $sourceData['billing']['email'],
             'source' => [
                 'id' => $source['id'],
                 'type' => $source['type'],
-            ]
+            ],
         ]);
     }
     return response()->noContent();
