@@ -106,7 +106,7 @@ class ApiMessageController extends Controller
     {
         $user = User::find(auth()->user()->id);
         return response([
-            'count' => $user->inboxes()->count(),
+            'count' => $user->inboxes()->whereNull('read_at')->count(),
             'result' => 200,
         ], 200);
     }
