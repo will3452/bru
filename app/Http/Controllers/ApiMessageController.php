@@ -56,11 +56,36 @@ class ApiMessageController extends Controller
 
     }
 
-    public function readMessage($id)
+    public function removeMessage($id)
     {
         $user = User::find(auth()->user()->id);
+
         $message = $user->inboxes()->find($id);
-        $message->update(['read_at' => now()]);
+        if ($message) {
+            $message->delete();
+        } else {
+            $user->outboxes()->find($id)->delete();
+        }
+        $inbox = $user->inboxes()->with('sender')->latest()->get();
+        $outbox = $user->outboxes()->with('receiver')->latest()->get();
+
+        return response([
+            'inbox_len' => count($inbox),
+            'outbox_len' => count($outbox),
+            'messages' => $inbox,
+            'result' => 200,
+        ], 200);
+
+    }
+
+    public function readMessage($id)
+    {
+
+        $user = User::find(auth()->user()->id);
+        $message = $user->inboxes()->find($id);
+        if (request()->type == 'inbox') {
+            $message->update(['read_at' => now()]);
+        }
         return response([
             'message' => $message,
             'result' => 200,
