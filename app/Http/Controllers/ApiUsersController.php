@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Interest;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -90,7 +91,19 @@ class ApiUsersController extends Controller
     {
         $user = User::find(auth()->user()->id);
         $friends = $user->getFriends();
-        return $friends->with('interests');
+
+        if (isset(request()->filter)) {
+            $newFriend = collect([]);
+            foreach ($friends as $friend) {
+                $has = Interest::where('user_id', $friend->id)
+                    ->where('type', 'college')
+                    ->where('name', request()->filter)->count();
+                if ($has) {
+                    $newFriend->push($friend);
+                }
+            }
+            $friends = $newFriend;
+        }
         return response([
             'friends' => $friends,
             'result' => 200,
