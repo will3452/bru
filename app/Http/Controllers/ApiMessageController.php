@@ -32,6 +32,9 @@ class ApiMessageController extends Controller
 
         $inbox = $user->inboxes()->with('sender')->latest()->get();
         $outbox = $user->outboxes()->with('receiver')->latest()->get();
+        foreach ($inbox as $i) {
+            $i->readable_date = $i->created_at->diffForHumans();
+        }
 
         return response([
             'inbox_len' => count($inbox),
@@ -47,6 +50,9 @@ class ApiMessageController extends Controller
 
         $inbox = $user->inboxes()->with('sender')->latest()->get();
         $outbox = $user->outboxes()->with('receiver')->latest()->get();
+        foreach ($outbox as $i) {
+            $i->readable_date = $i->created_at->diffForHumans();
+        }
 
         return response([
             'inbox_len' => count($inbox),
