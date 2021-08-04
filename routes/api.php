@@ -158,7 +158,7 @@ Route::prefix('v1')->group(function () {
         Route::post('/send-message', 'ApiMessageController@sendMessage');
         Route::get('/get-inbox', 'ApiMessageController@getInbox');
         Route::get('/get-outbox', 'ApiMessageController@getOutbox');
-        Route::get('/get-message/{id}', 'ApiMessageController@readMessage');
+        Route::get('/get-message/{id}', 'ApiMessageController@readInbox');
         Route::post('/remove-message/{id}', 'ApiMessageController@removeMessage');
 
     });
