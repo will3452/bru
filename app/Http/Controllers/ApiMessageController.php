@@ -30,7 +30,11 @@ class ApiMessageController extends Controller
         $user = User::find(auth()->user()->id);
 
         $inbox = $user->inboxes()->latest()->get();
+        $outbox = $user->outboxes()->latest()->get();
+
         return response([
+            'inbox_len' => count($inbox),
+            'outbox_len' => count($outbox),
             'messages' => $inbox,
             'result' => 200,
         ], 200);
@@ -40,8 +44,12 @@ class ApiMessageController extends Controller
     {
         $user = User::find(auth()->user()->id);
 
+        $inbox = $user->inboxes()->latest()->get();
         $outbox = $user->outboxes()->latest()->get();
+
         return response([
+            'inbox_len' => count($inbox),
+            'outbox_len' => count($outbox),
             'messages' => $outbox,
             'result' => 200,
         ], 200);
