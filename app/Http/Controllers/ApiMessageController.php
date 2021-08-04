@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Message;
 use App\User;
 
 class ApiMessageController extends Controller
@@ -83,10 +84,12 @@ class ApiMessageController extends Controller
 
         $user = User::find(auth()->user()->id);
         $message = Message::find($id);
+
         if (request()->type == 'inbox') {
             $message->read_at = now();
             $message->save();
         }
+
         return response([
             'message' => $message,
             'result' => 200,
