@@ -99,4 +99,16 @@ class ApiMessageController extends Controller
             'result' => 200,
         ], 200);
     }
+
+    public function readOutbox($id)
+    {
+
+        $user = User::find(auth()->user()->id);
+        $message = Message::find($id);
+
+        return response([
+            'message' => $message,
+            'result' => 200,
+        ], 200);
+    }
 }
