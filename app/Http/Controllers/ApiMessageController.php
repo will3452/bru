@@ -36,6 +36,18 @@ class ApiMessageController extends Controller
         ], 200);
     }
 
+    public function getOutbox()
+    {
+        $user = User::find(auth()->user()->id);
+
+        $outbox = $user->outboxes()->latest()->get();
+        return response([
+            'messages' => $outbox,
+            'result' => 200,
+        ], 200);
+
+    }
+
     public function readMessage($id)
     {
         $user = User::find(auth()->user()->id);
