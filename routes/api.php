@@ -160,6 +160,7 @@ Route::prefix('v1')->group(function () {
         Route::get('/get-outbox', 'ApiMessageController@getOutbox');
         Route::get('/get-message/{id}', 'ApiMessageController@readInbox');
         Route::get('/get-message-out{id}', 'ApiMessageController@readOutbox');
+        Route::get('/unread-messages', 'ApiMessageController@unreadMessages');
         Route::post('/remove-message/{id}', 'ApiMessageController@removeMessage');
 
     });

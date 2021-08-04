@@ -31,14 +31,12 @@ class ApiMessageController extends Controller
         $user = User::find(auth()->user()->id);
 
         $inbox = $user->inboxes()->with('sender')->latest()->get();
-        $outbox = $user->outboxes()->with('receiver')->latest()->get();
+
         foreach ($inbox as $i) {
             $i->readable_date = $i->created_at->diffForHumans();
         }
 
         return response([
-            'inbox_len' => count($inbox),
-            'outbox_len' => count($outbox),
             'messages' => $inbox,
             'result' => 200,
         ], 200);
@@ -48,15 +46,12 @@ class ApiMessageController extends Controller
     {
         $user = User::find(auth()->user()->id);
 
-        $inbox = $user->inboxes()->with('sender')->latest()->get();
         $outbox = $user->outboxes()->with('receiver')->latest()->get();
         foreach ($outbox as $i) {
             $i->readable_date = $i->created_at->diffForHumans();
         }
 
         return response([
-            'inbox_len' => count($inbox),
-            'outbox_len' => count($outbox),
             'messages' => $outbox,
             'result' => 200,
         ], 200);
@@ -73,13 +68,8 @@ class ApiMessageController extends Controller
         } else {
             $user->outboxes()->find($id)->delete();
         }
-        $inbox = $user->inboxes()->with('sender')->latest()->get();
-        $outbox = $user->outboxes()->with('receiver')->latest()->get();
 
         return response([
-            'inbox_len' => count($inbox),
-            'outbox_len' => count($outbox),
-            'messages' => $inbox,
             'result' => 200,
         ], 200);
 
@@ -108,6 +98,15 @@ class ApiMessageController extends Controller
 
         return response([
             'message' => $message,
+            'result' => 200,
+        ], 200);
+    }
+
+    public function unreadMessages()
+    {
+        $user = User::find(auth()->user()->id);
+        return response([
+            'count' => $user->inboxes()->count(),
             'result' => 200,
         ], 200);
     }
