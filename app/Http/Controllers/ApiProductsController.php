@@ -63,11 +63,11 @@ class ApiProductsController extends Controller
     {
         $user = User::find(auth()->user()->id);
         if (request()->type == 'decor') {
-            $products = $user->box()->products()->where('category', 'decor')->get();
+            $products = $user->box->products()->where('category', 'decor')->get();
         } else if (request()->type == 'clothes') {
-            $products = $user->box()->products()->where('category', 'clothes')->get();
+            $products = $user->box->products()->where('category', 'clothes')->get();
         } else {
-            $products = $user->box()->products()->get();
+            $products = $user->box->products()->get();
         }
 
         return response([
