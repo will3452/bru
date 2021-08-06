@@ -165,6 +165,9 @@ Route::prefix('v1')->group(function () {
 
     });
 
+    // ecommerce
+    Route::get('/get-products', 'ApiProductsController@getProducts');
+
     // public
     Route::post('/register', 'ApiAuthController@register');
     Route::post('/login', 'ApiAuthController@login');
