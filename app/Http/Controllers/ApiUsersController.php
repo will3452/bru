@@ -30,6 +30,7 @@ class ApiUsersController extends Controller
         $token = $user->createToken('myapptoken')->plainTextToken;
         return response([
             'user' => $user,
+            'bio' => $user->bio,
             'token' => $token,
             'result' => 200,
         ], 200);
