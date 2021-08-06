@@ -7,9 +7,16 @@ use App\User;
 
 class ApiProductsController extends Controller
 {
+    //merch
     public function getProducts()
     {
-        $products = Product::get();
+        if (request()->type == 'decor') {
+            $products = Product::where('category', 'decor')->get();
+        } else if (request()->type == 'clothes') {
+            $products = Product::where('category', 'clothes')->get();
+        } else {
+            $products = Product::get();
+        }
 
         return response([
             'products' => $products,
@@ -50,6 +57,5 @@ class ApiProductsController extends Controller
             'new_balance' => $user->royalties,
             'result' => 200,
         ], 200);
-
     }
 }

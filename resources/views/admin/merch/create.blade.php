@@ -18,6 +18,7 @@
                     <select name="category" id="" class="custom-select">
                         <option value="clothes">Clothes</option>
                         <option value="merch">Merchandise</option>
+                        <option value="decor">Decoration</option>
                     </select>
                 </div>
                 <div class="form-group">
