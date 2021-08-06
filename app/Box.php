@@ -9,32 +9,44 @@ class Box extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    
-    public function owner(){
+
+    public function owner()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function books(){
+    public function books()
+    {
         return $this->morphedByMany(Book::class, 'boxable');
     }
 
-    public function arts(){
+    public function arts()
+    {
         return $this->morphedByMany(Art::class, 'boxable');
     }
 
-    public function audios(){
+    public function audios()
+    {
         return $this->morphedByMany(Audio::class, 'boxable');
     }
 
-    public function podcasts(){
+    public function podcasts()
+    {
         return $this->morphedByMany(Podcast::class, 'boxable');
     }
 
-    public function songs(){
+    public function songs()
+    {
         return $this->morphedByMany(Song::class, 'boxable');
     }
 
-    public function films(){
+    public function films()
+    {
         return $this->morphedByMany(Thrailer::class, 'boxable');
+    }
+
+    public function products()
+    {
+        return $this->morphedByMany(Product::class, 'boxable');
     }
 }

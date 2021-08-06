@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\User;
 
 class ApiProductsController extends Controller
 {
@@ -23,5 +24,32 @@ class ApiProductsController extends Controller
             'product' => $product,
             'result' => 200,
         ], 200);
+    }
+
+    public function purchaseProduct($id)
+    {
+        $product = Product::find($id);
+        $user = User::find(auth()->user()->id);
+        if ($product->crystal == 'white') {
+            $bal = $user->royalties->white_crystal;
+            if ((int) $product->price <= (int) $bal) {
+                $newbal = (int) $bal - (int) $product->price;
+                $user->royalties->update(['white_crystal' => $newbal]);
+                $user->box->products()->attach($id);
+            }
+        } else {
+            $bal = $user->royalties->purple_crystal;
+            if ((int) $product->price <= (int) $bal) {
+                $newbal = (int) $bal - (int) $product->price;
+                $user->royalties->update(['purple_crystal' => $newbal]);
+                $user->box->products()->attach($id);
+            }
+        }
+
+        return response([
+            'new_balance' => $user->royalties,
+            'result' => 200,
+        ], 200);
+
     }
 }

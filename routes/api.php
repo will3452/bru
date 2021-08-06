@@ -163,11 +163,12 @@ Route::prefix('v1')->group(function () {
         Route::get('/unread-messages', 'ApiMessageController@unreadMessages');
         Route::post('/remove-message/{id}', 'ApiMessageController@removeMessage');
 
-    });
+        // ecommerce
+        Route::get('/products', 'ApiProductsController@getProducts');
+        Route::get('/products/{id}', 'ApiProductsController@showProduct');
+        Route::post('/products/{id}', 'ApiProductsController@purchaseProduct');
 
-    // ecommerce
-    Route::get('/products', 'ApiProductsController@getProducts');
-    Route::get('/products/{id}', 'ApiProductsController@showProduct');
+    });
 
     // public
     Route::post('/register', 'ApiAuthController@register');
