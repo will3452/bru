@@ -15,4 +15,13 @@ class ApiProductsController extends Controller
             'result' => 200,
         ], 200);
     }
+
+    public function showProduct($id)
+    {
+        $product = Product::find($id);
+        return response([
+            'product' => $product,
+            'result' => 200,
+        ], 200);
+    }
 }
