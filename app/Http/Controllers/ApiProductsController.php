@@ -58,4 +58,21 @@ class ApiProductsController extends Controller
             'result' => 200,
         ], 200);
     }
+
+    public function getMyProducts()
+    {
+        $user = User::find(auth()->user()->id);
+        if (request()->type == 'decor') {
+            $products = $user->box()->products()->where('category', 'decor')->get();
+        } else if (request()->type == 'clothes') {
+            $products = $user->box()->products()->where('category', 'clothes')->get();
+        } else {
+            $products = $user->box()->products()->get();
+        }
+
+        return response([
+            'products' => $products,
+            'result' => 200,
+        ], 200);
+    }
 }

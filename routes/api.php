@@ -165,6 +165,7 @@ Route::prefix('v1')->group(function () {
 
         // ecommerce
         Route::get('/products', 'ApiProductsController@getProducts');
+        Route::get('/products-own', 'ApiProductsController@getMyProducts');
         Route::get('/products/{id}', 'ApiProductsController@showProduct');
         Route::post('/products/{id}', 'ApiProductsController@purchaseProduct');
 
