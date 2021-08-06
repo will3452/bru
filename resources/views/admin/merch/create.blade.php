@@ -16,9 +16,8 @@
                 <div class="form-group">
                     <label for="">Type of Product</label>
                     <select name="category" id="" class="custom-select">
-                        <option value="bodywear">Bodywear</option>
-                        <option value="headwear">Headwear</option>
-                        <option value="footwear">Footwear</option>
+                        <option value="clothes">Clothes</option>
+                        <option value="merch">Merchandise</option>
                     </select>
                 </div>
                 <div class="form-group">
