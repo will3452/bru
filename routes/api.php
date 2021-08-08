@@ -169,6 +169,9 @@ Route::prefix('v1')->group(function () {
         Route::get('/products/{id}', 'ApiProductsController@showProduct');
         Route::post('/products/{id}', 'ApiProductsController@purchaseProduct');
 
+        //diary
+        Route::post('/diary', 'ApiDiaryController@addDiary');
+
     });
 
     // public
