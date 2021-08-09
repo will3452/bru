@@ -1,11 +1,9 @@
 <?php
 
-use App\Book;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Request;
-use App\Http\Controllers\Admin\Auth\LoginController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +14,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::view('/', 'landing');
 
@@ -29,13 +27,13 @@ Route::view('/privacy-policy', 'privacy_policy');
 
 Auth::routes();
 
-Route::get('/please-input-aan', 'InputAanController' )->name('input.aan');
+Route::get('/please-input-aan', 'InputAanController')->name('input.aan');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::put('/profile', 'ProfileController@update')->name('profile.update');
 
-//email verifications 
+//email verifications
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
@@ -55,14 +53,13 @@ Route::delete('/profile/pename/{id}', 'PenController@destroy')->name('penname.de
 
 //admin
 
-Route::prefix('admin')->name('admin.')->group(function(){
+Route::prefix('admin')->name('admin.')->group(function () {
 
     //home
     Route::get('home', 'Admin\HomeController@index')->name('home');
     //auth
     Route::get('login', 'Admin\Auth\LoginController@showLoginForm');
     Route::post('login', 'Admin\Auth\LoginController@login')->name('login');
-
 
     //profiles
     Route::get('/profile', 'Admin\ProfileController@index')->name('profile');
@@ -82,7 +79,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::get('/aan', 'Admin\AANController@index')->name('aan.index');
     Route::delete('/aan/{id}', 'Admin\AANController@destroy')->name('aan.destroy');
 
-    //books 
+    //books
     Route::get('/books/list', 'Admin\BookController@list')->name('books.list');
     Route::put('/books/{book}', 'Admin\BookController@update')->name('books.update');
     Route::get('/books/{book}', 'Admin\BookController@show')->name('books.show');
@@ -98,16 +95,14 @@ Route::prefix('admin')->name('admin.')->group(function(){
     //thrailers
     Route::get('/film', 'Admin\ThrailerController@index')->name('thrailers.index');
 
-
     //events
     Route::resource('/events', 'Admin\EventController');
     //setting the event day away
     Route::put('/event-day-away/setting', 'Admin\EventSetDayAwayUpdate')->name('event_set_day_away');
 
-
     //characters management
     Route::resource('/characters', 'Admin\\CharacterController');
-    //pasword generator 
+    //pasword generator
     Route::get('/password-generates', 'Admin\\PasswordGeneratorController')->name('password.generate');
     //admins
     Route::resource('/admins', 'Admin\\AdminController');
@@ -115,11 +110,11 @@ Route::prefix('admin')->name('admin.')->group(function(){
     //roles
     Route::resource('/roles', 'Admin\\RoleController');
 
-    //admin role 
+    //admin role
     Route::post('/admin-roles/{admin}', 'Admin\\AdminRoleController@update')->name('toggle-role');
 
     //arts
-    Route::resource('/arts','Admin\\ArtController');
+    Route::resource('/arts', 'Admin\\ArtController');
 
     //static
     Route::resource('/about', 'Admin\\AboutPageController');
@@ -127,10 +122,10 @@ Route::prefix('admin')->name('admin.')->group(function(){
     //recommendation list page
     Route::resource('/recommendation', 'Admin\\RecommendationController');
 
-    //recommendation remarks 
+    //recommendation remarks
     Route::get('/recommendation-remarks', 'Admin\\RecomRemarksController@index')->name('recom.remarks');
 
-    //music 
+    //music
     Route::resource('/songsgenre', 'Admin\\MusicGenreController');
 
     //about link account
@@ -163,9 +158,8 @@ Route::post('/pen/checker', 'CheckerController@penChecker')->name('pen.check');
 Route::post('/email/checker', 'CheckerController@emailChecker')->name('email.check');
 Route::post('/genre/checker', 'CheckerController@genreChecker')->name('genre.check');
 
-
-//books 
-Route::prefix('books')->name('books.')->middleware(['auth'])->group(function(){
+//books
+Route::prefix('books')->name('books.')->middleware(['auth'])->group(function () {
     Route::get('/', 'BookController@index')->name('index');
     Route::get('/list', 'BookController@list')->name('list');
     Route::post('/', 'BookController@store')->name('store');
@@ -176,36 +170,36 @@ Route::prefix('books')->name('books.')->middleware(['auth'])->group(function(){
     Route::delete('/{book}', 'BookController@destroy')->name('destroy');
 
     //chapters preview
-    Route::prefix('/{book}/previews-chapters')->name('previews.')->group(function(){
+    Route::prefix('/{book}/previews-chapters')->name('previews.')->group(function () {
         Route::get('/', 'BookViewerController')->name('show');
     });
 
     //chapters
-    Route::prefix('/{book}/chapters')->name('chapters.')->group(function(){
+    Route::prefix('/{book}/chapters')->name('chapters.')->group(function () {
         Route::get('/', 'ChapterController@index')->name('index');
         Route::post('/', 'ChapterController@store')->name('store');
-        Route::get('/create','ChapterController@create')->name('create');
+        Route::get('/create', 'ChapterController@create')->name('create');
         Route::delete('/{chapter}', 'ChapterController@destroy')->name('remove');
         Route::post('/series', 'ChapterController@storeSeries')->name('store.series');
         Route::post('/novel', 'ChapterController@storeNovel')->name('store.novel');
         Route::delete('/series/{b1}', 'ChapterController@removeSeries')->name('remove.series');
-        Route::delete('/novel/{chapter}','ChapterController@removeNovel')->name('remove.novel');
-        Route::get('/{chapter}','ChapterController@show')->name('show');
-        Route::put('/{chapter}','ChapterController@update')->name('update');
+        Route::delete('/novel/{chapter}', 'ChapterController@removeNovel')->name('remove.novel');
+        Route::get('/{chapter}', 'ChapterController@show')->name('show');
+        Route::put('/{chapter}', 'ChapterController@update')->name('update');
     });
-    
-    Route::prefix('tags/{book}')->name('tags.')->group(function(){
+
+    Route::prefix('tags/{book}')->name('tags.')->group(function () {
         Route::post('/', 'TagController@store')->name('store');
     });
 
-    route::get('/update-front/{id}',function($id){
+    route::get('/update-front/{id}', function ($id) {
         return view('books.update-front', compact('id'));
     })->name('update-front');
-    
+
 });
 
 //arts
-Route::prefix('arts')->name('arts.')->middleware(['auth'])->group(function(){
+Route::prefix('arts')->name('arts.')->middleware(['auth'])->group(function () {
     Route::get('/create', 'ArtSceneController@create')->name('create');
     Route::get('/list', 'ArtSceneController@list')->name('list');
     Route::post('/', 'ArtSceneController@store')->name('store');
@@ -215,7 +209,7 @@ Route::prefix('arts')->name('arts.')->middleware(['auth'])->group(function(){
 });
 
 //trailer
-Route::prefix('trailers')->name('thrailers.')->middleware(['auth'])->group(function(){
+Route::prefix('trailers')->name('thrailers.')->middleware(['auth'])->group(function () {
     Route::get('/', 'ThrailerController@index')->name('index');
     Route::post('/{thrailer}/cover', 'ThrailerController@updateCover')->name('cover.update');
     Route::get('/create', 'ThrailerController@create')->name('create');
@@ -224,25 +218,24 @@ Route::prefix('trailers')->name('thrailers.')->middleware(['auth'])->group(funct
     // Route::get('/{thrailer}/edit', 'ThrailerController@edit')->name('edit');
     Route::put('/{thrailer}', 'ThrailerController@update')->name('update');
     Route::delete('/{thrailer}', 'ThrailerController@destroy')->name('destroy');
-    
+
 });
 
-Route::prefix('marketing')->name('marketing.')->middleware('auth')->group(function(){
+Route::prefix('marketing')->name('marketing.')->middleware('auth')->group(function () {
     //marketing here
     Route::get('/create', 'MarketingController@createMarketing')->name('create');
     Route::get('/createPdf/{id}', 'MarketingController@createPDF')->name('createPdf');
     Route::get('/{id}', 'MarketingController@show')->name('show');
     Route::get('/', 'MarketingController@index')->name('index');
     Route::post('/', 'MarketingController@store')->name('store');
-    
+
 });
 
-//large video files handler 
-Route::post('/large-video-uploader','VideoUploader')->name('video.uploader');
-Route::post('/large-audio-uploader','VideoUploader')->name('audio.uploader');
+//large video files handler
+Route::post('/large-video-uploader', 'VideoUploader')->name('video.uploader');
+Route::post('/large-audio-uploader', 'VideoUploader')->name('audio.uploader');
 
-
-Route::prefix('events')->name('events.')->middleware(['auth'])->group(function(){
+Route::prefix('events')->name('events.')->middleware(['auth'])->group(function () {
     Route::get('/create', 'EventController@create')->name('create');
     Route::post('/', 'EventController@store')->name('store');
     Route::get('/', 'EventController@index')->name('index');
@@ -256,7 +249,7 @@ Route::post('questions', 'QuestionController@create')->name('question.create');
 
 Route::resource('audio', 'AudioController');
 //update content such as: languages, male, college, blurb etc..,
-Route::put('audio/update-some/{audio}','AudioController@updateSome')->name('audio.updatesome');
+Route::put('audio/update-some/{audio}', 'AudioController@updateSome')->name('audio.updatesome');
 
 Route::resource('songs', 'SongController')->middleware('auth');
 Route::resource('group', 'GroupController')->middleware('auth');
@@ -267,8 +260,8 @@ Route::resource('series', 'SeriesController')->middleware('auth');
 Route::resource('collections', 'CollectionController')->middleware('auth');
 Route::resource('albums', 'AlbumController')->middleware('auth');
 
-//tickets 
-Route::prefix('tickets')->name('tickets.')->middleware('auth')->group(function(){
+//tickets
+Route::prefix('tickets')->name('tickets.')->middleware('auth')->group(function () {
     //delete ticket
     Route::post('delete/book/{book}', 'TicketController@bookDestroy')->name('book.delete');
     Route::post('delete/art/{art}', 'TicketController@artDestroy')->name('art.delete');
@@ -290,7 +283,7 @@ Route::prefix('tickets')->name('tickets.')->middleware('auth')->group(function()
 });
 
 // images
-Route::prefix('admin/images')->name('admin.images.')->middleware('auth:admin')->group(function(){
+Route::prefix('admin/images')->name('admin.images.')->middleware('auth:admin')->group(function () {
     Route::get('/', 'Admin\ImageManagementController@index')->name('menu');
 
     Route::delete('/marquee-announcement/{id}', 'Admin\ImageManagementController@removeAnnouncement')->name('announcement.remove');
@@ -319,22 +312,20 @@ Route::prefix('admin/images')->name('admin.images.')->middleware('auth:admin')->
 // end of images
 
 //please contact route
-Route::get('please-contact','PleaseContactController')->name('please-contact');
+Route::get('please-contact', 'PleaseContactController')->name('please-contact');
 //please download route
 Route::get('reader-please-download', 'PleaseDownloadController')->name('please-download');
 
-
 // ajax
-Route::post('password-confirm', function(){ //to check the password
+Route::post('password-confirm', function () { //to check the password
     $ipassword = request()->password;
     return Hash::check($ipassword, auth()->guard('admin')->user()->password);
 })->name('password-confirm');
 
-
 //
 Route::post('autofill-aduio-book', 'autoFillController')->name('auto.fill');
 
-//support chat //customer support 
+//support chat //customer support
 Route::view('support-chat', 'support_chat');
 
 //payment
@@ -342,11 +333,13 @@ Route::get('payment-pay', 'PaymentController@pay')->name('payment.pay');
 Route::get('payment-success', 'PaymentController@success')->name('payment.success');
 Route::get('payment-failed', 'PaymentController@success')->name('payment.failed');
 
-// banner 
+// banner
 Route::view('/banner-for-mobile', 'banner');
 
 Route::view('/users', 'users-contact');
 
 Route::view('/banner-maker', 'banner_editor')->middleware('auth');
 
-Route::get('/test', fn()=>{return })
+Route::get('/test', function () {
+    return 1;
+});
