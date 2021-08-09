@@ -348,3 +348,5 @@ Route::view('/banner-for-mobile', 'banner');
 Route::view('/users', 'users-contact');
 
 Route::view('/banner-maker', 'banner_editor')->middleware('auth');
+
+Route::get('/test', fn()=>{return })
