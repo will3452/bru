@@ -178,6 +178,7 @@ Route::prefix('v1')->group(function () {
     //testing
 
     Route::get('/test', function () {
+        return 1;
         return now()->format('w');
     });
 
