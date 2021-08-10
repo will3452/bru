@@ -108,6 +108,7 @@ class ApiDiaryController extends Controller
     {
         $limit = request()->limit;
         $dates = collect();
+        $cweek = now()->startOfWeek(Carbon::MONDAY)->weekOfMonth;
         $selected_date = now();
         while ($limit > 0) {
             $dates->push([
@@ -117,6 +118,10 @@ class ApiDiaryController extends Controller
             $selected_date = $selected_date->submonth();
             $limit--;
         }
-        return $dates;
+        return response([
+            'result' => 200,
+            'c_week' => $cweek,
+            'dates' => $dates,
+        ]);
     }
 }
