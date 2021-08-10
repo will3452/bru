@@ -98,7 +98,7 @@ class ApiDiaryController extends Controller
         } else {
             return response([
                 'result' => 200,
-                'day' => $weeks[request()->day],
+                'day' => $weeks[request()->day] ?? [],
                 'own_entry' => $ownentry,
                 'month_year' => $date->isoFormat('MMMM Y'),
             ], 200);
