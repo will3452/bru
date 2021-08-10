@@ -175,11 +175,8 @@ Route::prefix('v1')->group(function () {
 
     });
 
-    //testing
-
-    Route::get('/test', function () {
-        return now()->format('w') . ' hell'; //nice
-    });
+    //latest 3 months
+    Route::get('/latest-3-months', 'ApiDiaryController@last3Month');
 
     // public
     Route::post('/register', 'ApiAuthController@register');
