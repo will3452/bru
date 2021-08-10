@@ -171,7 +171,14 @@ Route::prefix('v1')->group(function () {
 
         //diary
         Route::post('/diary', 'ApiDiaryController@addDiary');
+        Route::get('/get-week', 'ApiDiaryController@getWeek');
 
+    });
+
+    //testing
+
+    Route::get('/test', function () {
+        return now()->isoFormat('MM Y');
     });
 
     // public
@@ -180,14 +187,6 @@ Route::prefix('v1')->group(function () {
 
     // preloader
     Route::get('/preloader', 'ApiPreloaderController@random');
-
-    // Route::get('/testing-json',  function(Request $request){
-    //     return User::get();
-    // });
-
-    // Route::get('/testing-image',  function(Request $request){
-    //     return url('/artwork.png');
-    // });
 
 });
 
