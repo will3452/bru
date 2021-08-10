@@ -179,7 +179,7 @@ Route::prefix('v1')->group(function () {
 
     //latest 3 months
     Route::get('/latestmonths', 'ApiDiaryController@lastMonth'); //nice
-    // Route::get('/get-week', 'ApiDiaryController@getWeek');
+    Route::get('/get-week', 'ApiDiaryController@getWeek');
 
     // public
     Route::post('/register', 'ApiAuthController@register');
