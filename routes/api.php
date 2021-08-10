@@ -178,7 +178,6 @@ Route::prefix('v1')->group(function () {
     //testing
 
     Route::get('/test', function () {
-        return 'hellow orld';
         return now()->format('w'); //nice
     });
 
