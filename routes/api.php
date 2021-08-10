@@ -176,7 +176,7 @@ Route::prefix('v1')->group(function () {
     });
 
     //latest 3 months
-    Route::get('/latestmonths', 'ApiDiaryController@lastMonth');
+    Route::get('/latestmonths', 'ApiDiaryController@lastMonth'); //nice
     // Route::get('/get-week', 'ApiDiaryController@getWeek');
 
     // public
