@@ -178,7 +178,7 @@ Route::prefix('v1')->group(function () {
     //testing
 
     Route::get('/test', function () {
-        return now()->isoFormat('MM Y');
+        return now()->format('w');
     });
 
     // public
