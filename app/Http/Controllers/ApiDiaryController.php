@@ -67,8 +67,9 @@ class ApiDiaryController extends Controller
         $date = now();
 
         if (request()->date) {
+            $rdate = Carbon::parse(request()->date);
             $noWeek = request()->noweek;
-            $date = $this->getDate(request()->date, $noWeek);
+            $date = $this->getDate($rdate, $noWeek);
             $startWeek = Carbon::parse($date)->startOfWeek(Carbon::MONDAY);
             $endWeek = Carbon::parse($date)->endOfWeek(Carbon::SUNDAY);
             $date = Carbon::parse($date);
@@ -92,14 +93,14 @@ class ApiDiaryController extends Controller
                 'result' => 200,
                 'weeks' => $weeks,
                 'own_entry' => $ownentry,
-                'month_year' => $date->isoFormat('MMM Y'),
+                'month_year' => $date->isoFormat('MMMM Y'),
             ], 200);
         } else {
             return response([
                 'result' => 200,
                 'day' => $weeks[request()->day],
                 'own_entry' => $ownentry,
-                'month_year' => $date->isoFormat('MMM Y'),
+                'month_year' => $date->isoFormat('MMMM Y'),
             ], 200);
         }
     }

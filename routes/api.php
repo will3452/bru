@@ -187,7 +187,6 @@ Route::prefix('v1')->group(function () {
 
     // preloader
     Route::get('/preloader', 'ApiPreloaderController@random');
-
 });
 
 Route::post('webhook/paymongo', function (Request $request) {
