@@ -178,7 +178,7 @@ Route::prefix('v1')->group(function () {
     //testing
 
     Route::get('/test', function () {
-        return now()->format('w'); //nice
+        return now()->format('w') . ' hell'; //nice
     });
 
     // public
