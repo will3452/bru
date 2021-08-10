@@ -72,42 +72,49 @@ class ApiDiaryController extends Controller
             $date = Carbon::parse($date);
         }
 
-        $user = User::find(auth()->user()->id);
+        $user = User::find(auth()->user()->id ?? 1);
         $weeks = \DB::table('logs')
             ->where('user_id', $user->id)
             ->where('created_at', '>=', $startWeek)
             ->where('created_at', '<=', $endWeek)
             ->get()
             ->groupBy(function ($log) {
-                return Carbon::parse($log->created_at)
-                    ->isoFormat('dddd');
+                return strtolower(Carbon::parse($log->created_at)
+                        ->isoFormat('dddd'));
             });
         $ownentry = $user->diaries()->whereDate('created_at', now())
             ->first();
 
-        return response([
-            'result' => 200,
-            'weeks' => $weeks,
-            'own_entry' => $ownentry,
-            'month_year' => $date->isoFormat('MMM Y'),
-        ], 200);
+        if (!request()->day) {
+            return response([
+                'result' => 200,
+                'weeks' => $weeks,
+                'own_entry' => $ownentry,
+                'month_year' => $date->isoFormat('MMM Y'),
+            ], 200);
+        } else {
+            return response([
+                'result' => 200,
+                'day' => $weeks[request()->day],
+                'own_entry' => $ownentry,
+                'month_year' => $date->isoFormat('MMM Y'),
+            ], 200);
+        }
     }
 
-    public function last3Month()
+    public function lastMonth()
     {
+        $limit = request()->limit;
         $dates = collect();
-        $dates->push([
-            'label' => now()->isoFormat('MMMM Y'),
-            'value' => now()->format('Y-m'),
-        ]);
-        $dates->push([
-            'label' => now()->submonth()->isoFormat('MMMM Y'),
-            'value' => now()->submonth()->format('Y-m'),
-        ]);
-        $dates->push([
-            'label' => now()->submonth()->submonth()->isoFormat('MMMM Y'),
-            'value' => now()->submonth()->submonth()->format('Y-m'),
-        ]);
+        $selected_date = now();
+        while ($limit > 0) {
+            $dates->push([
+                'label' => $selected_date->isoFormat('MMMM Y'),
+                'value' => $selected_date->format('Y-m'),
+            ]);
+            $selected_date = $selected_date->submonth();
+            $limit--;
+        }
         return $dates;
     }
 }
