@@ -114,6 +114,11 @@ class ApiEventController extends Controller
         $status = false;
         $cbal = Royalty::where('user_id', auth()->user()->id)->first();
 
+        $user = User::find(auth()->user()->id);
+        $user->homework->update([
+            'participate_author_event' => $user->homework->participate_author_event + 1,
+        ]);
+
         if ($event->gem == 'purple') {
             if ((int) $event->cost <= (int) $cbal->purple_crystal) {
                 $newbal = (int) $cbal->purple_crystal - (int) $event->cost;
@@ -139,6 +144,11 @@ class ApiEventController extends Controller
     {
         $event = Event::find($id);
         $cbal = Royalty::where('user_id', $uid)->first();
+        $user = User::find($uid);
+
+        $user->homework->update([
+            'participate_author_event' => $user->homework->participate_author_event + 1,
+        ]);
 
         if ($event->gem == 'purple') {
             if ((int) $event->cost <= (int) $cbal->purple_crystal) {
@@ -163,6 +173,7 @@ class ApiEventController extends Controller
         ]);
 
         $user = User::find(auth()->user()->id);
+
         $event = Event::find($data['event_id']);
         $game = $event->game;
         $royalty = $user->royalties;
@@ -272,6 +283,11 @@ class ApiEventController extends Controller
         $event = Event::find($data['event_id']);
         $game = $event->game;
         $user = User::find(auth()->user()->id);
+
+        $user->homework->update([
+            'participate_author_event' => $user->homework->participate_author_event + 1,
+        ]);
+
         $cbal = Royalty::where('user_id', $user->id)->first();
 
         $user->spins()->create([

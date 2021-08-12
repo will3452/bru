@@ -79,7 +79,7 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Event $event
+    * @param  \App\Event $event
      * @return \Illuminate\Http\Response
      */
     public function edit(Event $event)
