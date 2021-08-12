@@ -151,7 +151,5 @@ class ApiHomeworkController extends Controller
             'qty' => $qty,
             'prize' => $prize,
         ], 200);
-
     }
-
 }
