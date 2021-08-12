@@ -388,4 +388,14 @@ class User extends Authenticatable implements MustVerifyEmail
     //    return self::whereIn('id', $usersid)->get();
     // }
 
+    public function homework()
+    {
+        return $this->hasOne(Homework::class);
+    }
+
+    public function rewards()
+    {
+        return $this->belongsToMany(Reward::class);
+    }
+
 }
