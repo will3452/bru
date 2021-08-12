@@ -284,15 +284,15 @@ class AdminSeeder extends Seeder
 
         $this->seedRewards();
 
-        $this->seedAdmin();
+        // $this->seedAdmin();
 
-        $this->seedScripts();
+        // $this->seedScripts();
 
-        $this->seedGenres();
+        // $this->seedGenres();
 
-        $this->seedSettings();
+        // $this->seedSettings();
 
-        $this->seedRoles();
+        // $this->seedRoles();
 
         // //test users
         // DB::table('users')->insert([
