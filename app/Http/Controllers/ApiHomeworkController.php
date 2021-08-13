@@ -125,7 +125,7 @@ class ApiHomeworkController extends Controller
 
         if ($user->rewards()->find($data['reward_id'])) {
             return response([
-                'error' => true,
+                'is_claimed' => true,
                 'new_balance' => $user->royalties,
                 'result' => 200,
             ], 200);
@@ -156,7 +156,7 @@ class ApiHomeworkController extends Controller
         return response([
             'new_balance' => $user->royalties,
             'result' => 200,
-            'error' => false,
+            'is_claimed' => false,
             'qty' => $qty,
             'prize' => $prize,
         ], 200);
