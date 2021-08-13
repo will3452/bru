@@ -123,7 +123,7 @@ class ApiHomeworkController extends Controller
 
         $user = User::find(auth()->user()->id);
 
-        if ($user->rewards()->find($data['reward_id'])) {
+        if ($user->rewards()->where('id', $data['reward_id'])->count()) {
             return response([
                 'is_claimed' => true,
                 'new_balance' => $user->royalties,
