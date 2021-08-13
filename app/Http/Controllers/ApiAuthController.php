@@ -17,8 +17,9 @@ class ApiAuthController extends Controller
         }
     }
 
-    public function createHomework($user)
+    public function createHomework($id)
     {
+        $user = User::find($id);
         if (!$user->homework()->count()) {
             $user->homework()->create([]);
         }
@@ -57,7 +58,7 @@ class ApiAuthController extends Controller
 
         //user
         $this->dayLogCreate($user);
-        $this->createHomework($user);
+        $this->createHomework($user->id);
 
         $response = [
             'user' => $user,
@@ -128,7 +129,7 @@ class ApiAuthController extends Controller
         ]);
 
         $user->box()->create(); //create box for her/his collection
-        $this->createHomework($user); //create homework
+        $this->createHomework($user->id); //create homework
 
         $token = $user->createToken('myapptoken')->plainTextToken;
         $royalties = [
