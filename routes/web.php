@@ -343,4 +343,3 @@ Route::view('/banner-maker', 'banner_editor')->middleware('auth');
 Route::get('/test', function () {
     return 'hello 1';
 });
-
