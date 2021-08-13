@@ -179,6 +179,9 @@ Route::prefix('v1')->group(function () {
 
     });
 
+    // Route::get('/homework', 'ApiHomeworkController@index');
+
+
     // Route::get('/get-week', 'ApiDiaryController@getWeek');
 
     //latest 3 months

@@ -123,6 +123,14 @@ class ApiHomeworkController extends Controller
 
         $user = User::find(auth()->user()->id);
 
+        if ($user->rewards()->find($data['reward_id'])) {
+            return response([
+                'error' => true,
+                'new_balance' => $user->royalties,
+                'result' => 200,
+            ], 200);
+        }
+
         $royalty = Royalty::where('user_id', $user->id)->first();
 
         $reward = Reward::find($data['reward_id']);
@@ -148,6 +156,7 @@ class ApiHomeworkController extends Controller
         return response([
             'new_balance' => $user->royalties,
             'result' => 200,
+            'error' => false,
             'qty' => $qty,
             'prize' => $prize,
         ], 200);
