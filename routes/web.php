@@ -341,5 +341,6 @@ Route::view('/users', 'users-contact');
 Route::view('/banner-maker', 'banner_editor')->middleware('auth');
 
 Route::get('/test', function () {
-    return 'hello world';
+    return 'hello 1';
 });
+
