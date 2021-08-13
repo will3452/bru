@@ -17,7 +17,7 @@ class ApiAuthController extends Controller
         }
     }
 
-    public function createHomework(User $user)
+    public function createHomework($user)
     {
         if (!$user->homework()->count()) {
             $user->homework()->create([]);
@@ -58,7 +58,6 @@ class ApiAuthController extends Controller
         //user
         $this->dayLogCreate($user);
         $this->createHomework($user);
-
 
         $response = [
             'user' => $user,
