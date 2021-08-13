@@ -50,7 +50,7 @@ class ApiSearchController extends Controller
         }
 
         return response([
-            'item' => $return,
+            'items' => $return,
             'result' => 200,
         ], 200);
 
