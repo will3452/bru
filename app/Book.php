@@ -2,13 +2,17 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Multicaret\Acquaintances\Traits\CanBeSubscribed;
 
 class Book extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
+    use SoftDeletes;
+    use CanBeSubscribed;
+
     protected $guarded = [];
 
     //route key binding modification
@@ -18,45 +22,54 @@ class Book extends Model
     // }
 
     //attributes
-    public function getIspublicAttribute(){
-        return $this->publish_date == null ? false: true;
+    public function getIspublicAttribute()
+    {
+        return $this->publish_date == null ? false : true;
     }
 
-    public function getLastchapterAttribute(){
-        $chapter =  $this->chapters()->where('mode', 'chapter')->latest()->take(1)->get();
+    public function getLastchapterAttribute()
+    {
+        $chapter = $this->chapters()->where('mode', 'chapter')->latest()->take(1)->get();
         return $chapter[0]->sq ?? 0;
     }
 
     //relations
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function tags(){
+    public function tags()
+    {
         return $this->morphToMany(Tag::class, 'taggable');
     }
 
     //start of  DEPRECATED
-    
-    public function books(){
+
+    public function books()
+    {
         return $this->hasMany(self::class, 'series_id');
     }
 
     // end of  DEPRECATED
 
-    public function chapters(){
+    public function chapters()
+    {
         return $this->hasMany(Chapter::class);
     }
 
-    public function event(){
+    public function event()
+    {
         return $this->belongsTo(Event::class);
     }
 
-    public function  recommendation(){
+    public function recommendation()
+    {
         return $this->morphOne(Recommendation::class, 'recommendationable');
     }
-    //static 
-    public static function GETPUBLISHED(){
+    //static
+    public static function GETPUBLISHED()
+    {
         return self::whereNotNull('publish_date')->get();
     }
 
@@ -66,7 +79,8 @@ class Book extends Model
         return $this->morphMany(Ticket::class, 'ticketable');
     }
 
-    public function group(){
+    public function group()
+    {
         return $this->belongsTo(Group::class);
     }
 
@@ -80,7 +94,8 @@ class Book extends Model
         return $this->morphToMany(Collection::class, 'collectionable');
     }
 
-    public function boxes(){
+    public function boxes()
+    {
         return $this->morphToMany(Box::class, 'boxable');
     }
 
@@ -89,14 +104,17 @@ class Book extends Model
         return $this->morphMany(Comment::class, 'commentable');
     }
 
-    public function likes(){
+    public function likes()
+    {
         return $this->morphMany(Like::class, 'likeable');
     }
-    public function stars(){
+    public function stars()
+    {
         return $this->morphMany(Star::class, 'starable');
     }
 
-    public function quotes(){
+    public function quotes()
+    {
         return $this->hasMany(Quote::class, 'book_id');
     }
 }

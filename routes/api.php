@@ -177,10 +177,12 @@ Route::prefix('v1')->group(function () {
         Route::get('/homework', 'ApiHomeworkController@index');
         Route::post('/get-reward-homework', 'ApiHomeworkController@claimReward');
 
+        //desktop-summary
+        Route::get('/desktop', 'ApiDesktopController@getOverview');
+
     });
 
     // Route::get('/homework', 'ApiHomeworkController@index');
-
 
     // Route::get('/get-week', 'ApiDiaryController@getWeek');
 

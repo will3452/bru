@@ -2,27 +2,31 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Multicaret\Acquaintances\Traits\CanBeSubscribed;
 
 class Art extends Model
 {
     use HasFactory, SoftDeletes;
+    use CanBeSubscribed;
+
     protected $table = 'arts';
     protected $guarded = [];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    
-
-    public function tags(){
+    public function tags()
+    {
         return $this->morphToMany(Tag::class, 'taggable');
     }
 
-    public function  recommendation(){
+    public function recommendation()
+    {
         return $this->morphOne(Recommendation::class, 'recommendationable');
     }
 
@@ -31,7 +35,8 @@ class Art extends Model
         return $this->morphMany(Ticket::class, 'ticketable');
     }
 
-    public static function GETPUBLISHED(){
+    public static function GETPUBLISHED()
+    {
         return self::get();
     }
 
@@ -39,15 +44,16 @@ class Art extends Model
     {
         return $this->morphMany(Comment::class, 'commentable');
     }
-    
-     public function likes(){
+
+    public function likes()
+    {
         return $this->morphMany(Like::class, 'likeable');
     }
 
-    public function stars(){
+    public function stars()
+    {
         return $this->morphMany(Star::class, 'starable');
     }
-    
 
     public function collections()
     {
@@ -59,11 +65,13 @@ class Art extends Model
         return $this->morphToMany(Album::class, 'albumable');
     }
 
-    public function boxes(){
+    public function boxes()
+    {
         return $this->morphToMany(Box::class, 'boxable');
     }
 
-    public function games(){
+    public function games()
+    {
         return $this->hasMany(Game::class);
     }
 

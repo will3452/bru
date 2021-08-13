@@ -25,6 +25,8 @@ class ApiPurchaseController extends Controller
 
             //add to collection
             $user->box->arts()->attach($work_id);
+            $user->subscribe($art);
+
             return true;
         }
         return false;
@@ -41,6 +43,8 @@ class ApiPurchaseController extends Controller
 
             //add to collection
             $user->box->books()->attach($work_id);
+            $user->subscribe($book);
+
             return true;
         }
         return false;
@@ -57,6 +61,8 @@ class ApiPurchaseController extends Controller
 
             //add to collection
             $user->box->audios()->attach($work_id);
+            $user->subscribe($book);
+
             return true;
         }
         return false;
@@ -73,6 +79,8 @@ class ApiPurchaseController extends Controller
 
             //add to collection
             $user->box->podcasts()->attach($work_id);
+            $user->subscribe($book);
+
             return true;
         }
         return false;
@@ -89,6 +97,7 @@ class ApiPurchaseController extends Controller
                 $user->royalties->update(['white_crystal' => $newbal]);
 
                 $user->box->films()->attach($work_id);
+                $user->subscribe($film);
                 return true;
             }
         } else {
@@ -99,6 +108,7 @@ class ApiPurchaseController extends Controller
                 $user->royalties->update(['purple_crystal' => $newbal]);
 
                 $user->box->films()->attach($work_id);
+                $user->subscribe($film);
                 return true;
             }
         }
@@ -116,6 +126,7 @@ class ApiPurchaseController extends Controller
                 $user->royalties->update(['white_crystal' => $newbal]);
 
                 $user->box->songs()->attach($work_id);
+                $user->subscribe($song);
                 return true;
             }
         } else {
@@ -126,6 +137,8 @@ class ApiPurchaseController extends Controller
                 $user->royalties->update(['purple_crystal' => $newbal]);
 
                 $user->box->songs()->attach($work_id);
+                $user->subscribe($song);
+
                 return true;
             }
         }
