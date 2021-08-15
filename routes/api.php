@@ -183,7 +183,7 @@ Route::prefix('v1')->group(function () {
     });
 
     //search
-    Route::get('/search', 'ApiSearchController');
+    Route::post('/search', 'ApiSearchController');
 
     // Route::get('/homework', 'ApiHomeworkController@index');
 
