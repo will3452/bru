@@ -28,6 +28,13 @@ class ApiSearchController extends Controller
 
         $return = [];
 
+        if (!isset($data['keyword'])) {
+            return response([
+                'items' => $return,
+                'result' => 200,
+            ], 200);
+        }
+
         switch ($data['type']) {
             case 'book':
                 $return = Book::where('title', 'like', '%' . $data['keyword'] ?? '' . '%')->get();
@@ -42,10 +49,10 @@ class ApiSearchController extends Controller
                 $return = Podcast::where('title', 'like', '%' . $data['keyword'] ?? '' . '%')->get();
                 break;
             case 'art':
-                $return = Art::where('title', 'like', '%' . $data['keyword'] ?? ''. '%')->get();
+                $return = Art::where('title', 'like', '%' . $data['keyword'] ?? '' . '%')->get();
                 break;
             case 'audio':
-                $return = Audio::where('title', 'like', '%' . $data['keyword'] ?? ''. '%')->get();
+                $return = Audio::where('title', 'like', '%' . $data['keyword'] ?? '' . '%')->get();
                 break;
         }
 
