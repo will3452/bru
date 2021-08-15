@@ -75,7 +75,7 @@ class ApiDiaryController extends Controller
             $date = Carbon::parse($date);
         }
 
-        $user = User::find(auth()->user()->id ?? 1);
+        $user = User::find(auth()->user()->id ?? 6);
         $weeks = \DB::table('logs')
             ->where('user_id', $user->id)
             ->where('created_at', '>=', $startWeek)
