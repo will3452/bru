@@ -171,7 +171,7 @@ Route::prefix('v1')->group(function () {
 
         //diary
         Route::post('/diary', 'ApiDiaryController@addDiary');
-        Route::get('/get-week', 'ApiDiaryController@getWeek');
+        Route::post('/get-week', 'ApiDiaryController@getWeek');
 
         //homework
         Route::get('/homework', 'ApiHomeworkController@index');
