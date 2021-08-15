@@ -8,7 +8,6 @@
     <table id="bookstable" class="table table-stripped table-bordered">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Roles</th>
@@ -19,9 +18,6 @@
             @foreach ($admins as $admin)
                 <tr>
                     <td>
-                        {{ $admin->id }}
-                    </td>
-                    <td>
                         {{ $admin->full_name }}
                     </td>
                     <td>
@@ -31,7 +27,14 @@
                         {{ implode(', ', $admin->roles()->pluck('name')->toArray()) }}
                     </td>
                     <th clas="text-center">
-                        <a href="{{ route('admin.admins.show', $admin) }}" class="btn btn-sm btn-secondary">View and Update</a>
+                        <form action="{{ route('admin.admins.destroy', $admin) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <a href="{{ route('admin.admins.show', $admin) }}" class="btn btn-sm btn-secondary">View & Update</a>
+                            <button class="btn btn-danger btn-sm" onclick="deleteForm()">
+                                Remove
+                            </button>
+                        </form>
                     </th>
                 </tr>
             @endforeach
@@ -57,16 +60,20 @@
     <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.colVis.min.js"></script>
     <script>
+        function deleteForm(e){
+            confirm('Are you sure you want to remove this account?') && e.target.parentElement.submit();
+        }
         $(function(){
             $('#bookstable').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf','colvis'
-        ],
-    });
-        $('button').addClass('.btn')
-        })
-        
-    </script>
+            dom: 'Bfrtip',
+            buttons: [
+                // 'copy', 'csv', 'excel', 'pdf','colvis'
+                'excel', 'pdf'
+            ],
+        });
 
+        $('button').addClass('.btn');
+
+        });
+    </script>
 @endsection

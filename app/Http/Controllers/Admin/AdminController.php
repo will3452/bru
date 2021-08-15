@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Role;
 use App\Admin;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Role;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware('auth:admin');
     }
     public function index()
     {
-        $admins = Admin::where('type','!=', 'super admin')->get();
+        $admins = Admin::where('type', '!=', 'super admin')->get();
         return view('admin.admin.index', compact('admins'));
     }
 
@@ -40,10 +41,10 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'first_name'=>'required',
-            'last_name'=>'required',
-            'email'=>'required|unique:admins',
-            'password'=>'required'
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|unique:admins',
+            'password' => 'required',
         ]);
 
         $newAdmin = new Admin();
@@ -53,7 +54,7 @@ class AdminController extends Controller
         $newAdmin->email = $request->email;
         $newAdmin->password = Hash::make($request->password);
         $newAdmin->save();
-        $newAdmin->roles()->attach([1,12]);
+        $newAdmin->roles()->attach([1, 12]);
         return redirect(route('admin.admins.index'));
 
     }
@@ -67,7 +68,7 @@ class AdminController extends Controller
     public function show($id)
     {
         $roles = Role::get();
-        return view('admin.admin.show', ['admin'=>Admin::findOrFail($id) , 'roles'=> $roles]);
+        return view('admin.admin.show', ['admin' => Admin::findOrFail($id), 'roles' => $roles]);
     }
 
     /**
@@ -94,7 +95,10 @@ class AdminController extends Controller
         $admin->first_name = $request->first_name;
         $admin->last_name = $request->last_name;
         $admin->email = $request->email;
-        if($request->has('password'))$admin->password = Hash::make($request->password);
+        if ($request->has('password')) {
+            $admin->password = Hash::make($request->password);
+        }
+
         $admin->save();
         return back()->withSuccess('Done');
     }
@@ -107,6 +111,9 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $admin = Admin::findOrFail($id);
+        $admin->delete();
+        toast('Done!', 'success');
+        return back();
     }
 }
