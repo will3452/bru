@@ -37,22 +37,22 @@ class ApiSearchController extends Controller
 
         switch ($data['type']) {
             case 'book':
-                $return = Book::where('title', 'like', '%' . $data['keyword'] ?? '' . '%')->get();
+                $return = Book::where('title', 'like', '%' . $data['keyword']. '%')->get();
                 break;
             case 'film':
-                $return = Thrailer::where('title', 'like', '%' . $data['keyword'] ?? '' . '%')->get();
+                $return = Thrailer::where('title', 'like', '%' . $data['keyword']. '%')->get();
                 break;
             case 'song':
-                $return = Song::where('title', 'like', '%' . $data['keyword'] ?? '' . '%')->get();
+                $return = Song::where('title', 'like', '%' . $data['keyword']. '%')->get();
                 break;
             case 'podcast':
-                $return = Podcast::where('title', 'like', '%' . $data['keyword'] ?? '' . '%')->get();
+                $return = Podcast::where('title', 'like', '%' . $data['keyword']. '%')->get();
                 break;
             case 'art':
-                $return = Art::where('title', 'like', '%' . $data['keyword'] ?? '' . '%')->get();
+                $return = Art::where('title', 'like', '%' . $data['keyword']. '%')->get();
                 break;
             case 'audio':
-                $return = Audio::where('title', 'like', '%' . $data['keyword'] ?? '' . '%')->get();
+                $return = Audio::where('title', 'like', '%' . $data['keyword']. '%')->get();
                 break;
         }
 
