@@ -171,7 +171,7 @@ Route::prefix('v1')->group(function () {
 
         //diary
         Route::post('/diary', 'ApiDiaryController@addDiary');
-        Route::get('/get-week', 'ApiDiaryController@getWeek');
+        // Route::get('/get-week', 'ApiDiaryController@getWeek');
 
         //homework
         Route::get('/homework', 'ApiHomeworkController@index');
@@ -186,8 +186,7 @@ Route::prefix('v1')->group(function () {
     Route::post('/search', 'ApiSearchController');
 
     // Route::get('/homework', 'ApiHomeworkController@index');
-
-    Route::get('/get-week', 'ApiDiaryController@getWeek');
+    Route::post('/get-week', 'ApiDiaryController@getWeek'); //diary
 
     //latest 3 months
     Route::get('/latestmonths', 'ApiDiaryController@lastMonth'); //nice
