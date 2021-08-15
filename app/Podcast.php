@@ -9,7 +9,6 @@ use Multicaret\Acquaintances\Traits\CanBeSubscribed;
 class Podcast extends Model
 {
     use HasFactory;
-    use SoftDeletes;
     use CanBeSubscribed;
 
     protected $guarded = [];
