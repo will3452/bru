@@ -11,8 +11,9 @@
                 <select name="type" class="custom-select" onchange="document.getElementById('typeForm').submit()">
                     <option value="books" @if($type == 'book') selected  @endif >Books</option>
                     <option value="arts" @if($type == 'art') selected  @endif >Arts</option>
-                    <option value="audio" @if($type == 'audio') selected  @endif >Audio Book</option>
+                    <option value="audio" @if($type == 'audio') selected  @endif >Audio Books</option>
                     <option value="trailers" @if($type == 'trailer')selected  @endif >Trailers / Animation / Films</option>
+                    <option value="song" @if($type == 'song')selected  @endif >Songs</option>
                 </select>
             </div>
         </form>
@@ -257,6 +258,64 @@
                         @csrf
                         @method('PUT')
                         <input type="hidden" name="type" value="audio">
+                        <button class="btn btn-success btn-sm"><i class="fa fa-restore"></i> Restore</button>
+                    </form>
+                </td>
+                <td>
+                    <button class="btn btn-danger btn-sm"><i class="fa fa-cancel"></i> Permanently delete</button>
+                </td>
+            </tr>
+            @endforeach
+            @endif
+        </tbody>
+    </table>
+    @elseif($type == 'song')
+    <table id="bookstable" class="table table-stripped table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    Cover
+                </th>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Class
+                </th>
+                <th>
+                    Date Deleted
+                </th>
+                <th>
+                    Genre
+                </th>
+                <th>
+                    Cost
+                </th>
+                <th>
+                    Date Uploaded
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(count($books))
+            @foreach($books as $key=>$book)
+            <tr >
+                <td class=""><img src="{{ $book->cover}}"  class="avatar font-weight-bold d-block" alt=""></td>
+                <td>
+                    {{ $book->title }}
+                </td>
+                <td>{{  $book->class }}</td>
+                <td>{{ $book->deleted_at}}</td>
+                <td>{{ $book->genre }}</td>
+                <td>{{ $book->cost }} {{ $book->cost_type }}</td>
+                <td>{{ $book->created_at->format('M d, Y') }}</td>
+                <td >
+                    <form action="{{ route('admin.bin.restore', $book->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <input type="hidden" name="type" value="song">
                         <button class="btn btn-success btn-sm"><i class="fa fa-restore"></i> Restore</button>
                     </form>
                 </td>
