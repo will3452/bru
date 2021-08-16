@@ -13,13 +13,30 @@
                 <div class="form-group">
                     <input type="text" name="name" class="form-control" required placeholder="Name of Product">
                 </div>
-                <div class="form-group">
-                    <label for="">Type of Product</label>
-                    <select name="category" id="" class="custom-select">
-                        <option value="clothes">Clothes</option>
-                        <option value="merch">Merchandise</option>
-                        <option value="decor">Decoration</option>
-                    </select>
+                <div x-data="
+                    {
+                        type:null
+                    }
+                ">
+                    <div class="form-group">
+                        <label for="">Type of Product</label>
+                        <select name="category" id="" required class="custom-select" x-on:change="type = $refs.typeselect.value" x-ref="typeselect">
+                            <option value="" selected disabled>---</option>
+                            <option value="clothes">Clothes</option>
+                            <option value="merch">Merchandise</option>
+                            <option value="decor">Decoration</option>
+                        </select>
+                    </div>
+                    <template x-if="type == 'clothes'">
+                        <div class="form-group">
+                            <label for="">Type</label>
+                            <select name="type" id="" class="custom-select">
+                                <option value="pe">P.E Uniform</option>
+                                <option value="shoes">Shoes</option>
+                                <option value="formal">School Uniform</option>
+                            </select>
+                        </div>
+                    </template>
                 </div>
                 <div class="form-group">
                     <label for="">Type of Crystal</label>

@@ -37,6 +37,7 @@ class ProductController extends Controller
             'height' => 'required',
             'crystal' => 'required',
             'category' => 'required',
+            'type' => '',
         ]);
         $path = $data['picture']->store('/public/products');
         $arrpath = explode('/', $path);
