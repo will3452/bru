@@ -17,14 +17,6 @@ class ApiAuthController extends Controller
         }
     }
 
-    public function createHomework($id)
-    {
-        $user = User::find($id);
-        if (!$user->homework()->count()) {
-            $user->homework()->create([]);
-        }
-    }
-
     public function login()
     {
         $fields = request()->validate([
@@ -43,22 +35,11 @@ class ApiAuthController extends Controller
         $token = $user->createToken('myapptoken')->plainTextToken;
         $avatar = Avatar::where('user_id', $user->id)->first();
         $college = $user->interests()->where('type', 'college')->first()->name;
-        $royalties = [
-            'hall_pass' => 0,
-            'white_crystal' => 0,
-            'silver_ticket' => 0,
-            'purple_crystal' => 0,
-        ];
-
-        if ($user->royalties()->count() == 0) {
-            $royalties = $user->royalties()->create($royalties);
-        }
 
         $royalties = $user->royalties;
 
         //user
         $this->dayLogCreate($user);
-        $this->createHomework($user->id);
 
         $response = [
             'user' => $user,
@@ -128,21 +109,11 @@ class ApiAuthController extends Controller
             'name' => $request->club,
         ]);
 
-        $user->box()->create(); //create box for her/his collection
-        $this->createHomework($user->id); //create homework
-
         $token = $user->createToken('myapptoken')->plainTextToken;
-        $royalties = [
-            'hall_pass' => 0,
-            'white_crystal' => 0,
-            'silver_ticket' => 0,
-            'purple_crystal' => 0,
-        ];
 
         //user
         $this->dayLogCreate($user);
 
-        $user->royalties()->create($royalties);
         $response = [
             'user' => $user,
             'bio' => $user->bio,
