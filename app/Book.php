@@ -33,6 +33,10 @@ class Book extends Model
         return $chapter[0]->sq ?? 0;
     }
 
+    public function scopePublished($query){
+        return $query->whereNotNull('publish_date')->whereDate('publish_date', '<=', now());
+    }
+
     //relations
     public function user()
     {
