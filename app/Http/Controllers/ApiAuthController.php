@@ -114,10 +114,11 @@ class ApiAuthController extends Controller
         //user
         $this->dayLogCreate($user);
 
+
         $response = [
             'user' => $user,
             'bio' => $user->bio,
-            'royalties' => $royalties,
+            'royalties' => $user->royalties,
             'intererts' => $user->interests,
             'token' => $token,
             'result' => 200,
