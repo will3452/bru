@@ -75,7 +75,7 @@ class BookController extends Controller
 
     public function show(Book $book)
     {
-        [$book, $fiveBooks] = Cache::remember('book' . $book->id, 10, function () {
+        [$book, $fiveBooks] = Cache::remember('book' . $book->id, 10, function () use ($book) {
             $book->load('chapters');
             $fiveBooks = $book->chapters()->limit(5)->get();
             return [
