@@ -28,6 +28,7 @@ Route::prefix('v1')->group(function () {
         //     return response(['message'=>'you are authenticated'], 201);
         // });
         Route::post('/logout', 'ApiAuthController@logout');
+        Route::post('/update-room', 'ApiAuthController@updateRoom');
         Route::post('/vip-update', 'ApiVIPUpdateController@update');
 
         // bookshelves

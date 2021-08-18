@@ -114,7 +114,6 @@ class ApiAuthController extends Controller
         //user
         $this->dayLogCreate($user);
 
-
         $response = [
             'user' => $user,
             'bio' => $user->bio,
@@ -136,5 +135,20 @@ class ApiAuthController extends Controller
         return [
             'message' => 'Logged out',
         ];
+    }
+
+    public function updateRoom()
+    {
+        $data = request()->validate([
+            'room' => 'required',
+        ]);
+        
+        $user = User::find(auth()->user()->id);
+        $user->room = $data['room'];
+        $user->save();
+
+        return response([
+            'result' => 200,
+        ], 200);
     }
 }
