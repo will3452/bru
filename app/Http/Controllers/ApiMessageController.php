@@ -24,6 +24,7 @@ class ApiMessageController extends Controller
             if ($message->admin_sender_id != null) {
                 $data['admin_receiver_id'] = $data['receiver_id'];
                 $data['receiver_id'] = null;
+                $data['character'] = $message->character;
                 $data['type'] = $message->type;
             }
         }
