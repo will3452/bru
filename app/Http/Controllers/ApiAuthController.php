@@ -142,12 +142,13 @@ class ApiAuthController extends Controller
         $data = request()->validate([
             'room' => 'required',
         ]);
-        
+
         $user = User::find(auth()->user()->id);
         $user->room = $data['room'];
         $user->save();
 
         return response([
+            'room_updated'=>$user->room,
             'result' => 200,
         ], 200);
     }
