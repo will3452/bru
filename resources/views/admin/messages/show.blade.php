@@ -47,7 +47,7 @@
         <i class="fa fa-trash fa-sm"></i>
         Delete
     </button>
-    <a href="{{ route('admin.messages.create') }}?subject={{ $message->subject }}&email={{ $message->sender->id }}" class="btn btn-primary btn-sm">
+    <a href="{{ route('admin.messages.create') }}?subject={{ $message->subject }}&email={{ $message->sender->id ?? '' }}" class="btn btn-primary btn-sm">
         <i class="fa fa-pen fa-sm"></i> Write Message
     </a>
 </form>
