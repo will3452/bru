@@ -186,7 +186,6 @@ class AdminMessageController extends Controller
      */
     public function show($id)
     {
-        dd(config('cache.cache_time'));
         $message = Cache::remember('messages' . $id, config('cache.cache_time'), function () {
             return $this->message->findOrFail($id);
         });
