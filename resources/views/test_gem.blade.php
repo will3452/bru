@@ -23,7 +23,7 @@
             </button>
         </div>
     </form>
-    @if (isset($success))
+    @if (session('success'))
         Added!
     @endif
 </body>
