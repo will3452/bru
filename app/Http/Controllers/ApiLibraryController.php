@@ -8,46 +8,51 @@ use Illuminate\Http\Request;
 
 class ApiLibraryController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         // return request()->all();
         request()->validate([
-            'genre'=>'required'
+            'genre' => 'required',
         ]);
-        
-        if(request()->has('_limit')){
+
+        if (request()->has('_limit')) {
             $books = Book::where('genre', request()->genre)->limit(request()->_limit)->get();
-        }else {
+        } else {
             $books = Book::where('genre', request()->genre)->get();
         }
         return response([
-            'books'=>$books,
-            'size'=>count($books),
-            'result'=>200
+            'books' => $books,
+            'size' => count($books),
+            'result' => 200,
         ], 200);
     }
 
-    public function show($id){
+    public function show($id)
+    {
         // return $id;
         $book = Book::find($id);
-        
+
         $userid = $book->user_id;
 
         $user = User::find($userid);
-        
+
         $other = $user->books;
+        $categories = ['Novel', 'Anthology'];
 
         return response([
-            'author'=>$user,
-            'book'=>$book,
-            'stars'=>abs($book->stars()->avg('value')) ?? 0,
-            'other_works'=>$other,
-            'is_in_collection'=>auth()->user()->isBookIsInTheBox($id),
-            'result'=>200
+            'author' => $user,
+            'book' => $book,
+            'stars' => abs($book->stars()->avg('value')) ?? 0,
+            'other_works' => $other,
+            'is_in_collection' => auth()->user()->isBookIsInTheBox($id),
+            'is_pdf' => !in_array($book->category, $categories),
+            'result' => 200,
         ], 200);
 
     }
 
-    public function summary(){
+    public function summary()
+    {
         $a = Book::where('genre', 'Teen and Young Adult')->count();
         $b = Book::where('genre', 'New Adult')->count();
         $c = Book::where('genre', 'Romance')->count();
@@ -58,16 +63,16 @@ class ApiLibraryController extends Controller
         $h = Book::where('genre', 'LGBTQIA+')->count();
         $i = Book::where('genre', 'Poetry')->count();
         return response([
-            'teen_and_young_adult'=>$a,
-            'new_adult'=>$b,
-            'romance'=>$c,
-            'detective_and_mystery'=>$d,
-            'action'=>$e,
-            'historical'=>$f,
-            'thriller_and_horror'=>$g,
-            'lgbtqia'=>$h,
-            'poetry'=>$i,
-            'result'=>200
-        ],200);
+            'teen_and_young_adult' => $a,
+            'new_adult' => $b,
+            'romance' => $c,
+            'detective_and_mystery' => $d,
+            'action' => $e,
+            'historical' => $f,
+            'thriller_and_horror' => $g,
+            'lgbtqia' => $h,
+            'poetry' => $i,
+            'result' => 200,
+        ], 200);
     }
 }
