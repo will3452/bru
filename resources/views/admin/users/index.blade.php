@@ -34,7 +34,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (\App\User::get() as $user)
+                    @foreach ($users as $user)
                         <tr x-data="
                         {
                             off:@if(isset($user->disabled))  false @else true @endif,

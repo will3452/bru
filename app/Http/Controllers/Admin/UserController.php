@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         $this->middleware(['auth:admin', 'checkrole:user']);
     }
     /**
@@ -18,7 +19,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.users.index');
+        $users = User::get();
+        return view('admin.users.index', compact('users'));
     }
 
     /**
@@ -74,7 +76,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-        $user->disabled = $user->disabled != null ? null:now();
+        $user->disabled = $user->disabled != null ? null : now();
         $user->save();
         return 1;
     }
@@ -87,7 +89,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-         User::find($id)->delete();
-         return back()->withSuccess('Done!');
+        User::find($id)->delete();
+        return back()->withSuccess('Done!');
     }
 }
