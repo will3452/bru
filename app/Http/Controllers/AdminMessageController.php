@@ -7,6 +7,7 @@ use App\Interest;
 use App\Message;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class AdminMessageController extends Controller
 {
@@ -186,7 +187,10 @@ class AdminMessageController extends Controller
     public function show($id)
     {
 
-        $message = $this->message->findOrFail($id);
+        $message = Cache::remember('messages' . $id, $seconds, function () {
+            return $this->message->findOrFail($id);
+        });
+
         if ($message->admin_receiver_id != null) {
             $message->read_at = now();
             $message->save();
