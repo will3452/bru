@@ -54,7 +54,7 @@ class AdminMessageController extends Controller
                     $messages = auth()->guard('admin')->user()->inboxes()->where('type', 'users')->latest()->get();
                     break;
             }
-            $messages->with(['sender', 'receiver']);
+            $messages->load(['sender', 'receiver']);
         } else {
 
             switch (request()->utype) {
@@ -85,7 +85,7 @@ class AdminMessageController extends Controller
 
             }
 
-            $messages->with(['sender', 'receiver']);
+            $messages->load(['sender', 'receiver']);
 
         }
 
