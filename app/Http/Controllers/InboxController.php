@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 class InboxController extends Controller
 {
-    public function __construct(){
+    public function __construct()
+    {
         return $this->middleware('auth');
     }
     /**
@@ -17,6 +18,7 @@ class InboxController extends Controller
     public function index()
     {
         $messages = auth()->user()->inboxes()->latest()->get();
+        $messages->load(['admin_sender', 'sender']);
         return view('inbox.index', compact('messages'));
     }
 
@@ -39,19 +41,19 @@ class InboxController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'message_id'=>'required',
-            'body'=>'required'
+            'message_id' => 'required',
+            'body' => 'required',
         ]);
         $message = auth()->user()->inboxes()->findOrFail($request->message_id);
 
         auth()->user()->outboxes()->create([
-            'admin_receiver_id'=>$message->admin_sender_id,
-            'receiver_id'=>auth()->user()->id == $message->receiver_id ? null : $message->receiver_id,
-            'reply_id'=>$message->id,
-            'body'=>$request->body,
-            'type'=>$message->type,
-            'subject'=>$message->subject,
-            'replyable'=>1
+            'admin_receiver_id' => $message->admin_sender_id,
+            'receiver_id' => auth()->user()->id == $message->receiver_id ? null : $message->receiver_id,
+            'reply_id' => $message->id,
+            'body' => $request->body,
+            'type' => $message->type,
+            'subject' => $message->subject,
+            'replyable' => 1,
         ]);
 
         return back()->withSuccess('Message Sent!');
@@ -66,7 +68,7 @@ class InboxController extends Controller
      */
     public function show($id)
     {
-        return view('inbox.show', ['message'=>auth()->user()->inboxes()->findOrFail($id)]);
+        return view('inbox.show', ['message' => auth()->user()->inboxes()->findOrFail($id)]);
     }
 
     /**
