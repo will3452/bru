@@ -23,16 +23,6 @@ class InboxController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -68,7 +58,11 @@ class InboxController extends Controller
      */
     public function show($id)
     {
-        return view('inbox.show', ['message' => auth()->user()->inboxes()->findOrFail($id)]);
+        $message = auth()->user()->inboxes()->findOrFail($id);
+
+        $message->load(['sender', 'admin_sender']);
+
+        return view('inbox.show', ['message' => $message]);
     }
 
     /**
