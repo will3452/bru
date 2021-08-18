@@ -20,7 +20,7 @@ class ApiMessageController extends Controller
 
         $message = request()->reply_id ? Message::find($data['reply_id']) : null;
 
-        if ($message->admin_sender_id != null) {
+        if ($message && $message->admin_sender_id != null) {
             $data['admin_receiver_id'] = $data['receiver_id'];
             $data['receiver_id'] = '';
         }
