@@ -87,7 +87,7 @@
                 <div class="card-body">
                     <h6 class="heading-small text-muted mb-4">Content</h6>
                     <ul class="list-group mb-2">
-                        @foreach($book->chapters()->limit(5)->get() as $key=>$chapter)
+                        @foreach($fiveBooks as $key=>$chapter)
                         <li class="list-group-item d-flex align-items-center justify-content-between">
                             
                             <div class="d-flex align-items-center">
@@ -113,32 +113,6 @@
                     <div class="text-center">
                         <a href="{{ route('books.chapters.create', $book) }}?first=true" class="btn btn-outline-primary shadow" >
                             Add new chapter 
-                        </a>
-                    </div>
-                </div>
-            </div>
-            @else
-            <div class=" card shadow mb-2">
-                <div class="card-body">
-                    <h6 class="heading-small text-muted mb-4">Books</h6>
-                    <ul class="list-group mb-2">
-                        @foreach($book->books as $b)
-                        <li class="list-group-item d-flex align-items-center justify-content-between">
-                            <div class="d-flex align-items-center">
-                                <img src="{{ $b->cover }}" alt="" class="avatar mr-2">
-                                <span>{{ $b->title }}</span>
-                            </div>
-                            <form action="{{ route('books.chapters.remove.series',[$book, $b]) }}" method="POST">
-                                @csrf
-                                @method('delete')
-                                <button class="btn btn-danger btn-sm"><i class="fa fa-times fa-xs"></i></button>
-                            </form>
-                        </li>
-                        @endforeach
-                    </ul>
-                    <div class="text-center">
-                        <a href="{{ route('books.chapters.create', $book) }}" class="btn btn-outline-primary shadow" >
-                            Add new book
                         </a>
                     </div>
                 </div>

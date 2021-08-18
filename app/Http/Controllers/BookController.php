@@ -76,7 +76,8 @@ class BookController extends Controller
     public function show(Book $book)
     {
         $book->load('chapters');
-        return view('books.show', compact('book'));
+        $fiveBooks = $book->chapters()->limit(5)->get();
+        return view('books.show', compact('fiveBooks', 'book'));
     }
 
     public function update(Book $book)
