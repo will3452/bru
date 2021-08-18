@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Tag;
 use App\Book;
-use Illuminate\Http\Request;
 use App\Http\Requests\BookForms;
-use Illuminate\Support\Facades\Hash;
+use App\Tag;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Hash;
 
 class BookController extends Controller
 {
@@ -75,6 +75,7 @@ class BookController extends Controller
 
     public function show(Book $book)
     {
+        $book->load('chapters');
         return view('books.show', compact('book'));
     }
 
