@@ -12,11 +12,18 @@ class ApiMessageController extends Controller
     {
         $user = User::find(auth()->user()->id);
         $data = request()->validate([
-            'receiver_id' => 'required',
+            'receiver_id' => '',
             'subject' => '',
             'body' => '',
             'reply_id' => '',
         ]);
+
+        $message = request()->reply_id ? Message::find($data['reply_id']) : null;
+
+        if ($message->admin_sender_id != null) {
+            $data['admin_receiver_id'] = $data['receiver_id'];
+            $data['receiver_id'] = '';
+        }
 
         $data['replyable'] = true;
         $user->outboxes()->create($data);
