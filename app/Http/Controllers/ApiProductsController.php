@@ -43,6 +43,11 @@ class ApiProductsController extends Controller
                 $newbal = (int) $bal - (int) $product->price;
                 $user->royalties->update(['white_crystal' => $newbal]);
                 $user->box->products()->attach($id);
+            } else {
+                return response([
+                    'new_balance' => $user->royalties,
+                    'result' => 400,
+                ], 200);
             }
         } else {
             $bal = $user->royalties->purple_crystal;
@@ -50,6 +55,11 @@ class ApiProductsController extends Controller
                 $newbal = (int) $bal - (int) $product->price;
                 $user->royalties->update(['purple_crystal' => $newbal]);
                 $user->box->products()->attach($id);
+            } else {
+                return response([
+                    'new_balance' => $user->royalties,
+                    'result' => 400,
+                ], 200);
             }
         }
 
