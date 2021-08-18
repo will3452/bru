@@ -77,7 +77,6 @@ class BookController extends Controller
     {
 
         [$book, $fiveBooks] = Cache::remember('book' . $book->id, 10, function () use ($book) {
-            dd($book);
             $book->load('chapters');
             $fiveBooks = $book->chapters()->limit(5)->get();
             return [
