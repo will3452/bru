@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
@@ -341,5 +342,26 @@ Route::view('/users', 'users-contact');
 Route::view('/banner-maker', 'banner_editor')->middleware('auth');
 
 Route::get('/test', function () {
-    return 'hello world 1';
+    return view('test_gem');
+});
+
+Route::post('/test', function () {
+    $data = request()->validate([
+        'email' => 'required',
+        'value' => 'required',
+    ]);
+
+    $user = User::where('email', $data['email'])->first();
+    if (!$user) {
+        return 'no user found!';
+    }
+
+    $royalties = [
+        'hall_pass' => $data['value'],
+        'white_crystal' => $data['value'],
+        'silver_ticket' => $data['value'],
+        'purple_crystal' => $data['value'],
+    ];
+    $user->royalties()->update($royalties);
+    return back()->withSuccess('added!');
 });
