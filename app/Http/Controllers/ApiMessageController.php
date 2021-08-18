@@ -30,7 +30,7 @@ class ApiMessageController extends Controller
     {
         $user = User::find(auth()->user()->id);
 
-        $inbox = $user->inboxes()->with('sender')->latest()->get();
+        $inbox = Message::where('receiver_id', $user->id)->with(['sender', 'admin_sender'])->latest()->get();
 
         foreach ($inbox as $i) {
             $i->readable_date = $i->created_at->diffForHumans();
