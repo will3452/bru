@@ -40,7 +40,7 @@ class ApiAvatarController extends Controller
         ]);
         // return auth()->user();
         $data['user_id'] = auth()->user()->id;
-        Avatar::update($data);
+        Avatar::where('user_id')->first()->update($data);
         return response([
             'message' => request()->all(),
             'result' => 200,
