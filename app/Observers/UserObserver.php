@@ -25,7 +25,7 @@ class UserObserver
             'purple_crystal' => 0,
         ];
         $user->royalties()->create($royalties);
-
+        $user->avatar()->create([]);
     }
 
     /**

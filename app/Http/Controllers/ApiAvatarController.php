@@ -8,72 +8,75 @@ use Illuminate\Http\Request;
 class ApiAvatarController extends Controller
 {
 // skin
-// head
-// faceshape
-// facehair
-// hair
-// eyes
-// eyebrows
-// nose
-// lips
-// pe
-// accesories
-// outfit
-// shoes
-    public function store(){
+    // head
+    // faceshape
+    // facehair
+    // hair
+    // eyes
+    // eyebrows
+    // nose
+    // lips
+    // pe
+    // accesories
+    // outfit
+    // shoes
+    public function store()
+    {
         $data = request()->validate([
-            'skin'=>'',
-            'head'=>'',
-            'faceshape'=>'',
-            'facehair'=>'',
-            'hair'=>'',
-            'eyes'=>'',
-            'eyebrows'=>'',
-            'nose'=>'',
-            'lips'=>'',
-            'pe'=>'',
-            'accesories'=>'',
-            'outfit'=>'',
-            'shoes'=>''
+            'skin' => '',
+            'head' => '',
+            'faceshape' => '',
+            'facehair' => '',
+            'hair' => '',
+            'eyes' => '',
+            'eyebrows' => '',
+            'nose' => '',
+            'lips' => '',
+            'pe' => '',
+            'accesories' => '',
+            'outfit' => '',
+            'shoes' => '',
         ]);
         // return auth()->user();
         $data['user_id'] = auth()->user()->id;
-        Avatar::create($data);
+        Avatar::update($data);
         return response([
-            'message'=>request()->all(),
-            'result'=>200
-        ],200);
-    }
-
-    public function show(){
-        $avatar = Avatar::where('user_id',auth()->user()->id)->first();
-        return response([
-            'avatar'=>$avatar ?? [],
-            'result'=>200
+            'message' => request()->all(),
+            'result' => 200,
         ], 200);
     }
 
-    public function update(){
+    public function show()
+    {
+        $avatar = Avatar::where('user_id', auth()->user()->id)->first();
+        return response([
+            'avatar' => $avatar ?? [],
+            'result' => 200,
+        ], 200);
+    }
+
+    public function update()
+    {
         $avatar = Avatar::where('user_id', auth()->user()->id)->first();
         $data = request()->validate([
-            'skin'=>'',
-            'head'=>'',
-            'faceshape'=>'',
-            'facehair'=>'',
-            'hair'=>'',
-            'eyes'=>'',
-            'eyebrows'=>'',
-            'nose'=>'',
-            'lips'=>'',
-            'pe'=>'',
-            'accesories'=>'',
-            'outfit'=>'',
-            'shoes'=>''
+            'skin' => '',
+            'head' => '',
+            'faceshape' => '',
+            'facehair' => '',
+            'hair' => '',
+            'eyes' => '',
+            'eyebrows' => '',
+            'nose' => '',
+            'lips' => '',
+            'pe' => '',
+            'accesories' => '',
+            'outfit' => '',
+            'shoes' => '',
         ]);
         $avatar->update($data);
         return response([
-            'message'=>request()->all(),
-            'result'=>200
-        ],200);
+            'message' => request()->all(),
+            'result' => 200,
+        ], 200);
     }
 }
