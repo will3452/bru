@@ -50,9 +50,6 @@ class AdminMessageController extends Controller
                 case 'vip':
                     $messages = auth()->guard('admin')->user()->inboxes()->where('type', 'vip')->latest()->get();
                     break;
-                case 'vip':
-                    $messages = auth()->guard('admin')->user()->inboxes()->where('type', 'vip')->latest()->get();
-                    break;
                 case 'users':
                     $messages = auth()->guard('admin')->user()->inboxes()->where('type', 'users')->latest()->get();
                     break;
@@ -77,9 +74,6 @@ class AdminMessageController extends Controller
                     break;
                 case 'berkeley':
                     $messages = auth()->guard('admin')->user()->outboxes()->where('type', 'berkeley')->latest()->get();
-                    break;
-                case 'vip':
-                    $messages = auth()->guard('admin')->user()->outboxes()->where('type', 'vip')->latest()->get();
                     break;
                 case 'vip':
                     $messages = auth()->guard('admin')->user()->outboxes()->where('type', 'vip')->latest()->get();
