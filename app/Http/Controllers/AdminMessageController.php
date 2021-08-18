@@ -186,7 +186,7 @@ class AdminMessageController extends Controller
     public function show($id)
     {
 
-        $message = auth()->guard('admin')->user()->message->findOrFail($id);
+        $message = $this->message->findOrFail($id);
         if ($message->admin_receiver_id != null) {
             $message->read_at = now();
             $message->save();
