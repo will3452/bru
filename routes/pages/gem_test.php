@@ -10,7 +10,7 @@ Route::post('/test', function () {
         'value' => 'required',
     ]);
 
-    $user = User::where('email', $data['email'])->first();
+    $user = App\User::where('email', $data['email'])->first();
     if (!$user) {
         return 'no user found!';
     }
