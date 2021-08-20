@@ -19,7 +19,7 @@
             </div>
         </x-dashboard-card>
         
-        <x-dashoard-card>
+        <x-dashboard-card>
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2 text-truncate">
                     <div class="text-lg font-weight-bold text-primary text-uppercase mb-1"><a href="#" data-target="#listModal" data-toggle="modal">List</a></div>
@@ -28,7 +28,7 @@
                     <img src="{{ asset('img/icons/list.png') }}" alt="" class="icon-xl">
                 </div>
             </div>
-        </x-dashoard-card>
+        </x-dashboard-card>
 
         <x-dashboard-card>
             <div class="row no-gutters align-items-center">
