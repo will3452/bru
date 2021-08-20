@@ -142,7 +142,7 @@
                     </table>
                 </div>
             </div>
-            <div class="card">
+            <div class="card mt-2">
                 <div class="card-header">
                     Blurb
                 </div>
@@ -150,7 +150,7 @@
                     {!! $book->blurb !!}
                 </div>
             </div>
-            <div class="card">
+            <div class="card mt-2">
                 <div class="card-header">
                     Credits
                 </div>
