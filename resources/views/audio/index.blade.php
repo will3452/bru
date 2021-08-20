@@ -4,7 +4,7 @@
     <a href="{{ route('books.index') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
     <div class="d-flex mt-4 flex-wrap">
         @foreach ($books as $book)
-            <x-book-windpw :book="$book"/>
+            <x-book-window :book="$book"/>
         @endforeach
         
     </div>
