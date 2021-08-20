@@ -40,9 +40,8 @@ Route::prefix('books')->name('books.')->middleware(['auth'])->group(function () 
 });
 
 Route::get('pdf-viewer', fuction(){
-    requets()->validate([
-        'pdf'=>'required'
-    ]);
+    
+    $pdf = request()->pdf;
 
     return view('pdfviewer', compact('pdf'));
 });
