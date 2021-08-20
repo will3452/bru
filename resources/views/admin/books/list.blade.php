@@ -77,7 +77,7 @@
         dom: 'Bfrtip',
         buttons: [
             // 'copy', 'csv', 'excel', 'pdf','colvis'
-             'pdf','colvis'
+             'pdf'
         ],
     });
         $('button').addClass('.btn')

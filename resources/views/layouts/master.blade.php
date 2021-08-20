@@ -362,7 +362,7 @@
                             <i class="fa fa-store"></i>
                         </a>
                     </li>
-                    <x-notification/>
+                    {{-- <x-notification/> --}}
                     @livewire('admin.notification-message')
                     
                      {{-- <!-- Nav Item - Alerts -->
