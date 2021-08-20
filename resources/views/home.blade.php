@@ -7,6 +7,7 @@
 @endif
     <h1 class="h3 mb-4 text-gray-800">{{ __('My Works') }}</h1>
     <div class="row">
+        
         <x-dashboard-card>
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2 text-truncate">
@@ -17,62 +18,50 @@
                 </div>
             </div>
         </x-dashboard-card>
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2 card-bg-custom">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2 text-truncate">
-                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-1"><a href="#" data-target="#listModal" data-toggle="modal">List</a></div>
-                        </div>
-                        <div class="col-auto">
-                            <img src="{{ asset('img/icons/list.png') }}" alt="" class="icon-xl">
-                        </div>
-                    </div>
+        
+        <x-dashoard-card>
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2 text-truncate">
+                    <div class="text-lg font-weight-bold text-primary text-uppercase mb-1"><a href="#" data-target="#listModal" data-toggle="modal">List</a></div>
+                </div>
+                <div class="col-auto">
+                    <img src="{{ asset('img/icons/list.png') }}" alt="" class="icon-xl">
                 </div>
             </div>
-        </div>
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2 card-bg-custom">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2 text-truncate">
-                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-1"><a href="{{ route('series.index') }}" >Series</a></div>
-                        </div>
-                        <div class="col-auto" style="font-size:34px;">
-                            <i class="fa fa-layer-group"></i>
-                        </div>
-                    </div>
+        </x-dashoard-card>
+
+        <x-dashboard-card>
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2 text-truncate">
+                    <div class="text-lg font-weight-bold text-primary text-uppercase mb-1"><a href="{{ route('series.index') }}" >Series</a></div>
+                </div>
+                <div class="col-auto" style="font-size:34px;">
+                    <i class="fa fa-layer-group"></i>
                 </div>
             </div>
-        </div>
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2 card-bg-custom">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2 text-truncate">
-                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-1"><a href="{{ route('collections.index') }}" >Collections</a></div>
-                        </div>
-                        <div class="col-auto" style="font-size:34px;">
-                            <i class="fa fa-grip-horizontal"></i>
-                        </div>
-                    </div>
+        </x-dashboard-card>
+
+        <x-dashboard-card>
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2 text-truncate">
+                    <div class="text-lg font-weight-bold text-primary text-uppercase mb-1"><a href="{{ route('collections.index') }}" >Collections</a></div>
+                </div>
+                <div class="col-auto" style="font-size:34px;">
+                    <i class="fa fa-grip-horizontal"></i>
                 </div>
             </div>
-        </div>
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2 card-bg-custom">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2 text-truncate">
-                            <div class="text-lg font-weight-bold text-primary text-uppercase mb-1"><a href="{{ route('albums.index') }}" >Albums</a></div>
-                        </div>
-                        <div class="col-auto" style="font-size:34px;">
-                            <i class="fa fa-compact-disc"></i>
-                        </div>
-                    </div>
+        </x-dashboard-card>
+        
+        <x-dashboard-card>
+            <div class="row no-gutters align-items-center">
+                <div class="col mr-2 text-truncate">
+                    <div class="text-lg font-weight-bold text-primary text-uppercase mb-1"><a href="{{ route('albums.index') }}" >Albums</a></div>
+                </div>
+                <div class="col-auto" style="font-size:34px;">
+                    <i class="fa fa-compact-disc"></i>
                 </div>
             </div>
-        </div>
+        </x-dashboard-card>
         {{-- <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
