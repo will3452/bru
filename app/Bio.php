@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Support\Carbon;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Bio extends Model
 {
@@ -12,16 +12,33 @@ class Bio extends Model
 
     protected $guarded = [];
 
-    public function getBdayAttribute(){
-        return Carbon::parse($this->birthdate);
+    public function changeBdayFormat()
+    {
+        $arr = explode('/', $this->birthdate);
+        $newval = implode(' ', $arr);
+        return $newval;
     }
 
-    public function getAgeAttribute(){
-        return Carbon::parse($this->birthdate)->age;
+    public function getBdayAttribute()
+    {
+        return Carbon::parse($this->changeBdayFormat());
+    }
+
+    public function getAgeAttribute()
+    {
+        return Carbon::parse($this->changeBdayFormat())->age;
+    }
+
+    public function setBirthdateAttribute($value)
+    {
+        $arr = explode('/', $value);
+        $newval = implode(' ', $arr);
+        $this->attributes['birthdate'] = $newval;
     }
     //relations
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 }
