@@ -13,6 +13,6 @@
     }
 </style>
 <body>
-    <iframe style="width:100vw; height:100vh" allowfullscreen webkitallowfullscreen src='{{ url($url) }}#toolbar=0'></iframe>
+    <iframe style="width:100vw; height:100vh" frameborder="0" allowfullscreen webkitallowfullscreen src='{{ url($url) }}#embedded=true'></iframe>
 </body>
 </html>
