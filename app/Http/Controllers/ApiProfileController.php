@@ -9,11 +9,11 @@ class ApiProfileController extends Controller
     public function getMyProfile()
     {
         $user = User::find(auth()->user()->id);
-        $user->load('bio');
 
         return response([
             'result' => 200,
             'user' => $user,
+            'bio' => $user->bio,
         ], 200);
     }
 
@@ -31,6 +31,7 @@ class ApiProfileController extends Controller
         return response([
             'result' => 200,
             'user' => $user,
+            'bio' => $user->bio,
         ], 200);
 
     }
