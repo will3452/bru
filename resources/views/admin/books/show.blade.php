@@ -68,69 +68,95 @@
         <div class="card-header">
             Book details
         </div>
-        <div class="card-body row">
-            <div class="col-md-3">
-                <img src="{{ $book->cover }}" alt="" style="width:300px; height:400px;object-fit:cover;">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="{{ $book->cover }}" alt="" style="width:300px; height:400px;object-fit:cover;">
+                </div>
+                <div class="col-md-9">
+                    <table class="table">
+                        <tr>
+                            <th>
+                                title
+                            </th>
+                            <td>
+                                {{ $book->title }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Type
+                            </th>
+                            <td>
+                                {{ $book->class }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Category
+                            </th>
+                            <td>
+                                {{ $book->category }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Language
+                            </th>
+                            <td>
+                                {{ $book->language }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Lead Character
+                            </th>
+                            <td>
+                                {{ $book->lead_character }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Lead College
+                            </th>
+                            <td>
+                                {{ $book->lead_college }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Review Question 1
+                            </th>
+                            <td>
+                                {{ $book->review_question_1 }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                Review Question 2
+                            </th>
+                            <td>
+                                {{ $book->review_question_2 }}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-            <div class="col-md-9">
-                <table class="table">
-                    <tr>
-                        <th>
-                            title
-                        </th>
-                        <td>
-                            {{ $book->title }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            Category
-                        </th>
-                        <td>
-                            {{ $book->category }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            Language
-                        </th>
-                        <td>
-                            {{ $book->language }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            Lead Character
-                        </th>
-                        <td>
-                            {{ $book->lead_character }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            Lead College
-                        </th>
-                        <td>
-                            {{ $book->lead_college }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            Review Question 1
-                        </th>
-                        <td>
-                            {{ $book->review_question_1 }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
-                            Review Question 2
-                        </th>
-                        <td>
-                            {{ $book->review_question_2 }}
-                        </td>
-                    </tr>
-                </table>
+            <div class="card">
+                <div class="card-header">
+                    Blurb
+                </div>
+                <div class="card-body">
+                    {!! $book->blurb !!}
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    Credits
+                </div>
+                <div class="card-body">
+                    {!! $book->credit_page !!}
+                </div>
             </div>
         </div>
     </div>
