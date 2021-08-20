@@ -4,12 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Multicaret\Acquaintances\Traits\CanBeSubscribed;
 
 class Podcast extends Model
 {
     use HasFactory;
     use CanBeSubscribed;
+    use SoftDeletes;
 
     protected $guarded = [];
 

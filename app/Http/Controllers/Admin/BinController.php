@@ -6,6 +6,7 @@ use App\Art;
 use App\Audio;
 use App\Book;
 use App\Http\Controllers\Controller;
+use App\Podcast;
 use App\Song;
 use App\Thrailer;
 use Illuminate\Http\Request;
@@ -35,6 +36,10 @@ class BinController extends Controller
             $type = 'song';
             $books = Song::withTrashed()->whereNotNull('deleted_at')->get();
             // return $books;
+        } else if (request()->type == 'podcast') {
+            $type = 'podcast';
+            $books = Podcast::withTrashed()->whereNotNull('deleted_at')->get();
+            // return $books;
         }
         // dd($books);
         return view('admin.bin.index', compact(['books', 'type']));
@@ -53,6 +58,8 @@ class BinController extends Controller
             Audio::withTrashed()->where('id', $id)->restore();
         } else if ($type == 'song') {
             Song::withTrashed()->where('id', $id)->restore();
+        } else if ($type == 'song') {
+            Podcast::withTrashed()->where('id', $id)->restore();
         }
         toast(ucwords($type) . 'is restored!', 'success');
         return back();

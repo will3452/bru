@@ -327,6 +327,56 @@
             @endif
         </tbody>
     </table>
+    @elseif($type == 'podcast')
+    <table id="bookstable" class="table table-stripped table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    Cover
+                </th>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Date Deleted
+                </th>
+                <th>
+                    Cost
+                </th>
+                <th>
+                    Date Uploaded
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(count($books))
+            @foreach($books as $key=>$book)
+            <tr >
+                <td class=""><img src="{{ $book->cover}}"  class="avatar font-weight-bold d-block" alt=""></td>
+                <td>
+                    {{ $book->title }}
+                </td>
+                <td>{{ $book->deleted_at}}</td>
+                <td>{{ $book->cost }} {{ $book->cost_type }}</td>
+                <td>{{ $book->created_at->format('M d, Y') }}</td>
+                <td >
+                    <form action="{{ route('admin.bin.restore', $book->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <input type="hidden" name="type" value="podcast">
+                        <button class="btn btn-success btn-sm"><i class="fa fa-restore"></i> Restore</button>
+                    </form>
+                </td>
+                <td>
+                    <button class="btn btn-danger btn-sm"><i class="fa fa-cancel"></i> Permanently delete</button>
+                </td>
+            </tr>
+            @endforeach
+            @endif
+        </tbody>
+    </table>
     @endif
 @endsection
 
