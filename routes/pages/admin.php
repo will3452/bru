@@ -15,6 +15,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     //bin
     Route::get('/bin', 'Admin\BinController@index')->name('bin.index');
     Route::put('/bin/{id}', 'Admin\BinController@restore')->name('bin.restore');
+    Route::delete('/bin/{id}', 'Admin\BinController@destroy')->name('bin.delete');
 
     //merch store
     Route::post('/store', 'Admin\ProductController@store')->name('product.store');
@@ -98,7 +99,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/messages-delete', 'AdminMessageDeleteController')->name('messages.delete.all');
 
 });
-
 
 Route::prefix('admin/images')->name('admin.images.')->middleware('auth:admin')->group(function () {
     Route::get('/', 'Admin\ImageManagementController@index')->name('menu');

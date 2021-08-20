@@ -371,7 +371,12 @@
                     </form>
                 </td>
                 <td>
-                    <button class="btn btn-danger btn-sm"><i class="fa fa-cancel"></i> Permanently delete</button>
+                    <form action="{{ route('admin.bin.delete', $book->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="type" value="podcast">
+                        <button class="btn btn-danger btn-sm"><i class="fa fa-cancel"></i> Permanently delete</button>
+                    </form>
                 </td>
             </tr>
             @endforeach

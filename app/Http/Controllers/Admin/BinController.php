@@ -64,4 +64,29 @@ class BinController extends Controller
         toast(ucwords($type) . 'is restored!', 'success');
         return back();
     }
+
+    public function destroy($id)
+    {
+        $type = request()->type ?? 'book';
+        if ($type == 'art') {
+            Art::withTrashed()->where('id', $id)->forceDelete();
+        } else if ($type == 'trailer') {
+            Thrailer::withTrashed()->where('id', $id)->forceDelete();
+
+        } else if ($type == 'book') {
+            Book::withTrashed()->where('id', $id)->forceDelete();
+
+        } else if ($type == 'audio') {
+            Audio::withTrashed()->where('id', $id)->forceDelete();
+
+        } else if ($type == 'song') {
+            Song::withTrashed()->where('id', $id)->forceDelete();
+
+        } else if ($type == 'song') {
+            Podcast::withTrashed()->where('id', $id)->forceDelete();
+        }
+        toast(ucwords($type) . 'Deleted!', 'success');
+        return back();
+
+    }
 }
