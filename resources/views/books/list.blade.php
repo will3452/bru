@@ -6,7 +6,6 @@
         @foreach ($books as $book)
             <x-book-window :book="$book"/>
         @endforeach
-        
     </div>
 @endsection
 

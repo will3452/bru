@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Book;
+use App\Chapter;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -92,6 +93,22 @@ class ApiBookPreviewController extends Controller
 
         return response([
             'result' => 200,
+        ], 200);
+    }
+
+    public function showChapter($id)
+    {
+        $chapter = Chapter::find($id);
+        $comments = $chapter->comments()->with('user')->latest()->get();
+        $hearts = $chapter->likes()->count();
+        $stars = (int) $chapter->stars()->avg('value');
+
+        return response([
+            'result' => 200,
+            'chapter' => $chapter,
+            'comments' => $comments,
+            'hearts' => $hearts,
+            'stars' => $stars,
         ], 200);
     }
 
