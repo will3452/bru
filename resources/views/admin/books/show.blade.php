@@ -93,6 +93,14 @@
                         </tr>
                         <tr>
                             <th>
+                                Cost
+                            </th>
+                            <td>
+                                {{ $book->cost == 0 ? 'FREE' : $book->cost }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
                                 Category
                             </th>
                             <td>
