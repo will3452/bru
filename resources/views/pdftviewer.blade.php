@@ -7,6 +7,6 @@
     <title>PDF</title>
 </head>
 <body>
-    <iframe height='100%' width='100%' allowfullscreen webkitallowfullscreen src='{{ url($url) }}'></iframe>
+    <iframe style="width:100vw; height:100vh" allowfullscreen webkitallowfullscreen src='{{ url($url) }}'></iframe>
 </body>
 </html>
