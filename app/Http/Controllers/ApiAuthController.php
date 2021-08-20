@@ -132,9 +132,10 @@ class ApiAuthController extends Controller
     public function logout()
     {
         auth()->user()->tokens()->delete();
-        return [
+        return response([
             'message' => 'Logged out',
-        ];
+            'result' => 200,
+        ], 200);
     }
 
     public function updateRoom()
@@ -148,7 +149,7 @@ class ApiAuthController extends Controller
         $user->save();
 
         return response([
-            'room_updated'=>$user->room,
+            'room_updated' => $user->room,
             'result' => 200,
         ], 200);
     }
