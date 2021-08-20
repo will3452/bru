@@ -3,7 +3,7 @@
     <h1 class="h3 mb-4 text-gray-800">{{ __('List of Works in Bin') }}</h1>
     <a href="{{ url()->previous() }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
     <div class="alert alert-info">
-        <i class="fa fa-bell"></i> <span> Hi, {{ auth()->guard('admin')->user()->full_name }}! This list shows books, trailers and artworks that have been deleted from the app. Please note that clicking RESTORE will return the work to the account of the owner on Unpublished Status. </span>
+        <i class="fa fa-bell"></i> <span> Hi, {{ auth()->guard('admin')->user()->full_name }}! This list shows books, trailers and artworks that have been deleted from the app. Please note that clicking RESTORE will return the work to the account of the owner.</span>
     </div>
     <div class="my-2">
         <form action="{{ url()->current() }}" id="typeForm">
@@ -79,7 +79,12 @@
                     </form>
                 </td>
                 <td>
-                    <button class="btn btn-danger btn-sm"><i class="fa fa-cancel"></i> Permanently delete</button>
+                    <form action="{{ route('admin.bin.delete', $book->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="type" value="book">
+                        <button class="btn btn-danger btn-sm" type="button" onclick="deleteForm()"><i class="fa fa-cancel"></i> Permanently delete</button>
+                    </form>
                 </td>
             </tr>
             @endforeach
@@ -135,7 +140,12 @@
                     </form>
                 </td>
                 <td>
-                    <button class="btn btn-danger btn-sm"><i class="fa fa-cancel"></i> Permanently delete</button>
+                    <form action="{{ route('admin.bin.delete', $book->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="type" value="art">
+                        <button class="btn btn-danger btn-sm" type="button" onclick="deleteForm()"><i class="fa fa-cancel"></i> Permanently delete</button>
+                    </form>
                 </td>
             </tr>
             @endforeach
@@ -199,8 +209,12 @@
                     </form>
                 </td>
                 <td>
-                    <button class="btn btn-danger btn-sm"><i class="fa fa-cancel"></i> Permanently delete</button>
-                </td>
+                    <form action="{{ route('admin.bin.delete', $book->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="type" value="trailer">
+                        <button class="btn btn-danger btn-sm" type="button" onclick="deleteForm()"><i class="fa fa-cancel"></i> Permanently delete</button>
+                    </form>
             </tr>
             @endforeach
             @endif
@@ -263,7 +277,12 @@
                     </form>
                 </td>
                 <td>
-                    <button class="btn btn-danger btn-sm"><i class="fa fa-cancel"></i> Permanently delete</button>
+                    <form action="{{ route('admin.bin.delete', $book->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="type" value="audio">
+                        <button class="btn btn-danger btn-sm" type="button" onclick="deleteForm()"><i class="fa fa-cancel"></i> Permanently delete</button>
+                    </form>
                 </td>
             </tr>
             @endforeach
@@ -321,7 +340,12 @@
                     </form>
                 </td>
                 <td>
-                    <button class="btn btn-danger btn-sm"><i class="fa fa-cancel"></i> Permanently delete</button>
+                    <form action="{{ route('admin.bin.delete', $book->id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="type" value="song">
+                        <button class="btn btn-danger btn-sm" type="button" onclick="deleteForm()"><i class="fa fa-cancel"></i> Permanently delete</button>
+                    </form>
                 </td>
             </tr>
             @endforeach
