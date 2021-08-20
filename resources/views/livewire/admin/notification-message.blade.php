@@ -1,4 +1,4 @@
-<div wire:poll.5s>
+<div wire:poll.60s>
     <div  class="nav-item dropdown no-arrow mx-1" >
         <a  class="nav-link dropdown-toggle" href="{{ route('admin.messages.index') }}?mtype=in&utype=user" id="messagesDropdown"  >
             {{-- <a  class="nav-link dropdown-toggle" href="#" id="messagesDropdown"  > --}}

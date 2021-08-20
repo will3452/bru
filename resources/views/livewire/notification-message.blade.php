@@ -1,4 +1,4 @@
-<div wire:poll.5s>
+<div wire:poll.120s>
     <div  class="nav-item dropdown no-arrow mx-1" >
         <a  class="nav-link dropdown-toggle" href="{{ route('inbox.index') }}" id="messagesDropdown"  >
             {{-- <a  class="nav-link dropdown-toggle" href="#" id="messagesDropdown"  > --}}
