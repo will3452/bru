@@ -82,7 +82,9 @@ class ApiCommentController extends Controller
 
         if($request->work_type == 'chapter'){
             if(Chapter::find($request->work_id)){
-                    
+                    $comments = Chapter::find($request->work_id)->comments()->with('user')->latest()->get();
+                    $hearts = Chapter::find($request->work_id)->likes()->count();
+                    $stars = (int)Chapter::find($request->work_id)->stars()->avg('value');
             }
         }if($request->work_type == 'book'){
             if(Book::find($request->work_id)){
@@ -120,6 +122,10 @@ class ApiCommentController extends Controller
                     $hearts = Art::find($request->work_id)->likes()->count();
                     $stars = (int)Art::find($request->work_id)->stars()->avg('value');
             }
+        }
+        
+        foreach($comments as $comment){
+            $comment->str_date = $comment->created_at->diffForHumans();
         }
         
         return response([
