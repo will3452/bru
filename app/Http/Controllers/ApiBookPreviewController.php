@@ -99,6 +99,7 @@ class ApiBookPreviewController extends Controller
     public function showChapter($id)
     {
         $chapter = Chapter::find($id);
+        
         $comments = $chapter->comments()->with('user')->latest()->get();
         $hearts = $chapter->likes()->count();
         $stars = (int) $chapter->stars()->avg('value');
