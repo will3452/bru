@@ -106,7 +106,7 @@ class ApiBookPreviewController extends Controller
         return response([
             'result' => 200,
             'chapter' => $chapter,
-            'comments' => count($comments),
+            'comments' => $comments,
             'hearts' => $hearts,
             'stars' => $stars,
         ], 200);
