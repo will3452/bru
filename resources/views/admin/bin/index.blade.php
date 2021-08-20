@@ -375,7 +375,7 @@
                         @csrf
                         @method('DELETE')
                         <input type="hidden" name="type" value="podcast">
-                        <button class="btn btn-danger btn-sm"><i class="fa fa-cancel"></i> Permanently delete</button>
+                        <button class="btn btn-danger btn-sm" type="button" onclick="deleteForm()"><i class="fa fa-cancel"></i> Permanently delete</button>
                     </form>
                 </td>
             </tr>
@@ -405,15 +405,20 @@
     <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.colVis.min.js"></script>
     <script>
         $(function(){
-            $('#bookstable').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            // 'copy', 'csv', 'excel', 'pdf','colvis'
-             'pdf'
-        ],
-    });
+                $('#bookstable').DataTable( {
+            dom: 'Bfrtip',
+            buttons: [
+                // 'copy', 'csv', 'excel', 'pdf','colvis'
+                'pdf'
+            ],
+        });
         $('button').addClass('.btn')
         })
-        
+        function deleteForm(e){
+            let con = confirm('are you sure you want to permanent delete this work ?');
+            if(con){
+                e.target.parentElement.submit();
+            }
+        }
     </script>
 @endsection
