@@ -33,15 +33,10 @@ Route::prefix('books')->name('books.')->middleware(['auth'])->group(function () 
         Route::post('/', 'TagController@store')->name('store');
     });
 
-    route::get('/update-front/{id}', function ($id) {
+    Route::get('/update-front/{id}', function ($id) {
         return view('books.update-front', compact('id'));
     })->name('update-front');
 
 });
 
-Route::get('pdf-viewer', fuction(){
-    
-    $pdf = request()->pdf;
-
-    return view('pdfviewer', compact('pdf'));
-});
+Route::get('pdf-viewer', );
