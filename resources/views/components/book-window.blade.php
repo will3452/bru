@@ -12,25 +12,37 @@
                     {{ Str::limit($book->title, 10) }}
                 </p>
                 <div class="px-2 text-left text-white" style="text-transform:capitalize;">
-                    <div class="mt-1">
-                        Type: {{ $book->class }}
-                    </div>
-                    <div class="mt-1">
-                        Category: {{ $book->category }}
-                    </div>
-                    <div class="mt-1">
-                        Language: {{ $book->language }}
-                    </div>
-                    <div class="mt-1">
-                        Cost: {{ $book->cost == 0 ? 'FREE':$book->cost }}
-                    </div>
+                    @isset($book->class)
+                        <div class="mt-1">
+                            Type: {{ $book->class }}
+                        </div>
+                    @endisset
+                   @isset($book->caregory)
+                       <div class="mt-1">
+                            Category: {{ $book->category }}
+                        </div>
+                   @endisset
+                    @isset($book->language)
+                        <div class="mt-1">
+                            Language: {{ $book->language }}
+                        </div>
+                    @endisset
+                    @isset($book->cost)
+                        <div class="mt-1">
+                            Cost: {{ $book->cost == 0 ? 'FREE':$book->cost }}
+                        </div>
+                    @endisset
                     <div class="mt-1" style="border:1px solid white;"></div>
-                    <div class="mt-1">
-                        Date Uploaded: {{ $book->created_at->format('m/d/y') }}
-                    </div>
-                    <div class="mt-1">
-                        Is Published: {{ $book->publish_date ?? 'No' }}
-                    </div>
+                    @isset($book->created_at)
+                        <div class="mt-1">
+                            Date Uploaded: {{ $book->created_at->format('m/d/y') }}
+                        </div>
+                    @endisset
+                    @isset($book->publish_date)
+                        <div class="mt-1">
+                            Is Published: {{ $book->publish_date ?? 'No' }}
+                        </div>
+                    @endisset
                     <div class="mt-1" style="border:1px solid white;"></div>
                     <div class="mt-1">
                         Ratings: ---
