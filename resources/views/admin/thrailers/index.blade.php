@@ -58,7 +58,10 @@
                     </th>
                     <td>
                         @if(empty($thrailer->approved))
-                            <button class="btn btn-success">Approve</button>
+                            <form action="{{ route('admin.thrailers.approve', $thrailer->id) }}" method="POST">
+                                @csrf 
+                                <button class="btn btn-success">Approve</button>
+                            </form>
                         @else
                             Approved
                         @endif

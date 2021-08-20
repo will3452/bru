@@ -42,6 +42,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     //thrailers
     Route::get('/film', 'Admin\ThrailerController@index')->name('thrailers.index');
+    Route::post('/film/{id}', 'Admin\ThrailerController@approve')->name('thrailers.approve');
 
     //events
     Route::resource('/events', 'Admin\EventController');
