@@ -62,6 +62,82 @@
                 </div>
             </div>
         </x-dashboard-card>
+        {{-- <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2 text-truncate">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1"><a class="text-info" href="{{ route('books.index') }}">Strategize</a></div>
+                            <small class=" mb-0  text-gray-800">Lorem ipsum dolor sit amet. </small>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-poll fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+        {{-- <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2 text-truncate">
+                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1"><a class="text-danger" href="{{ route('books.index') }}">Love</a></div>
+                            <small class=" mb-0  text-gray-800">Regular, Premium, Spin-off and Event </small>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-heart fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2 text-truncate">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><a class="text-warning" href="{{ route('books.index') }}">Rating</a></div>
+                            <small class=" mb-0  text-gray-800">Lorem ipsum dolor sit amet. </small>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-star fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-dark shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2 text-truncate">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><a class="text-dark" href="{{ route('books.index') }}">Reviews</a></div>
+                            <small class=" mb-0  text-gray-800">Lorem ipsum dolor sit amet.</small>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-check fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-secondary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2 text-truncate">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"><a class="text-secondary" href="{{ route('books.index') }}">Comments</a></div>
+                            <small class=" mb-0  text-gray-800">Lorem ipsum dolor sit amet.</small>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+
     </div>
     <div class="modal fade " id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog " role="document">
