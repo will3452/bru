@@ -24,14 +24,6 @@
             </div>
         </div>
     @endif
-    <div class="card mb-2">
-        <div class="card-header">
-            RATINGS
-        </div>
-        <div class="card-body">
-
-        </div>
-    </div>
     <div class="row">
         <div class="col-lg-4 order-lg-2">
             <div class="card shadow mb-2">
