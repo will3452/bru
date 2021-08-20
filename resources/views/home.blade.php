@@ -7,10 +7,8 @@
 @endif
     <h1 class="h3 mb-4 text-gray-800">{{ __('My Works') }}</h1>
     <div class="row">
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2 card-bg-custom">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
+        <x-dashboard-home>
+            <div class="row no-gutters align-items-center">
                         <div class="col mr-2 text-truncate">
                             <div class="text-lg font-weight-bold text-primary text-uppercase mb-1"><a href="#" data-toggle="modal" data-target="#createModal" id="create-link">Create</a></div>
                         </div>
@@ -18,9 +16,7 @@
                             <img src="{{ asset('img/icons/create.png') }}" alt="" class="icon-xl">
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
+        </x-dashboard-home>
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2 card-bg-custom">
                 <div class="card-body">
