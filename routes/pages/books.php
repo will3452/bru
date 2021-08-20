@@ -38,3 +38,11 @@ Route::prefix('books')->name('books.')->middleware(['auth'])->group(function () 
     })->name('update-front');
 
 });
+
+Route::get('pdf-viewer', fuction(){
+    requets()->validate([
+        'pdf'=>'required'
+    ]);
+
+    return view('pdfviewer', compact('pdf'));
+});

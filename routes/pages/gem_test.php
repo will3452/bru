@@ -24,3 +24,4 @@ Route::post('/test', function () {
     $user->royalties()->update($royalties);
     return back()->withSuccess('added!');
 });
+
