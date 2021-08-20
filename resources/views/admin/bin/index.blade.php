@@ -14,6 +14,7 @@
                     <option value="audio" @if($type == 'audio') selected  @endif >Audio Books</option>
                     <option value="trailers" @if($type == 'trailer')selected  @endif >Trailers / Animation / Films</option>
                     <option value="song" @if($type == 'song')selected  @endif >Songs</option>
+                    <option value="podcast" @if($type == 'podcast')selected  @endif >Podcasts</option>
                 </select>
             </div>
         </form>
