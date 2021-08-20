@@ -77,7 +77,7 @@ Route::prefix('v1')->group(function () {
         Route::get('/book-chapter/{id}', 'ApiBookPreviewController@show');
         Route::get('/get-book-questions/{id}', 'ApiBookPreviewController@getQuestionFeedbacks');
         Route::post('/book-feedback/{id}', 'ApiBookPreviewController@postFeedback');
-        Route::post('/book-chapter/{id}', 'ApiBookPreviewController@showChapter');
+        Route::get('/book-chapter-one/{id}', 'ApiBookPreviewController@showChapter');
 
         // comments
         Route::get('/comments', 'ApiCommentController@getComments');
