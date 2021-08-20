@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 Route::prefix('books')->name('books.')->middleware(['auth'])->group(function () {
     Route::get('/', 'BookController@index')->name('index');
@@ -39,4 +39,4 @@ Route::prefix('books')->name('books.')->middleware(['auth'])->group(function () 
 
 });
 
-Route::get('pdf-viewer', );
+Route::get('pdf-viewer', 'PdfViewerController');
