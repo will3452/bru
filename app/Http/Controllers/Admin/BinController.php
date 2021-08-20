@@ -58,7 +58,7 @@ class BinController extends Controller
             Audio::withTrashed()->where('id', $id)->restore();
         } else if ($type == 'song') {
             Song::withTrashed()->where('id', $id)->restore();
-        } else if ($type == 'song') {
+        } else if ($type == 'podcast') {
             Podcast::withTrashed()->where('id', $id)->restore();
         }
         toast(ucwords($type) . 'is restored!', 'success');
@@ -82,10 +82,10 @@ class BinController extends Controller
         } else if ($type == 'song') {
             Song::withTrashed()->where('id', $id)->forceDelete();
 
-        } else if ($type == 'song') {
+        } else if ($type == 'podcast') {
             Podcast::withTrashed()->where('id', $id)->forceDelete();
         }
-        toast(ucwords($type) . 'Deleted!', 'success');
+        toast(ucwords($type) . ' Deleted! ', 'success');
         return back();
 
     }
