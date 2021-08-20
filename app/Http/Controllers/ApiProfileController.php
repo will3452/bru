@@ -23,7 +23,12 @@ class ApiProfileController extends Controller
         $data = request()->validate([
             'email' => '',
             'password' => '',
+            'mobile' => '',
         ]);
+
+        if (isset($data['password'])) {
+            $data['password'] = bcrypt($data['password']);
+        }
 
         $user = User::find(auth()->user()->id);
 
