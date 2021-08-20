@@ -143,6 +143,10 @@ Route::prefix('v1')->group(function () {
         Route::get('/users', 'ApiUsersController@getUsers');
         Route::get('/users/{id}', 'ApiUsersController@showUser');
 
+        //computer settings
+        Route::get('/profile', 'ApiProfileController@getMyProfile');
+        Route::post('/profile', 'ApiProfileController@updateMyProfile');
+
         //add friend users
         Route::post('/add-friend', 'ApiUsersController@addFriend');
         Route::get('/all-friends', 'ApiUsersController@allFriends');
