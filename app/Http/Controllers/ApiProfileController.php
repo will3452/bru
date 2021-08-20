@@ -20,17 +20,32 @@ class ApiProfileController extends Controller
 
     public function updateMyProfile()
     {
+        $user = User::find(auth()->user()->id);
+
         $data = request()->validate([
             'email' => '',
             'password' => '',
             'mobile' => '',
         ]);
 
+        if (isset($data['email'])) {
+            if ($data['email'] == $user->email) {
+                unset($data['email']);
+            } else if (User::where('email', $data['email'])->count() != 0) {
+
+                return response([
+                    'result' => 404,
+                    'user' => $user,
+                    'age' => $user->bio->age,
+                    'bio' => $user->bio,
+                ], 200);
+
+            }
+        }
+
         if (isset($data['password'])) {
             $data['password'] = bcrypt($data['password']);
         }
-
-        $user = User::find(auth()->user()->id);
 
         $user->update($data);
 
