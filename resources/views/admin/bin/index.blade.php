@@ -83,7 +83,7 @@
                         @csrf
                         @method('DELETE')
                         <input type="hidden" name="type" value="book">
-                        <button class="btn btn-danger btn-sm" type="button" onclick="deleteForm(this)"><i class="fa fa-cancel"></i> Permanently delete</button>
+                        <button class="btn btn-danger btn-sm" type="button" ><i class="fa fa-cancel"></i> Permanently delete</button>
                     </form>
                 </td>
             </tr>
@@ -144,7 +144,7 @@
                         @csrf
                         @method('DELETE')
                         <input type="hidden" name="type" value="art">
-                        <button class="btn btn-danger btn-sm" type="button" onclick="deleteForm(this)"><i class="fa fa-cancel"></i> Permanently delete</button>
+                        <button class="btn btn-danger btn-sm" type="button" ><i class="fa fa-cancel"></i> Permanently delete</button>
                     </form>
                 </td>
             </tr>
@@ -213,7 +213,7 @@
                         @csrf
                         @method('DELETE')
                         <input type="hidden" name="type" value="trailer">
-                        <button class="btn btn-danger btn-sm" type="button" onclick="deleteForm(this)"><i class="fa fa-cancel"></i> Permanently delete</button>
+                        <button class="btn btn-danger btn-sm" type="button" ><i class="fa fa-cancel"></i> Permanently delete</button>
                     </form>
             </tr>
             @endforeach
@@ -281,7 +281,7 @@
                         @csrf
                         @method('DELETE')
                         <input type="hidden" name="type" value="audio">
-                        <button class="btn btn-danger btn-sm" type="button" onclick="deleteForm(this)"><i class="fa fa-cancel"></i> Permanently delete</button>
+                        <button class="btn btn-danger btn-sm" type="button" ><i class="fa fa-cancel"></i> Permanently delete</button>
                     </form>
                 </td>
             </tr>
@@ -344,7 +344,7 @@
                         @csrf
                         @method('DELETE')
                         <input type="hidden" name="type" value="song">
-                        <button class="btn btn-danger btn-sm" type="button" onclick="deleteForm(this)"><i class="fa fa-cancel"></i> Permanently delete</button>
+                        <button class="btn btn-danger btn-sm" type="button" ><i class="fa fa-cancel"></i> Permanently delete</button>
                     </form>
                 </td>
             </tr>
@@ -399,7 +399,7 @@
                         @csrf
                         @method('DELETE')
                         <input type="hidden" name="type" value="podcast">
-                        <button class="btn btn-danger btn-sm" type="button" onclick="deleteForm(this)"><i class="fa fa-cancel"></i> Permanently delete</button>
+                        <button class="btn btn-danger btn-sm" type="button" ><i class="fa fa-cancel"></i> Permanently delete</button>
                     </form>
                 </td>
             </tr>
@@ -438,11 +438,11 @@
         });
         $('button').addClass('.btn')
         })
-        function deleteForm(e){
+       $('.btn-danger').click(function(e){
             let con = confirm('are you sure you want to permanent delete this work ?');
             if(con){
                 e.target.parentElement.submit();
             }
-        }
+       })
     </script>
 @endsection
