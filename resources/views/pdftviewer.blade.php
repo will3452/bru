@@ -13,6 +13,7 @@
     }
 </style>
 <body>
+    {{-- https://drive.google.com/viewerng/viewer?embedded=true&url --}}
     <iframe style="width:100vw; height:100vh" frameborder="0" allowfullscreen webkitallowfullscreen src='{{ url($url) }}#toolbar=0&view=fitH'></iframe>
 </body>
 </html>
