@@ -4,7 +4,7 @@
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">Show {{  $book->class }} Book</h1>
     <a href="{{ route('admin.books.list') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
-    <div class="card">
+    {{-- <div class="card">
         <div class="card-body">
             <form action="{{ route('admin.books.update', $book) }}" method="POST">
                 @csrf
@@ -62,8 +62,46 @@
                 <button class="btn btn-block btn-primary">SUBMIT</button>
             </form>
         </div>
+    </div> --}}
+
+    <div class="card">
+        <div class="card-header">
+            Book details
+        </div>
+        <div class="card-body row">
+            <div class="col-md-3">
+                <img src="{{ $book->cover }}" alt="" style="width:300px; height:400px;object-fit:cover;">
+            </div>
+            <div class="col-md-9">
+                <table class="table">
+                    <tr>
+                        <th>
+                            title
+                        </th>
+                        <td>
+                            {{ $book->title }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Category
+                        </th>
+                        <td>
+                            {{ $book->category }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Language
+                        </th>
+                        <td>
+                            {{ $book->langauge }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
-    
 
 @endsection
 
