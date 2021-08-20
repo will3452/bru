@@ -95,7 +95,39 @@
                             Language
                         </th>
                         <td>
-                            {{ $book->langauge }}
+                            {{ $book->language }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Lead Character
+                        </th>
+                        <td>
+                            {{ $book->lead_character }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Lead College
+                        </th>
+                        <td>
+                            {{ $book->lead_college }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Review Question 1
+                        </th>
+                        <td>
+                            {{ $book->review_question_1 }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            Review Question 2
+                        </th>
+                        <td>
+                            {{ $book->review_question_2 }}
                         </td>
                     </tr>
                 </table>
