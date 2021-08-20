@@ -3,7 +3,7 @@
             <div  id="{{ $book->id }}" style="cursor:pointer;@if(request()->id == $book->id)  box-shadow:0px 0px 10px 10px #1A0A49; @else box-shadow:10px 5px 2px #555 ; @endif height: 200px; width: 150px; background:url('{{ $book->cover??$book->file??$book->content }}');background-size:contain;background-position:center;">
 
             </div>
-            <div class="mt-2" style="word-wrap: break-word">
+            <div class="mt-2" style="word-wrap: break-word;width: 150px;">
                 <a href="{{ route('books.show', $book) }}" style="text-transform:capitalize;">{{ $book->title}}</a>
             </div>
             <div  x-show.transition="showInfo" style="position:absolute;top:-10px;left:100px; height:300px; width:200px;background:rgba(17,0,31, 0.9);z-index:999" >
