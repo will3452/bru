@@ -34,6 +34,19 @@ class ApiBoxController extends Controller
         ], 200);
 
     }
+
+    public function getArt($id)
+    {
+        $user = User::find(auth()->user()->id);
+        $art = $user->box->arts()->find($id);
+
+        return response([
+            'art' => $art,
+            'result' => 200,
+        ], 200);
+
+    }
+
     public function getWork(Request $request)
     {
         $data = $request->validate([

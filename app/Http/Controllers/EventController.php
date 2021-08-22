@@ -37,22 +37,26 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
-        return 'this is under maintenance';
+
+        // return 'this is under maintenance';
         $dayAway = ((int) Setting::find(1)->event_day_away) - 1;
         $validated = $this->validate($request, [
             "name" => "required",
             "date" => "required|date_format:Y-m-d|after:" . date(now()->addDays($dayAway)),
-            "cost" => "required",
-            "gem" => "required",
-            "type" => "required",
+            "cost" => "",
+            "gem" => "",
+            "type" => "",
             'desc' => 'required',
             "hosted_by" => "required",
         ], $messages = [
             'after' => 'Event should at least be ' . ($dayAway + 1) . ' days away.',
         ]);
 
-        auth()->user()->events()->create($validated);
+        $event = auth()->user()->events()->create($validated);
+
+        // if ($request->work_type) {
+        //     $event->
+        // }
 
         return back()->with('success', 'event stored successfully');
     }
