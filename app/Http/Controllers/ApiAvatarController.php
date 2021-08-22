@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Avatar;
 use App\User;
+use App\Avatar;
+use App\Product;
 use Illuminate\Http\Request;
 
 class ApiAvatarController extends Controller
