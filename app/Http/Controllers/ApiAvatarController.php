@@ -52,8 +52,12 @@ class ApiAvatarController extends Controller
         return $avatar;
 
         $user = User::find(auth()->user()->id);
-
+        $exclude = ['id', 'user_id'];
         foreach ($avatar as $key => $value) {
+            if (in_array($exclude, $key)) {
+                continue;
+            }
+
             $item = $user->box->products()->where('id', $value)->first();
             if ($item) {
                 $avatar[$key] = [
