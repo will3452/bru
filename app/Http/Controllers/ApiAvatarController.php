@@ -53,7 +53,7 @@ class ApiAvatarController extends Controller
         $user = User::find(auth()->user()->id);
         $exclude = ['id', 'user_id'];
         foreach ($avatar as $key => $value) {
-            if (in_array($key, $exclue)) {
+            if (in_array($key, $exclude)) {
                 continue;
             }
 
