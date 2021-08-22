@@ -54,9 +54,9 @@ class EventController extends Controller
 
         $event = auth()->user()->events()->create($validated);
 
-        // if ($request->work_type) {
-        //     $event->
-        // }
+        if ($request->work_type) {
+            $event->
+        }
 
         return back()->with('success', 'event stored successfully');
     }

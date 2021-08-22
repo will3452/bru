@@ -2,11 +2,12 @@
 
 namespace App;
 
+use App\Traits\Eventable;
 use App\Traits\Reportable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Multicaret\Acquaintances\Traits\CanBeSubscribed;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Book extends Model
 {
@@ -14,6 +15,7 @@ class Book extends Model
     use SoftDeletes;
     use CanBeSubscribed;
     use Reportable;
+    use Eventable;
 
     protected $guarded = [];
 
@@ -63,11 +65,6 @@ class Book extends Model
     public function chapters()
     {
         return $this->hasMany(Chapter::class);
-    }
-
-    public function event()
-    {
-        return $this->belongsTo(Event::class, 'book_id');
     }
 
     public function recommendation()
