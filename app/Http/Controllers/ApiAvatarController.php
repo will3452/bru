@@ -50,7 +50,6 @@ class ApiAvatarController extends Controller
     public function show()
     {
         $avatar = Avatar::where('user_id', auth()->user()->id)->first();
-
         $pe = Product::where('id', $avatar->pe ?? 0)->first();
         $outfit = Product::where('id', $avatar->outfit ?? 0)->first();
         $shoes = Product::where('id', $avatar->shoes ?? 0)->first();
