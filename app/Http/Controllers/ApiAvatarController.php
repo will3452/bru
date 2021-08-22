@@ -57,7 +57,7 @@ class ApiAvatarController extends Controller
         //if pe is dynamic
         if ($pe) {
             $avatar->pe = [
-                'image' => $pe->image,
+                'image' => $pe->picture,
                 'width' => $pe->width,
                 'height' => $pe->height,
                 'x' => $pe->x,
@@ -66,7 +66,7 @@ class ApiAvatarController extends Controller
         }
         if ($outfit) {
             $avatar->outfit = [
-                'image' => $outfit->image,
+                'image' => $outfit->picture,
                 'width' => $outfit->width,
                 'height' => $outfit->height,
                 'x' => $outfit->x,
@@ -75,7 +75,7 @@ class ApiAvatarController extends Controller
         }
         if ($shoes) {
             $avatar->shoes = [
-                'image' => $shoes->image,
+                'image' => $shoes->picture,
                 'width' => $shoes->width,
                 'height' => $shoes->height,
                 'x' => $shoes->x,
