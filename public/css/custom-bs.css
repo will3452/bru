@@ -1,0 +1,68 @@
+html {
+    scroll-behavior: smooth;
+}
+:root {
+    /* --blue: #322f46; */
+    --blue: #000;
+}
+.bg-primary,
+.bg-default,
+.bg-gradient-primary,
+.btn-primary,
+.btn-outline-primary:hover,
+.dropdown-header {
+    background: var(--blue) !important;
+    color: white !important;
+}
+.text-primary,
+.btn-link {
+    color: var(--blue) !important;
+}
+.border-left-primary,
+.btn-outline-primary {
+    border-color: var(--blue) !important;
+    color: var(--blue) !important;
+}
+#sidenav {
+    background: url("/img/sidenav-bg.png") !important;
+    background-position: center !important;
+    background-size: cover !important;
+}
+.card-bg-custom {
+    background: url("/img/card-bg-custom.png") !important;
+    background-position: center !important;
+    background-size: cover !important;
+}
+.card-bg-custom * {
+    color: white !important;
+    border-color: white !important;
+}
+.modal-bg-custom {
+    background: url("/img/modal-bg-custom.png") !important;
+    background-position: center !important;
+    background-size: cover !important;
+}
+.modal-bg-custom * {
+    color: white !important;
+    border-color: white !important;
+}
+.icon {
+    max-width: 40px !important;
+}
+.icon-xl {
+    max-width: 60px !important;
+}
+
+#pp {
+    position: fixed;
+    top: 100px;
+    text-align: center;
+    color: white;
+    border-radius: 0px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 9999;
+}

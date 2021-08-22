@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 class InboxController extends Controller
 {
@@ -18,11 +17,8 @@ class InboxController extends Controller
      */
     public function index()
     {
-        $messages = Cache::remember('inbox' . auth()->user()->id, 10, function () {
-            $messages = auth()->user()->inboxes()->latest()->get();
-            $messages->load(['admin_sender', 'sender']);
-            return $messages;
-        });
+        $messages = auth()->user()->inboxes()->latest()->simplePaginate(5);
+        $messages->load(['admin_sender', 'sender']);
 
         return view('inbox.index', compact('messages'));
     }

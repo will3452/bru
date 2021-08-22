@@ -22,54 +22,7 @@
     @yield('top')
     <!-- Favicon -->
     <link href="{{ asset('img/logo.png') }}" rel="icon" type="image/png">
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-        :root {
-            --blue:#322F46;
-        }
-        .bg-primary, .bg-default, .bg-gradient-primary,.btn-primary, .btn-outline-primary:hover, .dropdown-header{
-            background:#322F46 !important;
-            color: white !important;
-        }
-        .text-primary, .btn-link {
-            color: var(--blue) !important;
-        }
-        .border-left-primary,.btn-outline-primary {
-            border-color: var(--blue) !important;
-            color: var(--blue) !important;
-        }
-        #sidenav {
-            background: url('{{ asset('img/sidenav-bg.png') }}') !important;
-            background-position:center !important;
-            background-size:cover !important;
-        }
-        .card-bg-custom {
-            background: url('{{ asset('img/card-bg-custom.png') }}') !important;
-            background-position:center !important;
-            background-size:cover !important;
-        }
-        .card-bg-custom  * {
-            color: white !important;
-            border-color:white !important;
-        }
-        .modal-bg-custom{
-            background: url('{{ asset('img/modal-bg-custom.png') }}') !important;
-            background-position:center !important;
-            background-size:cover !important;
-        }
-        .modal-bg-custom  * {
-            color: white !important;
-            border-color:white !important;
-        }
-        .icon {
-            max-width: 40px !important;
-        }
-        .icon-xl {
-            max-width: 60px !important;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('/css/custom-bs.css') }}"/>
     <link href="/css/dark.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.js"></script>
@@ -89,22 +42,7 @@
             padding:0px 0px !important;
         }
     </style>
-    <style>
-        #pp{
-            position: fixed;
-            
-            top:100px;
-            text-align: center;
-            color: white;
-            border-radius: 0px;
-            padding:20px;
-            display:flex;
-            align-items: center;
-            flex-direction: column;
-            justify-content: center;
-            z-index:9999;
-        }
-    </style>
+    
 </head>
 
 <body id="page-top" class="sidebar-toggled">
@@ -241,7 +179,7 @@
         <div id="content">
 
             <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <nav class="navbar navbar-expand navbar-dark bg-primary topbar mb-4 static-top shadow">
 
                 <!-- Sidebar Toggle (Topbar) -->
                 <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
