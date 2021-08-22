@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use App\Avatar;
 use App\Product;
+use App\User;
 use Illuminate\Http\Request;
 
 class ApiAvatarController extends Controller
@@ -59,6 +59,7 @@ class ApiAvatarController extends Controller
             }
             $id = (int) $value;
             $item = Product::where('id', $id)->first();
+            return $item;
             if ($item) {
                 $avatar[$key] = [
                     'image' => $item->picture,
