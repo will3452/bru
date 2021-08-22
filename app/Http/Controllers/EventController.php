@@ -40,6 +40,7 @@ class EventController extends Controller
 
         // return 'this is under maintenance';
         $dayAway = ((int) Setting::find(1)->event_day_away) - 1;
+
         $validated = $this->validate($request, [
             "name" => "required",
             "date" => "required|date_format:Y-m-d|after:" . date(now()->addDays($dayAway)),
@@ -51,12 +52,11 @@ class EventController extends Controller
         ], $messages = [
             'after' => 'Event should at least be ' . ($dayAway + 1) . ' days away.',
         ]);
-        dd($request->all());
         $event = auth()->user()->events()->create($validated);
 
         if ($request->work_type) {
             $wt = $request->work_type;
-            $wb = $request->work_type;
+            $wb = $request->work_id;
 
             switch ($wt) {
                 case "book":
@@ -65,10 +65,25 @@ class EventController extends Controller
                 case "art":
                     $event->art_id = $wb;
                     break;
-
+                case "film":
+                    $event->thrailer_id = $wb;
+                    break;
+                case "song":
+                    $event->song_id = $wb;
+                    break;
+                case "audio":
+                    $event->audio_id = $wb;
+                    break;
+                case "podcast":
+                    $event->podcast_id = $wb;
+                    break;
             }
 
             $event->save();
+        }
+
+        if ($event->type) {
+            return redirect()->route('events.show', $event->id);
         }
 
         return back()->with('success', 'event stored successfully');
