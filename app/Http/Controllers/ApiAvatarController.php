@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Avatar;
 use App\User;
+use App\Avatar;
+use App\Product;
 use Illuminate\Http\Request;
 
 class ApiAvatarController extends Controller
@@ -56,8 +57,8 @@ class ApiAvatarController extends Controller
             if (in_array($key, $exclude)) {
                 continue;
             }
-
-            $item = $user->box->products()->where('id', (int) $value)->first();
+            $id = (int) $value;
+            $item = Product::where('id', $id)->first();
             if ($item) {
                 $avatar[$key] = [
                     'image' => $item->picture,
