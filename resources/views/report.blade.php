@@ -9,8 +9,8 @@
         </div>
         <div class="card-body">
             Age 
-            @foreach ($report['age_report'] as $item)
-                {{ $item }}
+            @foreach ($report['ages'] as $key=>$value)
+                {{ $key }} => {{ $value }} <br/>
             @endforeach
         </div>
     </div>

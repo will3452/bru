@@ -14,7 +14,7 @@ class ReportController extends Controller
         $ages = $book->age_report;
 
         return [
-            'age_report' => $ages,
+            'ages' => $ages,
         ];
 
     }

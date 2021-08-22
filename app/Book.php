@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\Reportable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,6 +13,7 @@ class Book extends Model
     use HasFactory;
     use SoftDeletes;
     use CanBeSubscribed;
+    use Reportable;
 
     protected $guarded = [];
 
@@ -123,20 +125,4 @@ class Book extends Model
         return $this->hasMany(Quote::class, 'book_id');
     }
 
-    public function getAgeReportAttribute()
-    {
-        $boxes = $this->boxes;
-        $ages = collect();
-
-        foreach ($boxes as $box) {
-            if (!$box->owner) {
-                continue;
-            }
-            $age = $box->owner->bio->age;
-            $ages->push(['age' => $age]);
-        }
-
-        return $ages->groupBy('age');
-
-    }
 }
