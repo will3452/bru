@@ -58,7 +58,7 @@ class ApiAvatarController extends Controller
             $keys->push($item);
         }
 
-        return $keys;
+        return $avatar;
         return response([
             'avatar' => $avatar ?? [],
             'result' => 200,
