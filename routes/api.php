@@ -43,6 +43,7 @@ Route::prefix('v1')->group(function () {
         Route::get('/get-work-on-my-collections', 'ApiBoxController@getWork');
         Route::post('/add-to-my-collection', 'ApiBoxController@add'); // add to collection or box
         Route::post('/remove-to-my-collection', 'ApiBoxController@remove'); // add to collection or box
+        Route::get('/arts', 'ApiBoxController@getArts');
 
         // media stations
         Route::get('/media-audio/{id}', 'ApiMediaStationController@audioBookShow'); //audiobook

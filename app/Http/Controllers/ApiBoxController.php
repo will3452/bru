@@ -14,6 +14,26 @@ use Illuminate\Http\Request;
 
 class ApiBoxController extends Controller
 {
+    public function getArts()
+    {
+        $user = User::find(auth()->user()->id);
+
+        $data = request()->validate([
+            'type' => 'required',
+        ]);
+        $arts = [];
+        if ($data['type'] == 'free') {
+            $arts = $user->box->arts()->where('cost', 0)->get();
+        } else {
+            $arts = $user->box->arts()->where('cost', '!=', 0)->get();
+        }
+
+        return response([
+            'arts' => $arts,
+            'result' => 200,
+        ], 200);
+
+    }
     public function getWork(Request $request)
     {
         $data = $request->validate([
