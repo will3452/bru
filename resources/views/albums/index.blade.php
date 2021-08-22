@@ -32,9 +32,9 @@
             </div>
         </div>
         @endforeach
-        @empty($albums)
+         @if(!count($albums))
             <x-empty></x-empty>
-        @endempty
+        @endif
     </div>
 @endsection
 

@@ -33,9 +33,9 @@
         </div>
         @endforeach
 
-        @empty($collections)
+         @if(!count($collections))
             <x-empty></x-empty>
-        @endempty
+        @endif
     </div>
 @endsection
 
