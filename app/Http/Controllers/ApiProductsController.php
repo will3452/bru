@@ -77,7 +77,7 @@ class ApiProductsController extends Controller
         } else if (request()->type == 'clothes') {
             $products = $user->box->products()->where('category', 'clothes')->get();
         } else {
-            $products = $user->box->products()->get();
+            $products = $user->box->products()->where('category', 'merch')->get();
         }
 
         return response([
