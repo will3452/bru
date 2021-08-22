@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use App\Avatar;
 use App\Product;
+use App\User;
 use Illuminate\Http\Request;
 
 class ApiAvatarController extends Controller
@@ -51,9 +51,9 @@ class ApiAvatarController extends Controller
     {
         $avatar = Avatar::where('user_id', auth()->user()->id)->first();
 
-        $pe = Product::where('id', $avatar->pe)->first();
-        $outfit = Product::where('id', $avatar->outfit)->first();
-        $shoes = Product::where('id', $avatar->shoes)->first();
+        $pe = Product::where('id', $avatar->pe ?? 0)->first();
+        $outfit = Product::where('id', $avatar->outfit ?? 0)->first();
+        $shoes = Product::where('id', $avatar->shoes ?? 0)->first();
         //if pe is dynamic
         if ($pe) {
             $avatar->pe = [
