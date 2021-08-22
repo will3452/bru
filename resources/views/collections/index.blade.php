@@ -40,5 +40,5 @@
 @endsection
 
 @section('top')
-    <script src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js" defer></script>
+    <x-alpine></x-alpine>
 @endsection
