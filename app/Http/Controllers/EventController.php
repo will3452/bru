@@ -15,7 +15,14 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = auth()->user()->events;
+        $events = [];
+
+        if (!request()->filter || request()->filter == 'approved') {
+            $events = auth()->user()->events()->whereNotNull('status')->get();
+        } else {
+            $events = auth()->user()->events()->whereNull('status')->get();
+        }
+
         return view('events.index', compact('events'));
     }
 
