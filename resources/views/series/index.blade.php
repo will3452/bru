@@ -32,9 +32,9 @@
             </div>
         </div>
         @endforeach
-        @empty($series)
+        @if(count($series))
             <x-empty></x-empty>
-        @endempty
+        @endif
     </div>
 @endsection
 
