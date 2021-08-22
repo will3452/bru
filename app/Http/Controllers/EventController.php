@@ -51,11 +51,24 @@ class EventController extends Controller
         ], $messages = [
             'after' => 'Event should at least be ' . ($dayAway + 1) . ' days away.',
         ]);
-
+        dd($request->all());
         $event = auth()->user()->events()->create($validated);
 
         if ($request->work_type) {
-            $event->
+            $wt = $request->work_type;
+            $wb = $request->work_type;
+
+            switch ($wt) {
+                case "book":
+                    $event->book_id = $wb;
+                    break;
+                case "art":
+                    $event->art_id = $wb;
+                    break;
+
+            }
+
+            $event->save();
         }
 
         return back()->with('success', 'event stored successfully');
