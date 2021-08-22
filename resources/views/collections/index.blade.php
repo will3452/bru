@@ -32,6 +32,10 @@
             </div>
         </div>
         @endforeach
+
+        @empty($collections)
+            <x-empty></x-empty>
+        @endempty
     </div>
 @endsection
 

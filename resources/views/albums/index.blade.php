@@ -32,6 +32,9 @@
             </div>
         </div>
         @endforeach
+        @empty($albums)
+            <x-empty></x-empty>
+        @endempty
     </div>
 @endsection
 
