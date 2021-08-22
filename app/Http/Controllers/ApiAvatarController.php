@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Avatar;
-use App\Product;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -50,7 +49,7 @@ class ApiAvatarController extends Controller
     public function show()
     {
         $avatar = Avatar::where('user_id', auth()->user()->id)->first();
-        // return $avatar;
+        return $avatar;
         $user = User::find(auth()->user()->id);
         $exclude = ['id', 'user_id'];
         $keys = collect();
