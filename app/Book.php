@@ -33,7 +33,8 @@ class Book extends Model
         return $chapter[0]->sq ?? 0;
     }
 
-    public function scopePublished($query){
+    public function scopePublished($query)
+    {
         return $query->whereNotNull('publish_date')->whereDate('publish_date', '<=', now());
     }
 
@@ -120,5 +121,22 @@ class Book extends Model
     public function quotes()
     {
         return $this->hasMany(Quote::class, 'book_id');
+    }
+
+    public function getAgeReportAttribute()
+    {
+        $boxes = $this->boxes;
+        $ages = collect();
+
+        foreach ($boxes as $box) {
+            if (!$box->owner) {
+                continue;
+            }
+            $age = $box->owner->bio->age;
+            $ages->push(['age' => $age]);
+        }
+
+        return $ages->groupBy('age');
+
     }
 }

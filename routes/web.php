@@ -80,4 +80,7 @@ Route::view('/users', 'users-contact');
 
 Route::view('/banner-maker', 'banner_editor')->middleware('auth');
 
+//author & artist report
+Route::get('/report', 'ReportController');
+
 include __DIR__ . '/pages/gem_test.php';
