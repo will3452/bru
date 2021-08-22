@@ -58,7 +58,7 @@ class ApiAvatarController extends Controller
             if (in_array($key, $exclude)) {
                 continue;
             }
-            $id = (int) $value;
+            $id = $value;
             $keys->push($id);
             $item = Product::where('id', $id)->first();
             if ($item) {
