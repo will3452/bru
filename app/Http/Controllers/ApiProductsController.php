@@ -15,7 +15,7 @@ class ApiProductsController extends Controller
         } else if (request()->type == 'clothes') {
             $products = Product::where('category', 'clothes')->get();
         } else {
-            $products = Product::get();
+            $products = Product::where('category', 'merch')->get();
         }
 
         return response([
