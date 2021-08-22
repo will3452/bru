@@ -55,7 +55,7 @@ class ApiAvatarController extends Controller
         $outfit = Product::where('id', $avatar->outfit ?? 0)->first();
         $shoes = Product::where('id', $avatar->shoes ?? 0)->first();
         return [
-            'pe' => $pe,
+            'outfit' => $outfit,
         ];
         //if pe is dynamic
         if ($pe) {
