@@ -54,7 +54,6 @@ class ApiAvatarController extends Controller
         $pe = Product::where('id', $avatar->pe ?? 0)->first();
         $outfit = Product::where('id', $avatar->outfit ?? 0)->first();
         $shoes = Product::where('id', $avatar->shoes ?? 0)->first();
-        dd(1);
         return [
             'outfit' => $outfit,
         ];
