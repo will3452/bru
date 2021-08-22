@@ -159,4 +159,16 @@ class ApiUsersController extends Controller
         ], 200);
     }
 
+    public function visit($id)
+    {
+        $user = User::find($id);
+        $room = $user->room;
+        $token = $user->createToken('myapptoken')->plainTextToken;
+
+        response([
+            'token' => $token,
+            'room' => $room,
+        ], 200);
+    }
+
 }

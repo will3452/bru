@@ -9,9 +9,7 @@ Route::prefix('v1')->group(function () {
 
     // proctected via sanctum
     Route::middleware('auth:sanctum')->group(function () {
-        // Route::get('/test', function(){
-        //     return response(['message'=>'you are authenticated'], 201);
-        // });
+
         Route::post('/logout', 'ApiAuthController@logout');
         Route::post('/update-room', 'ApiAuthController@updateRoom');
         Route::post('/vip-update', 'ApiVIPUpdateController@update');
@@ -32,7 +30,6 @@ Route::prefix('v1')->group(function () {
         Route::get('/library-summary', 'ApiLibraryController@summary');
 
         // theater and songs
-
         Route::get('/theater/{id}', 'ApiTheaterController@show');
         Route::get('/theater', 'ApiTheaterController@index');
         Route::get('/theater-summary', 'ApiTheaterController@summary');
@@ -140,6 +137,7 @@ Route::prefix('v1')->group(function () {
         Route::post('/decline-friend', 'ApiUsersController@denyFriend');
         Route::post('/un-friend', 'ApiUsersController@unFriend');
         Route::get('/requests-friend', 'ApiUsersController@friendRequests');
+        Route::get('/visit/{id}', 'ApiUsersController@visit');
 
         // follow controller
         Route::post('/follow', 'ApiUsersController@toggleFollow');
