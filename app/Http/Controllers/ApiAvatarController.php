@@ -68,7 +68,7 @@ class ApiAvatarController extends Controller
                 ];
             }
         }
-
+        return 1;
         return response([
             'avatar' => $avatar ?? [],
             'result' => 200,
