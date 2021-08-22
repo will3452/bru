@@ -49,7 +49,7 @@ class ApiAvatarController extends Controller
     public function show()
     {
         $avatar = Avatar::where('user_id', auth()->user()->id)->first();
-
+        return $avatar;
         $user = User::find(auth()->user()->id);
         $exclude = ['id', 'user_id'];
         foreach ($avatar as $key => $value) {
