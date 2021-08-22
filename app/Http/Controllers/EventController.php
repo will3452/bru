@@ -6,7 +6,6 @@ use App\Event;
 use App\Setting;
 use Illuminate\Http\Request;
 
-
 class EventController extends Controller
 {
     /**
@@ -38,21 +37,22 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         return 'this is under maintenance';
-        $dayAway = ((int)Setting::find(1)->event_day_away) - 1;
+        $dayAway = ((int) Setting::find(1)->event_day_away) - 1;
         $validated = $this->validate($request, [
             "name" => "required",
-            "date" => "required|date_format:Y-m-d|after:".date(now()->addDays($dayAway)),
+            "date" => "required|date_format:Y-m-d|after:" . date(now()->addDays($dayAway)),
             "cost" => "required",
             "gem" => "required",
             "type" => "required",
-            'desc'=>'required',
-            "hosted_by" => "required"
+            'desc' => 'required',
+            "hosted_by" => "required",
         ], $messages = [
-            'after' => 'Event should at least be '.($dayAway+1).' days away.'
+            'after' => 'Event should at least be ' . ($dayAway + 1) . ' days away.',
         ]);
 
-       auth()->user()->events()->create($validated);
+        auth()->user()->events()->create($validated);
 
         return back()->with('success', 'event stored successfully');
     }
@@ -67,10 +67,10 @@ class EventController extends Controller
     {
         // abort(401);
         $event = Event::findOrFail($id);
-        if(!$event->game()->count()){
+        if (!$event->game()->count()) {
             $event->game()->create([
-                'prizes'=>'Art Scene',
-                'other_prize'=>request()->has('other_prize') ? request()->other_prize : null
+                'prizes' => 'Art Scene',
+                'other_prize' => request()->has('other_prize') ? request()->other_prize : null,
             ]);
         }
         return view('events.show', compact('event'));
@@ -79,7 +79,7 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-    * @param  \App\Event $event
+     * @param  \App\Event $event
      * @return \Illuminate\Http\Response
      */
     public function edit(Event $event)
@@ -98,11 +98,11 @@ class EventController extends Controller
     {
         $validated = $this->validate($request, [
             "name" => "required",
-            "date" => "required|after:".date(now()->addDays(59)),
+            "date" => "required|after:" . date(now()->addDays(59)),
             "cost" => "required",
             "gem" => "required",
             "type" => "required",
-            "hosted_by" => "required"
+            "hosted_by" => "required",
         ]);
 
         $event->update($validated);
@@ -123,55 +123,57 @@ class EventController extends Controller
         return back()->with('message', 'item deleted successfully');
     }
 
-    public function updatePrizes(Event $event){
+    public function updatePrizes(Event $event)
+    {
         $data = request()->validate([
-            'prize'=>'required',
-            'other_prize'=>''
+            'prize' => 'required',
+            'other_prize' => '',
         ]);
-        if($event->game){
+        if ($event->game) {
             $event->game()->update([
-                'prizes'=>implode(', ', $data['prize']),
-                'other_prize'=>request()->has('other_prize') ? request()->other_prize : null
+                'prizes' => implode(', ', $data['prize']),
+                'other_prize' => request()->has('other_prize') ? request()->other_prize : null,
             ]);
-        }else {
+        } else {
             $event->game()->create([
-                'prizes'=>implode(', ', $data['prize']),
-                'other_prize'=>request()->has('other_prize') ? request()->other_prize : null
+                'prizes' => implode(', ', $data['prize']),
+                'other_prize' => request()->has('other_prize') ? request()->other_prize : null,
             ]);
         }
-        
+
         toast('prizes updated!', 'success');
         return back();
     }
 
+    public function updateBanner(Event $event)
+    {
 
-    public function updateBanner(Event $event){
-        
         $data = request()->validate([
-            'banner_image'=>'required',
-            'banner_title'=>'required'
+            'banner_image' => 'required',
+            'banner_title' => 'required',
         ]);
 
         $path = $data['banner_image']->store('/public/event_banner');
         $arrpath = explode('/', $path);
         $endPath = end($arrpath);
 
-        $data['banner_image'] = '/storage/event_banner/'.$endPath;
+        $data['banner_image'] = '/storage/event_banner/' . $endPath;
         $event->update($data);
         toast('banner updated', 'success');
         return back();
     }
 
-    public function updateSlot(Event $event){
+    public function updateSlot(Event $event)
+    {
         $data = request()->validate([
-            'number_of_tries'=>'required'
+            'number_of_tries' => 'required',
         ]);
         // return $event;
 
-        if(!$event->game->slot()->count()){
-        $event->game->slot()->create($data);
-        }else {
-        $event->game->slot()->update($data);
+        if (!$event->game->slot()->count()) {
+            $event->game->slot()->create($data);
+        } else {
+            $event->game->slot()->update($data);
         }
         toast('Slot machine updated', 'success');
         return back();
