@@ -4,72 +4,24 @@
     <div class="d-flex justify-content-between mb-2">
         <a href="{{ route('events.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus fa-sm"></i> Create new event</a>
     </div>
-    <table id="artstable" class="table table-stripped table-bordered">
-        <thead>
-            <tr>
-                <th>
-                    Event Name
-                </th>
-                <th>
-                    Event Date
-                </th>
-                <th>
-                    Event Type
-                </th>
-                <th>
-                    Event Crytals & Cost
-                </th>
-                <th>
-                    Status
-                </th>
-                <th>
-                    Action
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($events as $event)
-            <tr>
-                <td>
-                    {{-- <a href="{{ route('events.show', $event) }}">{{ $event->name }}</a> --}}
-                    {{ $event->name }}
-                </td>
-                <td>
-                    {{ $event->date_format($event->date) }}
-                </td>
-                <td>
-                    {{ $event->type }}
-                </td>
-                <td>
-                    {{ $event->cost.' '.$event->gem.'(s)' }}
-                </td>
-                <td>
-                    <div class="text-muted">
-                       {{ $event->remark }}
+    <div class="row">
+        @foreach ($events as $event)
+            <x-dashboard-card>
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2 text-truncate">
+                        <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
+                            <a href="#">{{ $event->name }}</a>
+                        </div>
                     </div>
-                </td>
-                <td>
-                    <a href="{{ route('events.show', $event) }}" class="btn btn-sm btn-primary">show</a>
-                    {{-- <button onclick="alert('under development')" class="btn btn-sm btn-danger">
-                        Cancel
-                    </button> --}}
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-@endsection
-
-@section('top')
-    <link rel="stylesheet" href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}">
-@endsection
-@section('bottom')
-    <script src="{{ asset('vendor/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-
-    <script>
-        $(function(){
-            $('#artstable').DataTable();
-        })
-    </script>
+                    <div class="col-auto">
+                        @if ($event->type)
+                            <span class="badge badge-primary">
+                                {{ $event->type}}
+                            </span>
+                        @endif
+                    </div>
+                </div>
+            </x-dashboard-card>
+        @endforeach
+    </div>
 @endsection

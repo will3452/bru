@@ -13,7 +13,7 @@ class ApiEventController extends Controller
 {
     public function index()
     {
-        $events = Event::get();
+        $events = Event::whereNotNull('type')->get();
         return response([
             'events' => $events,
             'result' => 200,
