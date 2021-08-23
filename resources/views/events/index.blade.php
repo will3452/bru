@@ -16,7 +16,7 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2 text-truncate">
                         <div class="text-lg font-weight-bold text-primary text-uppercase mb-1">
-                            <a href="#">{{ $event->name }}</a>
+                            <a href="{{ route('events.show', $event) }}">{{ $event->name }}</a>
                         </div>
                     </div>
                     <div class="col-auto">

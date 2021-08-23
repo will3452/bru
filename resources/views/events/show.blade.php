@@ -3,50 +3,54 @@
     <h1 class="h3 mb-4 text-gray-800">{{ __('Show Event '.$event->name) }}</h1>
     <a href="{{ route('events.index') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
     @include('partials.alert')
-    <div class="card shadow">
-        <div class="card-header">
-            Prizes
-        </div>
-        {{-- {{ $event }} --}}
-        <div class="card-body">
-           <form action="{{ route('events.update.prizes', $event) }}" method="POST">
-            @csrf
-            @method('PUT')
-            <div class="card-text">
-                Please check all items you wish to give the students as prizes.
+    <x-event-info :event="$event"/>
+    @if ($event->type)
+        <div class="card shadow">
+            <div class="card-header">
+                Prizes
             </div>
-            <ul class="list-unstyled">
-                <li>
-                    <input type="checkbox" name="prize[]" {{ $event->isInPrice('Art Scene') ? 'checked':'' }} value="Art Scene"> Art Scene
-                </li>
-                <li>
-                    <input type="checkbox" name="prize[]" {{ $event->isInPrice('Hall Pass to own book') ? 'checked':'' }} value="Hall Pass to own book"> Hall Pass to own book
-                </li>
-                <li>
-                    <input type="checkbox" name="prize[]" {{ $event->isInPrice('Access to own spin-off') ? 'checked':'' }} value="Access to own spin-off"> Access to own spin-off
-                </li>
-                <li>
-                    <input type="checkbox" name="prize[]" {{ $event->isInPrice('White Crystal') ? 'checked':'' }} value="White Crystal"> White Crystal
-                </li>
-                <div id="other">
-                    Others.
-                    <textarea name="other_prize" class="form-control" cols="30" rows="5" placeholder="Physical prizes at the cost of the Author. Please specify details and guidelines here.">{{ $event->game->other_prize }}</textarea>
+            {{-- {{ $event }} --}}
+            <div class="card-body">
+            <form action="{{ route('events.update.prizes', $event) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="card-text">
+                    Please check all items you wish to give the students as prizes.
                 </div>
-                
-            </ul>
-            <div class="form-group">
-                <button class="btn-primary btn">
-                    Update Prizes
-                </button>
+                <ul class="list-unstyled">
+                    <li>
+                        <input type="checkbox" name="prize[]" {{ $event->isInPrice('Art Scene') ? 'checked':'' }} value="Art Scene"> Art Scene
+                    </li>
+                    <li>
+                        <input type="checkbox" name="prize[]" {{ $event->isInPrice('Hall Pass to own book') ? 'checked':'' }} value="Hall Pass to own book"> Hall Pass to own book
+                    </li>
+                    <li>
+                        <input type="checkbox" name="prize[]" {{ $event->isInPrice('Access to own spin-off') ? 'checked':'' }} value="Access to own spin-off"> Access to own spin-off
+                    </li>
+                    <li>
+                        <input type="checkbox" name="prize[]" {{ $event->isInPrice('White Crystal') ? 'checked':'' }} value="White Crystal"> White Crystal
+                    </li>
+                    <div id="other">
+                        Others.
+                        <textarea name="other_prize" class="form-control" cols="30" rows="5" placeholder="Physical prizes at the cost of the Author. Please specify details and guidelines here.">{{ $event->game->other_prize }}</textarea>
+                    </div>
+                    
+                </ul>
+                <div class="form-group">
+                    <button class="btn-primary btn">
+                        Update Prizes
+                    </button>
+                </div>
+            </form>
             </div>
-           </form>
         </div>
-    </div>
+        <br>
+        <div class="alert alert-info">
+            <i class="fa fa-info-circle"></i>  Please take note of the game mechanics for your consideration. 
+        </div>
+    @endif
     {{-- mini games --}}
-    <br>
-    <div class="alert alert-info">
-      <i class="fa fa-info-circle"></i>  Please take note of the game mechanics for your consideration. 
-    </div>
+    
     @if($event->type == 'Quiz Game')
         <div class="card shadow">
             <div class="card-header">
@@ -202,7 +206,7 @@
     {{-- end of mini games --}}
 
     {{-- event banner --}}
-    <div class="card mt-2">
+    {{-- <div class="card mt-2">
         <div class="card-header">
             Event Banner
         </div>
@@ -228,7 +232,7 @@
                 </div>
             </form>
         </div>
-    </div>
+    </div> --}}
     {{-- end of event banner --}}
 @endsection
 @section('bottom')
