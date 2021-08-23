@@ -76,8 +76,10 @@
             max-width: 60px !important;
         }
     </style>
+    <link rel="stylesheet" href="/css/static.generic.css">
+    <link rel="stylesheet" href="/css/about.css">
 </head>
-<body oncontextmenu="return false;" class="bg-gradient-primary min-vh-100 d-flex justify-content-center align-items-center">
+<body style="background:#030F4A !important;">
     @include('partials.loader')
 @yield('main-content')
 

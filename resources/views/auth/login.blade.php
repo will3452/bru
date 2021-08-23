@@ -1,5 +1,4 @@
 @extends('layouts.auth')
-
 @section('main-content')
 <div class="container">
     <div class="row justify-content-center">
@@ -28,16 +27,8 @@
                                     <div class="form-group">
                                         <input type="email" class="form-control  " name="email" placeholder="{{ __('E-Mail Address') }}" value="{{ old('email') }}" required autofocus>
                                     </div>
-
                                     <div class="form-group">
                                         <input type="password" class="form-control  " name="password" placeholder="{{ __('Password') }}" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <div class="custom-control custom-checkbox small">
-                                            <input type="checkbox" class="custom-control-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                            <label class="custom-control-label" for="remember">{{ __('Remember Me') }}</label>
-                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <button type="submit"
@@ -83,7 +74,6 @@
                                     <a href="/" class="text-white">Back to BRUMULTIVERSE</a>
                                 </div>
                             </div>
-                            
                         </div>
                     </div>
                 </div>
