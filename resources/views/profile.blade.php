@@ -36,27 +36,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="card-profile-stats">
-                                <span class="heading">22</span>
-                                <span class="description">Followers</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card-profile-stats">
-                                <span class="heading">10</span>
-                                <span class="description">Works</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card-profile-stats">
-                                <span class="heading">89</span>
-                                <span class="description">Likes</span>
-                            </div>
-                        </div>
-                    </div>
                     <div class=" mt-3" x-data="{showCreate:false}">
                         @if (auth()->user()->groups()->count())
                             <h5><i class="fa fa-users"></i> Groups</h5>
