@@ -5,9 +5,7 @@
         window.location.href = '{{ route('profile') }}';
     </script>
 @endif
-    <h1 class="h3 mb-4 text-gray-800">{{ __('My Works') }}</h1>
     <div class="row">
-        
         <x-dashboard-card>
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2 text-truncate">
