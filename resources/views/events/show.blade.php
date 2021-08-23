@@ -202,6 +202,33 @@
                 </form>
             </div>
         </div>
+    @elseif($event->type == "Puzzle Game")
+        <div class="card mt-2">
+            <div class="card-header">
+                Select An Art for your Puzzle Game.
+            </div>
+            <div class="card-body">
+                <img 
+                width="100"
+                src="{{ $event->game->art_id ? $event->game->art->file : '/noimage.jpg' }}"
+                 alt="">
+                <form action="{{ route('events.update.art', $event) }}" method="POST">
+                    @method('PUT')
+                    @csrf
+                    <select name="art_id" id="" class="custom-select" required>
+                        <option value="" selected>---</option>
+                        @foreach (auth()->user()->arts as $art)
+                            <option value="{{ $art->id }}" {{ $art->id != $event->game->art_id ? :'selected' }}>
+                                {{ $art->title }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <button class="mt-2 btn btn-primary btn-sm">
+                        Save
+                    </button>
+                </form>
+            </div>
+        </div>
     @endif
     {{-- end of mini games --}}
 

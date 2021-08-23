@@ -218,4 +218,16 @@ class EventController extends Controller
         return back();
     }
 
+    public function updateArt($id)
+    {
+        $data = request()->validate([
+            'art_id' => 'required',
+        ]);
+
+        $event = Event::find($id);
+        $event->game()->update($data);
+        toast('Art updated!', 'success');
+        return back();
+    }
+
 }
