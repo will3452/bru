@@ -24,12 +24,12 @@
         </div>
     </div>
     <div>
-        @if($message->read_at) <a href="{{ route('inbox.show', $message) }}" class="btn btn-outline-success btn-sm">read</a>
+        @if($message->read_at) <a href="{{ route('inbox.show', $message) }}" class="btn btn-outline-primary btn-sm">read</a>
         @else
         <form action="{{ route('inbox.update', $message) }}" method="POST">
             @csrf
             @method('PUT')
-            <button class="btn btn-sm btn-success">Read</button>
+            <button class="btn btn-sm btn-primary">Read</button>
         </form>
         @endif 
         
