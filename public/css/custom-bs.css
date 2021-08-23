@@ -1,5 +1,7 @@
-html {
+html,
+body {
     scroll-behavior: smooth;
+    background: #222 !important;
 }
 :root {
     /* --blue: #322f46; */

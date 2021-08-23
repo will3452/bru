@@ -5,5 +5,4 @@
     @include('partials.alert')
     
     @livewire('create-event')
-    
 @endsection
