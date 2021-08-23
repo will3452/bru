@@ -153,7 +153,7 @@
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item mx-1">
-                        <a href="/" class="nav-link "><i class="fa fa-home"></i></a>
+                        <a href="/" class="nav-link ">Home</a>
                     </li>
                     {{-- <li class="nav-item mx-1">
                         <a href="/" class="nav-link "><i class="fa fa-gem"></i></a>
