@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
 @section('main-content')
-    <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">{{ __('Profile') }}</h1>
 
     @if ($errors->any())
         <div class="alert alert-danger border-left-danger" role="alert">
@@ -36,54 +34,64 @@
                             </div>
                         </div>
                     </div>
-                    <div class=" mt-3" x-data="{showCreate:false}">
-                        @if (auth()->user()->groups()->count())
-                            <h5><i class="fa fa-users"></i> Groups</h5>
-                            <div class="alert alert-warning">
-                                NOTE: Please create a group only if you're collaborating on ONE MATERIAL. For a collection of individual works, please Create Series instead.
-                            </div>
-                            <ul class="list-group">
-                                @foreach (auth()->user()->groups as $group)
-                                    <li class="list-group-item d-flex justify-content-between">
-                                        <div>
-                                            <a href="{{ route('group.show', $group->id) }}">{{ $group->name }}</a>
-                                        </div>
-                                        <div>
-                                            {{ $group->status }}
-                                        </div>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        @endif
-                        <button class="btn btn-primary mt-2" x-on:click="showCreate = !showCreate">
-                            <div x-show="!showCreate">
-                                <i class="fa fa-plus"></i> Create Group
-                            </div>
-                            <div  x-show="showCreate">
-                                <i class="fa fa-times"></i> Cancel
-                            </div>
-                        </button>
-                        <div x-show.transition="showCreate" class="mt-2">
-                            <hr>
-                            <form action="{{ route('group.store') }}" method="POST">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="">Group Name</label>
-                                    <input type="text" name="name" required class="form-control">
+                    
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class= mt-3" x-data="{showCreate:false}">
+                            @if (auth()->user()->groups()->count())
+                                <h5><i class="fa fa-users"></i> Groups</h5>
+                                <div class="alert alert-warning">
+                                    NOTE: Please create a group only if you're collaborating on ONE MATERIAL. For a collection of individual works, please Create Series instead.
                                 </div>
-                                <div class="form-group">
-                                    <label for="">Group Type</label>
-                                    <select name="type" id="" class="form-control">
-                                        @foreach (\App\GroupType::get() as $type)
-                                            <option value="{{ $type->name }}">{{ $type->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <button class="btn btn-primary">
-                                    <i class="fa fa-upload"></i> Submit
+                                <ul class="list-group">
+                                    @foreach (auth()->user()->groups as $group)
+                                        <li class="list-group-item d-flex justify-content-between">
+                                            <div>
+                                                <a href="{{ route('group.show', $group->id) }}">{{ $group->name }}</a>
+                                            </div>
+                                            <div>
+                                                {{ $group->status }}
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            @endif
+                            <div class="text-center">
+                                <button class="btn btn-primary"  x-show="!showCreate" x-on:click="showCreate = !showCreate">
+                                    <div x-show="!showCreate">
+                                        <i class="fa fa-plus"></i> Create Group
+                                    </div>
                                 </button>
-                            </form>
-                        </div>
+                            </div>
+                            <div x-show.transition="showCreate" class="mt-2">
+                                
+                                <form action="{{ route('group.store') }}" method="POST">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="">Group Name</label>
+                                        <input type="text" name="name" required class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Group Type</label>
+                                        <select name="type" id="" class="form-control">
+                                            @foreach (\App\GroupType::get() as $type)
+                                                <option value="{{ $type->name }}">{{ $type->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <button  type="button" class="btn btn-danger btn-sm" x-on:click="showCreate = !showCreate">
+                                        <div  x-show="showCreate">
+                                            Cancel
+                                        </div>
+                                    </button>
+                                    <button class="btn btn-primary btn-sm">
+                                        Submit
+                                    </button>
+                                    
+                                </form>
+                            </div>
                     </div>
                 </div>
             </div>
