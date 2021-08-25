@@ -153,24 +153,7 @@ class ApiUsersController extends Controller
     {
         $user = User::find(auth()->user()->id);
 
-        $friends = $user->getFriends();
-
-        if (isset(request()->filter)) {
-            $newFriend = collect([]);
-            foreach ($friends as $friend) {
-                $has = Interest::where('user_id', $friend->id)
-                    ->where('type', 'college')
-                    ->where('name', request()->filter)->count();
-                if ($has) {
-                    $newFriend->push($friend);
-                }
-            }
-            $friends = $newFriend;
-        }
-
-        if (isset(request()->keyword)) {
-            $friends = $user->friends->where('bruname');
-        }
+        $friends = $user->getFriends(20, '', ['bruname']);
 
         return response([
             'friends' => $friends,
