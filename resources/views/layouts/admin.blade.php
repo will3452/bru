@@ -68,62 +68,42 @@
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
             <div class="sidebar-brand-icon">
-                <img src="{{ asset('img/logo.png') }}" alt="" style="max-width: 40px;border-radius:50%;box-shadow:0px 0px 5px 5px #5C07A2">
+                <x-logo style="max-width: 40px;border-radius:50%;box-shadow:0px 0px 5px 5px #5C07A2" />
             </div>
             <div class="sidebar-brand-text mx-3">BRUMultiverse</div>
         </a>
 
 
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item {{ Nav::isRoute('home') }}">
-            <a class="nav-link" href="{{ route('home') }}">
-                <img src="{{ asset('img/icons/dashboard.png') }}" alt="" class="icon">
-                <span>{{ __('Dashboard') }}</span></a>
-        </li>
-
-        
+        <x-sidebar.navitem link="{{ route('home') }}" label="Dashboard">
+            <img src="{{ asset('img/icons/dashboard.png') }}" alt="" class="icon">
+        </x-sidebar.navitem>
 
         <!-- Nav Item - Profile -->
-        <li class="nav-item {{ Nav::isRoute('inbox.*') }}">
-            <a class="nav-link" href="{{ route('inbox.index') }}">
-                <i class="fa fa-inbox text-white" style="font-size:1.7em !important;"></i>
-                <span>{{ __('Inbox') }}</span>
-            </a>
-        </li>
-        <li class="nav-item {{ Nav::isRoute('events.*') }}">
-            <a class="nav-link" href="{{ route('events.index') }}">
-                <img src="{{ asset('img/icons/event.png') }}" alt="" class="icon">
-                <span>{{ __('My Event') }}</span>
-            </a>
-        </li>
-
-        <li class="nav-item ">
-            <a class="nav-link" href="{{ route('marketing.index') }}">
-                <i class="fa fa-store" style="font-size:24px;color:white"></i>
-                <span>{{ __('Marketing') }}</span>
-            </a>
-        </li>
+        {{-- <x-sidebar.navitem link="{{ route('inbox.index') }}" label="Inbox">
+            <i class="fa fa-inbox text-white" style="font-size:1.7em !important;"></i>
+        </x-sidebar.navitem> --}}
 
 
-        <li class="nav-item {{ Nav::isRoute('profile') }}">
-            <a class="nav-link" href="{{ route('profile') }}">
-                <img src="{{ asset('img/icons/profile.png') }}" alt="" class="icon">
-                <span>{{ __('Profile') }}</span>
-            </a>
-        </li>
+        <x-sidebar.navitem link="{{ route('events.index') }}" label="Events">
+            <img src="{{ asset('img/icons/event.png') }}" alt="" class="icon">
+        </x-sidebar.navitem>
 
-        {{-- <li class="nav-item {{ Nav::isRoute('support-chat') }}">
-            <a class="nav-link" href="/support-chat">
-                <i class="fa fa-headset text-white" style="font-size:26px;"></i>
-                <span>{{ __('Tech. Support') }}</span>
-            </a>
-        </li> --}}
+
+        <x-sidebar.navitem link="{{ route('marketing.index') }}" label="Marketing">
+           <i class="fa fa-store" style="font-size:24px;color:white"></i>
+        </x-sidebar.navitem>
+
+
+        <x-sidebar.navitem link="{{ route('profile') }}" label="Profile">
+            <img src="{{ asset('img/icons/profile.png') }}" alt="" class="icon">
+        </x-sidebar.navitem>
 
 
         <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-inline">
+        {{-- <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
+        </div> --}}
 
     </ul>
 
@@ -141,78 +121,19 @@
                     <i class="fa fa-bars"></i>
                 </button>
 
-                <!-- Topbar Search -->
-                {{-- <ul class="navbar-nav mr-auto">
-                    <li class="nav-item mx-1">
-                        <a href="/" class="nav-link "><i class="fa fa-home"></i></a>
-                    </li>
-                    <li class="nav-item mx-1">
-                        <a href="/" class="nav-link "><i class="fa fa-gem"></i></a>
-                    </li>
-                </ul> --}}
+                
                 <!-- Topbar Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item mx-1">
                         <a href="/" class="nav-link ">Home</a>
                     </li>
-                    {{-- <li class="nav-item mx-1">
-                        <a href="/" class="nav-link "><i class="fa fa-gem"></i></a>
-                    </li> --}}
-                    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                    {{-- <li class="nav-item dropdown no-arrow d-sm-none">
-                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <!-- Dropdown - Messages -->
-                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                            <form class="form-inline mr-auto w-100 navbar-search">
-                                <div class="input-group">
-                                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">
-                                            <i class="fas fa-search fa-sm"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </li> --}}
-                    <!-- Nav Item - Alerts -->
                     <li class="nav-item dropdown no-arrow mx-1">
-                        {{-- <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-bell fa-fw"></i>
-                            <!-- Counter - Alerts -->
-                            @if(auth()->user()->unReadNotifications()->count())
-                            <span class="badge badge-danger badge-counter">{{ auth()->user()->unReadNotifications()->count() }}</span>
-                            @endif
-                        </a> --}}
-                        <!-- Dropdown - Alerts -->
+                        
                         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                             <h6 class="dropdown-header">
                                 Notifications
                             </h6>
-                            {{-- <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-primary">
-                                        <i class="fas fa-file-alt text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 12, 2019</div>
-                                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-success">
-                                        <i class="fas fa-donate text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 7, 2019</div>
-                                    $290.29 has been deposited into your account!
-                                </div>
-                            </a> --}}
+                            
                             @forelse(auth()->user()->notifications()->latest()->take(5)->get() as $notif)
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="mr-3">

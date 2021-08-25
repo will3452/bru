@@ -80,12 +80,9 @@
             </script>
         </div>
         <h5>Upload Art</h5>
-        <div class="form-group">
-            <div class="custom-file">
-                <label class="custom-file-label" for="art">Choose from file</label>
-                <input type="file" name="file" id="art" accept="image/*" required class="custom-file-input">
-            </div>
-        </div>
+        <x-form.group>
+            <x-form.file name="file" id="art" accept="image/*" required/>
+        </x-form.group>
         <div class="alert alert-warning mt-2">
             <div>
                 <strong>Required*</strong>

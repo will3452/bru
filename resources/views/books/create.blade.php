@@ -47,13 +47,10 @@
                 {{-- <option value="Series">Series</option> --}}
             </select>
         </div>
-        <div class="form-group">
-            <label for="">Book Cover</label>
-            <div class="custom-file">
-                <label class="custom-file-label" for="picture">Choose File</label>
-                <input type="file" name="picture" id="picture" accept="image/*" required class="custom-file-input">
-            </div>
-        </div>
+        <x-form.group>
+            <x-form.label>Book Cover</x-form.label>
+            <x-form.file name="picture" id="picture" accept="image/*" required class="custom-file-input" />
+        </x-form.group>
         <div class="alert alert-warning mt-2">
             <div>
                 <strong>Required*</strong>
@@ -275,8 +272,7 @@
             </div>
             <div class="card card-body shadow mt-2" id="upload_art">
                 <label for="">Upload art here</label>
-                <input type="file" accept="image/*" class="d-block" name="free_art">
-
+                <x-form.input  accept="image/*" class="d-block" name="free_art"/>
                 <div class="alert alert-warning mt-2">
                     <div>
                         <strong>Required*</strong>
@@ -327,7 +323,7 @@
                 $('#upload_art').hide();
             })
             
-        })
+        });
     </script>
     <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
@@ -339,11 +335,6 @@
             $('#tag').select2({
                 tags:true,
                 tokenSeparators: [',', ' ']
-            });
-
-            $(".custom-file-input").on("change", function() {
-            var fileName = $(this).val().split("\\").pop();
-            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
             });
 
             //rich editor
