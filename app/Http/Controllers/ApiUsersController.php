@@ -169,7 +169,7 @@ class ApiUsersController extends Controller
         }
 
         if (isset(request()->keyword)) {
-            return 2;
+            $friends = $user->friends->where('bruname');
         }
 
         return response([
