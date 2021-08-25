@@ -14,13 +14,19 @@ class MarketingController extends Controller
 
     public function index()
     {
-        $markets = auth()->user()->markets;
+        $markets = Cache::remember('list_of_marketing', 20, function () {
+            return auth()->user()->markets;
+        });
+
         return view('marketing.index', compact('markets'));
     }
 
     public function show($id)
     {
-        $market = auth()->user()->markets()->findOrFail($id);
+        $market = Cache::remember('show_of_market', 10, function () {
+            return auth()->user()->markets()->findOrFail($id);
+        });
+
         return view('marketing.show', compact('market'));
     }
 
