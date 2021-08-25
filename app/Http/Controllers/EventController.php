@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Event;
 use App\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class EventController extends Controller
 {
