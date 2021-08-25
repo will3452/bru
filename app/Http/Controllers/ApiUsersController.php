@@ -118,7 +118,7 @@ class ApiUsersController extends Controller
         }
 
         if (isset(request()->keyword)) {
-            $friends = $user->getFriends()->where('bruname', 'LIKE', '%' . request()->keyword . '%')->get();
+            $friends = $user->friends->where('bruname', 'LIKE', '%' . request()->keyword . '%')->get();
         }
 
         return response([
