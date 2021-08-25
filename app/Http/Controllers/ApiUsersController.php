@@ -118,7 +118,8 @@ class ApiUsersController extends Controller
         }
 
         if (isset(request()->keyword)) {
-            $friends = $user->friends->where('bruname', 'mark malvar');
+            return 1;
+            $friends = $user->friends->where('bruname');
         }
 
         return response([
