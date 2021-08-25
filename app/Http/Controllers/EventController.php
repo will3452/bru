@@ -24,7 +24,7 @@ class EventController extends Controller
                 return auth()->user()->events()->approved()->get();
             });
         } else {
-            $events = Cache::remember('approved_events' . auth()->user()->id, 15000, function () {
+            $events = Cache::remember('disapproved_events' . auth()->user()->id, 15000, function () {
                 return auth()->user()->events()->pending()->get();
             });
         }
