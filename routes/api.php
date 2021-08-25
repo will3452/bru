@@ -141,6 +141,10 @@ Route::prefix('v1')->group(function () {
         Route::get('/requests-friend', 'ApiUsersController@friendRequests');
         Route::get('/visit/{id}', 'ApiUsersController@visit');
 
+        //phone wallpaper
+        Route::get('/wallpaper', 'ApiWallpaperController@getWallpaper');
+        Route::post('/wallpaper', 'ApiWallpaperController@saveWallpaper');
+
         // follow controller
         Route::post('/follow', 'ApiUsersController@toggleFollow');
         Route::get('/followers', 'ApiUsersController@getFollowers');
