@@ -47,7 +47,7 @@
         </x-form.group>
         <x-form.group>
             <x-form.label>
-                Proof of Payment <small> [Image/Screenshot of your Receipt] </small>
+                Proof of Payment <small> [ Image/Screenshot of your Receipt ] </small>
             </x-form.label>
             <x-form.file name="proof_of_payment" required accept="image/*"/>
         </x-form.group>

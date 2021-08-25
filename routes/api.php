@@ -126,6 +126,7 @@ Route::prefix('v1')->group(function () {
 
         // users
         Route::get('/users', 'ApiUsersController@getUsers');
+        Route::post('/users', 'ApiUsersController@getUsers');
         Route::get('/users/{id}', 'ApiUsersController@showUser');
 
         //computer settings
@@ -135,6 +136,7 @@ Route::prefix('v1')->group(function () {
         //add friend users
         Route::post('/add-friend', 'ApiUsersController@addFriend');
         Route::get('/all-friends', 'ApiUsersController@allFriends');
+        Route::post('/all-friends', 'ApiUsersController@allFriends');
         Route::post('/accept-friend', 'ApiUsersController@acceptFriend');
         Route::post('/decline-friend', 'ApiUsersController@denyFriend');
         Route::post('/un-friend', 'ApiUsersController@unFriend');
