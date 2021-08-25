@@ -18,7 +18,7 @@ class ApiUsersController extends Controller
             return 1;
         } else {
             $users = User::where('id', '!=', $user->id)
-                ->orWhere('first_name', 'LIKE', '%' . request()->keyword . '%')
+                ->Where('first_name', 'LIKE', '%' . request()->keyword . '%')
                 ->orWhere('last_name', 'LIKE', '%' . request()->keyword . '%')->get();
         }
 
