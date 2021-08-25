@@ -10,7 +10,7 @@ class ApiUsersController extends Controller
 {
     public function getUsers()
     {
-        return request()->keyword;
+
         $user = User::find(auth()->user()->id);
         $users = [];
         if (!isset(request()->keyword)) {
@@ -20,6 +20,7 @@ class ApiUsersController extends Controller
                 ->orWhere('first_name', 'LIKE', '%' . request()->keyword . '%')
                 ->orWhere('last_name', 'LIKE', '%' . request()->keyword . '%')->get();
         }
+        return $users;
 
         foreach ($users as $u) {
             $u->has_requests = $u->hasFriendRequestFrom($user);
