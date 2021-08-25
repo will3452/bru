@@ -139,7 +139,6 @@ class ApiUsersController extends Controller
             $friends = $newFriend;
         }
 
-
         return response([
             'friends' => $friends,
             'result' => 200,
@@ -150,7 +149,7 @@ class ApiUsersController extends Controller
     {
         $user = User::find(auth()->user()->id);
 
-        $friends = $user->getFriends();
+        $friends = $user->friends()->where('bruname', 'LIKE', request()->keyword . '%')->get();
 
         return response([
             'friends' => $friends,
