@@ -10,7 +10,7 @@ class ApiWallpaperController extends Controller
     public function getWallpaper()
     {
         $user = User::find(auth()->user()->id);
-        return reponse([
+        return response([
             'wallpaper' => $user->wallpaper,
             'result' => 200,
         ], 200);
@@ -28,7 +28,7 @@ class ApiWallpaperController extends Controller
         $user->wallpaper = $wallpaper;
         $user->save();
 
-        return reponse([
+        return response([
             'wallpaper' => $user->wallpaper,
             'result' => 200,
         ], 200);
