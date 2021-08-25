@@ -139,9 +139,6 @@ class ApiUsersController extends Controller
             $friends = $newFriend;
         }
 
-        if (isset(request()->keyword)) {
-            $friends = $user->friends->where('bruname');
-        }
 
         return response([
             'friends' => $friends,
