@@ -173,7 +173,7 @@ class ApiUsersController extends Controller
             $friends = $user->friends->where('bruname', 'LIKE', '%' . request()->keyword . '%')
                 ->orWhere('first_name', 'LIKE', '%' . request()->keyword . '%')
                 ->orWhere('last_name', 'LIKE', '%' . request()->keyword . '%')
-                ->get();
+                ->get(20);
         }
 
         return response([
