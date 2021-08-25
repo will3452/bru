@@ -162,6 +162,19 @@ class ApiUsersController extends Controller
             }
         }
 
+        if (isset(request()->filter)) {
+            $newFriend = collect([]);
+            foreach ($friends as $friend) {
+                $has = Interest::where('user_id', $friend->id)
+                    ->where('type', 'college')
+                    ->where('name', request()->filter)->count();
+                if ($has) {
+                    $newFriend->push($friend);
+                }
+            }
+            $friends = $newFriend;
+        }
+
         return response([
             'friends' => $friends,
             'result' => 200,
