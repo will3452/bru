@@ -20,15 +20,13 @@ class EventController extends Controller
 
         if (!request()->filter || request()->filter == 'approved') {
 
-            $events = Cache::remember('approved_events' . auth()->user()->id, 2000, function () {
+            $events = Cache::remember('approved_events' . auth()->user()->id, 15000, function () {
                 return auth()->user()->events()->approved()->get();
             });
-
         } else {
-            $events = Cache::remember('approved_events' . auth()->user()->id, 2000, function () {
+            $events = Cache::remember('approved_events' . auth()->user()->id, 15000, function () {
                 return auth()->user()->events()->pending()->get();
             });
-
         }
 
         return view('events.index', compact('events'));
