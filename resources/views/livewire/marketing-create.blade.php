@@ -3,8 +3,8 @@
     <div class="form-group">
         <label for="">Attach to Event</label>
         <select name="event_id" id="" class="custom-select">
+            <option value="" disabled selected>---</option>
             @foreach ($events as $item)
-                <option value="" disabled selected>---</option>
                 <option value="{{ $item->id }}">{{ $item->name }}</option>
             @endforeach
         </select>
