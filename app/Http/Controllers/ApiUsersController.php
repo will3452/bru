@@ -96,6 +96,7 @@ class ApiUsersController extends Controller
     public function allFriends()
     {
         $user = User::find(auth()->user()->id);
+
         $friends = $user->getFriends();
 
         if (isset(request()->filter)) {
@@ -110,6 +111,14 @@ class ApiUsersController extends Controller
             }
             $friends = $newFriend;
         }
+
+        if (isset(request()->keyword)) {
+            $friends = $user->where('bruname', 'LIKE', '%' . request()->keyword . '%')
+                ->orWhere('first_name', 'LIKE', '%' . request()->keyword . '%')
+                ->orWhere('last_name', 'LIKE', '%' . request()->keyword . '%')
+                ->get();
+        }
+
         return response([
             'friends' => $friends,
             'result' => 200,

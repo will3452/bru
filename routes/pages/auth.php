@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 Auth::routes();
 
