@@ -18,9 +18,16 @@ class EventController extends Controller
         $events = [];
 
         if (!request()->filter || request()->filter == 'approved') {
-            $events = auth()->user()->events()->approved()->get();
+
+            $events = Cache::remember('approved_events' . auth()->user()->id, 2000, function () {
+                return auth()->user()->events()->approved()->get();
+            });
+
         } else {
-            $events = auth()->user()->events()->pending()->get();
+            $events = Cache::remember('approved_events' . auth()->user()->id, 2000, function () {
+                return auth()->user()->events()->pending()->get();
+            });
+
         }
 
         return view('events.index', compact('events'));
