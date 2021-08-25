@@ -125,7 +125,7 @@ Route::prefix('v1')->group(function () {
         Route::post('/get-log', 'ApiDailyLogController@storeLog');
 
         // users
-        Route::post('/users', 'ApiUsersController@getUsers');
+        Route::post('/users', 'ApiUsersController@postgetUsers');
         Route::get('/users', 'ApiUsersController@getUsers');
         Route::get('/users/{id}', 'ApiUsersController@showUser');
 
@@ -135,7 +135,7 @@ Route::prefix('v1')->group(function () {
 
         //add friend users
         Route::post('/add-friend', 'ApiUsersController@addFriend');
-        Route::post('/all-friends', 'ApiUsersController@allFriends');
+        Route::post('/all-friends', 'ApiUsersController@postallFriends');
         Route::get('/all-friends', 'ApiUsersController@allFriends');
         Route::post('/accept-friend', 'ApiUsersController@acceptFriend');
         Route::post('/decline-friend', 'ApiUsersController@denyFriend');

@@ -21,7 +21,29 @@ class ApiUsersController extends Controller
                 ->orWhere('last_name', 'LIKE', '%' . request()->keyword . '%')->get();
         }
 
-        return $users;
+        foreach ($users as $u) {
+            $u->has_requests = $u->hasFriendRequestFrom($user);
+            $u->was_followed = $u->isFollowedBy($user);
+            $u->was_friend = $u->isFriendWith($user);
+        }
+        return response([
+            'users' => $users,
+            'result' => 200,
+        ], 200);
+    }
+
+    public function postgetUsers()
+    {
+
+        $user = User::find(auth()->user()->id);
+        $users = [];
+        if (!isset(request()->keyword)) {
+            $users = User::where('id', '!=', $user->id)->get();
+        } else {
+            $users = User::where('id', '!=', $user->id)
+                ->Where('first_name', 'LIKE', '%' . request()->keyword . '%')
+                ->orWhere('last_name', 'LIKE', '%' . request()->keyword . '%')->get();
+        }
 
         foreach ($users as $u) {
             $u->has_requests = $u->hasFriendRequestFrom($user);
@@ -120,6 +142,31 @@ class ApiUsersController extends Controller
         if (isset(request()->keyword)) {
             return 1;
             $friends = $user->friends->where('bruname');
+        }
+
+        return response([
+            'friends' => $friends,
+            'result' => 200,
+        ], 200);
+    }
+
+    public function postallFriends()
+    {
+        $user = User::find(auth()->user()->id);
+
+        $friends = $user->getFriends();
+
+        if (isset(request()->filter)) {
+            $newFriend = collect([]);
+            foreach ($friends as $friend) {
+                $has = Interest::where('user_id', $friend->id)
+                    ->where('type', 'college')
+                    ->where('name', request()->filter)->count();
+                if ($has) {
+                    $newFriend->push($friend);
+                }
+            }
+            $friends = $newFriend;
         }
 
         return response([
