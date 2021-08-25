@@ -221,7 +221,6 @@
                             @if(!auth()->user()->picture)
                                 <figure class="rounded-circle avatar avatar font-weight-bold"  data-initial="{{ Auth::user()->first_name[0] }}"></figure>
                             @else
-                            {{ auth()->user()->picture }}
                                 <x-avatar image="{{ auth()->user()->picture }}"/>
                             @endif
                         </a>
