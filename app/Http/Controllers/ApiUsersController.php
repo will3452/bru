@@ -12,7 +12,7 @@ class ApiUsersController extends Controller
     {
         $user = User::find(auth()->user()->id);
         $users = [];
-        if (!request()->keyword) {
+        if (!isset(request()->keyword)) {
             $users = User::where('id', '!=', $user->id)->get();
         } else {
             $users = User::where('id', '!=', $user->id)
