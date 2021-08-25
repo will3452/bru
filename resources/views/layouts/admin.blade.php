@@ -79,11 +79,6 @@
             <img src="{{ asset('img/icons/dashboard.png') }}" alt="" class="icon">
         </x-sidebar.navitem>
 
-        <!-- Nav Item - Profile -->
-        {{-- <x-sidebar.navitem link="{{ route('inbox.index') }}" label="Inbox">
-            <i class="fa fa-inbox text-white" style="font-size:1.7em !important;"></i>
-        </x-sidebar.navitem> --}}
-
 
         <x-sidebar.navitem link="{{ route('events.index') }}" label="Events">
             <img src="{{ asset('img/icons/event.png') }}" alt="" class="icon">
@@ -226,7 +221,7 @@
                             @if(!auth()->user()->picture)
                                 <figure class="rounded-circle avatar avatar font-weight-bold"  data-initial="{{ Auth::user()->first_name[0] }}"></figure>
                             @else
-                                <img src="{{ auth()->user()->picture }}"  class="rounded-circle avatar avatar font-weight-bold" style="object-fit: cover" alt="">
+                                <x-avatar image="{{ auth()->user()->image }}"/>
                             @endif
                         </a>
                     </li>
