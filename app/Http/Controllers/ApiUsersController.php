@@ -20,6 +20,7 @@ class ApiUsersController extends Controller
                 ->orWhere('first_name', 'LIKE', '%' . request()->keyword . '%')
                 ->orWhere('last_name', 'LIKE', '%' . request()->keyword . '%')->get();
         }
+
         return $users;
 
         foreach ($users as $u) {
