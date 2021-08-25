@@ -11,8 +11,13 @@ class ApiUsersController extends Controller
     public function getUsers()
     {
         $user = User::find(auth()->user()->id);
-        // $friends = $user->getFriends()->pluck('id')->all();
-        $users = User::where('id', '!=', $user->id)->get();
+        $users = [];
+        if (!request()->keyword) {
+            $users = User::where('id', '!=', $user->id)->get();
+        } else {
+            $users = User::where('id', '!=', $user->id)->where('name', 'LIKE', '%' . request()->keyword . '%')->get();
+        }
+
         foreach ($users as $u) {
             $u->has_requests = $u->hasFriendRequestFrom($user);
             $u->was_followed = $u->isFollowedBy($user);
