@@ -6,71 +6,116 @@
     
     <form action="{{ route('songs.store') }}" method="post" enctype="multipart/form-data">
         @csrf
-        <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" class="form-control" name="title" value="{{ old('title') }}" }}>
-        </div>
-        <div class="form-group">
-            <label for="#">Genre</label>
-            <select name="genre" id="genre" class="form-control">
-                @foreach (\App\SongGenre::get() as $genre)
-                    <option value="{{ $genre->name }}">
-                        {{ $genre->name }}
-                    </option>
-                @endforeach
-            </select>
-        </div>
+        <x-form.group>
+            <x-form.input type="text" label="Title" name="title"  required/>
+        </x-form.group>
+        
+        <x-form.select
+        label="Genre"
+        name="genre"
+        :options="\App\SongGenre::pluck('name')->map(function($value, $key){
+            return [
+                'value'=>$value,
+                'label'=>$value
+            ];
+        })" required/>
+
         <div x-data="{
             typeOfWork:1, 
             updateWork(){
                 this.typeOfWork = document.getElementById('workSelector').value;
             }
         }">
-        <div class="form-group">
-            <label for="">Type of Work</label>
-            <select id="workSelector" x-on:change="updateWork()" class="custom-select">
-                <option value="1">Solo</option>
-                <option value="2">Collaboration</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="">Artist</label>
-            <select name="artist" id="" class="form-control">
-                @foreach (auth()->user()->pens as $pen)
-                    <option value="{{ $pen->name }}">{{ $pen->name }}</option>
-                @endforeach
-            </select>
-        </div>
+
+        <x-form.group>
+            <x-form.select
+            default="1"
+            id="workSelector"
+            x-on:change="updateWork()"
+            label="Type of Work"
+            :options="[
+                [
+                    'value'=>1,
+                    'label'=>'Solo'
+                ],
+                [
+                    'value'=>2,
+                    'label'=>'Collaboration'
+                ]
+            ]"/>
+        </x-form.group>
+
+        <x-form.group>
+            <x-form.select
+            label="Artist"
+            name="artist"
+            :options="
+            auth()->user()->pens->map(function($item){
+                    return [
+                        'value'=>$item->name,
+                        'label'=>$item->name
+                    ];
+                })
+            " required/>
+        </x-form.group>
+
         <template x-if="typeOfWork == 2">
-            <div class="form-group">
-                Select Group
-                <select name="group_id" id="" class="custom-select">
-                    @foreach (auth()->user()->groups as $g)
-                        <option value="{{ $g->id }}">
-                        {{ $g->name }}
-                    </option>
-                    @endforeach
-                </select>
-            </div>
+            
+            <x-form.group>
+                <x-form.select
+                label="Select Group"
+                name="group_id"
+                :options="
+                    auth()->user()->groups->map(function($item){
+                        return [
+                            'value'=>$item->id,
+                            'label'=>$item->name
+                        ];
+                    })
+                " required/>
+            </x-form.group>
+
         </template>
+        
         </div>
-        <div class="form-group">
-            <label for="">Description</label>
-            <textarea name="desc" id="" class="form-control" required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="">Credits</label>
-            <textarea name="credits" required class="form-control"></textarea>
-        </div>
-        <div class="form-group" x-data="{isAssoc:false}">
-            <div class="form-group mt-2">
-                 Is this associated with any other works within the multiverse?
-                <select name="" id="" x-ref="select" class="form-control" x-on:change = "$refs.select.value == 'yes' ? isAssoc = true:isAssoc = false" >
-                    <option value="no">No</option>
-                    <option value="yes">Yes</option>
-                </select>
-            </div>
+        
+        <x-form.group>
+            <x-form.textarea
+            label="Description"
+            name="desc" required>
+            </x-form.textarea>
+        </x-form.group>
+
+        <x-form.group>
+            <x-form.textarea
+            label="Credits"
+            name="credits" required>
+            </x-form.textarea>
+        </x-form.group>
+
+        <div x-data="{isAssoc:false}">
+            
+            <x-form.group>
+                <x-form.select
+                x-on:change="$refs.select.value == 'yes' ? isAssoc = true:isAssoc = false"
+                x-ref="select"
+                default="no"
+                label="Is this associated with any other works within the multiverse?"
+                name=""
+                :options="[
+                    [
+                        'value'=>'no',
+                        'label'=>'No'
+                    ],
+                    [
+                        'value'=>'yes',
+                        'label'=>'Yes'
+                    ],
+                ]"/>
+            </x-form.group>
+
             <template x-if="isAssoc">
+                
                 <div class="card card-body">
                     <div>
                         <input type="radio" name="associated_type" checked value="Original Sound Track"> Original Sound Track (OST)
@@ -117,37 +162,41 @@
                     </div>
                 </div>
             </template>
+
         </div>
-        <div class="form-group">
-            <label for="">Cover</label>
-            <input type="file" name="cover" accept="image/*" class="d-block" required>
-            <div class="alert alert-warning mt-2">
-                <div>
-                    <strong>Required*</strong>
-                </div>
-                <input type="checkbox" required id="ck_box" name="cpy">
-                @copyright_disclaimer
-            </div>
-        </div>
-        <div>
-            <label for="">Choose Type Of Crystal</label>
-            <select name="cost_type" id="" class="form-control">
-                <option value="purple">Purple</option>
-                <option value="white">White</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="#">Cost</label>
-            <input type="number" name="cost" class="form-control" min="0" required oninput="validate(this)" value="{{ old('cost') ?? 0 }}">
-            <script>
-                function validate(input){
-                   if(input.value < 0){
-                      input.value = 0;
-                   }
-                }
-            </script>
-        </div>
-        <div class="form-group">
+
+        <x-form.group>
+            <x-form.label>
+                Cover
+            </x-form.label>
+            <x-form.file name="cover" required accept="image/*"/>
+        </x-form.group>
+
+        <x-form.group>
+            <x-copyright-disclaimer/>
+        </x-form.group>
+
+        <x-form.group>
+            <x-form.select
+            label="Choose Type of Crystal"
+            name="cost_type"
+            :options="[
+                [
+                    'value'=>'purple',
+                    'label'=>'Purple'
+                ],
+                [
+                    'value'=>'white',
+                    'label'=>'White'
+                ],
+            ]" required/>    
+        </x-form.group>
+
+         <x-form.group>
+             <x-form.number label="Cost" name="cost" required/>
+         </x-form.group>
+
+        <x-form.group>
             <label for="">Upload your Song</label>
             <ul id="filelist" class="list-group mb-2"></ul>
             <div id="container">
@@ -156,48 +205,45 @@
             </div>
             <input type="hidden" name="file" id="video_file">
             <pre id="console" class="text-danger"></pre>
-            {{-- <input type="file" name="file" accept=".mp3,audio/*" class="d-block" required> --}}
-            <div class="alert alert-warning mt-2">
-                <div>
-                    <strong>Required*</strong>
-                </div>
-                <input type="checkbox" required id="ck_box" name="cpy">
-                @copyright_disclaimer
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="">Lyrics</label>
-            <textarea name="lyrics" id="" class="form-control" required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="">Copyright</label>
-            <textarea name="copyright" class="form-control" placeholder="Enter copyright details here."></textarea>
-        </div>
-        <div class="form-group">
+        </x-form.group>
+
+        <x-form.group>
+            <x-copyright-disclaimer/>
+        </x-form.group>
+
+        <x-form.group>
+            <x-form.textarea
+            label="Lyrics"
+            name="lyrics" required>
+            </x-form.textarea >
+        </x-form.group>
+
+        <x-form.group>
+            <x-form.textarea
+            label="Copytright"
+            name="copyright" required>
+            </x-form.textarea>
+        </x-form.group>
+
+        <x-form.group>
             <label for="" x-data="{shower:false}">
                 <input name="is_copyright" type="checkbox" x-on:change="if(!shower){alert(`Please have it copyrighted as soon as possible. Thank you.`)}; shower = !shower;"> This song is not yet copyrighted.
             </label>
-        </div>
-        <div class="form-group">
+        </x-form.group>
+
+        <x-form.group>
             <button type="submit" class="btn btn-primary btn-block" id="submit" disabled>Submit</button>
-        </div>
+        </x-form.group>
     </form>
 @endsection
 
 @section('top')
     
-    {{-- <script src="{{asset('/js/app.js')}}"></script> --}}
-    <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.3.0/alpine.js" integrity="sha512-nIwdJlD5/vHj23CbO2iHCXtsqzdTTx3e3uAmpTm4x2Y8xCIFyWu4cSIV8GaGe2UNVq86/1h9EgUZy7tn243qdA==" crossorigin="anonymous"></script>
+    <x-vendor.ckeditor/>
+    <x-alpine/>
+
 @endsection
 @section('bottom')
-    
-    <script>
-        CKEDITOR.replace('desc');
-        CKEDITOR.replace('credits');
-        CKEDITOR.replace('copyright');
-        CKEDITOR.replace('lyrics');
-    </script>
 
 <script src="{{ asset('/vendor/plupload/js/plupload.full.min.js') }}"></script>
 <script>

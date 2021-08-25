@@ -5,71 +5,82 @@
     @include('partials.alert')
     <form action="{{ route('series.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
+        <x-form.group>
+            <x-form.select 
+            name="type"
+            label="What type of series do you wish to create ?"
+            :options="[
+                [
+                    'value'=>'book',
+                    'label'=>'Books'
+                ],
+                [
+                    'value'=>'audio book',
+                    'label'=>'Audio Books'
+                ],
+                [
+                    'value'=>'film',
+                    'label'=>'Films'
+                ],
+                [
+                    'value'=>'podcast',
+                    'label'=>'Podcast'
+                ],
+            ]"
+            />
+        </x-form.group>
 
-        <div class="form-group">
-            <label for="">
-                What type of series do you wish to create ? 
-            </label>
-            <select name="type" id="" class="custom-select">
-                <option value="book">Books</option>
-                <option value="audio book">Audio Books</option>
-                <option value="film">Films</option>
-                <option value="podcast">Podcast</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="">
-                Is this a solo series or a collaboration ? 
-            </label>
-            <select name="type_of_work" id="" class="custom-select">
-                <option value="solo">Solo</option>
-                <option value="collaboration">Collaboration</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="">Series Title</label>
-            <input type="text" class="form-control" required name="title">
-        </div>
-        <div class="form-group">
-            <label for="">
-                Series Description
-            </label>
-            <textarea name="desc" id="" cols="30" rows="10" required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="">
-                Series Credits
-            </label>
-            <textarea name="credits" id=""  required cols="30" rows="10"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="">
-                Upload Series Cover
-            </label>
-            <input type="file" name="cover" class="d-block" accept="image/*" required>
-            <div class="alert alert-warning mt-2">
-                <div>
-                    <strong>Required*</strong>
-                </div>
-                <input type="checkbox" required id="ck_box" name="cpy" accept="image/*">
-                @copyright_disclaimer
-            </div>
-        </div>
-        <div class="form-group">
-            <button class="btn btn-primary btn-block">
-                Submit
-            </button>
-        </div>
+        <x-form.group>
+            <x-form.select 
+            default="1"
+            name="type_of_work"
+            label="Is this a solo series or a collaboration ? ?"
+            :options="[
+                [
+                    'value'=>'solo',
+                    'label'=>'Solo'
+                ],
+                [
+                    'value'=>'collaboration',
+                    'label'=>'Collaboration'
+                ],
+            ]"
+            />
+        </x-form.group>
 
+
+        <x-form.group>
+            <x-form.input label="Series Title"  required name="title"/>
+        </x-form.group>
+
+        <x-form.group>
+            <x-form.textarea label="Series Description" name="desc" required/>
+        </x-form.group>
+        
+        <x-form.group>
+            <x-form.textarea
+            label="Series Credits"
+            name="credits" required>
+            </x-form.textarea>
+        </x-form.group>
+
+        <x-form.group>
+            <x-form.label>
+                Upload Serices Cover
+            </x-form.label>
+            <x-form.file name="cover" required/>
+        </x-form.group>
+
+        <x-form.group>
+            <x-copyright-disclaimer/>
+        </x-form.group>
+
+        <x-form.group>
+            <x-button type="submit" color="primary">Submit</x-button>
+        </x-form.group>
     </form>
 @endsection
 
 @section('top')
-    <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
-@endsection
-@section('bottom')
-    <script>
-        CKEDITOR.replace('desc');
-        CKEDITOR.replace('credits');
-    </script>
+    <x-vendor.ckeditor/>
 @endsection

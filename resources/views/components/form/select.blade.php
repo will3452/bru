@@ -1,9 +1,13 @@
-@props(['label'=>'', 'options'=>[]])
+@props(['label'=>'', 'options'=>[], 'default'=>''])
 <x-form.label>
     {{ $label }}
 </x-form.label>
 <select  {{ $attributes->merge(['class' => 'custom-select']) }}>
-    <x-form.option value="" selected disabled>---</x-form.option>
+    
+    @if ($default=='' || $default==null)
+        <x-form.option value="" selected disabled>---</x-form.option>
+    @endif
+    
     @foreach ($options as $item)
         <x-form.option :value="$item['value']">
             {{ $item['label'] }}
