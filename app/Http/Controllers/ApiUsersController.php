@@ -10,6 +10,7 @@ class ApiUsersController extends Controller
 {
     public function getUsers()
     {
+        return request()->keyword;
         $user = User::find(auth()->user()->id);
         $users = [];
         if (!isset(request()->keyword)) {
