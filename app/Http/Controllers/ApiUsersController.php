@@ -149,7 +149,17 @@ class ApiUsersController extends Controller
     {
         $user = User::find(auth()->user()->id);
 
-        $friends = $user->friends()->where('bruname', 'LIKE', request()->keyword . '%')->get();
+        $users = User::where('id', '!=', $user->id)
+            ->Where('first_name', 'LIKE', '%' . request()->keyword . '%')
+            ->orWhere('last_name', 'LIKE', '%' . request()->keyword . '%')->get();
+
+        $friends = collect();
+
+        foreach ($users as $u) {
+            if ($user->isFriendWith($u)) {
+                $friends->push($u);
+            }
+        }
 
         return response([
             'friends' => $friends,
