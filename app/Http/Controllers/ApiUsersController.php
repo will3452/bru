@@ -153,7 +153,7 @@ class ApiUsersController extends Controller
     {
         $user = User::find(auth()->user()->id);
 
-        $friends = $user->getFriends(20, '', ['bruname']);
+        $friends = $user->getFriends();
 
         return response([
             'friends' => $friends,
