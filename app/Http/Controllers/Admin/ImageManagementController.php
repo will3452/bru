@@ -20,7 +20,7 @@ class ImageManagementController extends Controller
 
     public function announcementInMarquee()
     {
-        $announcements = Announcement::get();
+        $announcements = Announcement::admin()->get();
         return view('admin.images.announcement', compact('announcements'));
     }
 
@@ -74,7 +74,7 @@ class ImageManagementController extends Controller
 
     public function preloaders()
     {
-        $preloaders = Preloader::get();
+        $preloaders = Preloader::admin()->get();
         return view('admin.images.preloader', compact('preloaders'));
     }
 
@@ -106,7 +106,7 @@ class ImageManagementController extends Controller
 
     public function bulletin()
     {
-        $bulletins = Bulletin::get();
+        $bulletins = Bulletin::admin()->get();
         return view('admin.images.bulletin', compact('bulletins'));
     }
 
@@ -137,7 +137,7 @@ class ImageManagementController extends Controller
 
     public function newspaper()
     {
-        $newspapers = Newspaper::get();
+        $newspapers = Newspaper::admin()->get();
         return view('admin.images.newspaper', compact('newspapers'));
     }
 
