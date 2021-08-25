@@ -64,6 +64,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return "{$this->first_name} {$this->last_name}";
     }
 
+    public function scopeOther($user)
+    {
+
+    }
     public function getCollegeAttribute()
     {
         return $this->interests()->where('type', 'college')->first()->name ?? '';
