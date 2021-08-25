@@ -15,6 +15,7 @@ class ApiUsersController extends Controller
         $users = [];
         if (!isset(request()->keyword)) {
             $users = User::where('id', '!=', $user->id)->get();
+            return 1;
         } else {
             $users = User::where('id', '!=', $user->id)
                 ->orWhere('first_name', 'LIKE', '%' . request()->keyword . '%')
