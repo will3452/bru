@@ -2,12 +2,13 @@
 
 namespace App;
 
+use App\Traits\Marketable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Bulletin extends Model
 {
-    use HasFactory;
+    use HasFactory, Marketable;
     protected $guarded = [];
 
     public function market()
@@ -20,4 +21,5 @@ class Bulletin extends Model
         $this->attributes['image'] = $value;
         $this->attributes['image_post'] = $value;
     }
+
 }
