@@ -6,44 +6,46 @@
     <form action="{{ route('collections.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
-        <div class="form-group">
-            <label for="">
-                Is this a solo collection or a collaboration? 
-            </label>
-            <select name="type_of_work" id="" class="custom-select">
-                <option value="solo">Solo</option>
-                <option value="collaboration">Collaboration</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="">Collection Title</label>
-            <input type="text" class="form-control" required name="title">
-        </div>
-        <div class="form-group">
-            <label for="">
-                Collection Description
-            </label>
-            <textarea name="desc" id="" cols="30" rows="10" required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="">
-                Collection Credits
-            </label>
-            <textarea name="credits" id=""  required cols="30" rows="10"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="">
-                Upload Collection Cover
-            </label>
-            <input type="file" name="cover" class="d-block" accept="image/*" required>
-            <div class="alert alert-warning mt-2">
-                <div>
-                    <strong>Required*</strong>
-                </div>
-                <input type="checkbox" required id="ck_box" name="cpy" accept="image/*">
-                @copyright_disclaimer
-            </div>
-        </div>
+        <x-form.group>
+            <x-form.select
+            label="Is this a solo collection or a collaboration?"
+            :options="[
+                [
+                    'value'=>'solo',
+                    'label'=>'Solo'
+                ],
+                [
+                    'value'=>'collaboration',
+                    'label'=>'Collaboration'
+                ],
+            ]"
+            name="type_of_work" 
+            />
+        </x-form.group>
+
+        <x-form.group>
+            <x-form.input label="Collection Title" type="text" required name="title"/>
+        </x-form.group>
+
+        <x-form.group>
+           <x-form.textarea label="Collection Description" name="desc" required></x-form.textarea>
+        </x-form.group>
+
+        <x-form.group>
+           <x-form.textarea label="Collection Credits" name="credits" required></x-form.textarea>
+        </x-form.group>
+
+        <x-form.group>
+            <x-form.label>
+               Upload Collection Cover
+            </x-form.label>
+            <x-form.file name="cover" accept="image/*" required/>
+        </x-form.group>
+
+        <x-form.group>
+            <x-copyright-disclaimer/>
+        </x-form.group>
+
         <div class="form-group">
             <button class="btn btn-primary btn-block">
                 Submit
@@ -54,11 +56,5 @@
 @endsection
 
 @section('top')
-    <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
-@endsection
-@section('bottom')
-    <script>
-        CKEDITOR.replace('desc');
-        CKEDITOR.replace('credits');
-    </script>
+    <x-vendor.ckeditor/>
 @endsection
