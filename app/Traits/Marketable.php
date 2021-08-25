@@ -6,6 +6,6 @@ trait Marketable
 {
     public function scopeAdmin($query)
     {
-        return $query->whereHas('market');
+        return $query->doesntHave('market');
     }
 }
