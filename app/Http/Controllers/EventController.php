@@ -18,9 +18,9 @@ class EventController extends Controller
         $events = [];
 
         if (!request()->filter || request()->filter == 'approved') {
-            $events = auth()->user()->events()->whereNotNull('status')->get();
+            $events = auth()->user()->events()->approved()->get();
         } else {
-            $events = auth()->user()->events()->whereNull('status')->get();
+            $events = auth()->user()->events()->pending()->get();
         }
 
         return view('events.index', compact('events'));

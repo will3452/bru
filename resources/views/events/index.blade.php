@@ -31,6 +31,6 @@
         @endforeach
     </div>
     @if (!count($events))
-        <x-empty></x-empty>
+        <x-empty/>
     @endif
 @endsection

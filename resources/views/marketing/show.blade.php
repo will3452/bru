@@ -1,6 +1,14 @@
 @extends('layouts.admin')
 @section('main-content')
-    <table class="table">
+    <table class="table table-bordered">
+        <tr>
+            <th>
+                Event Name
+            </th>
+            <td>
+                <a href="{{ route('events.show', $market->event->id) }}">{{ $market->event->name }}</a>
+            </td>
+        </tr>
         <tr>
             <th>
                 Category

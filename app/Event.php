@@ -11,6 +11,17 @@ class Event extends Model
     use HasFactory;
     protected $guarded = [];
 
+    //scopes
+    public function scopePending($query)
+    {
+        return $query->whereNull('status');
+    }
+
+    public function scopeApproved($query)
+    {
+        return $query->whereNotNull('status');
+    }
+
     //format date
     public function date_format($string)
     {

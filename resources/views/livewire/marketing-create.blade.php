@@ -73,7 +73,7 @@
             </div>
             <div class="form-group">
                 <label for="">
-                    Upload image banner
+                    Upload image for the actual bulletin post.
                 </label>
                 <input type="file" accept="image/*" class="d-block" name="image" required>
                 <div class="alert alert-warning mt-2">
@@ -84,7 +84,7 @@
                     @copyright_disclaimer
                 </div>
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="">
                     Upload image for the actual bulletin post.
                 </label>
@@ -96,7 +96,7 @@
                     <input type="checkbox" required id="ck_box" name="cpy">
                     @copyright_disclaimer
                 </div>
-            </div>
+            </div> --}}
             
             <script>
                 $(function(){

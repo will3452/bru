@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Livewire\WithFileUploads;
 
 class MarketingCreate extends Component
 {
@@ -13,12 +12,14 @@ class MarketingCreate extends Component
     public $proceed_contract = 1;
     public $events;
 
-    public function updatedCategory(){
-        return redirect(route('marketing.create').'?category='.$this->category);
+    public function updatedCategory()
+    {
+        return redirect(route('marketing.create') . '?category=' . $this->category);
     }
 
-    public function mount($category){
-        $this->events = auth()->user()->events;
+    public function mount($category)
+    {
+        $this->events = auth()->user()->events()->approved()->get();
         $this->category = $category;
     }
     public function render()
