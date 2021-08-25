@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class MarketingController extends Controller
 {
