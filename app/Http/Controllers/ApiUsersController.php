@@ -118,9 +118,7 @@ class ApiUsersController extends Controller
         }
 
         if (isset(request()->keyword)) {
-            $friends = $user->friends->where('bruname', 'LIKE', '%' . request()->keyword . '%')
-                ->orWhere('first_name', 'LIKE', '%' . request()->keyword . '%')
-                ->orWhere('last_name', 'LIKE', '%' . request()->keyword . '%');
+            $friends = $user->friends->where('bruname', 'LIKE', '%' . request()->keyword . '%');
         }
 
         return response([
