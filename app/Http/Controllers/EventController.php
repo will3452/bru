@@ -16,7 +16,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = [];
+        $events = []; //
 
         if (!request()->filter || request()->filter == 'approved') {
 
