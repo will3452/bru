@@ -140,7 +140,6 @@ class ApiUsersController extends Controller
         }
 
         if (isset(request()->keyword)) {
-            return 1;
             $friends = $user->friends->where('bruname');
         }
 
@@ -170,10 +169,7 @@ class ApiUsersController extends Controller
         }
 
         if (isset(request()->keyword)) {
-            $friends = $user->friends->where('bruname', 'LIKE', '%' . request()->keyword . '%')
-                ->orWhere('first_name', 'LIKE', '%' . request()->keyword . '%')
-                ->orWhere('last_name', 'LIKE', '%' . request()->keyword . '%')
-                ->get(20);
+            return 2;
         }
 
         return response([
