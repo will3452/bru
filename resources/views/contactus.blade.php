@@ -14,14 +14,22 @@
         <li class="active">
             <a href="/contact">Contact Us</a>
         </li>
-        <li>
-            <a href="/please-input-aan">Sign Up</a>
-        </li>
-        <li>
-            <a href="/login">
-                Sign In
-            </a>
-        </li>
+        @guest
+            <li>
+                <a href="/please-input-aan">Sign Up</a>
+            </li>
+            <li>
+                <a href="/login">
+                    Sign In
+                </a>
+            </li>
+        @else 
+            <li>
+                <a href="/home">
+                    Dashboard
+                </a>
+            </li>
+        @endguest
     </ul>
 </nav>
 
