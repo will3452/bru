@@ -15,7 +15,9 @@ class ApiUsersController extends Controller
         if (!request()->keyword) {
             $users = User::where('id', '!=', $user->id)->get();
         } else {
-            $users = User::where('id', '!=', $user->id)->where('name', 'LIKE', '%' . request()->keyword . '%')->get();
+            $users = User::where('id', '!=', $user->id)
+                ->orwhere('first_name', 'LIKE', '%' . request()->keyword . '%')
+                ->orwhere('first_name', 'LIKE', '%' . request()->keyword . '%')->get();
         }
 
         foreach ($users as $u) {
