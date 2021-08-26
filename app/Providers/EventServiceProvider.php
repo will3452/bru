@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Invoice;
 use App\Observers\InvoiceObserver;
 use App\Observers\UserObserver;
 use App\User;
