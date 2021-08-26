@@ -29,12 +29,15 @@
 
   <script>
     
-    window.onload = function(){
+    let vd = videojs('my-video');
+    
+    vd.fluid(true);
 
-      let vd = videojs('my-video');
-      vd.responsive(true);
-
-    }
+    vd.on('ready', function(){
+      setTimeout(() => {
+        vd.play();
+      }, 3000);
+    });
 
   </script>
 </body>
