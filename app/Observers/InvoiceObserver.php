@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Invoice;
+use Illuminate\Support\Facades\Mail;
 
 class InvoiceObserver
 {
