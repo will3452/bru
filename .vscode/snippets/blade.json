@@ -1,0 +1,51 @@
+{
+    "Form group":{
+        "prefix":"brufg",
+        "body":"<x-form.group>\n    $1\n</x-form.group>",
+        "description":"form group"
+    },
+    "Button":{
+        "prefix":"brubt",
+        "body":"<x-button type=\"$1\" color=\"$2\">$3</x-button>",
+        "description":"type:submit, button| color:primary, secondary, dark, danger, success"
+    },
+    "Input":{
+        "prefix":"brui",
+        "body":"<x-form.input type=\"$1\" label=\"$2\" name=\"$3\" />",
+        "description":"input with label"
+    },
+    "Input Number":{
+        "prefix":"bruni",
+        "body":"<x-form.number label=\"$1\" name=\"$2\"/>"
+    },
+    "TextArea":{
+        "prefix":"brutra",
+        "body":"<x-form.textarea\nlabel=\"$1\"\nname=\"$2\">\n</x-form.textarea>",
+        "description":"ckeditor text area"
+    },
+    "Form File":{
+        "prefix":"bruff",
+        "body":"<x-form.file name=\"$1\" label=\"$2\"/>"
+    },
+    "Form select":{
+        "prefix":"brufs",
+        "body":"<x-form.select\nlabel=\"$1\"\nname=\"$2\"\n:options=\"[$3]\"/>"
+    },
+    "Form Label":{
+        "prefix":"brufl",
+        "body":"<x-form.label>$1</x-form.label>"
+    },
+    "Copyright checkbox":{
+        "prefix":"brucpy",
+        "body":"<x-copyright-disclaimer/>"
+    },
+    "Card":{
+        "prefix":"brucard",
+        "body":"<x-card header=\"$1\">$2</x-card>"
+    },
+    "Include Ckeditor":{
+        "prefix":"bruvck",
+        "body":"<x-vendor.ckeditor/>",
+        "description":"include ckeditor"
+    }
+}
