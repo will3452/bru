@@ -11,30 +11,30 @@
             padding: 0px;
             overflow: hidden;
         }
-        #fs{
-            width: 100vw;
-            height: 100vh;
-        }
+        
     </style>
+    <link href="https://vjs.zencdn.net/7.14.3/video-js.css" rel="stylesheet" />
 </head>
 <body>
-    <video autoplay="true" controls controlsList="nodownload"  id="fs" src="{{ $src }}" >
-    </video>
-     {{-- <iframe width="420" height="315"
-        src="https://www.youtube.com/embed/tgbNymZ7vqY">
-        </iframe>  --}}
-
-    <script>
-        var elem = document.getElementById("fs");
-        if (elem.requestFullscreen) {
-        elem.requestFullscreen();
-        } else if (elem.mozRequestFullScreen) {
-        elem.mozRequestFullScreen();
-        } else if (elem.webkitRequestFullscreen) {
-        elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) { 
-        elem.msRequestFullscreen();
-        }
-    </script>
+    <video
+    id="my-video"
+    class="video-js"
+    controls
+    preload="auto"
+    style="width:100vw; height:100vh;" 
+    poster="MY_VIDEO_POSTER.jpg"
+    data-setup="{}"
+  >
+    <source src="{{ $src }}" type="video/mp4" />
+    <source src="{{ $src }}" type="video/webm" />
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a
+      web browser that
+      <a href="https://videojs.com/html5-video-support/" target="_blank"
+        >supports HTML5 video</a
+      >
+    </p>
+  </video>
+  <script src="https://vjs.zencdn.net/7.14.3/video.min.js"></script>
 </body>
 </html>
