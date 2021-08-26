@@ -33,10 +33,12 @@
 
   <script src="/js/video.min.js"></script>
   <script src="/js/videojs-rotate-player-plugin.js"></script>
+  <script src="/js/videojs-landscape-fullscreen.min.js"></script>
 
   <script>
     var player = videojs('my-video');
     player.enterFullWindow()
-    player.rotatePlayerPlugin();
+    // player.rotatePlayerPlugin();
+    player.landscapeFullscreen();
   </script>
 </body>

@@ -25,6 +25,7 @@
         "chart.js": "^2.9.4",
         "cross-env": "^7.0.3",
         "videojs": "^1.0.0",
+        "videojs-landscape-fullscreen": "^11.22.0",
         "videojs-rotate-player-plugin": "^1.0.1"
     }
 }
