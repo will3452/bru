@@ -25,9 +25,7 @@ class MarketingController extends Controller
     public function show($id)
     {
 
-        $market = Cache::remember('show_of_market', 20, function () use ($id) {
-            return auth()->user()->markets()->findOrFail($id);
-        });
+        $market = auth()->user()->markets()->findOrFail($id);
 
         return view('marketing.show', compact('market'));
     }

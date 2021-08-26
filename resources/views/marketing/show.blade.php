@@ -82,13 +82,23 @@
             </ul>
         </x-card>
 
+        @if ($market->status == 'draft' || $market->status == 'resubmit')
+           <div class="my-2">
+                <x-form.group>
+                    <button class="btn btn-primary btn-block">
+                        Submit
+                    </button>
+                </x-form.group>
+            </div> 
+        @else 
         <div class="my-2">
             <x-form.group>
-                <button class="btn btn-primary btn-block">
-                    Submit
-                </button>
+                <x-alert color="success">
+                    Your form has been submitted!
+                </x-alert>
             </x-form.group>
         </div>
+        @endif
 
     </form>
 

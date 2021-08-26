@@ -8,7 +8,7 @@
         </x-form.group>
         <x-form.group>
             <div x-data="{
-                type:'bdo',
+                type:'',
                 typeHandler(){
                     this.type = this.$refs.pay_with.value;s
                 }
