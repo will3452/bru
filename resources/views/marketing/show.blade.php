@@ -56,14 +56,18 @@
             Please download the Annex to the contract, as you have indicated above, right <a href="{{ route('marketing.createPdf', $market->id) }}">HERE</a>. 
         </p>
     </x-card>
-
+     @if ($market->status == 'draft' || $market->status == 'resubmit')
     <form action="{{ route('marketing.save', $market->id) }}" method="POST" enctype="multipart/form-data">
 
         @csrf
 
         @method('PUT')
-
+    @endif
+    @if ($market->status == 'draft' || $market->status == 'resubmit')
         <x-payment title="PAYMENT" paymentFor="Marketing" amount="{{ $market->cost }}"></x-payment>
+    @else
+        
+    @endif
 
         <x-card header="TIMELINE">
             <ul>
@@ -100,7 +104,9 @@
         </div>
         @endif
 
+ @if ($market->status == 'draft' || $market->status == 'resubmit')
     </form>
+ @endif
 
 @endsection
 @section('top')

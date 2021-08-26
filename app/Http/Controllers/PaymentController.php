@@ -10,20 +10,20 @@ use Luigel\Paymongo\Facades\Paymongo;
 class PaymentController extends Controller
 {
 
-    
-    public function pay(){
+    public function pay()
+    {
         $data = request()->validate([
-            'amount'=>'required',
-            'user_id'=>'required',
-            'type'=>'required',
-            'for'=>'required'
+            'amount' => 'required',
+            'user_id' => 'required',
+            'type' => 'required',
+            'for' => 'required',
         ]);
 
         // security
-        $pattern = now()->format('m-y').$data['user_id'].$data['amount'];
+        $pattern = now()->format('m-y') . $data['user_id'] . $data['amount'];
         $data['hash'] = Hash::make($pattern);
 
-        $success = route('payment.success',$data);
+        $success = route('payment.success', $data);
         $failed = route('payment.failed');
 
         $user = User::find($data['user_id']);
@@ -34,45 +34,47 @@ class PaymentController extends Controller
             'currency' => 'PHP',
             'redirect' => [
                 'success' => $success,
-                'failed' => $failed
+                'failed' => $failed,
             ],
-            'billing'=>[
-                'name'=>$user->full_name,
-                'email'=>$user->email
-            ]
+            'billing' => [
+                'name' => $user->full_name,
+                'email' => $user->email,
+            ],
         ]);
 
         return redirect($source->getRedirect()['checkout_url']);
     }
 
-
-    public function success(){
+    public function success()
+    {
         $data = request()->validate([
-            'amount'=>'required',
-            'user_id'=>'required',
-            'type'=>'required',
-            'for'=>'required',
-            'hash'=>'required'
+            'amount' => 'required',
+            'user_id' => 'required',
+            'type' => 'required',
+            'for' => 'required',
+            'hash' => 'required',
         ]);
 
-        $pattern = now()->format('m-y').$data['user_id'].$data['amount'];
-        if(! Hash::check($pattern, $data['hash'])){
+        $pattern = now()->format('m-y') . $data['user_id'] . $data['amount'];
+        if (!Hash::check($pattern, $data['hash'])) {
             abort(419);
         }
         $user = User::find(request()->user_id);
-        
+
         $user->invoices()->create([
-            'amount'=>request()->amount, 
-            'from_name'=>$user->full_name,
-            'from_email'=>$user->email, 
-            'type'=>request()->type, 
-            'desc'=>request()->for ?? '',
-            'status'=>'paid'
+            'amount' => request()->amount,
+            'from_name' => $user->full_name,
+            'from_email' => $user->email,
+            'type' => request()->type,
+            'desc' => request()->for ?? '',
+            'status' => 'paid',
         ]);
+
         return 'success';
     }
 
-    public function failed(){
+    public function failed()
+    {
         return 'failed';
     }
 }
