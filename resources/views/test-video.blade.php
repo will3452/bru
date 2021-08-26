@@ -5,6 +5,7 @@
     body, html{
       margin: 0px;
       padding:0px;
+      
     }
   </style>
 </head>
@@ -12,7 +13,7 @@
 <body>
   <video
     id="my-video"
-    class="video-js vjs-big-play-centered vjs-fill"
+    class="video-js vjs-big-play-centered"
     controls
     preload="auto"
     poster="MY_VIDEO_POSTER.jpg"
@@ -34,7 +35,7 @@
 
   <script>
     var player = videojs('my-video');
- 
+    player.enterFullWindow()
     player.rotatePlayerPlugin();
   </script>
 </body>
