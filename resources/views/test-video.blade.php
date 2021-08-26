@@ -25,7 +25,6 @@
         </iframe>  --}}
 
     <script>
-
         var elem = document.getElementById("fs");
         if (elem.requestFullscreen) {
         elem.requestFullscreen();
