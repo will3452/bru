@@ -19,6 +19,6 @@ class Invoice extends Model
     {
         $arr_path = explode('/', $value);
         $end_path = end($arr_path);
-        $this->attributes['proof_of_payment'] = '/storage/fronts/' . $end_path;
+        $this->attributes['proof_of_payment'] = '/storage/proofpayment/' . $end_path;
     }
 }
