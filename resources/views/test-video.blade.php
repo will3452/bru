@@ -1,7 +1,8 @@
-<head>
+<html>
+  <head>
   <link rel="stylesheet" href="/js/video-js.min.css">
   <link rel="stylesheet" href="/js/videojs-rotate-player-plugin.css">
-
+<meta name="viewport" content="width=device-width, user-scalable=no">
   <style>
     body, html{
       margin: 0px;
@@ -37,9 +38,10 @@
 
   <script>
     var player = videojs('my-video');
-    player.aspectRatio('16:9');
+    // player.aspectRatio('16:9');
     // player.enterFullWindow()
     player.rotatePlayerPlugin();
     // player.landscapeFullscreen();
   </script>
 </body>
+</html>

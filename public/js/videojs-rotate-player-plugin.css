@@ -9,8 +9,8 @@
     content: "90°";
 }
 .rotate-180 :before {
-    content: "180°";
+    content: "0°";
 }
 .rotate-270 :before {
-    content: "270°";
+    content: "90°";
 }

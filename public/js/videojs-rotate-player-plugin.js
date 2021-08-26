@@ -57,8 +57,8 @@
 
     _proto.handleClick = function handleClick() {
       this.removeClass("rotate-" + this._currentRotateDeg);
-      var tmpRotateDeg = this._currentRotateDeg + 90;
-      var zoom = tmpRotateDeg % 180 === 0 ? 1 : 0.5;
+      var tmpRotateDeg = this._currentRotateDeg  == 0 ? 90: 0;
+      var zoom = tmpRotateDeg % 180 === 0 ? 1 : 1.8;
 
       if (tmpRotateDeg % 360 === 0) {
         this._currentRotateDeg = 0;
@@ -147,8 +147,8 @@
       var videoElement = targetElement.getElementsByClassName('vjs-tech')[0];
       var posterElement = targetElement.getElementsByClassName('vjs-poster')[0];
       targetElement.style.overflow = 'hidden';
-      videoElement.style[this._prop] = "scale(" + options.zoom + ") rotate(" + options.rotate + "deg)";
-      posterElement.style[this._prop] = "scale(" + options.zoom + ") rotate(" + options.rotate + "deg)";
+      videoElement.style[this._prop] = "scale(" + options.zoom + ") rotate(" + options.rotate  + "deg)";
+      posterElement.style[this._prop] = "scale(" + options.zoom + ") rotate(" + options.rotate  + "deg)";
     };
 
     return RotatePlayerPlugin;
