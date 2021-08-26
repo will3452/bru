@@ -1,6 +1,7 @@
 <head>
   <link rel="stylesheet" href="/js/video-js.min.css">
   <link rel="stylesheet" href="/js/videojs-rotate-player-plugin.css">
+  
   <style>
     body, html{
       margin: 0px;
