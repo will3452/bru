@@ -8,7 +8,7 @@
 <body>
   <video
     id="my-video"
-    class="video-js vjs-big-play-centered"
+    class="video-js vjs-big-play-centered vjs-fill"
     controls
     preload="auto"
     poster="MY_VIDEO_POSTER.jpg"
@@ -28,18 +28,4 @@
   <script src="https://vjs.zencdn.net/7.14.3/video.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/videojs-landscape-fullscreen@11.22.0/dist/videojs-landscape-fullscreen.min.js" integrity="sha256-CaEdWZGTx1gzx+jxTVAl25E+V8uHqD9trrOHTFmxVTY=" crossorigin="anonymous"></script>
 
-  <script>
-    
-    let vd = videojs('my-video');
-
-    vd.fluid(true);
-
-    vd.on('ready', function(){
-      setTimeout(() => {
-        vd.play();
-        vd.landscapeFullscreen();
-      }, 3000);
-    });
-
-  </script>
 </body>
