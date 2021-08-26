@@ -5,10 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hello world</title>
+    <style>
+        html, body {
+            margin: 0px;
+            padding: 0px;
+        }
+        #fs{
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
 </head>
 <body>
-    <video src="https://brumultiverse.com/storage/08-10-211William%20Galasvideoplayback.mp4" autoplay="true" controls>
+    <video autoplay="true" controls id="fs" src="https://brumultiverse.com/storage/08-10-211William%20Galasvideoplayback.mp4" >
     </video>
     {{-- test --}}
+
+    <script>
+
+        var elem = document.getElementById("fs");
+        if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+        elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) {
+        elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { 
+        elem.msRequestFullscreen();
+        }
+    </script>
 </body>
 </html>

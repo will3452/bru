@@ -47,5 +47,9 @@
         "prefix":"bruvck",
         "body":"<x-vendor.ckeditor/>",
         "description":"include ckeditor"
+    },
+    "Anchor Tag ":{
+        "prefix":"brua",
+        "body":"<x-link url=\"$1\">$2</x-link>"
     }
 }

@@ -66,7 +66,7 @@
     @if ($market->status == 'draft' || $market->status == 'resubmit')
         <x-payment title="PAYMENT" paymentFor="Marketing" amount="{{ $market->cost }}"></x-payment>
     @else
-        
+        <x-payment-info :model="$market->invoice"/>
     @endif
 
         <x-card header="TIMELINE">
