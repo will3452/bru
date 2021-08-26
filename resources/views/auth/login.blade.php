@@ -30,6 +30,9 @@
                                     <div class="form-group">
                                         <input type="password" class="form-control  " name="password" placeholder="{{ __('Password') }}" required>
                                     </div>
+
+                                    <x-captcha/>
+
                                     <div class="form-group">
                                         <button type="submit"
                                         class="btn btn-primary   btn-block">

@@ -48,8 +48,17 @@
         "body":"<x-vendor.ckeditor/>",
         "description":"include ckeditor"
     },
+    "Include Jquery":{
+        "prefix":"brujq",
+        "body":"<x-vendor.jquery/>",
+        "description":"include Jquery"
+    },
     "Anchor Tag ":{
         "prefix":"brua",
         "body":"<x-link url=\"$1\">$2</x-link>"
+    },
+    "captcha ":{
+        "prefix":"brucap",
+        "body":"<x-captcha/>"
     }
 }

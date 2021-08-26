@@ -9,6 +9,7 @@
         html, body {
             margin: 0px;
             padding: 0px;
+            overflow: hidden;
         }
         #fs{
             width: 100vw;
