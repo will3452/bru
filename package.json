@@ -26,6 +26,7 @@
         "cross-env": "^7.0.3",
         "videojs": "^1.0.0",
         "videojs-landscape-fullscreen": "^11.22.0",
-        "videojs-rotate-player-plugin": "^1.0.1"
+        "videojs-rotate-player-plugin": "^1.0.1",
+        "videojs-youtube": "^2.6.1"
     }
 }
