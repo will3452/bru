@@ -1,7 +1,7 @@
 <head>
   <link rel="stylesheet" href="/js/video-js.min.css">
   <link rel="stylesheet" href="/js/videojs-rotate-player-plugin.css">
-  
+
   <style>
     body, html{
       margin: 0px;
@@ -14,7 +14,7 @@
 <body>
   <video
     id="my-video"
-    class="video-js vjs-big-play-centered"
+    class="video-js vjs-big-play-centered vjs-fill"
     controls
     preload="auto"
     poster="MY_VIDEO_POSTER.jpg"
