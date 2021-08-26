@@ -7,7 +7,7 @@
     <title>Hello world</title>
 </head>
 <body>
-    <video src="https://brumultiverse.com/storage/08-10-211William%20Galasvideoplayback.mp4" autoplay>
+    <video src="https://brumultiverse.com/storage/08-10-211William%20Galasvideoplayback.mp4" autoplay="true">
     </video>
 </body>
 </html>
