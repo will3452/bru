@@ -71334,6 +71334,8 @@ window.Chart = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist
 
 __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/alpine.js");
 
+__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module 'videojs'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -71386,8 +71388,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\HP\Desktop\bru\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\HP\Desktop\bru\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\bru\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\bru\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

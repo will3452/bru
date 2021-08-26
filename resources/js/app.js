@@ -4,3 +4,5 @@ window.Vue = require('vue');
 window.dayjs = require('dayjs');
 window.Chart = require('chart.js');
 require('alpinejs')
+
+require('videojs')

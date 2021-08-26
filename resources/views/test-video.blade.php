@@ -1,8 +1,12 @@
 <head>
-  <link href="https://vjs.zencdn.net/7.14.3/video-js.css" rel="stylesheet" />
-
-  <!-- If you'd like to support IE8 (for Video.js versions prior to v7) -->
-  <!-- <script src="https://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script> -->
+  <link rel="stylesheet" href="/js/video-js.min.css">
+  <link rel="stylesheet" href="/js/videojs-rotate-player-plugin.css">
+  <style>
+    body, html{
+      margin: 0px;
+      padding:0px;
+    }
+  </style>
 </head>
 
 <body>
@@ -25,7 +29,12 @@
     </p>
   </video>
 
-  <script src="https://vjs.zencdn.net/7.14.3/video.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/videojs-landscape-fullscreen@11.22.0/dist/videojs-landscape-fullscreen.min.js" integrity="sha256-CaEdWZGTx1gzx+jxTVAl25E+V8uHqD9trrOHTFmxVTY=" crossorigin="anonymous"></script>
+  <script src="/js/video.min.js"></script>
+  <script src="/js/videojs-rotate-player-plugin.js"></script>
 
+  <script>
+    var player = videojs('my-video');
+ 
+    player.rotatePlayerPlugin();
+  </script>
 </body>
