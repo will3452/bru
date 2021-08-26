@@ -10,11 +10,15 @@ class Invoice extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function from(){
-        return $this->belongsTo(User::class, 'from_id');
+    public function invoiceable()
+    {
+        return $this->morphTo();
     }
 
-    public function to(){
-        return $this->belongsTo(User::class, 'to_id');
+    public function setProofOfPaymentAttribute($value)
+    {
+        $arr_path = explode('/', $value);
+        $end_path = end($arr_path);
+        $this->attributes['proof_of_payment'] = '/storage/fronts/' . $end_path;
     }
 }

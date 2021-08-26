@@ -1,4 +1,4 @@
-@props(['label'=>'label', 'name'=>'desc'])
+@props(['label'=>'label', 'name'=>'name'])
 <x-form.label>
     {{ $label }}
 </x-form.label>
@@ -8,7 +8,7 @@
 ]) }}>
     {{ $slot }}
 </textarea>
-
+<x-error name="{{ $name }}"/>
 <script>
     CKEDITOR.replace('{{ $name }}');
 </script>

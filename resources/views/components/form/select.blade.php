@@ -1,8 +1,11 @@
-@props(['label'=>'', 'options'=>[], 'default'=>''])
+@props(['label'=>'', 'options'=>[], 'default'=>'', 'name'=>'name'])
 <x-form.label>
     {{ $label }}
 </x-form.label>
-<select  {{ $attributes->merge(['class' => 'custom-select']) }}>
+<select  {{ $attributes->merge([
+    'class' => 'custom-select',
+    'name'=>$name
+    ]) }}>
     
     @if ($default=='' || $default==null)
         <x-form.option value="" selected disabled>---</x-form.option>
@@ -14,7 +17,7 @@
         </x-form.option>
     @endforeach
 </select>
-
+<x-error name="{{ $name }}"/>
 {{-- 
 <x-form.select label="Pay With" :options="[
                 [

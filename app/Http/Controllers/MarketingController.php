@@ -155,4 +155,32 @@ class MarketingController extends Controller
         // download PDF file with download method
         return $pdf->download('pdf_file.pdf');
     }
+
+    public function save(Request $request, $id)
+    {
+        $market = auth()->user()->markets()->find($id);
+
+        $data = $request->validate([
+            'payment_for' => 'required',
+            'pay_with' => 'required',
+            'amount' => 'required',
+            'currency' => 'required',
+            'proof_of_payment' => 'required|mimes:jpeg,bmp,png|max:2000',
+        ], $messages = [
+            'max' => 'The proof of payment may not be greater than 2MB',
+        ]);
+
+        $data['user_id'] = auth()->id();
+        $data['proof_of_payment'] = $data['proof_of_payment']->store('public/proofpayment');
+
+        $market->invoice()->create($data);
+
+        $market->update([
+            'status' => 'submitted',
+        ]);
+
+        toast('submitted!', 'success');
+
+        return back();
+    }
 }

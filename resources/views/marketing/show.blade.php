@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('main-content')
-    <x-card header="Market Details">
+    <x-card header="MARKET DETAILS">
         <table class="table table-bordered">
             <tr>
                 <th>
@@ -57,8 +57,13 @@
         </p>
     </x-card>
 
-    <form action="">
-        <x-payment title="PAYMENT" paymentFor="Marketing" amount="{{ number_format($market->cost, 2) }}"></x-payment>
+    <form action="{{ route('marketing.save', $market->id) }}" method="POST" enctype="multipart/form-data">
+
+        @csrf
+
+        @method('PUT')
+
+        <x-payment title="PAYMENT" paymentFor="Marketing" amount="{{ $market->cost }}"></x-payment>
 
         <x-card header="TIMELINE">
             <ul>

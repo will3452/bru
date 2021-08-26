@@ -2,13 +2,14 @@
 
 namespace App;
 
+use App\Traits\Invoiceable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class Market extends Model
 {
-    use HasFactory;
+    use HasFactory, Invoiceable;
 
     protected $guarded = [];
 

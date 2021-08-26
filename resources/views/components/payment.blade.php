@@ -8,12 +8,19 @@
         </x-form.group>
         <x-form.group>
             <div x-data="{
-                type:'',
+                type:'bdo',
                 typeHandler(){
                     this.type = this.$refs.pay_with.value;s
                 }
             }">
-                <x-form.select x-ref="pay_with" x-on:change="typeHandler()" id="pay_with" name="pay_with" label="Pay With" :options="[
+                <x-form.select
+                x-ref="pay_with"
+                x-on:change="typeHandler()"
+                id="pay_with"
+                name="pay_with"
+                label="Pay With"
+                required
+                :options="[
                     [
                         'value'=>'bdo',
                         'label'=>'BDO'
@@ -66,7 +73,18 @@
         </x-form.group>
 
         <x-form.group>
-            <x-form.input type="text" label="Amount" name="amount" value="{{ $currency }} {{ $amount }}" required readonly/>
+            
+            <input type="hidden" name="currency" value="{{ $currency }}" required/>
+
+            <input type="hidden" name="amount" value="{{ $amount }}" required/>
+
+            <x-form.input type="text" label="Amount" value="{{ $currency }} {{ $amount }}" required readonly/>
+        </x-form.group>
+
+        <x-form.group>
+            <x-alert>
+                Maximum file size upload: 2MB
+            </x-alert>
         </x-form.group>
 
         <x-form.group>

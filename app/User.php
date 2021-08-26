@@ -220,11 +220,6 @@ class User extends Authenticatable implements MustVerifyEmail
         return $shared_series->all();
     }
 
-    public function invoices()
-    {
-        return $this->hasMany(Invoice::class, 'from_id');
-    }
-
     public function box()
     {
         return $this->hasOne(Box::class, 'user_id');

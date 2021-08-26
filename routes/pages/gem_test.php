@@ -25,3 +25,6 @@ Route::post('/test', function () {
     return back()->withSuccess('added!');
 });
 
+Route::get('/video-test', function () {
+    return view('test-video');
+});
