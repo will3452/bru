@@ -7,7 +7,7 @@
     </x-form.group>
 
     <x-form.group>
-        <x-form.input type="text" label="Pay With" name="pay_with" value="{{ $model->pay_with }}" readonly/>
+        <x-form.input type="text" label="Pay With" name="pay_with" value="{{ strtoupper($model->pay_with) }}" readonly/>
     </x-form.group>
 
     <x-form.group>
@@ -22,7 +22,7 @@
         <x-form.label>
             Proof of Payment (Image)
         </x-form.label>
-        <x-link url="{{ $model->proof_of_payment }}">Click Here to View</x-link>
+        <x-link url="{{ $model->proof_of_payment }}" target="_blank">Click Here to View</x-link>
     </x-form.group>
 
 </x-card>
