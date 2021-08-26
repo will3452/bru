@@ -37,7 +37,7 @@ class MarketingController extends Controller
             'duration' => 'required',
             'category' => 'required',
             'schedule' => 'required',
-            'event_id' => '',
+            'event_id' => 'required',
         ]);
 
         $market = auth()->user()->markets()->create($data);
