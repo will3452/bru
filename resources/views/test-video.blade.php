@@ -2,7 +2,7 @@
   <head>
   <link rel="stylesheet" href="/js/video-js.min.css">
   <link rel="stylesheet" href="/js/videojs-rotate-player-plugin.css">
-<meta name="viewport" content="width=device-width, user-scalable=no">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
   <style>
     body, html{
       margin: 0px;
