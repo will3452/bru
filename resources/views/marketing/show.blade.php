@@ -87,6 +87,12 @@
         </x-card>
 
         @if ($market->status == 'draft' || $market->status == 'resubmit')
+            
+
+            <x-card header="Enter Captcha">
+                <x-captcha/>
+            </x-card>
+
            <div class="my-2">
                 <x-form.group>
                     <button class="btn btn-primary btn-block">

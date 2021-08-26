@@ -163,6 +163,7 @@ class MarketingController extends Controller
             'pay_with' => 'required',
             'amount' => 'required',
             'currency' => 'required',
+            'captcha' => 'required|captcha',
             'proof_of_payment' => 'required|mimes:jpeg,bmp,png|max:2000',
         ], $messages = [
             'max' => 'The proof of payment may not be greater than 2MB',
