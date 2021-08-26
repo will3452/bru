@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Observers\InvoiceObserver;
 use App\Observers\UserObserver;
 use App\User;
 use Illuminate\Auth\Events\Registered;
@@ -32,5 +33,7 @@ class EventServiceProvider extends ServiceProvider
         parent::boot();
 
         User::observe(UserObserver::class);
+        User::observe(InvoiceObserver::class);
+
     }
 }
