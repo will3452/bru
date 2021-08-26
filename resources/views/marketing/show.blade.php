@@ -44,7 +44,8 @@
             </tr>
         </table>
     </x-card>
-    <x-card header="Contract">
+
+    <x-card header="CONTRACT">
         <p>
             Your marketing event will be under a specific contract. 
         </p>
@@ -56,7 +57,36 @@
         </p>
     </x-card>
 
-    <x-payment title="Marketing Payment" paymentFor="Marketing"></x-payment>
+    <form action="">
+        <x-payment title="PAYMENT" paymentFor="Marketing" amount="{{ number_format($market->cost, 2) }}"></x-payment>
+
+        <x-card header="TIMELINE">
+            <ul>
+                <li>
+                    Please print 5 copies of the downloaded contracts and affix your signature on EACH PAGE. Wet signature please.
+                </li>
+                <li>
+                    Please attach hard copies of the proof of payment for each copy of the contract and sign each page. 
+                </li>
+                <li>
+                    Send the documents to the office. Address is indicated on the contract.
+                </li>
+                <li>
+                    Once we receive the documents, and everything is in order we are good to go!
+                </li>
+            </ul>
+        </x-card>
+
+        <div class="my-2">
+            <x-form.group>
+                <button class="btn btn-primary btn-block">
+                    Submit
+                </button>
+            </x-form.group>
+        </div>
+
+    </form>
+
 @endsection
 @section('top')
     <link rel="stylesheet" href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}">

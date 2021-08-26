@@ -1,6 +1,8 @@
-@props(['title'=>'Payment','paymentFor'=>""])
+@props(['title'=>'Payment','paymentFor'=>"", 'amount'=>'0', 'currency'=>'PHP'])
 <x-card :header="$title">
-    <form action="">
+    <x-alert>
+        Please pay for the cost of the advertisement that you have availed HERE.
+    </x-alert>
         <x-form.group>
             <x-form.input label="Payment For" name="payment_for" value="{{ $paymentFor }}" readonly/>
         </x-form.group>
@@ -16,10 +18,10 @@
                         'value'=>'bdo',
                         'label'=>'BDO'
                     ],
-                    [
+                    {{-- [
                         'value'=>'gcash',
                         'label'=>'Gcash'
-                    ],
+                    ], --}}
                     [
                         'value'=>'paypal',
                         'label'=>'Paypal',
@@ -33,8 +35,25 @@
                 </div>
 
                 <div x-show="type == 'bdo'">
-                    <x-card header="Bdo Information">
-                        Bdo creds here
+                    <x-card header="BDO Bank Details">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>
+                                    Account Name: 
+                                </th>
+                                <td>
+                                    KamitHiraya Corp
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Account Number:
+                                </th>
+                                <td>
+                                    '005880606113
+                                </td>
+                            </tr>
+                        </table>
                     </x-card>
                 </div>
                 
@@ -45,13 +64,17 @@
                 </div>
             </div>
         </x-form.group>
+
+        <x-form.group>
+            <x-form.input type="text" label="Amount" name="amount" value="{{ $currency }} {{ $amount }}" required readonly/>
+        </x-form.group>
+
         <x-form.group>
             <x-form.label>
                 Proof of Payment <small> [ Image/Screenshot of your Receipt ] </small>
             </x-form.label>
             <x-form.file name="proof_of_payment" required accept="image/*"/>
         </x-form.group>
-    </form>
 </x-card>
 
 <x-alpine></x-alpine>
