@@ -18,11 +18,11 @@
     </style>
 </head>
 <body>
-    {{-- <video autoplay="true" controls id="fs" src="https://brumultiverse.com/storage/08-10-211William%20Galasvideoplayback.mp4" >
-    </video> --}}
-     <iframe width="420" height="315"
+    <video autoplay="true" controls id="fs" src="https://brumultiverse.com/storage/08-10-211William%20Galasvideoplayback.mp4" >
+    </video>
+     {{-- <iframe width="420" height="315"
         src="https://www.youtube.com/embed/tgbNymZ7vqY">
-        </iframe> 
+        </iframe>  --}}
     {{-- test --}}
 
     <script>
