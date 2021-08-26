@@ -32,7 +32,7 @@
   </video>
 
   <script src="/js/video.min.js"></script>
-  <script src="/js/videojs-rotate-player-plugin.js"></script>
+  {{-- <script src="/js/videojs-rotate-player-plugin.js"></script> --}}
   <script src="/js/videojs-landscape-fullscreen.min.js"></script>
 
   <script>
