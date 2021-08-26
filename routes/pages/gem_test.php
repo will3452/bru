@@ -25,6 +25,7 @@ Route::post('/test', function () {
     return back()->withSuccess('added!');
 });
 
-Route::get('/video-test', function () {
-    return view('test-video');
+Route::get('/vplayer', function () {
+    $src = request()->src;
+    return view('test-video', compact('src'));
 });

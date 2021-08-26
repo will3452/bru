@@ -18,7 +18,7 @@
     </style>
 </head>
 <body>
-    <video autoplay="true" controls controlsList="nodownload"  id="fs" src="https://brumultiverse.com/storage/08-10-211William%20Galasvideoplayback.mp4" >
+    <video autoplay="true" controls controlsList="nodownload"  id="fs" src="{{ $src }}" >
     </video>
      {{-- <iframe width="420" height="315"
         src="https://www.youtube.com/embed/tgbNymZ7vqY">
