@@ -16,8 +16,8 @@ class InvoiceObserver
     public function created(Invoice $invoice)
     {
         Mail::raw('New Invoice has been created! ID: ' . $invoice->id, function ($message) {
-            // $message->to(config('app.payment_email_handler'));
-            $message->to('williamgalas2@gmail.com');
+            $message->to(config('app.payment_email_handler'));
+            // $message->to('williamgalas2@gmail.com');
         });
     }
 
