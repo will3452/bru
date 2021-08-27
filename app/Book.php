@@ -4,10 +4,10 @@ namespace App;
 
 use App\Traits\Eventable;
 use App\Traits\Reportable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Multicaret\Acquaintances\Traits\CanBeSubscribed;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Book extends Model
 {
@@ -29,6 +29,12 @@ class Book extends Model
     public function getIspublicAttribute()
     {
         return $this->publish_date == null ? false : true;
+    }
+
+    public function setPublishDateAttribute($value)
+    {
+        [$d, $m, $y] = explode('-', $value);
+        $this->attributes['publish_date'] = $y . '-' . $m . '-' . $d;
     }
 
     public function getLastchapterAttribute()
