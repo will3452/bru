@@ -1,5 +1,7 @@
 <?php
 
+use App\Testing;
+
 Route::get('/test', function () {
     return view('test_gem');
 });
@@ -28,4 +30,12 @@ Route::post('/test', function () {
 Route::get('/vplayer', function () {
     $src = request()->src;
     return view('test-video', compact('src'));
+});
+
+Route::get('/command-test', function () {
+    Testing::create([
+        'myname' => \Str::random(5),
+    ]);
+
+    return Testing::get();
 });
