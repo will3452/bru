@@ -302,18 +302,25 @@ class AdminSeeder extends Seeder
     {
 
         $this->seedRewards();
+        info('reward seede');
 
         $this->seedAdmin();
+        info('admin seeded');
 
         $this->seedScripts();
+        info('scripts seeded');
 
         $this->seedGenres();
+        info('genres seeded');
 
         $this->seedSettings();
+        info('seting seeded');
 
         $this->seedRoles();
+        info('roles seeded');
 
         $this->setSongGenre();
+        info('song_genre seeded');
 
         // //test users
         // DB::table('users')->insert([
