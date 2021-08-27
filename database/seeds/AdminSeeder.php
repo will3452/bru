@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Reward;
+use App\Role;
 use App\SongGenre;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
