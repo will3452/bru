@@ -13,7 +13,7 @@ class ApiProfileController extends Controller
         return response([
             'result' => 200,
             'user' => $user,
-            'age' => $user->bio->age,
+            'age' => $user->bio ? $user->bio->age : 'N/a',
             'bio' => $user->bio,
         ], 200);
     }
@@ -36,7 +36,7 @@ class ApiProfileController extends Controller
                 return response([
                     'result' => 404,
                     'user' => $user,
-                    'age' => $user->bio->age,
+                    'age' => $user->bio ? $user->bio->age : 'N/a',
                     'bio' => $user->bio,
                 ], 200);
 
