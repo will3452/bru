@@ -2,25 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Message;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 
 class CronController extends Controller
 {
 
     public function index()
     {
-        // $this->deleteAllMessage();
+        $this->deleteAllMessage();
     }
 
     public function deleteAllMessage()
     {
-        $date = Carbon::now()->subDays(30);
+        $date = Carbon::now()->subDays(Message::DAYDELETE);
         // return $date;
-        $message = DB::table('messages')->whereDate('created_at', '<=', $date)->delete();
+        $message = Message::whereDate('created_at', '<=', $date)->delete();
         // $message = DB::table('messages')->whereDate('created_at', '<=', $date)->get();
 
         // return DB::table('messages')->get();
     }
-
 }
