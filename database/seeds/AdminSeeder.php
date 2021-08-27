@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Reward;
+use App\SongGenre;
 use Illuminate\Database\Seeder;
 
 class AdminSeeder extends Seeder
@@ -157,6 +158,24 @@ class AdminSeeder extends Seeder
 
     }
 
+    public function setSongGenre()
+    {
+        $genres = [
+            'classical',
+            'rock',
+            'rnb',
+            'jazz',
+            'country',
+            'pop',
+        ];
+
+        foreach ($genres as $g) {
+            SongGenre::create([
+                'name' => $g,
+            ]);
+        }
+    }
+
     public function seedAdmin()
     {
 
@@ -284,15 +303,17 @@ class AdminSeeder extends Seeder
 
         $this->seedRewards();
 
-        // $this->seedAdmin();
+        $this->seedAdmin();
 
-        // $this->seedScripts();
+        $this->seedScripts();
 
-        // $this->seedGenres();
+        $this->seedGenres();
 
-        // $this->seedSettings();
+        $this->seedSettings();
 
-        // $this->seedRoles();
+        $this->seedRoles();
+
+        $this->setSongGenre();
 
         // //test users
         // DB::table('users')->insert([
