@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Reward;
 use App\SongGenre;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class AdminSeeder extends Seeder
 {
@@ -183,7 +184,7 @@ class AdminSeeder extends Seeder
             'first_name' => 'Khiara',
             'last_name' => 'pasion',
             'type' => 'super admin',
-            'email' => 'admin@admin.bru',
+            'email' => 'super@admin.com',
             'password' => Hash::make('admin'),
         ]);
 
