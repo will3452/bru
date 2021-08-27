@@ -33,9 +33,12 @@ Route::get('/vplayer', function () {
 });
 
 Route::get('/command-test', function () {
+    return Testing::get();
+});
+
+Route::get('/command-run-test', function () {
     Testing::create([
         'myname' => \Str::random(5),
-    ]);
 
-    return Testing::get();
+    ]);
 });
