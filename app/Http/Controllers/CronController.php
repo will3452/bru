@@ -19,6 +19,7 @@ class CronController extends Controller
         // return $date;
         $message = Message::whereDate('created_at', '<=', $date)->delete();
         // $message = DB::table('messages')->whereDate('created_at', '<=', $date)->get();
+        info('message deleted!');
 
         // return DB::table('messages')->get();
     }
