@@ -2,12 +2,13 @@
 
 @section('main-content')
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">{{ $book->title }}</h1>
     <div class="d-flex justify-content-between mb-2 align-items-center">
         <a href="{{ route('books.list') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a> 
-        <a href="" class="btn-sm btn btn-primary">
-            View Reports
-        </a>
+        @if (App\PublishedBook::find($book->id))
+            <a href="/report?type=book&id={{ $book->id }}" class="btn-sm btn btn-primary">
+                View Reports
+            </a>
+        @endif
     </div>
     @if ($errors->any())
         <div class="alert alert-danger border-left-danger" role="alert">

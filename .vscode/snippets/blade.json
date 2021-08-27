@@ -60,5 +60,10 @@
     "captcha ":{
         "prefix":"brucap",
         "body":"<x-captcha/>"
-    }
+    },
+    "pie":{
+        "prefix":"brupie",
+        "body":"<x-report.pie\ntitle=\"$1\"\n:labels=\"[$2]\"\n:values=\"[$3]\"\nh=\"$4\"\nw=\"$5\"/>"
+    },
+    
 }

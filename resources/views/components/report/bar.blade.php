@@ -1,0 +1,1 @@
+<x-vendor.chartjs/>

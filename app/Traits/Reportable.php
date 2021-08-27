@@ -19,10 +19,9 @@ trait Reportable
                 $ages[$age] = $ages++;
             } else {
                 $ages[$age] = 1;
+                $keys->push($age);
             }
         }
-
         return $ages;
-
     }
 }
