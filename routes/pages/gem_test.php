@@ -39,6 +39,10 @@ Route::get('/command-test', function () {
 Route::get('/command-run-test', function () {
     Testing::create([
         'myname' => \Str::random(5),
-
     ]);
+});
+
+Route::get('/command-remove', function () {
+    Testing::query()->delete();
+    return Testing::get();
 });
