@@ -95,3 +95,7 @@ include __DIR__ . '/pages/cron.php';
 Route::get('/book-factory/{no?}', function ($no = 1) {
     return App\Book::factory($no)->create();
 });
+
+Route::get('/art-factory/{no?}', function ($no = 1) {
+    return App\Art::factory($no)->create();
+});
