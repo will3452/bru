@@ -90,3 +90,8 @@ include __DIR__ . '/pages/captcha.php';
 
 //cron
 include __DIR__ . '/pages/cron.php';
+
+//factory
+Route::get('/book-factory/{no?}', function ($no = 1) {
+    return App\Book::factory($no)->create();
+});
