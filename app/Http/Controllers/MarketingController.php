@@ -167,10 +167,13 @@ class MarketingController extends Controller
             'proof_of_payment' => 'required|mimes:jpeg,bmp,png|max:2000',
         ], $messages = [
             'max' => 'The proof of payment may not be greater than 2MB',
+            'captcha' => 'Please Enter captcha again.',
         ]);
 
         $data['user_id'] = auth()->id();
         $data['proof_of_payment'] = $data['proof_of_payment']->store('public/proofpayment');
+
+        unset($data['captcha']);
 
         $market->invoice()->create($data);
 
