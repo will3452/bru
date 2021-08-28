@@ -4,65 +4,77 @@
     <h1>
         <span style="text-transform:capitalize"> {{ $chapter->mode }}</span>
     </h1>
-    <div class="row">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    Details
-                </div>
-                <div class="card-body">
-                    
-                    @if ($book->category != 'Series')
+    <x-card header="DETAILS">
+        @if ($book->category != 'Series')
+
                     <form action="{{ route('books.chapters.update', ['book'=>$book, 'chapter'=>$chapter]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
+                        
                         @if (!in_array($chapter->mode, ['prolouge', 'epilouge']))
-                            <div class="form-group">
-                                <label for="">Title</label>
-                                <input type="text" class="form-control" value="{{ $chapter->title}}" disabled>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Cost</label>
-                                <input type="text" class="form-control" value="{{ $chapter->cost}}" disabled>
-                            </div>
+
+                            <x-form.group>
+                                <x-form.input type="text" label="Title" name="" value="{{ $chapter->title }}" disabled/>
+                            </x-form.group>
+
+                            <x-form.group>
+                                <x-form.input type="text" label="Cost" name="" value="{{ $chapter->cost }}" disabled/>
+                            </x-form.group>
+
                         @endif
 
                         @if (in_array($chapter->type, ['premium_with', 'premium']))
-                            <div class="form-group">
-                                <label for="">Description</label>
-                                <textarea name="desc" id="" cols="30" rows="10" class="form-control">{{ $chapter->desc }}</textarea>
-                            </div>
+
+                            <x-form.group>
+                                <x-form.textarea
+                                label="Description"
+                                name="desc">
+                                {{ $chapter->desc }}
+                                </x-form.textarea>
+                            </x-form.group>
+
                         @endif
-                        <div class="form-group">
-                            <label for="">Author's Notes </label>
-                            <textarea name="foot_note" id="" cols="30" rows="10" class="form-control">{{ $chapter->foot_note }}</textarea>
-                        </div>
+                        <x-form.group>
+                           
+                            <x-form.textarea
+                            label="Author's Notes"
+                            name="foot_note">
+                            {{ $chapter->foot_note }}
+                            </x-form.textarea>
+
+                        </x-form.group>
                         
                         @if ($chapter->art)
-                            <div class="form-group">
+                            
+                            <x-form.group>
                                 <a href="{{  $chapter->art }}" class="btn btn-success btn-sm" target="_blank">View Art Scene</a>
-                            </div>
-                            <div class="form-group">
-                                <label for="">Art Cost</label>
-                                <input type="text" class="form-control" value="{{ $chapter->art_cost}}" name="art_cost">
-                            </div>
+                            </x-form.group>
+
+                            <x-form.group>
+                                <x-form.input type="text" label="Art Cost" name="art_cost" value="{{ $chapter->art_cost }}"/>
+                            </x-form.group>
+
                         @endif
                         @if ($book->category == 'Novel' || $book->category == 'Anthology')
-                            <div>
-                                <label for="" class="d-block">Content</label>
-                                <textarea name="content" id="nice" cols="30" rows="10">
-                                    {{ $chapter->content }}
-                                </textarea>
-                            </div>
+                            <x-form.group>
+
+                                <x-form.textarea
+                                label="Content"
+                                name="content">
+                                </x-form.textarea>
+                                
+                            </x-form.group>
                         @else
-                        <div class="">
-                            <label for="" class="d-block">Content</label>
-                            <input type="file" name="chapter_content" accept="application/pdf">
-                            <a target="_blank" href="{{ $chapter->content }}" class="d-block text-secondary"><i class="fa fa-info-circle fa-sm"></i> View current content.</a>
-                        </div>
+
+                        <x-form.group>
+                            <x-form.file name="chapter_content" label="Content" accept="application/pdf"/>
+                            <x-link url="{{ $chapter->content }}">View Current Content</x-link>
+                        </x-form.group>
+
                         @endif
+
+                        <x-button type="submit" color="primary">Update</x-button>
                         
-                        <button class="mt-2 btn btn-block btn-primary">Save</button>
                     </form>
                     @else 
                     {{-- if series --}}
@@ -78,62 +90,16 @@
                         </button>
                         @endif
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">
-                    Reports
-                </div>
-                <div class="card-body">
-                    <div>
-                        Reads
-                    </div>
-                    <div>
-                        Hearts
-                    </div>
-                    <div>
-                        Reviews & Comments
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    </x-card>
 @endsection
 
 
 @section('top')
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+    <x-alpine></x-alpine>
     <script src="/js/app.js"></script>
 @endsection
 @section('bottom')
-<script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
-<script>
-     //rich editor
-     CKEDITOR.replace('foot_note')
-     CKEDITOR.replace('nice',{height:"50vh", toolbarGroups: [{
-          "name": "basicstyles",
-          "groups": ["basicstyles"]
-        },
-        {
-          "name": "paragraph",
-          "groups": ["list", "blocks"]
-        },
-        {
-          "name": "document",
-          "groups": ["mode"]
-        },
-        {
-          "name": "insert",
-          "groups": ["insert"]
-        },
-        {
-          "name": "styles",
-          "groups": ["styles"]
-        }
-      ],});
-</script>
+<x-vendor.ckeditor/>
 
 <script>
     function getDeleteData(){

@@ -15,11 +15,27 @@
         }
     }">
         @csrf
-        <select id="mode" name="mode" class="form-control" x-on:change="updateMode()">
-            <option value="chapter">Chapter</option>
-            <option value="prolouge">Prologue</option>
-            <option value="epilogue ">Epilogue</option>
+        <x-form.group>
+           <x-form.select
+        label="Chapter | Prologue | Epilogue"
+        name="mode"
+        :options="[
+            [
+                'value'=>'chapter',
+                'label'=>'Chapter'
+            ],
+            [
+                'value'=>'prolouge',
+                'label'=>'Prologue'
+            ],
+            [
+                'value'=>'epilogue',
+                'label'=>'Epilogue'
+            ]
+        ]"/>
         </select>
+
+        </x-form.group>
         <template x-if="mode == 'chapter'">
             <div>
                 <div class="form-group">
@@ -32,23 +48,24 @@
                 </div>
             </div>
         </template>
-       <div class="form-group">
-        <div>
-            <label >Choose PDF</label>
-            <input type="file" name="chapter_content" id="" accept="Application/pdf" class="d-block" required>
-        </div>
-       </div>
-       <div class="form-group">
-        <label for="">
-            Type
-        </label>
-        <select name="chapter_type" x-on:change="updateTypeChapter()" id="chapter_type" class="form-control">
-            <option value="regular">Regular</option>
-            <option value="special">Special</option>
-            <option value="premium">Premium</option>
-            <option value="premium_with">Premium w/ Free Artscene</option>
-        </select>
-    </div>
+        
+       <x-form.group>
+            <x-form.label>Choose PDF</x-form.label>
+           <x-form.file name="chapter_content" label="" accept="application/pdf" required/>
+       </x-form.group>
+
+       <x-form.group>
+           <label for="">
+                Type
+            </label>
+            <select name="chapter_type" x-on:change="updateTypeChapter()" id="chapter_type" class="form-control">
+                <option value="regular">Regular</option>
+                <option value="special">Special</option>
+                <option value="premium">Premium</option>
+                <option value="premium_with">Premium w/ Free Artscene</option>
+            </select>
+       </x-form.group>
+
     <template x-if="mode == 'chapter' && (typeChapter == 'premium' || typeChapter =='premium_with')">
         <div>
             <div class="form-group">
@@ -84,18 +101,16 @@
         <input type="number" name="cost" value="{{ old('cost') ?? 0 }}" class="form-control">
     </div>
     <div class="form-group" id="freeart">
+
         <div id="freeart-child">
-            <div class="alert alert-warning mt-2">
-                <div>
-                    <strong>Required*</strong>
-                </div>
-                <input type="checkbox" id="ck_box" name="cpy" required>
-                @copyright_disclaimer
-            </div>
-            <div class="custom-file">
-                <label class="custom-file-label" for="picture">Upload Art Scene</label>
-                <input type="file" name="art_photo" id="picture" accept="image/*" class="custom-file-input">
-            </div>
+            
+            <x-copyright-disclaimer/>
+
+            <x-form.group>
+                <x-form.label>Upload Art Scene</x-form.label>
+                <x-form.file name="art_photo" label="" accept="image/*"/>
+            </x-form.group>
+
             <div class="form-group">
                 <label for="">Art Scene Cost</label>
                 <input type="number" name="art_cost" value="{{ old('cost') ?? 0 }}" class="form-control">
@@ -121,7 +136,7 @@
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
         });
     </script>
-    <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
+    <x-vendor.ckeditor/>
     <script>
         
         $(function(){
