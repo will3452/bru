@@ -6,6 +6,7 @@
     <div>
 
         <div class="row justify-content-between">
+            
             <x-report.pie
             title="Ages"
             :labels="$report['ages']->keys()"
@@ -33,6 +34,7 @@
             :values="$report['countries']->values()"
             h="300px"
             w="300px"/>
+
         </div>
         
     </div>
