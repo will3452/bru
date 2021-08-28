@@ -1,8 +1,8 @@
 <?php
 
 Route::prefix('books')->name('books.')->middleware(['auth'])->group(function () {
-    Route::get('/', 'BookController@index')->name('index');
-    Route::get('/list', 'BookController@list')->name('list');
+    // Route::get('/', 'BookController@index')->name('index');
+    Route::get('/', 'BookController@list')->name('list');
     Route::post('/', 'BookController@store')->name('store');
     Route::put('/front/update/{book}', 'BookController@updateFront')->name('update.front');
     Route::get('/create', 'BookController@create')->name('create');
