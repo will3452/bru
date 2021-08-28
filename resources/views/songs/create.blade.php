@@ -197,14 +197,15 @@
          </x-form.group>
 
         <x-form.group>
-            <label for="">Upload your Song</label>
-            <ul id="filelist" class="list-group mb-2"></ul>
-            <div id="container">
-                <a id="browse" href="javascript:;" class="btn btn-sm btn-secondary"><i class="fa fa-folder fa-sm"></i> Browse</a>
-                <a id="start-upload" href="javascript:;" class="btn btn-sm btn-success"><i class="fa fa-play fa-sm"> </i> Start Upload</a>
-            </div>
-            <input type="hidden" name="file" id="video_file">
-            <pre id="console" class="text-danger"></pre>
+            <x-form.upload
+            label="Upload Song"
+            chunk="300kb"
+            limit="10mb"
+            title="audio file"
+            ext="mp3, wav"
+            submit_id="submit"
+            required
+            />
         </x-form.group>
 
         <x-form.group>
@@ -232,7 +233,7 @@
         </x-form.group>
 
         <x-form.group>
-            <button type="submit" class="btn btn-primary btn-block" id="submit" disabled>Submit</button>
+            <button type="submit" class="btn btn-primary btn-block" id="submit">Submit</button>
         </x-form.group>
     </form>
 @endsection
@@ -241,74 +242,10 @@
     
     <x-vendor.ckeditor/>
     <x-alpine/>
+    <x-vendor.pupload/>
 
 @endsection
 @section('bottom')
 
-<script src="{{ asset('/vendor/plupload/js/plupload.full.min.js') }}"></script>
-<script>
-var uploader = new plupload.Uploader({
-        browse_button: 'browse', // this can be an id of a DOM element or the DOM element itself
-        runtimes : 'html5,html4',
-        url: '{{ route('video.uploader') }}',
-        chunk_size: '200kb',
-        max_retries: 3,
-        multi_selection:false,
-        headers:{
-            'X-CSRF-TOKEN':'{{ csrf_token() }}'
-        },
-        max_file_size:'800mb',
-        filters: {
-        mime_types : [
-            { title : "audio files", extensions : "mp3, wav" },
-        ]
-        }
-    });
-
-    uploader.bind('FilesAdded', function(up, files) {
-        var html = '';
-        if(up.files.length > 1) up.files.splice(0,1);
-        plupload.each(files, function(file) {
-            html += '<li class="list-group-item" id="' + file.id + '">' + file.name + ' (' + plupload.formatSize(file.size) + ') <b></b></li>';
-        });
-        document.getElementById('filelist').innerHTML = html;
-        document.getElementById('console').textContent = '';
-    });
-
-    uploader.bind('UploadProgress', function(up, file) {
-        document.getElementById(file.id).getElementsByTagName('b')[0].innerHTML = `
-        <span>${file.percent}%</span>
-        <div class="progress">
-            <div id="p-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: ${file.percent}%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-        `;
-        
-    });
-    uploader.bind('FileUploaded',  async function(up, file, info) {
-    let res = JSON.parse(info.response)
-    let path = res.file_name;
-    await swal.fire({
-        iconHtml:'<i class="fa fa-check fa-success"></i>',
-        title:'Song Uploaded!',
-        showConfirmButton:false,
-        timer:3000
-    })
-    document.querySelector('#p-bar').classList.remove('progress-bar-animated')
-    document.getElementById('submit').disabled = false;
-    document.getElementById('video_file').value=path;
-    
-    });
-
-    uploader.bind('Error', function(up, err) {
-        document.getElementById('console').innerHTML += err.message;
-        alert(err.message)
-    });
-
-    document.getElementById('start-upload').onclick = function() {
-        uploader.start();
-    };
-    uploader.init();
-
-</script>
 
 @endsection

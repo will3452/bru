@@ -68,6 +68,14 @@
     "home link":{
         "prefix":"bruho",
         "body":"<x-gohome/>"
+    },
+    "pupload ":{
+        "prefix":"bruvp",
+        "body":"<x-vendor.pupload/>"
+    },
+    "form upload":{
+        "prefix":"brufu",
+        "body":"<x-form.upload\nlabel=\"$1\"\nchunk=\"300kb$2\"\nlimit=\"800mb$3\"\ntitle=\"audio file\"\next=\"mp3, wav$4\"\nsubmit_id=\"$5\"\n$6/>"
     }
     
 }

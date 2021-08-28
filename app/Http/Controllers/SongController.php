@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 
 class SongController extends Controller
 {
-    public function __construct(){
-         $this->middleware('auth');
+    public function __construct()
+    {
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -16,11 +17,10 @@ class SongController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     
     public function index()
     {
         $songs = auth()->user()->songs;
-        return view('songs.index',compact('songs'));
+        return view('songs.index', compact('songs'));
     }
 
     /**
@@ -30,7 +30,7 @@ class SongController extends Controller
      */
     public function create()
     {
-        return view('songs.create');        
+        return view('songs.create');
     }
 
     /**
@@ -42,24 +42,24 @@ class SongController extends Controller
     public function store(Request $request)
     {
         $validated = $this->validate($request, [
-            'title'=>'required',
-            'genre'=>'required',
-            'artist'=>'required',
-            'desc'=>'',
-            'credits'=>'',
-            'associated_type'=>'',
-            'book_id'=>'',
-            'group_id'=>'',
-            'audio_id'=>'',
-            'art_id'=>'',
-            'thrailer_id'=>'',
-            'cost_type'=>'required',
-            'cost'=>'',
-            'copyright'=>'',
-            'cover'=>'',
-            'file'=>'',
-            'cpy'=>'',
-            'lyrics'=>'',
+            'title' => 'required',
+            'genre' => 'required',
+            'artist' => 'required',
+            'desc' => '',
+            'credits' => '',
+            'associated_type' => '',
+            'book_id' => '',
+            'group_id' => '',
+            'audio_id' => '',
+            'art_id' => '',
+            'thrailer_id' => '',
+            'cost_type' => 'required',
+            'cost' => '',
+            'copyright' => '',
+            'cover' => '',
+            'file' => 'required',
+            'cpy' => '',
+            'lyrics' => '',
         ]);
         $validated['description'] = $validated['desc'];
         unset($validated['desc']);
@@ -68,10 +68,10 @@ class SongController extends Controller
 
         $arr_cover = explode('/', $pathCover);
         $end_arr_cover = end($arr_cover);
-        $validated['cover'] = '/storage/book_cover/'.$end_arr_cover;
+        $validated['cover'] = '/storage/book_cover/' . $end_arr_cover;
 
         $song = auth()->user()->songs()->create($validated);
-        return redirect(route('songs.index').'?id='.$song->id);
+        return redirect(route('songs.index') . '?id=' . $song->id);
     }
 
     /**
@@ -86,7 +86,6 @@ class SongController extends Controller
         return view('songs.show', compact('song'));
     }
 
-
     /**
      * Update the specified resource in storage.
      *
@@ -97,19 +96,19 @@ class SongController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $this->validate($request, [
-            'genre'=>'required',
-            'artist'=>'required',
-            'desc'=>'',
-            'credits'=>'',
-            'associated_type'=>'',
-            'book_id'=>'',
-            'group_id'=>'',
-            'audio_id'=>'',
-            'art_id'=>'',
-            'thrailer_id'=>'',
-            'cost_type'=>'required',
-            'copyright'=>'',
-            'lyrics'=>''
+            'genre' => 'required',
+            'artist' => 'required',
+            'desc' => '',
+            'credits' => '',
+            'associated_type' => '',
+            'book_id' => '',
+            'group_id' => '',
+            'audio_id' => '',
+            'art_id' => '',
+            'thrailer_id' => '',
+            'cost_type' => 'required',
+            'copyright' => '',
+            'lyrics' => '',
         ]);
         $validated['description'] = $validated['desc'];
         unset($validated['desc']);

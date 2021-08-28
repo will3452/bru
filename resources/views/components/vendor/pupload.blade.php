@@ -1,0 +1,1 @@
+<script src="{{ asset('/vendor/plupload/js/plupload.full.min.js') }}"></script>
