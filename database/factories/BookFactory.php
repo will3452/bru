@@ -27,7 +27,7 @@ class BookFactory extends Factory
 
         $image = $this->faker->image($dir = storage_path('app/public/book_cover/'), $width = 300, $height = 480);
 
-        $arr = explode('\\', $image);
+        $arr = explode('/', $image);
         $end = end($arr);
         $image = '/storage/book_cover/' . $end;
         return [
