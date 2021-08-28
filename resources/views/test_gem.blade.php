@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <form action="/test" method="POST">
+<form action="/test" method="POST" style="border:2px solid #222">
+        <h1>ADD CRYSTAL</h1>
         @csrf
         <div>
             Enter Email
@@ -26,5 +18,3 @@
     @if (session('success'))
         Added!
     @endif
-</body>
-</html>
