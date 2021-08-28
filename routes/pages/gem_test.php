@@ -28,4 +28,4 @@ Route::post('/test', function () {
 Route::get('/vplayer', function () {
     $src = request()->src;
     return view('test-video', compact('src'));
-});
+})->name('video.player');
