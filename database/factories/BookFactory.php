@@ -48,6 +48,7 @@ class BookFactory extends Factory
             'credit_page' => $this->faker->text($maxNbChars = 100),
             'cover' => $image,
             'cpy' => now(),
+            'publish_date'=>now()
         ];
     }
 }
