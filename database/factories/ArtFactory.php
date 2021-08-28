@@ -37,7 +37,6 @@ class ArtFactory extends Factory
             'description' => $this->faker->text($maxNbChars = 200),
             'artist' => 'william',
             'genre' => $genres->random(),
-            'lead_character' => 'Male',
             'lead_college' => 'Berkeley',
             'cost' => 25,
             'file' => $image,
