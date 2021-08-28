@@ -1,18 +1,9 @@
 @extends('layouts.admin')
 @section('main-content')
-    <h1>
+    <h1 class="text-center">
         REPORT
     </h1>
-    <div class="card">
-        <div class="card-header">
-            READER STATISTIC
-        </div>
-        <div class="card-body">
-            Age 
-            @foreach ($report['ages'] as $key=>$value)
-                {{ $key }} => {{ $value }} <br/>
-            @endforeach
-        </div>
+    <div>
         <x-report.pie
         title="Age"
         :labels="$report['ages']->keys()"

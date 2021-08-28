@@ -12,7 +12,9 @@
         'id'=>$id.'-container',
         'style'=>'width:'.$w.';height:'.$h,
     ]) }}>
-    <canvas id="{{ $id }}"></canvas>
+    <x-card header="{{ $title }}">
+        <canvas id="{{ $id }}"></canvas>
+    </x-card>
 </div>
 <script>
 var ctx = document.getElementById('{{ $id }}');
