@@ -79,7 +79,7 @@
                             
                         </div>   
                         <div class="form-group">
-                            <a href="{{ $thrailer->video }}" target="_blank"> <i class="fa fa-film fa-sm"></i> Show Video</a>
+                            <a href="vplayer?src={{ $thrailer->video }}" target="_blank"> <i class="fa fa-film fa-sm"></i> Show Video</a>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary btn-block">
