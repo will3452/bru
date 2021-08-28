@@ -4,7 +4,8 @@
     'w'=>'100%',
     'labels'=>['label 1', 'label 2'],
     'values'=>[1,9],
-    'title'=>'Report'
+    'title'=>'Report',
+    'color'=>new App\Tools\Color()
     ])
 <x-vendor.chartjs/>
 <div 
@@ -12,9 +13,8 @@
         'id'=>$id.'-container',
         'style'=>'width:'.$w.';height:'.$h,
     ]) }}>
-    <x-card header="{{ $title }}">
-        <canvas id="{{ $id }}"></canvas>
-    </x-card>
+<h5>{{ $title }}</h5>
+ <canvas id="{{ $id }}"></canvas>
 </div>
 <script>
 var ctx = document.getElementById('{{ $id }}');
@@ -34,12 +34,9 @@ var myChart = new Chart(ctx, {
                 @endforeach
             ],
             backgroundColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
+                @foreach ($values as $value)
+                    '{{ $color->get() }}',
+                @endforeach
             ],
             // borderColor: [
             //     'rgba(255, 99, 132, 1)',

@@ -12,9 +12,15 @@ class ReportController extends Controller
     {
         $book = Book::find($id);
         $ages = $book->age_report;
+        $sexes = $book->sex_report;
+        $genders = $book->gender_report;
+        $countries = $book->country_report;
 
         return [
             'ages' => $ages,
+            'sexes' => $sexes,
+            'genders' => $genders,
+            'countries' => $countries,
         ];
 
     }
