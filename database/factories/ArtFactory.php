@@ -25,7 +25,7 @@ class ArtFactory extends Factory
 
         $genres = collect(['Teen and Young Adult', 'New Adult', 'Romance', 'Detective and Mystery', 'Action', 'Historical', 'Thriller and Horror', 'LGBTQIA+', 'Poetry']);
 
-        $image = $this->faker->image($dir = storage_path('app/public/book_cover/'), $width = 300, $height = 480);
+        $image = $this->faker->image($dir = storage_path('app/public/arts/'), $width = 300, $height = 480);
 
         $arr = explode('/', $image);
         $end = end($arr);
