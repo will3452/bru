@@ -92,16 +92,6 @@ include __DIR__ . '/pages/captcha.php';
 include __DIR__ . '/pages/cron.php';
 
 //factory
-Route::get('/book-factory/{no?}', function ($no = 1) {
-    $user = User::where('email', request()->email ?? 'williamgalas2@gmail.com')->first();
-    return App\Book::factory($no)->create([
-        'user_id'=>$user->id,
-    ]);
-});
+include __DIR__ . '/pages/factory.php';
 
-Route::get('/art-factory/{no?}', function ($no = 1) {
-    $user = User::where('email', request()->email ?? 'williamgalas2@gmail.com')->first();
-    return App\Art::factory($no)->create([
-        'user_id'=>$user->id,
-    ]);
-});
+
