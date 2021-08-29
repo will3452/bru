@@ -46,6 +46,7 @@
 
 <body id="page-top" class="sidebar-toggled">
     @include('sweetalert::alert')
+    <x-phone-nav/>
     <div id="pp">
         <div class="row">
             <div class="col-md-4"></div>

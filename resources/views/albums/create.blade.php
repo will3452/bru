@@ -7,50 +7,43 @@
         @csrf
 
         @livewire('album-create')
-        <div class="form-group">
-            <label for="">Album Title</label>
-            <input type="text" class="form-control" required name="title">
-        </div>
-        <div class="form-group">
-            <label for="">
-                Album Description
-            </label>
-            <textarea name="desc" id="" cols="30" rows="10" required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="">
-                Album Credits
-            </label>
-            <textarea name="credits" id=""  required cols="30" rows="10"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="">
-                Upload Album Cover
-            </label>
-            <input type="file" name="cover" class="d-block" accept="image/*" required>
-            <div class="alert alert-warning mt-2">
-                <div>
-                    <strong>Required*</strong>
-                </div>
-                <input type="checkbox" required id="ck_box" name="cpy" accept="image/*">
-                @copyright_disclaimer
-            </div>
-        </div>
-        <div class="form-group">
-            <button class="btn btn-primary btn-block">
-                Submit
-            </button>
-        </div>
+        
+        <x-form.group>
+            <x-form.input type="text" label="Album Title" name="title" required />
+        </x-form.group>
+
+        <x-form.group>
+            <x-form.textarea
+            label="Album Description"
+            name="desc"
+            required>
+            </x-form.textarea>
+        </x-form.group>
+
+        <x-form.group>
+            <x-form.textarea
+            label="Album Credits"
+            name="credits" required>
+            </x-form.textarea>
+        </x-form.group>
+
+        <x-form.group>
+            <x-form.label>Upload Album Cover</x-form.label>
+            <x-form.file name="cover" label="" required/>
+        </x-form.group>
+
+        <x-form.group>
+            <x-copyright-disclaimer/>
+        </x-form.group>
+
+        <x-form.group>
+            <x-button type="submit" color="primary">Submit</x-button>
+        </x-form.group>
 
     </form>
 @endsection
 
 @section('top')
-    <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
+    <x-vendor.ckeditor/>
 @endsection
-@section('bottom')
-    <script>
-        CKEDITOR.replace('desc');
-        CKEDITOR.replace('credits');
-    </script>
-@endsection
+

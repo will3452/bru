@@ -5,91 +5,104 @@
     @include('partials.alert')
     <form action="{{ route('arts.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        <h5>Art Details</h5>
-        <div class="form-group">
-            <label for="">Art Scene Title</label>
-            <input type="text" name="title" class="form-control" value="{{ old('title') }}">
-        </div>
-        <div class="form-group">
-            <label for="">Art Scene Description</label>
-            <textarea name="desc" id="" cols="30" rows="10" class="form-control">{{ old('description') }}</textarea>
-        </div>
-        <div class="form-group">
-            <label for="">Pen Name</label>
-            <select name="artist" id="" class="form-control">
-                @foreach(auth()->user()->pens as $pen)
-                <option value="{{ $pen->name }}">
-                {{ $pen->name }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="#">Genre</label>
-            <select name="genre" id="" class="form-control">
-                @foreach(\App\Genre::get() as $genre)
-                    @continue($genre->name == 'Poetry')
-                <option value="{{ $genre->name }}">{{ $genre->name }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div >
-            <label for="">Set Age Restriction</label>
-            <select name="age_restriction" id="age_level" class="form-control">
-                <option value="0">
-                    None
-                </option>
-                <option value="15">
-                    15 and up
-                </option>
-                <option value="18" id="_18">
-                    18 and up
-                </option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="">Tags</label>
-            <select name="tag[]" id="tag" multiple class="form-control">
-            </select>
-            <div class="alert alert-warning d-flex align-items-center mt-2">
-                <i class="fa fa-info-circle mr-2"></i>
-                <div>Please list down TEN tags for your Art Scene. These tags will ensure better SEO and reading recommendations based on user search and account information. </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="#">Lead's College</label>
+        <h5>Upload Art</h5>
+
+        <x-form.group>
+            <x-form.input type="text" label="Art Scene Title" name="title" required/>
+        </x-form.group>
+
+        <x-form.group>
+            <x-form.textarea
+            label="Description"
+            name="desc" required>{{ old('desc') }}
+            </x-form.textarea>
+        </x-form.group>
+
+        <x-form.group>
+            <x-form.select
+            label="Pen Name"
+            name="artist"
+            :options="auth()->user()->pens->map(function($item){
+                return [
+                    'value'=>$item->name,
+                    'label'=>$item->name
+                ];
+            })"/>
+        </x-form.group>
+
+        <x-form.group>
+            <x-form.select
+            label="Genre"
+            name="genre"
+            :options="App\Genre::get()->map(function($item){
+                return [
+                    'value'=>$item->name,
+                    'label'=>$item->name
+                ];
+            })"/>
+        </x-form.group>
+
+        <x-form.group>
+            <x-form.select
+            label="Set Age Restriction"
+            name="age_restriction"
+            :options="[
+                [
+                    'value'=>0,
+                    'label'=>'None'
+                ],
+                [
+                    'value'=>15,
+                    'label'=>'15 and up'
+                ],
+                [
+                    'value'=>18,
+                    'label'=>'18 and up'
+                ]
+            ]" required/>
+        </x-form.group>
+
+        <x-form.group>
+            <x-form.label>Tags</x-form.label>
+            <select name="tag[]" id="tag" multiple class="form-control"></select>
+        </x-form.group>
+
+        <x-form.group>
+            <x-alert>
+                Please list down TEN tags for your Art Scene. These tags will ensure better SEO and reading recommendations based on user search and account information. 
+            </x-alert>
+        </x-form.group>
+
+       <x-form.group>
+           <x-form.label>Lead's College</x-form.label>
             <select class="form-control" name="lead_college">
                 <option value="Integrated School">Integrated School</option>
                 <option value="Berkeley">Berkeley</option>
                 <option value="Reagan">Reagan</option>
                 <option value="Non-BRU">Non-BRU</option>
             </select>
-        </div>
-        <div class="form-group">
-            <label for="">Credits</label>
-            <textarea name="credits" id=""></textarea>
-        </div>
-        <div class="form-group">
-            <label for="#">Cost</label>
-            <input type="number" name="cost" class="form-control" min="0" oninput="validate(this)" value="{{ old('cost') ?? 0 }}">
-            <script>
-                function validate(input){
-                   if(input.value < 0){
-                      input.value = 0;
-                   }
-                }
-            </script>
-        </div>
+       </x-form.group>
+
+        <x-form.group>
+            <x-form.textarea
+            label="Credits"
+            name="credits">
+            </x-form.textarea>
+        </x-form.group>
+
+        <x-form.group>
+            <x-form.input type="number" label="Cost" name="cost" min="0" value="{{ old('cost') }}" oninput="this.value = this.value < 0 ? 0 : this.value;"/>
+        </x-form.group>
+
         <h5>Upload Art</h5>
         <x-form.group>
             <x-form.file name="file" id="art" accept="image/*" required/>
         </x-form.group>
-        <div class="alert alert-warning mt-2">
-            <div>
-                <strong>Required*</strong>
-            </div>
-            <input type="checkbox" id="ck_box3" name="cpy" required>
-            @copyright_disclaimer
-        </div>
+
+        <x-form.group>
+            <x-copyright-disclaimer/>
+        </x-form.group>
+        
         <button class="btn btn-primary btn-block">Submit</button>
     </form>
 @endsection
@@ -97,11 +110,10 @@
 @section('top')
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2-bootstrap.min.css') }}">
-    <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
+    <x-vendor.ckeditor/>
 @endsection
 @section('bottom')
-    <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
-    <script src="{{ asset('vendor/select2/select2.min.js') }}"></script>
+    <x-vendor.select2/>
     <script>
         $(function(){
             $.fn.select2.defaults.set( "theme", "bootstrap" );
@@ -115,10 +127,6 @@
             var fileName = $(this).val().split("\\").pop();
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
             });
-
-            //rich editor
-            CKEDITOR.replace('desc');
-            CKEDITOR.replace('credits');
-        })
+        });
     </script>
 @endsection
