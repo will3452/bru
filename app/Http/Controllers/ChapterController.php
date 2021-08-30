@@ -103,7 +103,7 @@ class ChapterController extends Controller
             if (request()->has('art_cost')) {
                 $chapter->art_cost = request()->art_cost;
             }
-            $chapter->content = request()->content;
+            $chapter->content = request()->content_x;
         } else {
             if (request()->has('chapter_content')) {
                 Storage::delete($chapter->ocontent);
@@ -115,6 +115,7 @@ class ChapterController extends Controller
             }
         }
         $chapter->foot_note = request()->foot_note;
+        toast('Chapter updated!', 'success');
         $chapter->save();
         return back()->withSuccess('Done!');
     }

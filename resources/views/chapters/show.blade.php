@@ -60,7 +60,7 @@
 
                                 <x-form.textarea
                                 label="Content"
-                                name="content">
+                                name="content_x">{{ $chapter->content }}
                                 </x-form.textarea>
                                 
                             </x-form.group>
@@ -95,11 +95,11 @@
 
 
 @section('top')
+    <x-vendor.ckeditor/>
     <x-alpine></x-alpine>
     <script src="/js/app.js"></script>
 @endsection
 @section('bottom')
-<x-vendor.ckeditor/>
 
 <script>
     function getDeleteData(){
