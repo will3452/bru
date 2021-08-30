@@ -33,7 +33,7 @@
                 </td>
                 <td>
                     <a style="text-transform: capitalize" href="{{ route('books.chapters.show', ['book'=>$chapter->book, 'chapter'=>$chapter]) }}">
-                        {{ $chapter->title }} <i class="fa fa-link fa-xs"></i>
+                        {{ $chapter->title ?? $chapter->mode }} <i class="fa fa-link fa-xs"></i>
                     </a>
                 </td>
                 <td style="text-transform: capitalize">

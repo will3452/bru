@@ -24,6 +24,7 @@
                     <div id="page-content">
                         {!! $chapter->content !!}
                     </div>
+                    {{ $chapter->content }}
                </div>
             </div>
             @endforeach
@@ -93,6 +94,6 @@
                 $('#page').toggleClass('small-view');
             })
             
-        })
+        });
     </script>
 @endsection

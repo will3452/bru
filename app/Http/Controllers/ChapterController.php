@@ -40,6 +40,9 @@ class ChapterController extends Controller
         // dd($request->validated());
 
         $validated = $request->validated();
+        if (!isset($validate['cost'])) {
+            $validated['cost'] = 0;
+        }
         if (isset($validated['cpy']) && $validated['cpy'] == 'on') {
             $validated['cpy'] = now();
         }
