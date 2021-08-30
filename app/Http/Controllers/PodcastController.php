@@ -37,22 +37,22 @@ class PodcastController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'title'=>'required',
-            'part_of'=>'required',
-            'type_of_work'=>'required',
-            'host'=>'required',
-            'desc'=>'required',
-            'audio_desc'=>'required',
-            'cpy'=>'required',
-            'credits'=>'required',
-            'episode_type'=>'required',
-            'file'=>'required',
-            'cover'=>'required',
-            'cost'=>'',
-            'group_id'=>'',
+            'title' => 'required',
+            'part_of' => 'required',
+            'type_of_work' => 'required',
+            'host' => 'required',
+            'desc' => 'required',
+            'audio_desc' => 'required',
+            'cpy' => 'required',
+            'credits' => 'required',
+            'episode_type' => 'required',
+            'file' => 'required',
+            'cover' => 'required',
+            'cost' => '',
+            'group_id' => '',
             'episode_number',
-            'series_id'=>'',
-            'launch_date'=>''
+            'series_id' => '',
+            'launch_date' => '',
         ]);
         // dd($data);
         $data['cpy'] = now();
@@ -60,15 +60,15 @@ class PodcastController extends Controller
         $path = $data['cover']->store('public/podcast_cover');
         $arr_path = explode('/', $path);
         $end_path = end($arr_path);
-        $data['cover'] = '/storage/podcast_cover/'.$end_path;
+        $data['cover'] = '/storage/podcast_cover/' . $end_path;
 
         $podcast = auth()->user()->podcasts()->create($data);
-        if($request->has('series_id')){
+        if ($request->has('series_id')) {
             Series::find($request->series_id)->podcasts()->attach($podcast->id);
         }
 
-        toast('podcast created!', 'success');
-        
+        toast('Podcast created!', 'success');
+
         return redirect(route('podcast.index'));
     }
 
@@ -80,7 +80,7 @@ class PodcastController extends Controller
      */
     public function show($id)
     {
-        return view('podcast.show',  ['podcast'=>auth()->user()->podcasts()->findOrFail($id)]);
+        return view('podcast.show', ['podcast' => auth()->user()->podcasts()->findOrFail($id)]);
     }
 
     /**

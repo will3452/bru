@@ -90,7 +90,7 @@
                 <div class="card-body">
                     <h6 class="heading-small text-muted mb-4">Content</h6>
                     <ul class="list-group mb-2">
-                        @foreach($fiveBooks as $key=>$chapter)
+                        @foreach($chapters as $key=>$chapter)
                         <li class="list-group-item d-flex align-items-center justify-content-between">
                             
                             <div class="d-flex align-items-center">

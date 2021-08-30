@@ -24,7 +24,7 @@
         </div>
     </div>
     <div>
-        @if($message->read_at) <a href="{{ route('inbox.show', $message) }}" class="btn btn-outline-primary btn-sm">read</a>
+        @if($message->read_at) <a href="{{ route('inbox.show', $message) }}" class="btn btn-outline-primary btn-sm">Read</a>
         @else
         <form action="{{ route('inbox.update', $message) }}" method="POST">
             @csrf

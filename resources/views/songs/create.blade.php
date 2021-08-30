@@ -13,10 +13,10 @@
         <x-form.select
         label="Genre"
         name="genre"
-        :options="\App\SongGenre::pluck('name')->map(function($value, $key){
+        :options="\App\SongGenre::get()->map(function($item){
             return [
-                'value'=>$value,
-                'label'=>$value
+                'value'=>$item->name,
+                'label'=>$item->label
             ];
         })" required/>
 

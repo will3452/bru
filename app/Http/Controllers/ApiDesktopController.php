@@ -65,14 +65,14 @@ class ApiDesktopController extends Controller
         });
 
         $finished = [
-            [
-                'title' => 'sample title',
-                'author' => 'author 1',
-            ],
-            [
-                'title' => 'sample title 2',
-                'author' => 'author 2',
-            ],
+            // [
+            //     'title' => 'sample title',
+            //     'author' => 'author 1',
+            // ],
+            // [
+            //     'title' => 'sample title 2',
+            //     'author' => 'author 2',
+            // ],
         ];
         $return = $shelfs;
         if ($data['type'] == 'listening') {
