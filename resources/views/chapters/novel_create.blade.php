@@ -110,10 +110,10 @@
                         <label for="picture">Upload Art Scene</label>
                         <input type="file" class="d-block" name="art_photo" id="picture" accept="image/*" >
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="">Art Scene Cost</label>
                         <input type="number" name="art_cost" value="{{ old('cost') ?? 0 }}" class="form-control">
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="form-group">
