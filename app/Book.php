@@ -33,8 +33,11 @@ class Book extends Model
 
     public function setPublishDateAttribute($value)
     {
-        [$d, $m, $y] = explode('-', $value);
-        $this->attributes['publish_date'] = $y . '-' . $m . '-' . $d;
+        // [$d, $m, $y] = explode('-', $value);
+
+        // $this->attributes['publish_date'] = $y . '-' . $m . '-' . $d;
+        $this->attributes['publish_date'] = $value;
+
     }
 
     public function getLastchapterAttribute()

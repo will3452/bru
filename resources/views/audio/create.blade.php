@@ -264,13 +264,11 @@
         </div>
         <div class="form-group">
             <label for="#">Review Question <sup class="d-inline-block" style="width:20px;height:20px;">1</sup></label>
-            <input type="text" class="form-control" name="review_question_1" placeholder="maximum of 300 characters only" value="@if(isset($book)){{ $book->review_question_1 ?? ''}}@else{{ old('review_question_1') ?? ''}}@endif
-            ">
+            <input type="text" class="form-control" name="review_question_1" placeholder="maximum of 300 characters only" value="@if(isset($book)){{ $book->review_question_1 ?? ''}}@else{{ old('review_question_1') ?? ''}}@endif">
         </div>
         <div class="form-group">
             <label for="#">Review Question <sup class="d-inline-block" style="width:20px;height:20px;">2</sup></label>
-            <input type="text" class="form-control" name="review_question_2" placeholder="maximum of 300 characters only" value="@if(isset($book)){{ $book->review_question_2 ?? ''}}@else{{ old('review_question_2') ?? ''}}@endif
-            ">
+            <input type="text" class="form-control" name="review_question_2" placeholder="maximum of 300 characters only" value="@if(isset($book)){{ $book->review_question_2 ?? ''}}@else{{ old('review_question_2') ?? ''}}@endif">
         </div>
         <div class="form-group">
             <div class="alert alert-success d-flex align-items-center">

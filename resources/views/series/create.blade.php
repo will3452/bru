@@ -66,7 +66,7 @@
 
         <x-form.group>
             <x-form.label>
-                Upload Serices Cover
+                Upload Series Cover
             </x-form.label>
             <x-form.file name="cover" required/>
         </x-form.group>

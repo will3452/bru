@@ -199,10 +199,15 @@
                                     <option value="Reagan" {{ $book->lead_college == 'Reagan' ? 'selected': '' }}>Reagan</option>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label for="#">Blurb</label>
-                                <textarea name="blurb" id="tetxArea" cols="30" rows="10" id="blurb">{{ old('blurb') ?? $book->blurb }}</textarea>
-                            </div>
+
+                            <x-form.group>
+                                <x-form.textarea
+                                label="Blurb"
+                                name="blurb">
+                                {{ old('blurb') ?? $book->blurb }}
+                                </x-form.textarea>
+                            </x-form.group>
+
                             <div class="form-group">
                                 <label for="#">Cost</label>
                                 <input type="text"  disabled name="cost" class="form-control" min="0" value="{{ $book->cost }}">
@@ -215,10 +220,14 @@
                                 <label for="#">Review Question <sup class="d-inline-block" style="width:20px;height:20px;">2</sup></label>
                                 <input type="text" value="{{ $book->review_question_2 }}" class="form-control" name="review_question_2">
                             </div>
-                            <div class="form-group">
-                                <label for="#">Credit Page</label>
-                                <textarea name="credit_page" rows="10">{{ old('credit_page') ?? $book->credit_page }}</textarea>
-                            </div>
+
+                            <x-form.group>
+                                <x-form.textarea
+                                label="Credit Page"
+                                name="credit_page">
+                                {{ old('credit_page') ?? $book->credit_page }}
+                                </x-form.textarea>
+                            </x-form.group>
                         </div>
                         
                         <!-- Button -->
@@ -248,9 +257,7 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="form-group">
-                                    <label for="">Click here to choose the date.</label>
-                                    <input type="text" id="pdate" name="publish_date" required readonly class="form-control" data-field="date" value="{{ $book->publish_date }}">
-                                    <div id="dbox"></div>
+                                    <x-form.input value="{{ $book->publish_date }}" type="date" label="Click here to choose the date." name="publish_date" required/>
                                 </div>
                                 <div class="form-group"></div>
                                 <div class="row justify-content-center">
@@ -450,13 +457,12 @@
     <link rel="stylesheet" href="{{ asset('vendor\datepicker\DateTimePicker.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2-bootstrap.min.css') }}">
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+    <x-vendor.ckeditor/>
     <script src="/js/app.js"></script>
 @endsection
 @section('bottom')
-    <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}" defer></script>
-    <script src="{{ asset('vendor\datepicker\DateTimePicker.min.js') }}"></script>
     <script src="{{ asset('vendor/select2/select2.min.js') }}" defer></script>
-    <script>
+    {{-- <script>
         $(function(){
             $('#dbox').DateTimePicker();
             $.fn.select2.defaults.set( "theme", "bootstrap" );
@@ -519,5 +525,5 @@
         }
       ],});
         })
-    </script>
+    </script> --}}
 @endsection

@@ -104,8 +104,10 @@ class BookController extends Controller
             'publish_date' => '',
         ]);
 
-        $d = $book->update($validated);
-        return redirect(route('home'))->withSuccess('Save Changed!');
+        $book->update($validated);
+
+        toast('Publish Date updated!', 'success');
+        return back();
     }
 
     public function destroy(Book $book)
