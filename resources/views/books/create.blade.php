@@ -272,15 +272,13 @@
             </div>
             <div class="card card-body shadow mt-2" id="upload_art">
                 <label for="">Upload art here</label>
-                <x-form.input  accept="image/*" class="d-block" name="free_art"/>
-                <div class="alert alert-warning mt-2">
-                    <div>
-                        <strong>Required*</strong>
-                    </div>
-                    <input type="checkbox" required id="ck_box" name="cpy">
-                    @copyright_disclaimer
-                </div>
+                <x-form.file name="free_art" label=""/>
             </div>
+            
+            <x-form.group>
+                <x-copyright-disclaimer/>
+            </x-form.group>
+
             <div class="alert alert-info mt-2" id="no_upload_art">
                 Great, you may proceed.
             </div>

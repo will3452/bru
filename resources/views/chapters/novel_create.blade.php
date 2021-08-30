@@ -93,10 +93,10 @@
                 <label for="">Author's Notes </label>
                 <textarea name="foot_note" id="" cols="30" rows="10" class="form-control"></textarea>
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="">Cost</label>
                 <input type="number" name="cost" value="{{ old('cost') ?? 0 }}" class="form-control">
-            </div>
+            </div> --}}
             <div class="form-group" id="freeart">
                 <div id="freeart-child">
                     <div class="alert alert-warning mt-2">
