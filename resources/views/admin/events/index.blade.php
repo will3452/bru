@@ -75,22 +75,24 @@
                     </div>
                 </td>
                 <td>
-                    <form id="cancel{{ $event->id }}" action="{{ route('admin.events.update', $event) }}" method="POST">
-                        <input type="hidden" name="q" value="cancelled">
-                        @csrf
-                        @method('PUT')
-                    </form>
-                    <form id="approve{{ $event->id }}" action="{{ route('admin.events.update', $event) }}" method="POST">
-                        <input type="hidden" name="q" value="approved">
-                        @csrf
-                        @method('PUT')
-                    </form>
-                    <button onclick="toApprove({{ $event->id }})" class="btn btn-sm btn-success">
-                        Approve
-                    </button>
-                    <button onclick="toCancel({{ $event->id }})" class="btn btn-sm btn-danger">
-                        Cancel
-                    </button>
+                    @if ($event->remark != 'approved')
+                        <form id="cancel{{ $event->id }}" action="{{ route('admin.events.update', $event) }}" method="POST">
+                            <input type="hidden" name="q" value="cancelled">
+                            @csrf
+                            @method('PUT')
+                        </form>
+                        <form id="approve{{ $event->id }}" action="{{ route('admin.events.update', $event) }}" method="POST">
+                            <input type="hidden" name="q" value="approved">
+                            @csrf
+                            @method('PUT')
+                        </form>
+                        <button onclick="toApprove({{ $event->id }})" class="btn btn-sm btn-success">
+                            Approve
+                        </button>
+                        <button onclick="toCancel({{ $event->id }})" class="btn btn-sm btn-danger">
+                            Cancel
+                        </button>
+                    @endif
                 </td>
             </tr>
             @endforeach
