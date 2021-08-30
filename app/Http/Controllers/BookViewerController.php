@@ -15,7 +15,7 @@ class BookViewerController extends Controller
      */
     public function __invoke(Request $request, Book $book)
     {
-        $pages = $book->chapters()->orderBy('sq')->simplePaginate(1);
+        $pages = $book->chapters()->whereNotIn('mode', ['epilogue', 'prologue'])->orderBy('sq')->simplePaginate(1);
         return view('books.viewer', compact('book', 'pages'));
     }
 }

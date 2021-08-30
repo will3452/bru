@@ -24,7 +24,6 @@
                     <div id="page-content">
                         {!! $chapter->content !!}
                     </div>
-                    {{ $chapter->content }}
                </div>
             </div>
             @endforeach

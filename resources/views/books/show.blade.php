@@ -92,7 +92,6 @@
                     <ul class="list-group mb-2">
                         @foreach($chapters as $key=>$chapter)
                         <li class="list-group-item d-flex align-items-center justify-content-between">
-                            
                             <div class="d-flex align-items-center">
                                 {{-- <span><strong> {{ $chapter->sq }}</strong> {{ $chapter->title != null ? $chapter->title : $chapter->mode }}</span> --}}
                                 <span>{{ $chapter->title != null ? $chapter->title : $chapter->mode }}</span>
