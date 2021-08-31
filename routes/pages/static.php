@@ -1,10 +1,21 @@
 <?php
-Route::view('/', 'landing');
 
-//static website
-Route::view('/about', 'about');
+use App\Http\Controllers\StaticPageController;
 
-Route::view('/contact', 'contactus');
+Route::prefix('/')->name('static.')->group(function () {
+
+    Route::get('/', [StaticPageController::class, 'home'])->name('home');
+    Route::get('/contact', [StaticPageController::class, 'contact'])->name('contact');
+    Route::get('/about', [StaticPageController::class, 'about'])->name('about');
+
+});
+
+// Route::view('/', 'landing');
+
+// //static website
+// Route::view('/about', 'about');
+
+// Route::view('/contact', 'contactus');
 
 Route::view('/bru', 'bru');
 
