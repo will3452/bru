@@ -15,8 +15,6 @@ Route::prefix('/')->name('static.')->group(function () {
 // //static website
 // Route::view('/about', 'about');
 
-// Route::view('/contact', 'contactus');
-
 Route::view('/bru', 'bru');
 
 Route::view('/terms-and-conditions', 'terms_and_condition');
