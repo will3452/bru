@@ -19,7 +19,7 @@
                 window.location.href = '/admin/login';
             }
         })
-    })
+    });
 </script>
 @include('partials.cookies-alert')
 </body>

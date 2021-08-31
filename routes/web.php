@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StaticPageController;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
@@ -94,4 +95,11 @@ include __DIR__ . '/pages/cron.php';
 //factory
 include __DIR__ . '/pages/factory.php';
 
+//static
+Route::prefix('/static')->name('static.')->group(function () {
 
+    Route::get('/home', [StaticPageController::class, 'home'])->name('home');
+    Route::get('/contact', [StaticPageController::class, 'contact'])->name('contact');
+    Route::get('/about', [StaticPageController::class, 'about'])->name('about');
+
+});

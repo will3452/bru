@@ -15,7 +15,7 @@
     
 </style>
 <div id="pp">
-    <div class="" style="background:url('/img/card-bg-custom.png');
+    <div class="" style="background:url('/static/cardbg.png');
         background-size: cover;padding:1em;">
         Please read our <a href="/privacy-policy" target="_blank">Privacy Policy</a> first. By continuing to browse this site and/or clicking I AGREE, you guarantee that you have read and understood our Privacy Policy and that you consent to its terms.
         <button class="btn btn-primary mt-5" onclick="ppAgree()">I AGREE</button>

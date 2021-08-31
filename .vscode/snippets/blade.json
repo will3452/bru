@@ -76,6 +76,10 @@
     "form upload":{
         "prefix":"brufu",
         "body":"<x-form.upload\nlabel=\"$1\"\nchunk=\"300kb$2\"\nlimit=\"800mb$3\"\ntitle=\"audio file\"\next=\"mp3, wav$4\"\nsubmit_id=\"$5\"\n$6/>"
+    },
+    "static ":{
+        "prefix":"brust",
+        "body":"<x-static.$1/>"
     }
     
 }

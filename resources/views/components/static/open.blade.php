@@ -1,0 +1,1 @@
+<button class="close active">+</button>
