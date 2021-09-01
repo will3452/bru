@@ -17,8 +17,8 @@
             >ABOUT</a>
             <a href="{{ route('static.contact') }}"
             class="{{ route('static.contact') != url()->current() ?:'active' }}">CONTACT</a>
-            <a href="/please-input-aan">SIGN IN</a>
-            <a href="/login">SIGN UP</a>
+            <a href="/please-input-aan">SIGN UP</a>
+            <a href="/login">SIGN IN</a>
         </span>
         {{-- end desktop --}}
     </nav>
