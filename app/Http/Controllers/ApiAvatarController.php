@@ -39,8 +39,9 @@ class ApiAvatarController extends Controller
             'outfit' => '',
             'shoes' => '',
         ]);
+        $data['user_id'] = auth()->user()->id;
         // return auth()->user();
-        Avatar::where('user_id', auth()->user()->id)->first()->update($data);
+        Avatar::create($data);
         return response([
             'message' => request()->all(),
             'result' => 200,
