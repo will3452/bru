@@ -22,6 +22,12 @@ class ApiAuthController extends Controller
     {
         $user = User::find(auth()->user()->id);
 
+        if (!$user) {
+            return response([
+                'result' => 404
+                , 200]);
+        }
+
         $avatar = Avatar::where('user_id', $user->id)->first();
         $college = $user->interests()->where('type', 'college')->first()->name;
 
