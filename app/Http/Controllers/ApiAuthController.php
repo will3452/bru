@@ -109,6 +109,14 @@ class ApiAuthController extends Controller
             'room' => '',
         ]);
 
+        $emailExist = User::where('email', $request->email)->first();
+        if ($emailExist) {
+            return response([
+                'alert' => 'email is already in used!',
+                'result' => 200,
+            ], 200);
+        }
+
         $user = User::create([
             'last_name' => $request->last_name,
             'first_name' => $request->first_name,
@@ -153,6 +161,7 @@ class ApiAuthController extends Controller
             'intererts' => $user->interests,
             'token' => $token,
             'result' => 200,
+            'alert' => 'success',
         ];
 
         return response($response, 201);
