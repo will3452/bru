@@ -11,6 +11,10 @@ html {
     display: none;
 }
 
+#writewithus {
+    width: 300px;
+}
+
 #logo,
 #logo > img {
     width: 150px !important;
