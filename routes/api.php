@@ -178,6 +178,7 @@ Route::prefix('v1')->group(function () {
         Route::get('/desktop', 'ApiDesktopController@getOverview');
 
         Route::get('/notifications', 'ApiNotificationController@get');
+        Route::post('/sound', 'ApiMuteSoundController');
 
         //suddenly closed the application
         Route::post('/open', 'ApiAuthController@open');
