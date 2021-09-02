@@ -36,6 +36,21 @@
                                 <option value="formal">School Uniform</option>
                             </select>
                         </div>
+                        <x-form.group>
+                            <x-form.select
+                            label="For what gender ?"
+                            name="gender"
+                            :options="[
+                                [
+                                    'label'=>'Male',
+                                    'value'=>'Male'
+                                ],
+                                [
+                                    'label'=>'Female',
+                                    'value'=>'Female'
+                                ]
+                            ]" required/>
+                        </x-form.group>
                     </template>
                 </div>
                 <div class="form-group">
