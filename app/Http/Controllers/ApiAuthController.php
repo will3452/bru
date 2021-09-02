@@ -113,7 +113,7 @@ class ApiAuthController extends Controller
         if ($emailExist) {
             return response([
                 'alert' => 'email is already in used!',
-                'result' => 200,
+                'result' => 404,
             ], 200);
         }
 
