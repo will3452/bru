@@ -6,6 +6,7 @@ use App\Avatar;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ApiAuthController extends Controller
 {
@@ -17,6 +18,31 @@ class ApiAuthController extends Controller
         }
     }
 
+    public function open()
+    {
+        $user = User::find(auth()->id());
+
+        $avatar = Avatar::where('user_id', $user->id)->first();
+        $college = $user->interests()->where('type', 'college')->first()->name;
+
+        $royalties = $user->royalties;
+
+//user
+        $this->dayLogCreate($user);
+
+        $response = [
+            'user' => $user,
+            'royalties' => $royalties,
+            'avatar' => $avatar ?? null,
+            'bio' => $user->bio,
+            'interests' => $user->interests,
+            'college' => $college,
+            'result' => 200,
+        ];
+
+        return response($response, 200);
+    }
+
     public function login()
     {
         $fields = request()->validate([
@@ -25,7 +51,7 @@ class ApiAuthController extends Controller
         ]);
 
         $user = User::where('email', $fields['email'])->first();
-        if (!$user || !\Hash::check($fields['password'], $user->password)) {
+        if (!$user || !Hash::check($fields['password'], $user->password)) {
             return response([
                 'message' => 'Bad Creds',
                 'result' => 500,
