@@ -20,7 +20,7 @@ class ApiAuthController extends Controller
 
     public function open()
     {
-        $user = User::find(auth()->id());
+        $user = User::find(auth()->user()->id);
 
         $avatar = Avatar::where('user_id', $user->id)->first();
         $college = $user->interests()->where('type', 'college')->first()->name;
