@@ -11,21 +11,25 @@ class ApiNotificationController extends Controller
                 'type' => 'announcement',
                 'message' => 'lorem ipsum dolor set',
                 'more' => '',
+                'date' => now()->diffForHumans(),
             ],
             [
                 'type' => 'announcement 2',
                 'message' => 'lorem ipsum dolor set',
                 'more' => '',
+                'date' => now()->diffForHumans(),
             ],
             [
                 'type' => 'announcemen 3',
                 'message' => 'lorem ipsum dolor set',
                 'more' => '',
+                'date' => now()->diffForHumans(),
             ],
             [
                 'type' => 'announcemen 4',
                 'message' => 'lorem ipsum dolor set',
                 'more' => '',
+                'date' => now()->diffForHumans(),
             ],
         ]);
 
