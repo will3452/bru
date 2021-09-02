@@ -15,7 +15,7 @@ class AddMuteSountToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('sound_mute', 4)->default('on');
-            $table->string('notificatin_mute', 4)->default('on');
+            $table->string('notif_mute', 4)->default('on');
         });
     }
 
@@ -27,7 +27,8 @@ class AddMuteSountToUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('mute');
+            $table->dropColumn('sound_mute');
+            $table->dropColumn('notificatin_mute');
         });
     }
 }

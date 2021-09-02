@@ -18,7 +18,7 @@ class ApiMuteSoundController extends Controller
 
         $user = User::find(auth()->id());
 
-        if ($request->sound) {
+        if ($request->has('sound')) {
             if ($user->sound_mute == 'off') {
                 $user->sound_mute = 'on';
             } else {
@@ -26,7 +26,7 @@ class ApiMuteSoundController extends Controller
             }
         }
 
-        if ($request->notif) {
+        if ($request->has('notif')) {
             if ($user->notificatin_mute == 'off') {
                 $user->notificatin_mute = 'on';
             } else {
