@@ -20,6 +20,7 @@ class ApiAuthController extends Controller
 
     public function open()
     {
+        return 1;
         $user = User::find(auth()->user()->id);
 
         if (!$user) {
