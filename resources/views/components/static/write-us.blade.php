@@ -1,1 +1,1 @@
-<img src="/static/writewithus.png" alt="" style="width:300px;" id="writewithus"/>
+<img src="/static/writewithus.png" alt="" style="min-width:100px; max-width:300px; width:100%;" id="writewithus"/>
