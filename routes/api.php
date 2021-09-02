@@ -179,6 +179,8 @@ Route::prefix('v1')->group(function () {
 
         Route::get('/notifications', 'ApiNotificationController@get');
 
+        //suddenly closed the application
+        Route::post('/open', 'ApiAuthController@open');
     });
 
     //search
@@ -194,7 +196,6 @@ Route::prefix('v1')->group(function () {
     // public
     Route::post('/register', 'ApiAuthController@register');
     Route::post('/login', 'ApiAuthController@login');
-    Route::post('/open', 'ApiAuthController@open');
 
     // preloader
     Route::get('/preloader', 'ApiPreloaderController@random');
