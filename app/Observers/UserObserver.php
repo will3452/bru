@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use App\Avatar;
 use App\User;
 
 class UserObserver
@@ -26,7 +25,7 @@ class UserObserver
             'purple_crystal' => 0,
         ];
         $user->royalties()->create($royalties);
-        Avatar::create(['user_id' => $user->id]);
+        // Avatar::create(['user_id' => $user->id]);
     }
 
     /**

@@ -44,7 +44,7 @@ class ApiAuthController extends Controller
         $response = [
             'user' => $user,
             'royalties' => $royalties,
-            'avatar' => $avatar,
+            'avatar' => $avatar ?? null,
             'bio' => $user->bio,
             'interests' => $user->interests,
             'college' => $college,
