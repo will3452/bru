@@ -21,20 +21,28 @@ class ApiMuteSoundController extends Controller
         if ($request->has('sound')) {
             if ($request->sound == 'off') {
                 $user->sound_mute = 'on';
+                $user->save();
+
             } else {
                 $user->sound_mute = 'off';
+                $user->save();
+
             }
         }
 
         if ($request->has('notif')) {
             if ($user->notif == 'off') {
                 $user->notif_mute = 'on';
+                $user->save();
+
             } else {
                 $user->notif_mute = 'off';
+                $user->save();
+
             }
         }
 
-        $user->save();
+        
 
         return response([
             'mute' => $user->sound_mute,
