@@ -177,6 +177,8 @@ Route::prefix('v1')->group(function () {
         //desktop-summary
         Route::get('/desktop', 'ApiDesktopController@getOverview');
 
+        Route::get('/notifications', 'ApiNotificationController@get');
+
     });
 
     //search
