@@ -81,7 +81,7 @@ class ApiAuthController extends Controller
             'last_name' => $request->last_name,
             'first_name' => $request->first_name,
             'email' => $request->email,
-            'password' => \Hash::make($request->password),
+            'password' => bcrypt($request->password),
             'role' => 'student',
             'bruname' => $request->bruname,
             'room' => $request->room ?? '',
