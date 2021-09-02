@@ -10,10 +10,12 @@ class ApiProductsController extends Controller
     //merch
     public function getProducts()
     {
+
+        $user = User::find(auth()->user()->id);
         if (request()->type == 'decor') {
             $products = Product::where('category', 'decor')->get();
         } else if (request()->type == 'clothes') {
-            $products = Product::where('category', 'clothes')->get();
+            $products = Product::where('category', 'clothes')->where('gender', $user->room)->get();
         } else {
             $products = Product::where('category', 'merch')->get();
         }
