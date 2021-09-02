@@ -20,7 +20,7 @@ class ApiAuthController extends Controller
 
     public function open()
     {
-        return 1;
+        return auth('sanctum')->user();
         $user = User::find(auth()->user()->id);
 
         if (!$user) {
