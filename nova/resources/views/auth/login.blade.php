@@ -5,7 +5,7 @@
 @include('nova::auth.partials.header')
 
 <form
-    class="shadow rounded-lg p-8 max-w-login mx-auto bg-indigo-900"
+    class="bg-indigo-900 shadow rounded-lg p-8 max-w-login mx-auto "
     method="POST"
     action="{{ route('nova.login') }}"
 >
