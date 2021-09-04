@@ -54,6 +54,6 @@ class LoginController extends Controller
         if (!auth()->user()->pens()->count()) {
             return route('profile') . '#pen';
         }
-        return $this->redirectTo;
+        return '/home';
     }
 }
