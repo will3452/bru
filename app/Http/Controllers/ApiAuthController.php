@@ -109,8 +109,8 @@ class ApiAuthController extends Controller
             'room' => '',
         ]);
 
-        $emailExist = User::where('email', $request->email)->first();
-        if ($emailExist) {
+        $emailExist = User::where('email', $request->email)->get();
+        if (count($emailExist)) {
             return response([
                 'alert' => 'email is already in used!',
                 'result' => 404,
