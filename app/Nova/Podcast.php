@@ -56,6 +56,7 @@ class Podcast extends Resource
                 ->required(),
 
             Image::make('cover')
+                ->disk('nova')
                 ->required()
                 ->onlyOnDetail()
                 ->disableDownload(),

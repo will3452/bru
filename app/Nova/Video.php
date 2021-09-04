@@ -66,6 +66,7 @@ class Video extends Resource
                 ->disableDownload(),
 
             Image::make('Cover')
+                ->disk('nova')
                 ->onlyOnDetail()
                 ->required()
                 ->disableDownload(),

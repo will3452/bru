@@ -63,6 +63,7 @@ class AudioBook extends Resource
                 ]),
 
             Image::make('Cover')
+                ->disk('nova')
                 ->onlyOnDetail()
                 ->disableDownload(),
 

@@ -76,6 +76,7 @@ class Song extends Resource
                 ->onlyOnDetail(),
 
             Image::make('Cover')
+                ->disk('nova')
                 ->disableDownload()
                 ->onlyOnDetail()
                 ->required(),

@@ -65,6 +65,7 @@ class Book extends Resource
                 ]),
 
             Image::make('Cover')
+                ->disk('nova')
                 ->onlyOnDetail()
                 ->disableDownload(),
 
@@ -91,7 +92,7 @@ class Book extends Resource
                     'Non-BRU' => 'Non-BRU',
                 ])
                 ->required(),
-            
+
             Textarea::make('Blurb')
                 ->rules('required'),
 
