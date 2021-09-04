@@ -14,6 +14,7 @@ class UserObserver
      */
     public function created(User $user)
     {
+        
         $user->box()->create();
         $user->homework()->create([]);
 

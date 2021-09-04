@@ -14,6 +14,7 @@ use Multicaret\Acquaintances\Traits\CanLike;
 use Multicaret\Acquaintances\Traits\CanRate;
 use Multicaret\Acquaintances\Traits\CanSubscribe;
 use Multicaret\Acquaintances\Traits\Friendable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -24,6 +25,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use CanLike, CanBeLiked;
     use CanRate, CanBeRated;
     use CanSubscribe;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.

@@ -1,0 +1,1 @@
+<img src="/static/textlogo.png" alt="" width="300px">

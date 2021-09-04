@@ -7,17 +7,33 @@
         "laravel"
     ],
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./nova"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/MiamiIce"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/NovaPermissionsField"
+        }
+    ],
     "require": {
         "php": "^7.3.0",
         "barryvdh/laravel-debugbar": "^3.6",
         "barryvdh/laravel-dompdf": "^0.9.0",
         "devmarketer/easynav": "^1.0",
-        "doctrine/dbal": "^3.0",
+        "doctrine/dbal": "^2.9",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.0",
         "laravel/legacy-factories": "^1.0",
+        "coreproc/nova-permissions-field": "*",
+        "laravel/nova": "*",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
@@ -26,7 +42,9 @@
         "mews/captcha": "^3.2",
         "multicaret/laravel-acquaintances": "^3.5",
         "realrashid/sweet-alert": "^4.0",
-        "wildbit/swiftmailer-postmark": "^3.3"
+        "spatie/laravel-permission": "^5.1",
+        "wildbit/swiftmailer-postmark": "^3.3",
+        "example/miami-ice": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+
 class ApiNotificationController extends Controller
 {
     public function get()
     {
+        $user = User::find(auth()->user()->id);
+
         $notifications = collect([
             [
                 'type' => 'announcement',
@@ -32,6 +36,13 @@ class ApiNotificationController extends Controller
                 'date' => now()->diffForHumans(),
             ],
         ]);
+
+        if ($user->notif_mute == 'off') {
+            return response([
+                'notifications' => [],
+                'result' => 200,
+            ], 200);
+        }
 
         return response([
             'notifications' => $notifications,

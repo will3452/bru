@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\AAN;
 use App\Invoice;
+use App\Observers\AANObserver;
 use App\Observers\InvoiceObserver;
 use App\Observers\UserObserver;
 use App\User;
@@ -33,5 +35,6 @@ class EventServiceProvider extends ServiceProvider
         parent::boot();
         User::observe(UserObserver::class);
         Invoice::observe(InvoiceObserver::class);
+        AAN::observe(AANObserver::class);
     }
 }

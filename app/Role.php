@@ -2,16 +2,16 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Models\Role as SRole;
 
-class Role extends Model
+class Role extends SRole
 {
-    use HasFactory;
-    protected $guarded = [];
+    const SUPERADMIN = 'super admin';
 
-    public function admins()
+    protected $appends = ['prepared_permissions'];
+
+    public function getPreparedPermissionsAttribute()
     {
-        return $this->belongsToMany(Admin::class);
+        return $this->permissions->pluck('name')->toArray();
     }
 }
