@@ -8,7 +8,7 @@
         xx.addEventListener('click', function(){
             count++;
             if(count >= 3){
-                window.location.href = '/admin/login';
+                window.location.href = '/nova/login';
             }
         })
     });
