@@ -18,7 +18,7 @@ class ArtPolicy
      */
     public function viewAny(User $user)
     {
-        return view('view art scene list');
+        return $user->can('view art scene list');
     }
 
     /**
@@ -30,7 +30,7 @@ class ArtPolicy
      */
     public function view(User $user, Art $art)
     {
-        return view('view art scene details');
+        return $user->can('view art scene details');
     }
 
     /**
@@ -41,7 +41,7 @@ class ArtPolicy
      */
     public function create(User $user)
     {
-        return view('create art scene');
+        return $user->can('create art scene');
 
     }
 
@@ -54,7 +54,7 @@ class ArtPolicy
      */
     public function update(User $user, Art $art)
     {
-        return view('update art scene');
+        return $user->can('update art scene');
     }
 
     /**
@@ -66,7 +66,7 @@ class ArtPolicy
      */
     public function delete(User $user, Art $art)
     {
-        return view('delete art scene');
+        return $user->can('delete art scene');
     }
 
     /**
@@ -78,7 +78,7 @@ class ArtPolicy
      */
     public function restore(User $user, Art $art)
     {
-        return view('restore art scene');
+        return $user->can('restore art scene');
     }
 
     /**
@@ -90,6 +90,6 @@ class ArtPolicy
      */
     public function forceDelete(User $user, Art $art)
     {
-        return view('force delete art scene');
+        return $user->can('force delete art scene');
     }
 }

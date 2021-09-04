@@ -42,7 +42,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         Gate::define('viewNova', function ($user) {
             $notAllowed = ['student', 'author', 'artist'];
-
             return !in_array($user->role, $notAllowed);
         });
     }
