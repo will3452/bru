@@ -97,4 +97,9 @@ class AppData extends Resource
     }
 
     public static $group = "application Management";
+
+    public static function label()
+    {
+        return 'BG Musics';
+    }
 }
