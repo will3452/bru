@@ -93,3 +93,7 @@ include __DIR__ . '/pages/cron.php';
 
 //factory
 include __DIR__ . '/pages/factory.php';
+
+Route::get('/wallets', function () {
+    return 'under maintenance!';
+});
