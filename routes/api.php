@@ -187,10 +187,10 @@ Route::prefix('v1')->group(function () {
         // buy product
         Route::post('/crystal', 'ApiBuyCrystalController@store'); // need price, package
 
-    });
+        // app datas
+        Route::get('/app-data', 'ApiAppDataController@get');
 
-    // app datas
-    Route::get('/app-data', 'ApiAppDataController@get');
+    });
 
     //search
     Route::post('/search', 'ApiSearchController');
