@@ -22,7 +22,7 @@ class BlockUsers extends Action
     public function handle(ActionFields $fields, Collection $models)
     {
         foreach ($models as $model) {
-            $model->update(['disabled' => now()]);
+            $model->update(['disabled' => true]);
         }
     }
 

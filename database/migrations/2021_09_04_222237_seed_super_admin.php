@@ -13,16 +13,23 @@ class SeedSuperAdmin extends Migration
      */
     public function up()
     {
-        $role = Role::create(['name' => Role::SUPERADMIN]);
+        $role = Role::where('name', Role::SUPERADMIN)->first();
+        if (!$role) {
+            $role = Role::create(['name' => Role::SUPERADMIN]);
+        }
 
-        $user = User::create([
-            'first_name' => 'super',
-            'last_name' => 'admin',
-            'role' => 'admin',
-            'email' => 'superadmin@bru.com',
-            'password' => bcrypt('password'),
-            'email_verified_at' => now(),
-        ]);
+        $user = User::where('email', 'superadmin@bru.com')->first();
+
+        if (!$user) {
+            $user = User::create([
+                'first_name' => 'super',
+                'last_name' => 'admin',
+                'role' => 'admin',
+                'email' => 'superadmin@bru.com',
+                'password' => bcrypt('password'),
+                'email_verified_at' => now(),
+            ]);
+        }
 
         $user->assignRole($role);
     }

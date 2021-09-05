@@ -3,13 +3,14 @@
 namespace App\Nova;
 
 use App\Nova\Actions\BlockUsers;
-use App\Nova\Lenses\BlockedUsers;
+use App\Nova\Actions\UnblockUsers;
+use App\Nova\Filters\UserFilter;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\MorphToMany;
 use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Http\Requests\NovaRequest;
 
 class User extends Resource
 {
@@ -24,11 +25,6 @@ class User extends Resource
     // {
     //     return false;
     // }
-
-    public static function indexQuery(NovaRequest $request, $query)
-    {
-        return $query->whereNull('disabled');
-    }
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -75,6 +71,11 @@ class User extends Resource
                 ->creationRules('unique:users,email')
                 ->updateRules('unique:users,email,{{resourceId}}'),
 
+            Boolean::make('Blocked', function ($request) {
+                return !$request->disabled;
+            })
+                ->required(),
+
             Select::make('User Type', 'role')
                 ->options([
                     'author' => 'author',
@@ -111,7 +112,9 @@ class User extends Resource
      */
     public function filters(Request $request)
     {
-        return [];
+        return [
+            (new UserFilter()),
+        ];
     }
 
     /**
@@ -122,9 +125,7 @@ class User extends Resource
      */
     public function lenses(Request $request)
     {
-        return [
-            (new BlockedUsers()),
-        ];
+        return [];
     }
 
     /**
@@ -137,6 +138,7 @@ class User extends Resource
     {
         return [
             (new BlockUsers()),
+            (new UnblockUsers()),
         ];
     }
 
