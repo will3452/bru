@@ -184,6 +184,9 @@ Route::prefix('v1')->group(function () {
         //suddenly closed the app
         Route::post('/open', 'ApiAuthController@open');
 
+        // buy product
+        Route::post('/crystal', 'ApiBuyCrystalController@store'); // need price, package
+
     });
 
     // app datas
