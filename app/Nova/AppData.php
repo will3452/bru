@@ -43,6 +43,7 @@ class AppData extends Resource
         return [
 
             Text::make('Key')
+                ->hideWhenUpdating()
                 ->required(),
 
             File::make('Value')
