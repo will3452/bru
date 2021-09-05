@@ -183,7 +183,11 @@ Route::prefix('v1')->group(function () {
 
         //suddenly closed the app
         Route::post('/open', 'ApiAuthController@open');
+
     });
+
+    // app datas
+    Route::get('/app-data', 'ApiAppDataController@get');
 
     //search
     Route::post('/search', 'ApiSearchController');
