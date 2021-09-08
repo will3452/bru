@@ -7,8 +7,10 @@ use App\Invoice;
 use App\Observers\AANObserver;
 use App\Observers\InvoiceObserver;
 use App\Observers\PermissionObserver;
+use App\Observers\TicketObserver;
 use App\Observers\UserObserver;
 use App\Permission;
+use App\Ticket;
 use App\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -39,5 +41,6 @@ class EventServiceProvider extends ServiceProvider
         Invoice::observe(InvoiceObserver::class);
         AAN::observe(AANObserver::class);
         Permission::observe(PermissionObserver::class);
+        Ticket::observe(TicketObserver::class);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Nova\Actions\BlockUsers;
+use App\Nova\Actions\SendMessage;
 use App\Nova\Actions\UnblockUsers;
 use App\Nova\Filters\UserFilter;
 use Illuminate\Http\Request;
@@ -139,6 +140,7 @@ class User extends Resource
         return [
             (new BlockUsers()),
             (new UnblockUsers()),
+            (new SendMessage()),
         ];
     }
 

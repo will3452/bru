@@ -24,12 +24,12 @@ class Message extends Model
 
     public function admin_sender()
     {
-        return $this->belongsTo(Admin::class, 'admin_sender_id');
+        return $this->belongsTo(User::class, 'admin_sender_id');
     }
 
     public function admin_receiver()
     {
-        return $this->belongsTo(Admin::class, 'admin_receiver_id');
+        return $this->belongsTo(User::class, 'admin_receiver_id');
     }
 
     public function getRepliesAttribute()
