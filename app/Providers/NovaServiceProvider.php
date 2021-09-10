@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Nova\Metrics\StudentsPerDay;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
@@ -41,8 +42,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function gate()
     {
         Gate::define('viewNova', function ($user) {
-            $notAllowed = ['student', 'author', 'artist'];
-            return !in_array($user->role, $notAllowed);
+            return $user->roles()->count();
         });
     }
 
@@ -54,7 +54,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            // new Help,
+            StudentsPerDay::make()->width('full'),
         ];
     }
 
