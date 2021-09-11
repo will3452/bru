@@ -96,7 +96,7 @@ class ApiAuthController extends Controller
             'last_name' => 'required',
             'first_name' => 'required',
             'email' => 'required',
-            'password' => 'required|min:8',
+            'password' => 'required',
             'sex' => 'required',
             'gender' => 'required',
             'college' => 'required',

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Nova\Metrics\NewMessages;
+use App\Nova\Metrics\PendingTickets;
 use App\Nova\Metrics\StudentsPerDay;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
@@ -54,7 +56,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            StudentsPerDay::make()->width('full'),
+            NewMessages::make(),
+            PendingTickets::make(),
+            StudentsPerDay::make(),
         ];
     }
 
