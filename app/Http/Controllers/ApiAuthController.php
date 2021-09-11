@@ -95,7 +95,7 @@ class ApiAuthController extends Controller
         $fields = request()->validate([
             'last_name' => 'required',
             'first_name' => 'required',
-            'email' => 'required|unique:users',
+            'email' => 'required',
             'password' => 'required|min:8',
             'sex' => 'required',
             'gender' => 'required',
