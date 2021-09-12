@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use App\Character;
 use App\Nova\Filters\MessageFilter;
+use App\User;
 use Epartment\NovaDependencyContainer\HasDependencies;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Boolean;
@@ -63,6 +64,24 @@ class Message extends Resource
             Select::make('Character')
                 ->options(Character::get()->pluck('name', 'name'))
                 ->required(),
+
+            Select::make('Sender', function ($request) {
+                if ($request->sender_id) {
+                    return !User::find($request->sender_id) ?: User::find($request->sender_id)->full_name;
+                } else {
+                    return !User::find($request->admin_sender_id) ?: User::find($request->admin_sender_id)->full_name;
+                }
+            })
+                ->exceptOnForms(),
+
+            Select::make('Receipient', function ($request) {
+                if ($request->receiver_id) {
+                    return !User::find($request->receiver_id) ?: User::find($request->receiver_id)->full_name;
+                } else {
+                    return !User::find($request->admin_receiver_id) ?: User::find($request->admin_receiver_id)->full_name;
+                }
+            })
+                ->exceptOnForms(),
 
             CKEditor5Classic::make('body')
                 ->required()
