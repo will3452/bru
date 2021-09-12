@@ -124,4 +124,15 @@ class ApiDiaryController extends Controller
             'dates' => $dates,
         ]);
     }
+
+    public function getCurrentEntry()
+    {
+        $user = User::find(auth()->user()->id);
+        $current = $user->diaries()->whereDate('created_at', now())->latest()->first();
+
+        return response([
+            'own_entry' => $current ?? '',
+            'result' => 200
+            , 200]);
+    }
 }
