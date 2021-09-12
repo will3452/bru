@@ -27,7 +27,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         $schedule->command(DailyHallPasses::class)
-            ->everyMinute();
+            ->dailyAt('6:00');
     }
 
     /**
