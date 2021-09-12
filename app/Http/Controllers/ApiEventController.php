@@ -22,6 +22,7 @@ class ApiEventController extends Controller
 
     public function show($id)
     {
+        $user = User::find(auth()->user()->id);
         $event = Event::find($id);
         $game = $event->game;
 
@@ -29,6 +30,7 @@ class ApiEventController extends Controller
         $questions = null;
         $puzzle = null;
         $numberOfTry = 0;
+        $playable = 'false';
 
         // if quiz game
         if ($event->type == 'Quiz Game') {
@@ -42,11 +44,22 @@ class ApiEventController extends Controller
             $numberOfTry = $game->slot->number_of_tries;
         }
 
+        if ($event->gem == 'purple') {
+            if ((int) $user->royalties->purple_crystal >= (int) $event->cost) {
+                $playable = 'true';
+            }
+        } else {
+            if ((int) $user->royalties->white_crystal >= (int) $event->cost) {
+                $playable = 'true';
+            }
+        }
+
         return response([
             'event' => $event,
             'game' => $game,
             'questions' => $questions,
             'puzzle' => $puzzle,
+            'playable' => $playable, //data.playable = <string> true |false
             'number_of_tries' => $numberOfTry - User::find(auth()->user()->id)->spins()->where('game_id', $game->id)->count(),
             'spinable' => $this->getSpinnable($event->id),
             'result' => 200,
