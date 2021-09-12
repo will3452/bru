@@ -15,7 +15,10 @@ class ApiBookPreviewController extends Controller
         $user = User::find(auth()->user()->id);
 
         if (!$user->isBookIsInTheBox($book->id)) {
-            $chapters = $book->chapters()->limit(1)->paginate(1);
+            $chapters = $book->chapters()
+                ->orderBy('sq')
+                ->limit(1)
+                ->paginate(1);
             return response([
                 'chapters' => $chapters,
                 'book_title' => $book->title,
@@ -24,7 +27,7 @@ class ApiBookPreviewController extends Controller
             ], 200);
         }
 
-        $chapters = $book->chapters()->paginate(1);
+        $chapters = $book->chapters()->orderBy('sq')->paginate(1);
 
         //check if the book read as whole
         if (request()->page) {
@@ -99,7 +102,7 @@ class ApiBookPreviewController extends Controller
     public function showChapter($id)
     {
         $chapter = Chapter::find($id);
-        
+
         $comments = $chapter->comments()->with('user')->latest()->get();
         $hearts = $chapter->likes()->count();
         $stars = (int) $chapter->stars()->avg('value');

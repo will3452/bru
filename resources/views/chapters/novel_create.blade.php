@@ -21,7 +21,7 @@
             <select name="mode" id="mode" class="form-control" x-on:change="updateMode()">
                 <option value="chapter">Chapter</option>
                 <option value="prologue">Prologue</option>
-                <option value="epilogue ">Epilogue</option>
+                <option value="epilogue">Epilogue</option>
             </select>
             <template x-if="mode == 'chapter'">
                 <div>

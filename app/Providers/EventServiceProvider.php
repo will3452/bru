@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\AAN;
+use App\Chapter;
 use App\Invoice;
 use App\Observers\AANObserver;
+use App\Observers\ChapterObserver;
 use App\Observers\InvoiceObserver;
 use App\Observers\PermissionObserver;
 use App\Observers\TicketObserver;
@@ -42,5 +44,6 @@ class EventServiceProvider extends ServiceProvider
         AAN::observe(AANObserver::class);
         Permission::observe(PermissionObserver::class);
         Ticket::observe(TicketObserver::class);
+        Chapter::observe(ChapterObserver::class);
     }
 }

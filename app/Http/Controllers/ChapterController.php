@@ -48,8 +48,8 @@ class ChapterController extends Controller
         }
         // dd($validated);
         $chapter = $book->chapters()->create($validated);
-
-        return redirect()->route('books.show', $book)->withSuccess('Chapter Added');
+        toast('Chapter Added!', 'success');
+        return redirect()->route('books.show', $book);
     }
 
     public function storeSeries(Book $book)

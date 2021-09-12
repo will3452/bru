@@ -25,7 +25,7 @@
                 'label'=>'Chapter'
             ],
             [
-                'value'=>'prolouge',
+                'value'=>'prologue',
                 'label'=>'Prologue'
             ],
             [

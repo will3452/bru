@@ -78,7 +78,7 @@ class BookController extends Controller
 
         [$book, $chapters] = Cache::remember('book' . $book->id, 10, function () use ($book) {
             $book->load('chapters');
-            $chapters = $book->chapters()->get();
+            $chapters = $book->chapters()->orderBy('sq')->get();
             return [
                 $book,
                 $chapters,
