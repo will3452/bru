@@ -16,9 +16,8 @@ class ApiDiaryController extends Controller
             'body' => 'required',
         ]);
 
-        $user->logs()->create([
-            'content' => $data['body'],
-        ]);
+        $user->diaries()->create($data);
+
         return response([
             'result' => 200,
         ], 200);

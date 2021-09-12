@@ -40,7 +40,6 @@ class ApiBookPreviewController extends Controller
                 }
 
                 $user->homework->save();
-
             }
         }
 
