@@ -9,7 +9,7 @@
         <x-about-card img="/about-x/BRU.jpg"  link="#"></x-about-card>
         <x-about-card img="/about-x/BRUNIVERSITY.jpg" link="#"></x-about-card>
         <x-about-card img="/about-x/BRUNITY.jpg" link="#"></x-about-card>
-        <x-about-card img="/about-x/BRUCON.jpg" link="#"></x-about-card>
+        {{-- <x-about-card img="/about-x/BRUCON.jpg" link="#"></x-about-card> --}}
 
 
     </x-static.section>

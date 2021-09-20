@@ -79,6 +79,7 @@ class ApiEventController extends Controller
         $ids = explode(',', $data['ids']);
         $perfect = false; //fix me up
         $prizes = [];
+        $crystals = [];
 
         $royalty = Royalty::where('user_id', auth()->user()->id)->first();
         for ($i = 0; $i < $data['score']; $i++) {
@@ -86,10 +87,12 @@ class ApiEventController extends Controller
             if ($q->prize == 'Hall passes') {
                 $newval = (int) $royalty->hall_pass + (int) $q->qty;
                 $royalty->update(['hall_pass' => $newval]);
+                $crystals[] = 'hall_pass';
                 array_push($prizes, $q->qty . " hall pass(es)");
             } else if ($q->prize == 'White Crystal') {
                 $newval = (int) $royalty->white_crystal + (int) $q->qty;
                 $royalty->update(['white_crystal' => $newval]);
+                $crystals[] = 'white_crystal';
                 array_push($prizes, $q->qty . " white crystal(s)");
             } else {
                 //if art scene
@@ -98,6 +101,7 @@ class ApiEventController extends Controller
 
         if ($data['score'] == count($ids)) {
             Winner::create([
+                'crystals' => $crystals,
                 'event_id' => $data['event_id'],
                 'user_id' => auth()->user()->id,
                 'prize' => 'Jackpot',
