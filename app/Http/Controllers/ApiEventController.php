@@ -113,7 +113,7 @@ class ApiEventController extends Controller
             'new_balance' => User::find(auth()->user()->id)->royalties,
             'result' => 200,
             'perfect' => $perfect,
-            'prizes' => $prizes,
+            'prizes' => $prizes, //can be multiple
         ], 200);
 
     }
