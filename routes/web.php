@@ -102,3 +102,25 @@ include __DIR__ . '/pages/factory.php';
 Route::get('/wallets', function () {
     return 'under maintenance!';
 });
+
+Route::get('/zip-download', function () {
+    $files = ['appstore.png', 'artwork.png', 'storage/arts/3bBuuY1C8bqdCCvPLSWYmvaaGxJXe0QlpYMoFWnB.jpeg'];
+
+    $name = "files.zip";
+
+    $zip = new ZipArchive;
+
+    $zip->open($name, ZipArchive::CREATE);
+
+    foreach ($files as $file) {
+        $zip->addFile($file);
+    }
+
+    $zip->close();
+
+    header('Content-Type: application/zip');
+    header('Content-disposition: attachment; filename=' . $name);
+    header('Content-Length: ' . filesize($name));
+    readfile($name);
+
+});
