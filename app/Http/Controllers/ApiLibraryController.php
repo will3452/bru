@@ -38,6 +38,7 @@ class ApiLibraryController extends Controller
 
         $other = $user->books;
         $categories = ['Novel', 'Anthology'];
+        
 
         return response([
             'author' => $user,

@@ -47,7 +47,6 @@ class ApiMediaStationController extends Controller
             'is_in_collection' => auth()->user()->isAudioIsInTheBox($id),
             'result' => 200,
         ], 200);
-
     }
 
     public function audioBookSummary()

@@ -191,6 +191,8 @@ Route::prefix('v1')->group(function () {
         // app datas
         Route::get('/app-data', 'ApiAppDataController@get');
 
+        Route::get('/download-newspaper', 'ApiDownloadNewsController@download');
+
     });
 
     //search

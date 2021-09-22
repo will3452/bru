@@ -101,7 +101,6 @@ class ApiEventController extends Controller
 
         if ($data['score'] == count($ids)) {
             Winner::create([
-                'crystals' => $crystals,
                 'event_id' => $data['event_id'],
                 'user_id' => auth()->user()->id,
                 'prize' => 'Jackpot',
@@ -116,6 +115,7 @@ class ApiEventController extends Controller
         return response([
             'new_balance' => User::find(auth()->user()->id)->royalties,
             'result' => 200,
+            'crystals' => $crystals,
             'perfect' => $perfect,
             'prizes' => $prizes, //can be multiple
         ], 200);

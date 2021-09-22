@@ -1,4 +1,5 @@
 <x-static.html>
+    <x-static.banner/>
     <style>
         .form-group{
             margin: 10px;
