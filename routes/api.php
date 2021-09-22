@@ -211,6 +211,8 @@ Route::prefix('v1')->group(function () {
 
     // preloader
     Route::get('/preloader', 'ApiPreloaderController@random');
+    Route::get('/download-newspaper', 'ApiDownloadNewsController@download');
+
 });
 
 Route::post('webhook/paymongo', function (Request $request) {
