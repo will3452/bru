@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth','verified']);
+        $this->middleware(['auth', 'verified']);
     }
 
     /**
@@ -30,9 +30,13 @@ class HomeController extends Controller
             //...
         ];
 
-        if(auth()->user()->disabled != null){
+        if (auth()->user()->disabled != null) {
             auth()->logout();
             return back();
+        }
+
+        if (auth()->user()->role == 'student') {
+            Auth::logout();
         }
 
         return view('home', compact('widget'));

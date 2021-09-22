@@ -440,9 +440,6 @@
             // $('.form-control, .custom-select, input').prop('disabled', true);
             $.fn.select2.defaults.set( "theme", "bootstrap" );
             $('#country').select2({width:'100%'});
-            $('#pen1country').select2({width:'100%'});
-            $('#pen2country').select2({width:'100%'});
-            $('#pen3country').select2({width:'100%'});
             // $('#aan').prop('disabled', false);
             $('#register_btn').prop('disabled', true);
 

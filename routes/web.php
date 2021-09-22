@@ -5,6 +5,11 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/pre-register', 'PreregisterController@index');
+Route::post('/pre-register', 'PreregisterController@save');
+
+// Roite
+
 include __DIR__ . '/pages/static.php'; //static
 
 //auth users
