@@ -7,14 +7,18 @@ use ZipArchive;
 
 class ApiDownloadNewsController extends Controller
 {
-    public function download($id)
+    public function download()
     {
 
-        $newspaper = Newspaper::find($id);
+        $newspaper = Newspaper::get();
 
         $zipname = "newspaper.zip";
 
-        $files = $newspaper->pages->pluck('content');
+        $files = [];
+
+        foreach ($newspaper as $n) {
+            $files[] = $n->content;
+        }
 
         $zip = new ZipArchive();
 
