@@ -17,10 +17,14 @@ class ApiDownloadNewsController extends Controller
         $files = [];
 
         foreach ($newspaper as $n) {
-            $files[] = $n->content;
+
+            foreach ($n->pages as $page) {
+                $files[] = substr($page->content, 1);
+            }
+
         }
 
-        $zip = new ZipArchive();
+        $zip = new ZipArchive;
 
         $zip->open($zipname, ZipArchive::CREATE);
 
