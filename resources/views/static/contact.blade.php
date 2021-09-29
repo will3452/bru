@@ -3,15 +3,15 @@
     <x-static.section>
         <x-static.write-us/>
         <p>
-            BRUMULTIVERSE is always in need of authors and artists, who see the world and the universe differently. We need you to help us inspire people to live their lives the way they are always meant to live it! We need you to help us awaken that spark of love, light and life within them through your stories and your artworks.             
+            BRUMULTIVERSE is always in need of authors and artists, who see the world and the universe differently. We need you to help us inspire people to live their lives the way they are always meant to live it! We need you to help us awaken that spark of love, light and life within them through your stories and your artworks.
         </p>
     </x-static.section>
-    <x-static.image-stick>
+    <x-static.image-banner>
         /static/contact.jpg
-    </x-static.image-stick>
+    </x-static.image-banner>
     <x-static.section>
          <p>
-             Help us make a difference by touching hearts and souls. 
+             Help us make a difference by touching hearts and souls.
          </p>
     </x-static.section>
     <x-static.section>
@@ -21,7 +21,7 @@
     </x-static.section>
     <x-static.section>
         <p>
-            Please note, however, that while we recognize your awesome works and ideas, we only publish stories set within the BRUMULTIVERSE. 
+            Please note, however, that while we recognize your awesome works and ideas, we only publish stories set within the BRUMULTIVERSE.
         </p>
     </x-static.section>
 </x-static.html>

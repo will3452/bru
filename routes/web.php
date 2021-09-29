@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/pre-register', 'PreregisterController@index');
 Route::post('/pre-register', 'PreregisterController@save');
+Route::view('/pre-success', 'preregister_success');
 
 // Roite
 

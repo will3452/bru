@@ -1,3 +1,4 @@
+@props(['inwhite'=>false])
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,10 +9,20 @@
     <link rel="stylesheet" href="/static/main.css">
     <x-alpine/>
     @include('partials.cookies-alert')
+    @if($inwhite)
+        <style>
+            #con{
+                background: #fff;
+                color: #222;
+            }
+        </style>
+    @endif
 </head>
 <body>
-    <x-static.navbar/>
-    {{ $slot }}
-    <x-static.footer/>
+<x-static.navbar/>
+    <div id="con">
+        {{ $slot }}
+    </div>
+<x-static.footer/>
 </body>
 </html>

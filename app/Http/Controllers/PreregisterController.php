@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Bio;
 use App\Interest;
+use App\Mail\PreRegistrationDetails;
 use App\User;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class PreregisterController extends Controller
 {
@@ -29,12 +32,16 @@ class PreregisterController extends Controller
             'interest.*' => 'required',
         ]);
 
+        $lastId = User::latest()->first()->id;
+        $aan = "BRUSTD".now()->format('Y').Str::padLeft("".$lastId + 1, 8, '0');
         $user = User::create([
             'first_name' => $data['first_name'],
             'role' => 'student',
             'last_name' => $data['last_name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'is_pre_register' => true,
+            'aan_string'=>$aan
         ]);
 
         Bio::create([
@@ -46,36 +53,38 @@ class PreregisterController extends Controller
             'city' => ucwords($data['city']),
         ]);
 
-        //interest
-        $i1 = explode('@', $data['interest'][0]);
-
-        Interest::create([
-            'user_id' => $user->id,
-            'type' => 'college',
-            'name' => $i1[0],
-            'description' => end($i1),
-        ]);
-
-        $i2 = explode('@', $data['interest'][1]);
-
-        Interest::create([
-            'user_id' => $user->id,
-            'type' => 'course',
-            'name' => $i2[0],
-            'description' => end($i2),
-        ]);
-
-        $i3 = explode('@', $data['interest'][2]);
-
-        Interest::create([
-            'user_id' => $user->id,
-            'type' => 'club',
-            'name' => $i3[0],
-            'description' => end($i3),
-        ]);
+//        //interest
+//        $i1 = explode('@', $data['interest'][0]);
+//
+//        Interest::create([
+//            'user_id' => $user->id,
+//            'type' => 'college',
+//            'name' => $i1[0],
+//            'description' => end($i1),
+//        ]);
+//
+//        $i2 = explode('@', $data['interest'][1]);
+//
+//        Interest::create([
+//            'user_id' => $user->id,
+//            'type' => 'course',
+//            'name' => $i2[0],
+//            'description' => end($i2),
+//        ]);
+//
+//        $i3 = explode('@', $data['interest'][2]);
+//
+//        Interest::create([
+//            'user_id' => $user->id,
+//            'type' => 'club',
+//            'name' => $i3[0],
+//            'description' => end($i3),
+//        ]);
 
         $user->box()->create();
 
-        return 'registered successfully!';
+        Mail::to($user)->send(new PreRegistrationDetails($user));
+
+        return view('preregister_success', compact('aan'));
     }
 }
