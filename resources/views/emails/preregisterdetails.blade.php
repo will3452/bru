@@ -11,6 +11,7 @@ Name: {{$user->first_name}} {{$user->last_name}}
 
 Email: {{$user->email}}
 
+Please follow us on Facebook and Instagram @brumultiverse for the latest updates on the launch.
 
 Thanks,<br>
 {{ config('app.name') }}
