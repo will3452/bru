@@ -6,6 +6,7 @@ use App\Bio;
 use App\Interest;
 use App\Mail\PreRegistrationDetails;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
@@ -18,7 +19,6 @@ class PreregisterController extends Controller
 
     public function save()
     {
-
         $data = request()->validate([
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
@@ -32,8 +32,13 @@ class PreregisterController extends Controller
             'interest.*' => 'required',
         ]);
 
+        $age = Carbon::parse($data['birthdate'])->age;
+        if ($age < 15) {
+            return back()->with(['age_error'=>'You must be 15 years old and above to register and use this site.']);
+        }
+
         $lastId = User::latest()->first()->id;
-        $aan = "BRUSTD".now()->format('Y').Str::padLeft("".$lastId + 1, 8, '0');
+        $aan = "BRUSTD".now()->format('Y').Str::padLeft("".($lastId), 8, '0');
         $user = User::create([
             'first_name' => $data['first_name'],
             'role' => 'student',

@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="flex w-full md:w-3/5 mx-auto px-2 h-screen justify-center items-center">
-    <div class="text-xl text-center m-5 p-5 shadow-xl rounded-xl">
+    <div class="text-base text-center m-5 p-5 shadow-xl rounded-xl">
         <p class="text-gray-700 mt-4">
             You have now pre-registered an account on the BRUMULTIVERSE App! Thank you so much.
         </p>

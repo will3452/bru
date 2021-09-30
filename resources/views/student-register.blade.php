@@ -19,22 +19,17 @@
             WELCOME TO BRUMULTIVERSE!
         </h1>
         <p class="mb-4 text-gray-700">
-            Your interest in the BRU App has led you to this space at this perfect moment.
-            What a sweet turn of fate!
+            Your interest in the BRU App has led you to this space at this perfect moment. What a sweet turn of fate!
         </p>
         <p class="mb-4 text-gray-700">
-            BRUMULTIVERSE is a fictional multiple universe with dimensions, realms and
-            parallel realities, where amazing stories happen in different forms of art or media.
-            Such stories will be accessible in the BRU App that we are launching towards the
-            end of 2021.
+            BRUMULTIVERSE is a fictional multiple universe with dimensions, realms and parallel realities, where amazing stories happen in different forms of art or media.
+            Such stories will be accessible in the BRU App that we are launching soon.
         </p>
         <p class="mb-4 text-gray-700">
-            You may pre-register for an account now so that upon launch, you’re half-way
-            into experiencing the multiverse on your mobile phones or tablets. Isn’t that
-            amazing?
+            You may pre-register for an account now so that upon launch, you’re half-way into experiencing the multiverse on your mobile phones or tablets. Isn’t that amazing?
         </p>
-        <p class="mb-4 text-gray-700">
-            As a perk, you will receive <b>digital freebies</b> and/or <b>free downloadable</b> contents
+        <p class="mb-4 text-gray-700 font-bold">
+            As a perk, you will receive digital freebies and/or free downloadable contents
             you can use in designing your own BRU Persona. Yes, you will have one, once
             you fully register upon launch! Exciting, isn’t it?
         </p>
@@ -133,6 +128,11 @@
                    name="birthdate"
                    required
             >
+            @if (session('age_error'))
+                <div class="text-xs text-red-500">
+                    {{session('age_error')}}
+                </div>
+            @endif
             @error('birthdate')
             <div class="text-xs text-red-500">
                 {{$message}}
