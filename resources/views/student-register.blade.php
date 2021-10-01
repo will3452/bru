@@ -45,7 +45,9 @@
     @endif
     <form action="/pre-register" method="POST">
         @csrf
-
+        <div class="text-xs text-green-700 p-2 rounded-lg bg-green-100">
+            <span class="font-bold">NOTE:</span> Please use your legal name for this pre-registration phase. Don't worry, information shall be kept private. You will be asked to create a BRU Persona (this will be your public profile) on the BRU App upon actual registration.
+        </div>
         <div class="my-2">
             <label for="" class="block font-bold text-purple-900">First Name</label>
             <input class="border-2 border-purple-900 rounded-lg p-2 px-4 mt- w-full"
