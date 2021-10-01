@@ -46,6 +46,11 @@ class PreRegister extends Resource
     {
         return [
 
+            Text::make('AAN', 'aan_string')
+                ->exceptOnForms()
+                ->onlyOnDetail()
+                ->sortable(),
+
             Text::make('First Name')
                 ->sortable()
                 ->rules('required', 'max:255'),
