@@ -13,7 +13,7 @@
                     Page {{$key + 1}}
                 </div>
                 <div>
-                    <a href="/chapter-page/{{$page->id}}" class="btn btn-primary btn-sm">show</a>
+                    <a href="/chapter-page-view/{{$page->id}}" class="btn btn-primary btn-sm">show</a>
                     <form action="/chapter-page/{{$page->id}}" class="d-inline" method="POST">
                         @csrf
                         @method('DELETE')
