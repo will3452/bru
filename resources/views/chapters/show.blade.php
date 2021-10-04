@@ -71,7 +71,7 @@
                             <x-link url="{{ $chapter->content }}">View Current Content</x-link>
                         </x-form.group> --}}
                         <x-form.group>
-                            <a href="#">View PDF pages</a>
+                            <a href="/chapter-pages/{{$chapter->id}}">View PDF pages</a>
                         </x-form.group>
                         @endif
                         <x-button type="submit" color="primary">Update</x-button>
