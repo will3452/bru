@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ChapterController;
+
 Route::prefix('books')->name('books.')->middleware(['auth'])->group(function () {
     // Route::get('/', 'BookController@index')->name('index');
     Route::redirect('/list', '/books')->name('list');
@@ -37,7 +39,12 @@ Route::prefix('books')->name('books.')->middleware(['auth'])->group(function () 
     Route::get('/update-front/{id}', function ($id) {
         return view('books.update-front', compact('id'));
     })->name('update-front');
-
 });
 
 Route::get('pdf-viewer', 'PdfViewerController');
+Route::get('/chapter-pages/{id}', 'ChapterController@chapterPageIndex');
+Route::get('/chapter-page/{id}', 'ChapterController@chapterPageCreate');
+Route::get('/chapter-page-view/{id}', 'ChapterController@chapterPageShow');
+Route::put('/chapter-page/{id}', 'ChapterController@chapterPageUpdate');
+Route::delete('/chapter-page/{id}', 'ChapterController@chapterPageDelete');
+Route::post('/chapter-page/{id}', 'ChapterController@chapterPageStore');

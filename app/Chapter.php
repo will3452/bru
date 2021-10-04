@@ -58,4 +58,8 @@ class Chapter extends Model
         return $this->morphMany(Star::class, 'starable');
     }
 
+    public function chapterPages()
+    {
+        return $this->hasMany(ChapterPage::class);
+    }
 }

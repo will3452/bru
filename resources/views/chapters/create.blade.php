@@ -48,11 +48,11 @@
                 </div>
             </div>
         </template>
-        
-       <x-form.group>
+
+       {{-- <x-form.group>
             <x-form.label>Choose PDF</x-form.label>
            <x-form.file name="chapter_content" label="" accept="application/pdf" required/>
-       </x-form.group>
+       </x-form.group> --}}
 
        <x-form.group>
            <label for="">
@@ -71,11 +71,11 @@
             <div class="form-group">
                <label for=""> Chapter Description </label>
                <div class="alert alert-warning">
-                This description will appear with the prompt, confirming whether reader wishes to proceed to the Premium Chapter for a fee. Make it as enticing as possible to lure them in. 
+                This description will appear with the prompt, confirming whether reader wishes to proceed to the Premium Chapter for a fee. Make it as enticing as possible to lure them in.
                </div>
                <textarea name="desc" id="" cols="30" rows="10" class="form-control"></textarea>
             </div>
-            
+
             <div class="form-group">
                 <label for="">Set Age Restriction</label>
                 <select name="age_restriction" id="age_level" class="form-control">
@@ -103,7 +103,7 @@
     <div class="form-group" id="freeart">
 
         <div id="freeart-child">
-            
+
             <x-copyright-disclaimer/>
 
             <x-form.group>
@@ -121,7 +121,7 @@
             <button type="submit" class="btn btn-block btn-primary">Create</button>
         </div>
     </form>
-       
+
 @endsection
 
 
@@ -138,7 +138,7 @@
     </script>
     <x-vendor.ckeditor/>
     <script>
-        
+
         $(function(){
             let art = $('#freeart-child').detach();
 

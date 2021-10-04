@@ -10,7 +10,7 @@
                     <form action="{{ route('books.chapters.update', ['book'=>$book, 'chapter'=>$chapter]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        
+
                         @if (!in_array($chapter->mode, ['prolouge', 'epilouge']))
 
                             <x-form.group>
@@ -35,7 +35,7 @@
 
                         @endif
                         <x-form.group>
-                           
+
                             <x-form.textarea
                             label="Author's Notes"
                             name="foot_note">
@@ -43,9 +43,9 @@
                             </x-form.textarea>
 
                         </x-form.group>
-                        
+
                         @if ($chapter->art)
-                            
+
                             <x-form.group>
                                 <a href="{{  $chapter->art }}" class="btn btn-success btn-sm" target="_blank">View Art Scene</a>
                             </x-form.group>
@@ -62,21 +62,21 @@
                                 label="Content"
                                 name="content_x">{{ $chapter->content }}
                                 </x-form.textarea>
-                                
+
                             </x-form.group>
                         @else
 
-                        <x-form.group>
+                        {{-- <x-form.group>
                             <x-form.file name="chapter_content" label="Content" accept="application/pdf"/>
                             <x-link url="{{ $chapter->content }}">View Current Content</x-link>
+                        </x-form.group> --}}
+                        <x-form.group>
+                            <a href="#">View PDF pages</a>
                         </x-form.group>
-
                         @endif
-
                         <x-button type="submit" color="primary">Update</x-button>
-                        
                     </form>
-                    @else 
+                    @else
                     {{-- if series --}}
                     @endif
                     <div class="mt-5">
@@ -125,9 +125,9 @@
                         html:
                           `
                           <div class='alert alert-warning ' style='font-size:11px;text-align:left;'>
-                            You are now requesting to delete your Chapter. Please fill out the necessary fields and provide a brief explanation for the request. 
+                            You are now requesting to delete your Chapter. Please fill out the necessary fields and provide a brief explanation for the request.
                             <br><br>
-                            However, please be reminded that your Chapter is under contract. Please confirm with BRUMULTIVERSE personally after submitting the request. 
+                            However, please be reminded that your Chapter is under contract. Please confirm with BRUMULTIVERSE personally after submitting the request.
                           </div>
                           <input id='password' type='password' placeholder='Enter your password here.' class='swal2-input'>
                           <textarea id='reason' placeholder='Enter your reason' class='swal2-textarea' row='5' required></textarea>`,

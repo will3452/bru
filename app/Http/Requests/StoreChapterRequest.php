@@ -26,13 +26,13 @@ class StoreChapterRequest extends FormRequest
             $end_path = end($arr_path);
             $art = '/storage/arts/' . $end_path;
         }
-        $chapter_path = $this->chapter_content->store('public/chapter_content');
-        $chapter_arrpath = explode('/', $chapter_path);
-        $chapter_endpath = end($chapter_arrpath);
+        // $chapter_path = $this->chapter_content->store('public/chapter_content');
+        // $chapter_arrpath = explode('/', $chapter_path);
+        // $chapter_endpath = end($chapter_arrpath);
         $type = explode('_', $this->chapter_type);
-        $chapter = '/storage/chapter_content/' . $chapter_endpath;
+        // $chapter = '/storage/chapter_content/' . $chapter_endpath;
         $this->merge([
-            'content' => $chapter,
+            // 'content' => $chapter,
             'type' => $this->chapter_type,
             'art' => $art,
             'slug' => Str::slug($this->title . ' ' . uniqid()),
@@ -53,7 +53,7 @@ class StoreChapterRequest extends FormRequest
             'art_cost' => '',
             'sq' => '',
             'type' => 'required',
-            'content' => 'required',
+            // 'content' => 'required',
             'desc' => '',
             'cpy' => '',
             'cost' => '',

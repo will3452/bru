@@ -16,6 +16,7 @@ class ApiBookPreviewController extends Controller
 
         if (!$user->isBookIsInTheBox($book->id)) {
             $chapters = $book->chapters()
+                ->with('chapterPages')
                 ->orderBy('sq')
                 ->limit(1)
                 ->paginate(1);
@@ -114,5 +115,4 @@ class ApiBookPreviewController extends Controller
             'stars' => $stars,
         ], 200);
     }
-
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Book;
 use App\Chapter;
+use App\ChapterPage;
 use App\Http\Requests\StoreChapterRequest;
 use App\Http\Requests\StoreNovelFormRequest;
 use Illuminate\Http\Request;
@@ -123,4 +124,79 @@ class ChapterController extends Controller
         return back()->withSuccess('Done!');
     }
 
+    public function chapterPageCreate($id)
+    {
+        $chapter = Chapter::findOrFail($id);
+        $episode = $chapter->chapterPages()->count() + 1;
+        return view('chapters.page', ['chapter_id'=>$id, 'episode'=>$episode]);
+    }
+
+    public function chapterPageShow($id)
+    {
+        $page = ChapterPage::findOrFail($id);
+        return view('chapters.show_page', compact('page'));
+    }
+
+    public function chapterPageUpdate($id)
+    {
+        $page = ChapterPage::findOrFail($id);
+        request()->validate([
+            'content'=>'required'
+        ]);
+
+        $chapter_path = request()->content->store('public/chapter_content');
+        $chapter_arrpath = explode('/', $chapter_path);
+        $chapter_endpath = end($chapter_arrpath);
+        $content = '/storage/chapter_content/' . $chapter_endpath;
+
+        $page->update([
+            'content'=>$content,
+        ]);
+        toast('page was updated successfully!', 'success');
+        return back();
+    }
+
+    public function chapterPageStore()
+    {
+        request()->validate([
+            'content'=>'required',
+            'chapter_id'=>'required'
+        ]);
+
+        $chapter_path = request()->content->store('public/chapter_content');
+        $chapter_arrpath = explode('/', $chapter_path);
+        $chapter_endpath = end($chapter_arrpath);
+        $content = '/storage/chapter_content/' . $chapter_endpath;
+
+        $chapterPage = ChapterPage::create([
+            'chapter_id'=>request()->chapter_id,
+            'content'=>$content,
+        ]);
+
+        toast('page was uploaded successfully!', 'success');
+        return back();
+    }
+
+    public function chapterPageIndex($id)
+    {
+        $chapter = Chapter::find($id);
+        $chapter->load('chapterPages');
+        return view('chapters.index_page', compact('chapter'));
+    }
+
+    public function chapterPageDelete($id)
+    {
+        $page = ChapterPage::findOrFail($id);
+        $chapter = Chapter::findOrFail($page->chapter_id);
+        $book = Book::findOrFail($chapter->book_id);
+
+        if ($book->user_id != auth()->id()) {
+            abort(404);
+        }
+
+        $page->delete();
+
+        toast('page was successfully deleted!', 'success');
+        return back();
+    }
 }
