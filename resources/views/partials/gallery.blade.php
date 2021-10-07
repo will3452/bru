@@ -1,9 +1,9 @@
-<div id="float-image-parent-container">
+{{-- <div id="float-image-parent-container">
         <div id="float-image-container" style="
-       
+
         " >
            @foreach (auth()->user()->arts  as $art)
-               <img src="{{ url($art->file) }}" 
+               <img src="{{ url($art->file) }}"
                style="object-fit: cover;width:100%;"
                alt="">
            @endforeach
@@ -22,7 +22,7 @@
             $('#float-image-container').toggle(100);
         });
 
-        
+
     });
 </script>
 
@@ -60,4 +60,4 @@
         height:50px;
         border-radius:50%;
     }
-</style>
+</style> --}}
