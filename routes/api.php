@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Luigel\Paymongo\Facades\Paymongo;
 
 //dragonpay postback
-Route::get('/dragonpay-postback', function () {
+Route::post('/dragonpay-postback', function () {
     $transaction = Transaction::where('txnid', request()->txnid)->first();
     $transaction->update(['status'=>request()->status]);
     return 'result=OK';
