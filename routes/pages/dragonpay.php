@@ -53,6 +53,7 @@ Route::get('/payment-result', function () {
         'message'=>'required',
         'status'=>'required',
     ]);
+    $data['user_id'] = auth()->id();
     $transaction = Transaction::create($data);
 
     if (session()->has('market_id')) {
