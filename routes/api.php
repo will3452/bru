@@ -1,12 +1,15 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Transaction;
 use Illuminate\Support\Arr;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Luigel\Paymongo\Facades\Paymongo;
 
 //dragonpay postback
 Route::get('/dragonpay-postback', function () {
+    $transaction = Transaction::where('txnid', request()->txnid)->first();
+    $transaction->update(['status'=>request()->status]);
     return 'result=OK';
 });
 
