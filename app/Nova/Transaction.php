@@ -49,7 +49,7 @@ class Transaction extends Resource
             Text::make('Reference No.', 'refno')
             ->exceptOnForms(),
 
-            Text::make('Transaction Id', 'tnxid')
+            Text::make('Transaction Id', 'txnid')
             ->exceptOnForms(),
 
             Text::make('Status', function ($request) {
