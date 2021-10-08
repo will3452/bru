@@ -20,7 +20,7 @@ class CreateTransactionsTable extends Migration
             $table->string('refno');
             $table->string('status');
             $table->string('message')->nullable();
-            $table->string('digest');
+            $table->string('digest')->nullable();
             $table->timestamps();
         });
     }
