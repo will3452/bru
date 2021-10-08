@@ -22,11 +22,6 @@ Route::post('/payment-post', function () {
     return redirect()->to($url);
 });
 
-Route::post('/payment-postback', function () {
-    return 'result=OK';
-});
-
-
 Route::get('/payment-result', function () {
     return request()->all();
 });

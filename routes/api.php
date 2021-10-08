@@ -5,11 +5,15 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 use Luigel\Paymongo\Facades\Paymongo;
 
+//dragonpay postback
+Route::get('/dragonpay-postback', function () {
+    return 'result=OK';
+});
+
 Route::prefix('v1')->group(function () {
 
     // proctected via sanctum
     Route::middleware('auth:sanctum')->group(function () {
-
         Route::post('/logout', 'ApiAuthController@logout');
         Route::post('/update-room', 'ApiAuthController@updateRoom');
         Route::post('/vip-update', 'ApiVIPUpdateController@update');
@@ -192,7 +196,6 @@ Route::prefix('v1')->group(function () {
         Route::get('/app-data', 'ApiAppDataController@get');
 
         Route::get('/download-newspaper', 'ApiDownloadNewsController@download');
-
     });
 
     //search
@@ -212,11 +215,9 @@ Route::prefix('v1')->group(function () {
     // preloader
     Route::get('/preloader', 'ApiPreloaderController@random');
     Route::get('/download-newspaper', 'ApiDownloadNewsController@download');
-
 });
 
 Route::post('webhook/paymongo', function (Request $request) {
-
     $data = Arr::get($request->all(), 'data.attributes');
 
     if ($data['type'] !== 'source.chargeable') {
