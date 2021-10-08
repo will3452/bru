@@ -24,7 +24,6 @@ class MarketingController extends Controller
 
     public function show($id)
     {
-
         $market = auth()->user()->markets()->findOrFail($id);
 
         return view('marketing.show', compact('market'));
@@ -43,7 +42,6 @@ class MarketingController extends Controller
         $market = auth()->user()->markets()->create($data);
 
         if ($data['category'] == 'bulletin') {
-
             $image = request()->image->store('/public/bul');
             $imageArr = explode('/', $image);
             $imageEnd = end($imageArr);
@@ -60,7 +58,6 @@ class MarketingController extends Controller
                 // 'image_post'=>$image_post,
                 'content' => request()->bulletin_content,
             ]);
-
         }
 
         if ($data['category'] == 'marquee') {
@@ -110,7 +107,6 @@ class MarketingController extends Controller
         }
 
         if ($data['category'] == 'newspaper') {
-
             $image = request()->image->store('/public/newspaper');
             $imageArr = explode('/', $image);
             $imageEnd = end($imageArr);
@@ -124,7 +120,6 @@ class MarketingController extends Controller
                 'content' => $image,
                 'text_content' => request()->newspaper_content,
             ]);
-
         }
 
         //save as draft
@@ -159,23 +154,12 @@ class MarketingController extends Controller
         $market = auth()->user()->markets()->find($id);
 
         $data = $request->validate([
-            'payment_for' => 'required',
-            'pay_with' => 'required',
-            'amount' => 'required',
-            'currency' => 'required',
             'captcha' => 'required|captcha',
-            'proof_of_payment' => 'required|mimes:jpeg,bmp,png|max:2000',
         ], $messages = [
-            'max' => 'The proof of payment may not be greater than 2MB',
             'captcha' => 'Please Enter captcha again.',
         ]);
 
         $data['user_id'] = auth()->id();
-        $data['proof_of_payment'] = $data['proof_of_payment']->store('public/proofpayment');
-
-        unset($data['captcha']);
-
-        $market->invoice()->create($data);
 
         $market->update([
             'status' => 'submitted',

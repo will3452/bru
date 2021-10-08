@@ -1,5 +1,6 @@
 <?php
 
+use App\Supports\Dragonpay;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Request;
@@ -9,7 +10,8 @@ Route::get('/pre-register', 'PreregisterController@index');
 Route::post('/pre-register', 'PreregisterController@save');
 Route::view('/pre-success', 'preregister_success');
 
-// Roite
+include __DIR__ .'/pages/dragonpay.php';
+
 
 include __DIR__ . '/pages/static.php'; //static
 
@@ -123,5 +125,4 @@ Route::get('/zip-download', function () {
     header('Content-disposition: attachment; filename=' . $name);
     header('Content-Length: ' . filesize($name));
     readfile($name);
-
 });
