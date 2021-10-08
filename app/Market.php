@@ -71,4 +71,9 @@ class Market extends Model
     {
         return $this->belongsTo(Event::class, 'event_id');
     }
+
+    public function marketTransaction()
+    {
+        return $this->hasOne(MarketTransaction::class);
+    }
 }
