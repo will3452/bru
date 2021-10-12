@@ -2,7 +2,7 @@
 
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
-Auth::routes([]);
+Auth::routes(['login'=>false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'ProfileController@index')->name('profile');
