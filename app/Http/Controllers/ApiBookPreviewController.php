@@ -9,18 +9,6 @@ use Illuminate\Http\Request;
 
 class ApiBookPreviewController extends Controller
 {
-    private function attachLikesAndComments($chapters)
-    {
-        $newChapters = collect([]);
-        foreach ($chapters->data as $chapter) {
-            $ch = Chapter::find($chapter->id);
-            $chapter['likes'] = $ch->likes()->count();
-            $chapter['comments'] = $ch->comments()->with('user')->latest()->get();
-            $newChapters->push($chapter);
-        }
-        $chapters->data = $newChapters;
-        return $chapters;
-    }
     public function show($id)
     {
         $book = Book::find($id);
@@ -29,20 +17,19 @@ class ApiBookPreviewController extends Controller
         if (!$user->isBookIsInTheBox($book->id)) {
             $chaptersId = $book->chapters()->get()->pluck('id');
             $chapters = $book->chapters()
-                ->with('chapterPages')
+                ->with(['chapterPages', 'comments', 'likes'])
                 ->orderBy('sq')
-                ->limit(1)
                 ->paginate(1);
             return response([
                 'chaptersId'=>$chaptersId,
-                'chapters' => $this->attachLikesAndComments($chapters),
+                'chapters' => $chapters,
                 'book_title' => $book->title,
                 'book_author' => $book->author,
                 'result' => 200,
             ], 200);
         }
 
-        $chapters = $book->chapters()->orderBy('sq')->paginate(1);
+        $chapters = $book->chapters()->with(['comments', 'likes'])->orderBy('sq')->paginate(1);
 
         //check if the book read as whole
         if (request()->page) {
@@ -60,7 +47,7 @@ class ApiBookPreviewController extends Controller
         $chaptersId = $book->chapters()->get()->pluck('id');
         return response([
             'chaptersId'=>$chaptersId,
-            'chapters' => $this->attachLikesAndComments($chapters),
+            'chapters' => $chapters,
             'book_title' => $book->title,
             'book_author' => $book->author,
             'result' => 200,
