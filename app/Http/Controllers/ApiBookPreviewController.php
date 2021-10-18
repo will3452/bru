@@ -9,6 +9,18 @@ use Illuminate\Http\Request;
 
 class ApiBookPreviewController extends Controller
 {
+    private function attachLikesAndComments($chapters)
+    {
+        $newChapters = collect([]);
+        foreach ($chapters->data as $chapter) {
+            $ch = Chapter::find($chapter->id);
+            $chapter['likes'] = $ch->likes()->count();
+            $chapter['comments'] = $ch->comments()->with('user')->latest()->get();
+            $newChapters->push($chapter);
+        }
+        $chapters->data = $newChapters;
+        return $chapters;
+    }
     public function show($id)
     {
         $book = Book::find($id);
@@ -23,7 +35,7 @@ class ApiBookPreviewController extends Controller
                 ->paginate(1);
             return response([
                 'chaptersId'=>$chaptersId,
-                'chapters' => $chapters,
+                'chapters' => $this->attachLikesAndComments($chapters),
                 'book_title' => $book->title,
                 'book_author' => $book->author,
                 'result' => 200,
@@ -48,7 +60,7 @@ class ApiBookPreviewController extends Controller
         $chaptersId = $book->chapters()->get()->pluck('id');
         return response([
             'chaptersId'=>$chaptersId,
-            'chapters' => $chapters,
+            'chapters' => $this->attachLikesAndComments($chapters),
             'book_title' => $book->title,
             'book_author' => $book->author,
             'result' => 200,
