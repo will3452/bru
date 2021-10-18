@@ -3,7 +3,7 @@
 @section('main-content')
     <!-- Page Heading -->
     <div class="d-flex justify-content-between mb-2 align-items-center">
-        <a href="{{ route('books.list') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a> 
+        <a href="{{ route('books.list') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
         @if (App\PublishedBook::find($book->id))
             <a href="/report?type=book&id={{ $book->id }}" class="btn-sm btn btn-primary">
                 View Reports
@@ -114,17 +114,17 @@
                     @endif
                     <div class="text-center">
                         <a href="{{ route('books.chapters.create', $book) }}?first=true" class="btn btn-outline-primary shadow" >
-                            Add new chapter 
+                            Add new chapter
                         </a>
                     </div>
                 </div>
             </div>
             @endif
-            @if($book->chapters()->count())
+            {{-- @if($book->chapters()->count())
             <a href="{{ route('books.previews.show', $book) }}" class="btn btn-block btn-primary">
                 Preview Book
             </a>
-            @endif
+            @endif --}}
         </div>
         <div class="col-lg-8 order-lg-1">
 
@@ -229,7 +229,7 @@
                                 </x-form.textarea>
                             </x-form.group>
                         </div>
-                        
+
                         <!-- Button -->
                         <div class="pl-lg-4">
                             <div class="row">
@@ -252,7 +252,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">Publish Book</h6>
                         </div>
                         <div class="card-body">
-                            
+
                             <form class=" pl-lg-4" method="POST" action="{{ route('books.update', $book) }}">
                                 @csrf
                                 @method('PUT')
@@ -269,7 +269,7 @@
                 </div>
             </div>
             @endif
-            
+
             <div x-data="{
                 showDeleteForm:false,
                 makeConfirmation(){
@@ -293,9 +293,9 @@
                         html:
                           `
                           <div class='alert alert-warning ' style='font-size:11px;text-align:left;'>
-                            You are now requesting to delete your Book. Please fill out the necessary fields and provide a brief explanation for the request. 
+                            You are now requesting to delete your Book. Please fill out the necessary fields and provide a brief explanation for the request.
                             <br><br>
-                            However, please be reminded that your Book is under contract. Please confirm with BRUMULTIVERSE personally after submitting the request. 
+                            However, please be reminded that your Book is under contract. Please confirm with BRUMULTIVERSE personally after submitting the request.
                           </div>
                           <input id='password' type='password' placeholder='Enter your password here.' class='swal2-input'>
                           <textarea id='reason' placeholder='Enter your reason' class='swal2-textarea' row='5' required></textarea>`,
