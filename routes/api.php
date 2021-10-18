@@ -84,6 +84,7 @@ Route::prefix('v1')->group(function () {
         Route::get('/get-book-questions/{id}', 'ApiBookPreviewController@getQuestionFeedbacks');
         Route::post('/book-feedback/{id}', 'ApiBookPreviewController@postFeedback');
         Route::get('/book-chapter-one/{id}', 'ApiBookPreviewController@showChapter');
+        Route::get('/special-foot-note/{id}', 'ApiBookPreviewController@showFootNote');
 
         // comments
         Route::get('/comments', 'ApiCommentController@getComments');

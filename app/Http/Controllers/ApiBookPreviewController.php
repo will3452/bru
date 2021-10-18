@@ -117,4 +117,12 @@ class ApiBookPreviewController extends Controller
             'stars' => $stars,
         ], 200);
     }
+    public function showFootNote($id)
+    {
+        $chapter = Chapter::find($id);
+
+        return response([
+            'authors_note'=>$chapter->foot_note,
+        ], 200);
+    }
 }
