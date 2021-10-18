@@ -2,31 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use App\Book;
+use App\PublishedBook;
 use Illuminate\Http\Request;
 
 class ApiBooksController extends Controller
 {
-    public function index(){
-        if(request()->has('_limit')){
-            $books = Book::limit(request()->_limit)->get();
-        }else {
-            $books = Book::get();
+    public function index()
+    {
+        if (request()->has('_limit')) {
+            $books = PublishedBook::limit(request()->_limit)->get();
+        } else {
+            $books = PublishedBook::get();
         }
 
         return response($books, 200);
     }
 
-    public function show($id){
-        $book = Book::find($id);
+    public function show($id)
+    {
+        $book = PublishedBook::find($id);
 
-        if(!$book){
+        if (!$book) {
             return response([
                 'message'=>'not found'
             ]);
         }
 
         return response($book, 200);
-
     }
 }

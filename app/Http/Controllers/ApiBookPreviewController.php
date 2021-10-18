@@ -15,12 +15,14 @@ class ApiBookPreviewController extends Controller
         $user = User::find(auth()->user()->id);
 
         if (!$user->isBookIsInTheBox($book->id)) {
+            $chaptersId = $book->chapters()->get()->pluck('id');
             $chapters = $book->chapters()
                 ->with('chapterPages')
                 ->orderBy('sq')
                 ->limit(1)
                 ->paginate(1);
             return response([
+                'chaptersId'=>$chaptersId,
                 'chapters' => $chapters,
                 'book_title' => $book->title,
                 'book_author' => $book->author,
@@ -43,8 +45,9 @@ class ApiBookPreviewController extends Controller
                 $user->homework->save();
             }
         }
-
+        $chaptersId = $book->chapters()->get()->pluck('id');
         return response([
+            'chaptersId'=>$chaptersId,
             'chapters' => $chapters,
             'book_title' => $book->title,
             'book_author' => $book->author,
