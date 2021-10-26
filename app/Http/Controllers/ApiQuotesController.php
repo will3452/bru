@@ -49,7 +49,7 @@ class ApiQuotesController extends Controller
         ]);
 
         return response([
-            'result'=>'ok',
+            'result'=>200,
         ], 200);
     }
 
