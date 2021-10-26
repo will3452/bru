@@ -138,7 +138,11 @@ class ApiDiaryController extends Controller
 
     public function getCurrentSaveQuote()
     {
-        $quotes = QuoteDiary::where('user_id', auth()->user()->id)->whereDate('created_at', '=', date('Y-m-d'))->load('quote')->get();
+        $qd = QuoteDiary::where('user_id', auth()->user()->id)->get();
+        $quotes = collect([]);
+        foreach ($qd as $q) {
+            $quotes->push($q->quote);
+        }
 
         return response([
             'quotes'=>$quotes,
