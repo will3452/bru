@@ -105,6 +105,7 @@ Route::prefix('v1')->group(function () {
         // quotes
         Route::get('/quotes/{id}', 'ApiQuotesController@getQuote');
         Route::post('/quotes', 'ApiQuotesController@extractImage');
+        Route::post('/add-to-diary', 'ApiQuotesController@saveTodiary');
         Route::get('/quotes', 'ApiQuotesController@allQuotes');
 
         //playlist under collections of songs, audio, and podcasts
@@ -221,28 +222,28 @@ Route::prefix('v1')->group(function () {
     Route::get('/download-newspaper', 'ApiDownloadNewsController@download');
 });
 
-Route::post('webhook/paymongo', function (Request $request) {
-    $data = Arr::get($request->all(), 'data.attributes');
+// Route::post('webhook/paymongo', function (Request $request) {
+//     $data = Arr::get($request->all(), 'data.attributes');
 
-    if ($data['type'] !== 'source.chargeable') {
-        return response()->noContent();
-    }
+//     if ($data['type'] !== 'source.chargeable') {
+//         return response()->noContent();
+//     }
 
-    $source = Arr::get($data, 'data');
-    $sourceData = $source['attributes'];
+//     $source = Arr::get($data, 'data');
+//     $sourceData = $source['attributes'];
 
-    if ($sourceData['status'] === 'chargeable') {
-        $payment = Paymongo::payment()->create([
-            'amount' => $sourceData['amount'] / 100,
-            'currency' => $sourceData['currency'],
-            'description' => $sourceData['type'] . ' test from src ' . $source['id'] . ', email : ' . $sourceData['billing']['email'],
-            'source' => [
-                'id' => $source['id'],
-                'type' => $source['type'],
-            ],
-        ]);
-    }
-    return response()->noContent();
-});
+//     if ($sourceData['status'] === 'chargeable') {
+//         $payment = Paymongo::payment()->create([
+//             'amount' => $sourceData['amount'] / 100,
+//             'currency' => $sourceData['currency'],
+//             'description' => $sourceData['type'] . ' test from src ' . $source['id'] . ', email : ' . $sourceData['billing']['email'],
+//             'source' => [
+//                 'id' => $source['id'],
+//                 'type' => $source['type'],
+//             ],
+//         ]);
+//     }
+//     return response()->noContent();
+// });
 // payment-pay?user_id=1&amount=164&type=gcash
 //testing

@@ -60,7 +60,6 @@ class ApiDiaryController extends Controller
 
     public function getWeek()
     {
-
         $startWeek = now()->startOfWeek(Carbon::MONDAY);
         $endWeek = now()->endOfWeek(Carbon::SUNDAY);
         $date = now();
