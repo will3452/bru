@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\QuoteDiary;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -133,5 +134,14 @@ class ApiDiaryController extends Controller
             'own_entry' => $current ?? '',
             'result' => 200
             , 200]);
+    }
+
+    public function getCurrentSaveQuote()
+    {
+        $quotes = QuoteDiary::where('user_id', auth()->user()->id)->whereDate('created_at', '=', date('Y-m-d'))->load('quote')->get();
+
+        return response([
+            'quotes'=>$quotes,
+        ], 200);
     }
 }

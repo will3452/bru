@@ -107,6 +107,8 @@ Route::prefix('v1')->group(function () {
         Route::post('/quotes', 'ApiQuotesController@extractImage');
         Route::post('/add-to-diary', 'ApiQuotesController@saveTodiary');
         Route::get('/quotes', 'ApiQuotesController@allQuotes');
+        Route::get('/get-quotes', 'ApiDiaryController@getCurrentSaveQuote');
+
 
         //playlist under collections of songs, audio, and podcasts
         Route::get('/playlists', 'ApiPlaylistController@index');
