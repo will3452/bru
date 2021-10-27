@@ -32,7 +32,7 @@ class ApiDiaryImageController extends Controller
         ], 200);
     }
 
-    public function getImages()
+    public function getImage()
     {
         $diaryImage = DiaryImage::where('user_id', auth()->user()->id)->first();
 
@@ -41,7 +41,7 @@ class ApiDiaryImageController extends Controller
         }
 
         return response([
-            'result'=>200
+            'images'=>$diaryImage
         ], 200);
     }
 }

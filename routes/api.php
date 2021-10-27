@@ -182,6 +182,8 @@ Route::prefix('v1')->group(function () {
         Route::post('/diary', 'ApiDiaryController@addDiary');
         Route::post('/get-week', 'ApiDiaryController@getWeek'); // get week
         Route::get('/diary-current-entry', 'ApiDiaryController@getCurrentEntry');
+        Route::post('/diary-image', 'ApiDiaryImageController@postImage');
+        Route::get('/get-diary-image', 'ApiDiaryImageController@getImage');
 
         //homework
         Route::get('/homework', 'ApiHomeworkController@index');
