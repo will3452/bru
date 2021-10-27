@@ -144,7 +144,7 @@ class ApiDiaryController extends Controller
         foreach ($qd as $q) {
             $qt = $q->quote;
             $qt->load('book');
-            if (!$qt->quoteDiaries()->count()) {
+            if ($qt->quoteDiaries()->count()) {
                 $quotes->push($qt);
             }
         }
