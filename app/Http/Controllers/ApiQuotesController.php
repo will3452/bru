@@ -38,6 +38,7 @@ class ApiQuotesController extends Controller
             'chapter_id'=>'required'
         ]);
 
+
         $data['user_id'] = auth()->user()->id;
         $data['author'] = Book::find($data['book_id'])->author;
 
