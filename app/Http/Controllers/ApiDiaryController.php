@@ -142,6 +142,7 @@ class ApiDiaryController extends Controller
         $qd = QuoteDiary::where('user_id', auth()->user()->id)->get();
         $quotes = collect([]);
         foreach ($qd as $q) {
+            $q->load('book');
             $quotes->push($q->quote);
         }
 
