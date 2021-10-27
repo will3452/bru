@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Quote;
 use App\QuoteDiary;
 use App\User;
 use Carbon\Carbon;
@@ -146,6 +147,23 @@ class ApiDiaryController extends Controller
 
         return response([
             'quotes'=>$quotes,
+        ], 200);
+    }
+
+    public function getGalleryQuote()
+    {
+        $qq = Quote::where('user_id', auth()->user()->id)->get();
+
+        $quotes = collect([]);
+
+        foreach ($qq as $quote) {
+            if (!$quote->quoteDiaries()->count()) {
+                $quotes->push($quote);
+            }
+        }
+
+        return response([
+            'quotes'=>$quotes
         ], 200);
     }
 }
