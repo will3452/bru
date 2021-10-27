@@ -16,14 +16,14 @@ class ApiDiaryImageController extends Controller
         }
 
 
-        if (request()->image1) {
-            $diaryImage->image_1 = request()->image1;
-        } elseif (request()->image2) {
-            $diaryImage->image_2 = request()->image2;
-        } elseif (request()->image3) {
-            $diaryImage->image_3 = request()->image3;
-        } elseif (request()->image4) {
-            $diaryImage->image_4 = request()->image4;
+        if (request()->selectedimage == 'image1') {
+            $diaryImage->image_1 = request()->imagepath;
+        } elseif (request()->selectedimage == 'image2') {
+            $diaryImage->image_2 = request()->imagepath;
+        } elseif (request()->selectedimage == 'image3') {
+            $diaryImage->image_3 = request()->imagepath;
+        } elseif (request()->selectedimage == 'image4') {
+            $diaryImage->image_4 = request()->imagepath;
         }
         $diaryImage->save();
 
