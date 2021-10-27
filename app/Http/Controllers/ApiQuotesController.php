@@ -31,7 +31,7 @@ class ApiQuotesController extends Controller
 
     public function saveTodiary(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'bg_code'=>'required',
             'message'=>'required',
             'book_id'=>'required',
