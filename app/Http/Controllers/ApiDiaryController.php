@@ -144,7 +144,7 @@ class ApiDiaryController extends Controller
         foreach ($qd as $q) {
             $qt = $q->quote;
             $qt->load('book');
-            $qt->created_at = $qt->created_at->format('m/d/Y H:i a');
+            $qt->datetime = $qt->created_at->format('m/d/Y H:i a');
             $quotes->push($qt);
         }
 
@@ -161,7 +161,7 @@ class ApiDiaryController extends Controller
 
         foreach ($qq as $quote) {
             if (!$quote->quoteDiaries()->count()) {
-                $quote->created_at = $quote->created_at->format('m/d/Y H:i a');
+                $quote->datetime = $quote->created_at->format('m/d/Y H:i a');
                 $quotes->push($quote);
             }
         }
