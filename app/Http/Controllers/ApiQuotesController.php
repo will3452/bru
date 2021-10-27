@@ -43,7 +43,7 @@ class ApiQuotesController extends Controller
 
         $quote = Quote::create($data);
 
-        QuoteDiary::crate([
+        QuoteDiary::create([
             'user_id'=>auth()->user()->id,
             'quote_id'=>$quote->id,
         ]);
