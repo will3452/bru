@@ -158,7 +158,7 @@ class ApiAuthController extends Controller
             'user' => $user,
             'bio' => $user->bio,
             'royalties' => $user->royalties,
-            'intererts' => $user->interests,
+            'interests' => $user->interests,
             'token' => $token,
             'result' => 200,
             'alert' => 'success',
