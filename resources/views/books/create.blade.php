@@ -3,12 +3,12 @@
     <h1 class="h3 mb-4 text-gray-800">{{ __('Create a Book') }}</h1>
     <a href="{{ route('books.index') }}" class="btn btn-primary btn-sm mb-2"><i class="fa fa-angle-left"></i> Back</a>
     @include('partials.alert')
-    
+
     <form action="{{ route('books.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for=""><strong>Please select what type of book you want to create.  </strong></label>
-            
+
             <div class="form-group">
                 <select name="class" id="class_" class="select2 custom-select" required>
                     <option value="regular" {{ request()->type == 'regular' ? 'selected':'' }} selected>Regular</option>
@@ -114,7 +114,7 @@
             <div class="col-md-4" id="heat_container">
                 <label for="">Set Heat Level</label>
                 <select name="heat" id="heat_level" class="form-control">
-                    @foreach($first->heats as $heat)
+                    @foreach(optional($first)->heats ?? [] as $heat)
                     @php
                         $heat_arr = explode('@', $heat);
                     @endphp
@@ -158,7 +158,7 @@
                 <strong>Age Restriction (system): </strong>
                 <span id="age_count">
                     @if($first_heat != null && $first_violence != null )
-                        @php 
+                        @php
                             $final_age = $first_heat < $first_violence ? $first_heat : $first_violence;
                             if($final_age > 0) $final_age.' and up';
                             else $final_age = 'None';
@@ -274,7 +274,7 @@
                 <label for="">Upload art here</label>
                 <x-form.file name="free_art" label=""/>
             </div>
-            
+
             <x-form.group>
                 <x-copyright-disclaimer/>
             </x-form.group>
@@ -283,7 +283,7 @@
                 Great, you may proceed.
             </div>
         </div>
-        
+
         @endif
         <div class="form-group">
             <button type="submit" class="btn btn-primary btn-block">Submit</button>
@@ -297,8 +297,8 @@
     <link rel="stylesheet" href="{{ asset('vendor/select2/select2-bootstrap.min.css') }}">
 @endsection
 @section('bottom')
-    
-    
+
+
     <script>
         $.ajaxSetup({
             headers: {
@@ -320,7 +320,7 @@
                 $('#no_upload_art').show();
                 $('#upload_art').hide();
             })
-            
+
         });
     </script>
     <script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
@@ -383,7 +383,7 @@
         }
       ],});
             $('#input-radio  *').css('cursor', 'pointer');
-           
+
             //genre logic goes here
             if(!{{ $first->age_restriction ?? 0 }}){
                 $('#age_level').prop('disabled', true);
@@ -416,7 +416,7 @@
                     }
                 })
             });
-            
+
             let heat_age = 0;
             let vio_age = 0;
             let age_str;
