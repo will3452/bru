@@ -14,10 +14,10 @@ class AddExtraColumnsToProducts extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('x');
-            $table->string('y');
-            $table->string('width');
-            $table->string('height');
+            $table->string('x')->nullable();
+            $table->string('y')->nullable();
+            $table->string('width')->nullable();
+            $table->string('height')->nullable();
             $table->string('crystal')->default('purple'); //white
             $table->string('category')->default('bodywear');
         });
